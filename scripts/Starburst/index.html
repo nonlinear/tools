@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset='UTF-8'>
+	
+	<title>Starburst</title>
+	
+	<link rel='stylesheet' href='css/style.css'>
+	
+	<style>
+		.price-container,
+		.price-container:before,
+		.price-container:after,
+		.price-container .price,
+		.price-container .price:before,
+		.price-container .price:after {
+			height: 8.5em;
+			width: 8.5em;
+			background: #760B1F url(price-bg.png) top left no-repeat;
+			background-size: 8.5em;
+		}
+		
+		.price-container:before,
+		.price-container:after,
+		.price-container .price:before,
+		.price-container .price:after {
+			content: "";
+			position: absolute;
+		}
+		
+		.price-container {
+			margin: 100px auto; /* Centering for demo */
+			position: relative; /* Context */
+			top: 2.5em;
+			left: 2.5em;
+			-webkit-transform: rotate(-45deg);
+			  -moz-transform: rotate(-45deg);
+			   -ms-transform: rotate(-45deg);
+			    -o-transform: rotate(-45deg);
+			       transform: rotate(-45deg);
+		}
+		
+		.price-container:before {
+			top: 0;
+			left: 0;
+			-webkit-transform: rotate(-30deg);
+			  -moz-transform: rotate(-30deg);
+			   -ms-transform: rotate(-30deg);
+			    -o-transform: rotate(-30deg);
+			       transform: rotate(-30deg);
+		}
+		
+		.price-container:after {
+			top: 0;
+			left: 0;
+			-webkit-transform: rotate(-15deg);
+			  -moz-transform: rotate(-15deg);
+			   -ms-transform: rotate(-15deg);
+			    -o-transform: rotate(-15deg);
+			       transform: rotate(-15deg);
+		}
+		
+		.price-container .price {
+			padding: .5em 0em;
+			height: 7.5em; /* height minus padding */
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			-webkit-transform: rotate(45deg);
+			  -moz-transform: rotate(45deg);
+			   -ms-transform: rotate(45deg);
+			    -o-transform: rotate(45deg);
+			       transform: rotate(45deg);
+			z-index: 1; /* important so the text shows up */
+		}
+		
+		.price-container .price:before {
+			top: 0;
+			left: 0;
+			-webkit-transform: rotate(60deg);
+			  -moz-transform: rotate(60deg);
+			   -ms-transform: rotate(60deg);
+			    -o-transform: rotate(60deg);
+			       transform: rotate(60deg);
+		}
+		
+		.price-container .price:after {
+			top: 0;
+			left: 0;
+			-webkit-transform: rotate(75deg);
+			  -moz-transform: rotate(75deg);
+			   -ms-transform: rotate(75deg);
+			    -o-transform: rotate(75deg);
+			       transform: rotate(75deg);
+		}
+			
+		.price-container .price span {
+			position: relative;
+			z-index: 100;
+			display: block;
+			text-align: center;
+			color: #FE3D5C;
+			font: 1.8em/1.4em Sans-Serif;
+			text-transform: uppercase;
+		}
+		
+		.price-container .price span.number {
+		  font-weight: bold;
+		  font-size: 2.5em;
+		  line-height: .9em;
+		  color: #fff;
+		}	
+
+	</style>
+</head>
+
+<body>
+
+	<div id="page-wrap">
+	
+		<div class="price-container">
+		  <div class="price">
+		    <span class="label">Buy</span>
+		    <span class="number">$39.95</span>
+		    <span class="label">Now</span>
+		  </div>
+		</div>
+	
+	</div>
+	
+</body>
+
+</html>

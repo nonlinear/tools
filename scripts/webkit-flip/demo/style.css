@@ -1,0 +1,140 @@
+body, div, h1, h2, h3, h4, h5, h6, p, ul, ol, li, dl, dt, dd, img, form, fieldset, blockquote {
+	margin: 0; padding: 0; border: 0;
+}
+
+body {
+	background: #3f3f3f url(wood-bg.png);
+	font-family: Helvetica, Arial, Sans-Serif;
+}
+
+h1 {
+	font-size: 50px; text-transform: uppercase; color: #717171;
+	text-shadow: 0 3px 3px #333; margin: 50px 0 0 0; text-align: center;
+}
+#browser {
+	margin: 0 auto; text-align: center;
+	text-shadow: 0 3px 3px #333;
+}
+	#browser em {
+		font: italic 26px Georgia, Serif; color: #666; 
+	}
+
+#transformers-rule {
+	width: 750px; position: relative; margin: 50px auto;
+}
+
+.container {
+	width: 324px; height: 412px;
+	-webkit-perspective: 1000;
+}
+
+.card {
+	width: 324px; height: 412px;
+	border: 8px solid #fff;	
+	-webkit-transform-style: preserve-3d;
+	-webkit-transition: 0.5s;
+}
+	.container:hover .card {
+		-webkit-transform: rotateY(180deg);				
+	}
+
+.face {
+	position: absolute;
+	-webkit-backface-visibility: hidden;
+}
+
+
+.megatron {
+	float: left; position: absolute; top: 30px; left: 20px;
+	-webkit-transform: rotate(5deg);
+}
+	.megatron .front {
+		
+	}
+	.megatron .back {
+		width: 284px; height: 372px; padding: 20px;
+		-webkit-transform: rotateY(180deg);
+		background: #a3a3a3 url(texture.png); 
+	}
+		.megatron .back h2 {
+			width: 287px; height: 42px; margin: 0 auto 20px auto;
+			background: url(megatron-title.png); text-indent: -9999px; 
+		}
+		.megatron img {
+			float: right;
+		}
+		.megatron p {
+			float: left; width: 185px; margin: 0 0 20px 0;
+			font-size: 17px; line-height: 28px; color: #4c4c4c; 
+		}
+		.megatron dl {
+			font-size: 30px; font-weight: bold; 
+			line-height: 40px; color: #717171;
+			width: 264px; padding: 5px 10px; overflow: hidden; 
+			background: #cfcfcf url(gradient.png) repeat-y;
+			-webkit-box-shadow: 0 1px 5px #888;
+			text-shadow: 0 1px 1px #f5f5f5;
+		}
+			.megatron dl dt {
+				float: left; clear: both;
+			}
+			.megatron dl dd {
+				float: right;
+			}
+
+	
+.optimus {
+	float: left; position: absolute; top: 120px; right: 20px;
+	-webkit-transform: rotate(-3deg);
+}
+	.optimus .front {
+		
+	}
+	.optimus .back {
+		width: 284px; height: 372px; padding: 20px;
+		-webkit-transform: rotateY(180deg);
+		background: #a3a3a3 url(texture.png); 
+	}
+		.optimus .back h2 {
+			width: 292px; height: 33px; margin: 0 auto 20px auto;
+			background: url(optimus-title.png); text-indent: -9999px; 
+		}
+		.optimus img {
+			float: right;
+		}
+		.optimus p {
+			float: left; width: 185px; margin: 0 0 27px 0;
+			font-size: 17px; line-height: 28px; color: #4c4c4c; 
+		}
+		.optimus dl {
+			font-size: 30px; font-weight: bold; 
+			line-height: 40px; color: #717171;
+			width: 264px; padding: 5px 10px; overflow: hidden; 
+			background: #cfcfcf url(gradient.png) repeat-y;
+			-webkit-box-shadow: 0 1px 5px #888;
+			text-shadow: 0 1px 1px #f5f5f5;
+		}
+			.optimus dl dt {
+				float: left; clear: both;
+			}
+			.optimus dl dd {
+				float: right;
+			}
+
+.front {
+	z-index: 10;
+}
+.container:hover .front {
+	z-index: 0;
+} 
+
+#credit {
+	position: absolute; bottom: 40px; right: 40px; width: 200px;
+	text-align: center; font-size: 14px; color: #717171;
+}
+	#credit a {
+		color: #666;
+	}
+		#credit a:hover {
+			color: #888;
+		}
