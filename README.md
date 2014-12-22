@@ -2,6 +2,7 @@
 	A collection of scripts I found online, to learn and modularize.
 ##Scripts
 - [Intro to CSS 3D transforms](http://nonlinear.github.io/tools/scripts/3dtransforms/index.html)
+- [Animated Headlines](http://nonlinear.github.io/tools/scripts/animated-headline/index.html)
 - [Arrow Navigation Styles](http://nonlinear.github.io/tools/scripts/ArrowNavigationStyles/index.html)
 - [Article Intro Effects](http://nonlinear.github.io/tools/scripts/ArticleIntroEffects/index.html)
 - [Morphing Buttons Concept](http://nonlinear.github.io/tools/scripts/ButtonComponentMorph/index.html)
