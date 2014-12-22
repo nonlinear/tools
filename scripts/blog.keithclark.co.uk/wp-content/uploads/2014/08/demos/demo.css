@@ -1,0 +1,11 @@
+
+.demo__info {
+position: absolute;
+
+z-index:100;
+bottom: 1vh;
+top: auto;
+font-size:80%;
+text-align:center;
+width: 100%;
+}

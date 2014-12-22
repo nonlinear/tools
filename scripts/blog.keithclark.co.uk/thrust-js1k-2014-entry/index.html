@@ -1,0 +1,203 @@
+<!doctype html>
+<html>
+<head>
+	<title>JS1K 2014: Thrust | Keith Clark</title> 
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="stylesheet" href="../wp-content/themes/raw/style.css" type="text/css" media="screen">
+	<link rel="pingback" href="../xmlrpc.php">
+	<link rel="alternate" type="application/rss+xml" title="Blog post RSS feed" href="../feed/index.html">
+	<!--[if (gte IE 6)&(lte IE 8)]>
+	<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script> 
+	<script src="//s3.amazonaws.com/nwapi/nwmatcher/nwmatcher-1.2.4-min.js"></script> 
+	<script type="text/javascript" src="/wp-content/themes/raw/js/selectivizr-min.js"></script> 
+	<![endif]-->
+	<script type="text/javascript" src="../wp-content/themes/raw/js/common-ver=3.5.js"></script> 
+	<script type="text/javascript" src="../wp-includes/js/comment-reply.min-ver=3.5.js"></script> 
+	<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../xmlrpc.php-rsd.xml">
+	<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../wp-includes/wlwmanifest.xml">
+	<link rel="prev" title="Calculating element vertex data from CSS transforms" href="../calculating-element-vertex-data-from-css-transforms/index.html">
+	<link rel="next" title="Google Analytics Debugger 2" href="../google-analytics-debugger-2/index.html">
+	<meta name="generator" content="WordPress 3.5">
+	<link rel="canonical" href="index.html">
+	<link rel="shortlink" href="index.html">
+</head> 
+<body>
+	<div id="page">
+		<header role="banner">
+			<a href="../index.html" title="Keith Clark" rel="home">
+			<img src="../wp-content/themes/raw/logo-keithclark.png"></a> <em>Articles, experiments and discussions on developing for the web</em> 
+		</header> 
+		<section role="main">
+			<article>
+				<header>
+					<h1>JS1K 2014: Thrust</h1> 
+					<p>By Keith Clark | <time pubdate datetime="2014-04-02">April 2, 2014</time> |
+					<a href="index.html#comments">No Comments</a> </p> 
+				</header> 
+				<p>This year I decided to write something for <a href="http://js1k.com/2014-dragons/">JS1K</a>. My entry is based on a game from my childhood called <a href="http://en.wikipedia.org/wiki/Thrust_(video_game)">Thrust</a>. The basic premise of the game is to navigate a ship down into a cavernous planet, retrieve a pod and escape with it back to space.</p> 
+				<p><a class="button" href="http://js1k.com/2014-dragons/demo/1832">Play Thrust at JS1K</a> </p> 
+				<p>The original game featured simple physics, pixel perfect collision detection, fuel depots, nuclear reactors, gun turrets and tractor beams &#8211; there was no way I could recreate all this in just 1K so I had to decide which elements I wanted to try and keep&#8230; I ended up here:</p> 
+				<ul>
+					<li>Stay faithful to the original look.
+					</li> 
+					<li>Reduced number of game objects &#8211; a ship, a pod, the pod plinth and a map.
+					</li> 
+					<li>Pixel perfect collision detection &#8211; scraping the along cavern walls gives a real sense of panic.
+					</li> 
+					<li>Physics &#8211; the pendulum effect experienced when the pod is attached to the ship.
+					</li> 
+				</ul> 
+				<figure>
+					<img alt="Screenshot of an exploded cube" src="../wp-content/uploads/2014/06/thrust.png" width="780" height="450"></p> 
+					<figcaption>Screenshot of JS1K thrust and the original BBC micro version (inset)</figcaption> 
+				</figure> 
+				<p>Early on I also decided to avoid using packers like RegPack and JSCrush because I wanted the minified source code to remain semi-legible. I have nothing against these tools, I just find the challenge of writing code to fit into 1K more rewarding than writing repetitive and verbose code that compresses well.</p> 
+				<p>I found writing a game in 1024 bytes incredibly tricky. Many JS1K entires are rolling demos and don&#8217;t need to worry about handling user interaction and dealing with consequences. Listening for input, handling collision detection and managing game state really eats up space!</p> 
+				<p>Although my entry didn&#8217;t make the top 10 it did receive an <a href="https://twitter.com/js1k/status/456364085395734528">honourable mention</a>.</p> 
+				<h2>The code</h2> 
+				<p>Here&#8217;s the final source for my entry. The minification process is simple, remove all comments and white space from the original source and convert the <code>setInterval</code> function body into a string:</p> 
+				<pre class="pre-wrap"><code class="js">C=[],B=[],O=Math,b.bgColor=Z=0,T=.001,onkeydown=onkeyup=function(a){C[a.which-32]=a.type[5]},setInterval('for(Q=[],R=a.width|=d=0;4>d;)with(B[d]=B[d]||(W=d&#038;&#038;3>d,L=U=V=M=0)||{o:["MTRWWOSOMCGOCOHWMT","MCFFCMFTMWTTWMTFMC","HkJiJ^DYFWMZTWVYP^PiRk","CaCOLOMPMRNSUSSWOXO]Q]QZTYWSUQOQNPNO[O[a"][d],x:210*W,y:1090*W,r:0,u:0,v:0}){P=B[0],t=O.sin(r),q=O.cos(r),M||(d||(E=5*T*!! C[6],r+=(!C[5]-!C[7])/50,u+=U+t*E,v+=V-q*E+T,S=2+y*T),F=x,G=y,x+=u,y+=v,1==d&#038;&#038;(U=x-P.x,V=y-P.y,J=O.sqrt(U*U+V*V),K=.5*(J-70)/J,L&#038;&#038;J>68?(r=O.atan2(V,U)-1.5,x-=U*=K,y-=V*=K,u=x-F,v=y-G+T):(L=O.abs(U)<20&#038;&#038;71>J&#038;&#038;!!C[8],U=V=0))),1!=L*d&#038;&#038;c.beginPath();for(f in o){if(Y=o.charCodeAt(f)-77,d>2&#038;&#038;(Y*=70),1&#038;f){if(J=X*q-Y*t+x,K=Y*q+X*t+y,d>L)for(j=0;f>1&#038;&#038;$>j;)D=Q[j++],E=Q[j++],F=Q[j],G=Q[j+1],g=K-E,h=H-D,i=I-E,k=J-D,n=F-D,m=G-E,M|=g*h>i*k^(K-G)*(H-F)>(I-G)*(J-F)&#038;&#038;i*n>m*h^g*n>m*k;else r+=M&#038;&#038;M++,$=Q.push(J,K);H=J,I=K,c[f?"lineTo":"moveTo"](S*(J-P.x)+R/2,S*(K-P.y)+a.height/2)}X=Y}A=3>d?"stroke":"fill",c[A+"Style"]="#6c5",L^++d&#038;&#038;c[A]()}B=M>149||P.y<-50?[]:B',15)</code> </pre> 
+				<p>Here's the unminified, commented source code:</p> 
+				<pre><code class="js">C = [],
+B = [],
+O = Math,
+b.bgColor = Z = 0,
+T = .001,
+onkeydown = onkeyup = function (a) {
+  C[a.which - 32] = a.type[5]
+},
+setInterval(function () {
+  for (Q = [], R = a.width |= d = 0; 4 > d;)    // clear the canvas ready for rendering
+    with (
+      B[d] = B[d] ||                               // get next object or....
+      (W = d &#038;&#038; 3 > d, L = U = V = M = 0) || {     // ...add object if it doesn't exist
+      o: [                                            // object data
+        "MTRWWOSOMCGOCOHWMT",                            // ship
+        "MCFFCMFTMWTTWMTFMC",                            // orb
+        "HkJiJ^DYFWMZTWVYP^PiRk",                        // orb plinth
+        "CaCOLOMPMRNSUSSWOXO]Q]QZTYWSUQOQNPNO[O[a"       // map
+      ][d],
+      x: 210 * W,                                     // x position
+      y: 1090 * W,                                    // y position
+      r: 0,                                           // rotation
+      u: 0,                                           // x velocity
+      v: 0                                            // y velocity
+    }) {
+      P = B[0],                                       // store a reference to the player
+      t = O.sin(r),                                   // pre-calculate sin (used later for direction and vertex transforms)
+      q = O.cos(r),                                   // pre-calculate cos
+      M || (                                          // is the player alive?
+        d || (                                           // update player
+          E = 5 * T * !! C[6],                              // increase thrust if 'up' key is pressed
+          r += (!C[5] - !C[7]) / 50,                        // rotate if 'left' or 'right' keys are pressed
+          u += U + t * E,                                   // increase players X velocity, adding U from orb movement if attached
+          v += V - q * E + T,                               // increase players Y velocity, adding V from orb movement and gravity
+          S = 2 + y * T                                     // zoom in as the player descends in to the caverns
+        ),
+        F = x,                                           // store object current X position
+        G = y,                                           // store object current Y position
+        x += u,                                          // move object along x axis
+        y += v,                                          // move object along Y axis
+        1 == d &#038;&#038; (                                      // update the orb
+          U = x - P.x,                                      // get X delta between ship and pod (used next iteration to adjust player)
+          V = y - P.y,                                      // get Y delta between ship and pod
+          J = O.sqrt(U * U + V * V),                        // get distance between ship and pod
+          K = .5 * (J - 70) / J,                            // calc distance delta between ship and pod
+          L &#038;&#038; J > 68 ? (                                   // is the pod attached to the ship?
+            r = O.atan2(V, U) - 1.5,                           // set rotation angle of pod (-1.5 is approx. Math.PI/2)
+            x -= U *= K,                                          // move pod along X axis
+            y -= V *= K,                                          // move pod along Y axis
+            u = x - F,                                            // set pod X velocity
+            v = y - G + T                                         // set pod Y velocity and add gravity
+          ) : (                                             // if the pod isn't attached to the ship...
+            L = O.abs(U) < 20 &#038;&#038; 71 > J &#038;&#038; !! C[8],            // capture it if the ship is directly above and 'down' key is pressed
+            U = V = 0                                             // clear inertia values
+          )
+        )
+      ),
+      1 != L * d &#038;&#038; c.beginPath();                    // start a new path unless the orb is attached to the ship (draws the arm automatically)
+      for (f in o) {                                     // read the object vertex data (f%2==0 is X data, f%2==1 is Y data)
+        if (Y = o.charCodeAt(f) - 77,                       // decode the coordinate
+            d > 2 &#038;&#038; (Y *= 70),                             // if this object is the map, scale it up by a factor of 70
+            1 &#038; f) {                                        // if this is the second vertex coordinate, we have an X and Y
+          if (J = X * q - Y * t + x,                           // rotate and translate along the X axis
+              K = Y * q + X * t + y,                           // rotate and translate along the Y axis
+              d > L)                                           // if object is the ship (or orb, if attached) add vertex to the collision array
+            for (j = 0; f > 1 &#038;&#038; $ > j;)                          // check this line doesn't intersect any lines in the collision array...
+              D = Q[j++],                                         // ...if it does, set the player dead flag (M==1)                                         
+              E = Q[j++],
+              F = Q[j],
+              G = Q[j + 1],
+              g = K - E,
+              h = H - D, 
+              i = I - E, 
+              k = J - D,
+              n = F - D,
+              m = G - E,
+              M |= g * h > i * k ^ (K - G) * (H - F) > (I - G) * (J - F) &#038;&#038; i * n > m * h ^ g * n > m * k;
+          else 
+            r += M &#038;&#038; M++,                              // simulate an explosion by rotating the ship / orb (M==0 when player is alive)
+            $ = Q.push(J, K);                           // store these points in the collision array
+          H = J,                                     // store end X data as the start of the next line
+          I = K,                                     // store end Y data as the start of the next line
+          c[f ? "lineTo" : "moveTo"](                // draw the line
+            S * (J - P.x) + R / 2,
+            S * (K - P.y) + a.height / 2
+          )
+        }
+        X = Y                                      // if this is the first vertex coordinate, store it as X
+      }
+      A = 3 > d ? "stroke" : "fill",               // fill the ground, stroke everything else
+      c[A + "Style"] = "#6c5",                     // set fill / stroke style for the object
+      L ^ ++d &#038;&#038; c[A]()                               // paint the object (if object is the ship with orb attached skip the paint)
+    }
+    B = M > 149 || P.y < -50 ? [] : B           // if the player escapes or crashes, reset the map
+  }, 15)</code> </pre> 
+				<footer>
+					Posted in: 
+					<a href="../category/javascript/index.html" title="View all posts in JavaScript" rel="category tag">JavaScript</a> 
+				</footer> 
+			</article> 
+			<section id="comments">
+			</section> 
+		</section> 
+		<aside role="complementary">
+			<section id="paging">
+				<h3>Navigate</h3> 
+				<ul>
+					<li>Next: 
+						<a href="../google-analytics-debugger-2/index.html" rel="next">Google Analytics Debugger 2</a> 
+					</li> 
+					<li>Previous: 
+						<a href="../calculating-element-vertex-data-from-css-transforms/index.html" rel="prev">Calculating element vertex data from CSS transforms</a> 
+					</li> 
+				</ul> 
+			</section> 
+			<section id="text-3">
+				<h3>About Me</h3> 
+				<div class="textwidget">
+					<p>I'm a front-end web developer from the UK, based in Farnborough.</p> 
+					<p>When I'm not developing websites I like to create tools such as <a href="http://selectivizr.com">selectivizr</a> and <a href="http://keithclark.co.uk/labs/google-analytics-debugger/">Google Analytics Debugger</a> or <a href="http://keithclark.co.uk/labs/">experiment</a> with what's possible in a browser. This year I won a net magazine award for my <a href="http://keithclark.co.uk/labs/css3-fps-new/">CSS FPS</a> demo and was nominated for developer of the year. </p> 
+					<p>You can find me on <a href="http://twitter.com/keithclarkcouk">twitter</a> and, if you're interested in my professional experience, please have a look at my <a href="http://keithclark.co.uk/cv/">CV</a> or <a href="http://keithclark.co.uk">website</a>.</p> 
+				</div> 
+			</section> 
+		</aside> 
+		<footer role="contentinfo">
+		Design and content &copy; Keith Clark.
+		
+		</footer> 
+	</div> 
+	<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-10812217-3']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script> 
+
+</body> </html> 

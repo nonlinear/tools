@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+<head>
+	<title>The state of CSS 3D transforms | Keith Clark</title> 
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="stylesheet" href="../wp-content/themes/raw/style.css" type="text/css" media="screen">
+	<link rel="pingback" href="../xmlrpc.php">
+	<link rel="alternate" type="application/rss+xml" title="Blog post RSS feed" href="../feed/index.html">
+	<!--[if (gte IE 6)&(lte IE 8)]>
+	<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script> 
+	<script src="//s3.amazonaws.com/nwapi/nwmatcher/nwmatcher-1.2.4-min.js"></script> 
+	<script type="text/javascript" src="/wp-content/themes/raw/js/selectivizr-min.js"></script> 
+	<![endif]-->
+	<link rel="alternate" type="application/rss+xml" title="Keith Clark &raquo; The state of CSS 3D transforms Comments Feed" href="feed/index.html">
+	<script type="text/javascript" src="../wp-content/themes/raw/js/common-ver=3.5.js"></script> 
+	<script type="text/javascript" src="../wp-includes/js/comment-reply.min-ver=3.5.js"></script> 
+	<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../xmlrpc.php-rsd.xml">
+	<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../wp-includes/wlwmanifest.xml">
+	<link rel="prev" title="Moving IE specific CSS into @media blocks" href="../moving-ie-specific-css-into-media-blocks/index.html">
+	<link rel="next" title="Creating 3D worlds with HTML and CSS" href="../creating-3d-worlds-with-html-and-css/index.html">
+	<meta name="generator" content="WordPress 3.5">
+	<link rel="canonical" href="index.html">
+	<link rel="shortlink" href="index.html">
+</head> 
+<body>
+	<div id="page">
+		<header role="banner">
+			<a href="../index.html" title="Keith Clark" rel="home">
+			<img src="../wp-content/themes/raw/logo-keithclark.png"></a> <em>Articles, experiments and discussions on developing for the web</em> 
+		</header> 
+		<section role="main">
+			<article>
+				<header>
+					<h1>The state of CSS 3D transforms</h1> 
+					<p>By Keith Clark | <time pubdate datetime="2012-11-21">November 21, 2012</time> |
+					<a href="index.html#comments">3 Comments</a> </p> 
+				</header> 
+				<p>If you follow me on <a href="http://twitter.com/keithclarkcouk">twitter</a> you&#8217;ll know I&#8217;ve been experimenting with CSS 3D transforms to see how far I can push them. A while back I wrote a very simple <a href="http://www.keithclark.co.uk/labs/3dcss/demo/">first person demo</a> built using HTML, CSS3 and a splash of JavaScript. The 3D enviroment was constructed entirely from <code>&lt;div&gt;</code> elements that were positioned in 3D space using CSS transforms.</p> 
+				<p>
+				<img src="../wp-content/uploads/2012/11/fps11.jpg" alt="" title="Original prototype" width="780" height="440"></p> 
+				<p>In my free time I&#8217;ve been evolving the idea to see if I could actually create a full 3D environment with lighting, shadows, collision etc. (I&#8217;ll be posting about the new version soon). So far, it&#8217;s going really well but pushing the boundaries of 3D transforms has revealed various bugs and inconstancies across all browsers so I thought I&#8217;d document them here.</p> 
+				<p>
+				<img title="New prototype" src="../wp-content/uploads/2012/11/fps2.jpg" alt="" width="780" height="440"></p> 
+				<h2>Chrome</h2> 
+				<p>When it comes to rendering a large number of elements manipulated with 3D transforms Chrome does a great job. Of all the browsers I&#8217;ve been looking at Chrome is definitely the fastest at this.</p> 
+				<p>The only major issue is the inconsistent rendering of elements as you transform them between repaints. Groups of elements are intermittent missed when the browser redraws the screen causing terrible flicker.</p> 
+				<p>The second issue relates to <code>-webkit-mask-image</code>. On some machine configurations the mask image is incorrectly scaled to fit inside the viewport when using a 3D transform. The image that the mask is applied to is not scaled which produces an interesting side-effect.</p> 
+				<p>The <code>-webkit-mask-image</code> problem appears to be a hardware accelerated graphics issue because it doesn&#8217;t happen on machines with older GPUs unless you force hardware acceleration via <code>about:flags</code>. I&#8217;ve filed a <a href="https://bugs.webkit.org/show_bug.cgi?id=91493">bug</a> about this.</p> 
+				<h2>Safari</h2> 
+				<p>Safari is almost perfect. It&#8217;s pretty fast at rendering hundreds of elements using 3D transforms, there&#8217;s no flicker between frames and the whole experience is silky smooth. Sounds too good to be true&#8230;</p> 
+				<p>Unfortunately, there is a problem. Safari doesn&#8217;t apply the <code>Z</code> value to the transform matrix when you use <code>-webkit-transform-origin</code> which makes moving a &#8220;camera&#8221; impossible unless you build up the transform matrix long hand. In my <a href="http://www.keithclark.co.uk/labs/3dcss/demo/">original prototype</a> you could only move along the X and Z axis. There was no vertical movement so I switched the Z axis for the Y axis to get round this issue. For my new prototype I want stairs, jumping and falling so I need movement in all three axis.</p> 
+				<p>I filed a <a href="https://bugs.webkit.org/show_bug.cgi?id=91494">bug</a> for this issue which was eventually closed as duplicate of <a href="https://bugs.webkit.org/show_bug.cgi?id=88587">this</a> better documented bug.</p> 
+				<h2>Firefox</h2> 
+				<p>Firefox suffers from similar rendering issues to Chrome, it&#8217;s also very slow. So slow that it chokes on even a few transformed elements. I suspect Firefox isn&#8217;t using the GPU to render 3D transforms &#8211; I&#8217;d like to get some clarification on this.</p> 
+				<h2>Internet Explorer</h2> 
+				<p>Oh dear. No support for <code>transform-style: preserve-3d</code> which means nested elements aren&#8217;t transformed. This makes the project a non starter for IE. It&#8217;s a real shame, but somehow, deep down I always knew this was never going to work in IE.</p> 
+				<h2>Summary</h2> 
+				<p>Although each browser has its own issues, generally they all do a great job of rendering transformed elements accurately (except for IE not supporting <code>preserve-3d</code>). So, provided you make modest use of 3D transforms, you&#8217;ll probably never encounter any of these issues.</p> 
+				<footer>
+					Posted in: 
+					<a href="../category/css/index.html" title="View all posts in CSS" rel="category tag">CSS</a> 
+				</footer> 
+			</article> 
+			<section id="comments">
+				<h2>3 comments</h2> 
+				<ul>
+					<li id="comment-3487" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/07fcd228af02d476b1b8367d85a903b2?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://christianheilmann.com" rel="external nofollow" class="url">Chris Heilmann</a> </cite> <time datetime="2012-11-21UTC02-11-00">November 21, 2012 at 2:15 pm</time> 
+						</header> 
+						<p>Without an FPS counter there is not much we can tell you if your demo performs better on our machines or not. I&#8217;ll point the Firefox team to it and see what might be the issue with HW acceleration.</p> 
+						<footer>
+							<a href="index.html#comment-3487">Permalink</a> 
+						</footer> 
+						<ul class="children">
+							<li id="comment-3488" class="comment">
+								<header>
+									<img alt="" src="http://1.gravatar.com/avatar/15627af5bae9d2b1c295ff2304f7383a?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.keithclark.co.uk" rel="external nofollow" class="url">Keith Clark</a> </cite> <time datetime="2012-11-21UTC02-11-10">November 21, 2012 at 2:26 pm</time> 
+								</header> 
+								<p>I&#8217;ll add an FPS counter and re-test. Thanks Chris.</p> 
+								<footer>
+									<a href="index.html#comment-3488">Permalink</a> 
+								</footer> 
+							</li> 
+						</ul> 
+					</li> 
+					<li id="comment-3490" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/26fd9361d46106153ca757bf68bc826a?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.andrespagella.com" rel="external nofollow" class="url">Andres Pagella</a> </cite> <time datetime="2012-11-21UTC02-11-50">November 21, 2012 at 2:43 pm</time> 
+						</header> 
+						<p>When it comes to CSS 3D transformations, while it is true that under OSX Lion Firefox was the slowest and Safari was the fastest browser, that is no longer the case in Mountain Lion. As weird as this may sound, now Firefox is the fastest and Safari is utter rubbish.</p> 
+						<p>Brilliant article by the way, keep up the good work.</p> 
+						<footer>
+							<a href="index.html#comment-3490">Permalink</a> 
+						</footer> 
+					</li> 
+				</ul> 
+			</section> 
+		</section> 
+		<aside role="complementary">
+			<section id="paging">
+				<h3>Navigate</h3> 
+				<ul>
+					<li>Next: 
+						<a href="../creating-3d-worlds-with-html-and-css/index.html" rel="next">Creating 3D worlds with HTML and CSS</a> 
+					</li> 
+					<li>Previous: 
+						<a href="../moving-ie-specific-css-into-media-blocks/index.html" rel="prev">Moving IE specific CSS into @media blocks</a> 
+					</li> 
+				</ul> 
+			</section> 
+			<section id="text-3">
+				<h3>About Me</h3> 
+				<div class="textwidget">
+					<p>I'm a front-end web developer from the UK, based in Farnborough.</p> 
+					<p>When I'm not developing websites I like to create tools such as <a href="http://selectivizr.com">selectivizr</a> and <a href="http://keithclark.co.uk/labs/google-analytics-debugger/">Google Analytics Debugger</a> or <a href="http://keithclark.co.uk/labs/">experiment</a> with what's possible in a browser. This year I won a net magazine award for my <a href="http://keithclark.co.uk/labs/css3-fps-new/">CSS FPS</a> demo and was nominated for developer of the year. </p> 
+					<p>You can find me on <a href="http://twitter.com/keithclarkcouk">twitter</a> and, if you're interested in my professional experience, please have a look at my <a href="http://keithclark.co.uk/cv/">CV</a> or <a href="http://keithclark.co.uk">website</a>.</p> 
+				</div> 
+			</section> 
+		</aside> 
+		<footer role="contentinfo">
+		Design and content &copy; Keith Clark.
+		
+		</footer> 
+	</div> 
+	<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-10812217-3']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script> 
+
+</body> </html> 

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Keith Clark &#187; Tools</title>
+	<atom:link href="http://blog.keithclark.co.uk/category/tools/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.keithclark.co.uk</link>
+	<description>Articles, experiments and discussions on developing for the web</description>
+	<lastBuildDate>Mon, 04 Aug 2014 22:34:16 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=3.5</generator>
+		<item>
+		<title>Google Analytics Debugger 2</title>
+		<link>http://blog.keithclark.co.uk/google-analytics-debugger-2/</link>
+		<comments>http://blog.keithclark.co.uk/google-analytics-debugger-2/#comments</comments>
+		<pubDate>Fri, 06 Jun 2014 22:19:20 +0000</pubDate>
+		<dc:creator>Keith Clark</dc:creator>
+				<category><![CDATA[Tools]]></category>
+
+		<guid isPermaLink="false">http://blog.keithclark.co.uk/?p=1069</guid>
+		<description><![CDATA[A new open source version of Google Analytics Debugger is available on github. This is a complete rewrite of the original Firefox-only add-on with new features including support for Universal Analytics. Contribute on Github For the moment only a Chrome version exists in the repository but extensions for Firefox and hopefully other browsers will come... <a href="http://blog.keithclark.co.uk/google-analytics-debugger-2/">Continue Reading</a>]]></description>
+				<content:encoded><![CDATA[<p>A new open source version of Google Analytics Debugger is available on github. This is a complete rewrite of the original Firefox-only add-on with new features including support for Universal Analytics.</p>
+<p><a class="button" href="https://github.com/keithclark/gadebugger">Contribute on Github</a></p>
+<p>For the moment only a Chrome version exists in the repository but extensions for Firefox and hopefully other browsers will come along in the near future (perhaps from the community via pull requests?). It was my intention to directly port version 1 of GA Debugger into the build process for Firefox but I want the extension to run inside Firefox devtools which requires a rewrite.</p>
+<figure><img alt="Screenshot of an exploded cube" src="http://keithclark.co.uk/labs/google-analytics-debugger/screengrab.png" width="780" height="450" /></p>
+<figcaption>Google Analytics Debugger 2 running in Chrome</figcaption>
+</figure>
+<p>As well as adding new features, this is also an attempt to build multiple browser extensions from a single code base. The core code is responsible for parsing Google Analytics tracking beacons and stands alone with it&#8217;s own API, tests and build steps. It&#8217;s then built into each extension, along with any browser specific markup, scripts styles etc.</p>
+<p>The extension isn&#8217;t ready for publishing in Chrome store yet so if you want to use it you&#8217;ll need to build it yourself. You can find instructions in the readme. </p>
+<p>As always, I appreciate any feedback or contributions to the project.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.keithclark.co.uk/google-analytics-debugger-2/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Google Analytics Debugger for Firefox Update</title>
+		<link>http://blog.keithclark.co.uk/google-analytics-debugger-for-firefox-update/</link>
+		<comments>http://blog.keithclark.co.uk/google-analytics-debugger-for-firefox-update/#comments</comments>
+		<pubDate>Thu, 09 May 2013 21:17:01 +0000</pubDate>
+		<dc:creator>Keith Clark</dc:creator>
+				<category><![CDATA[Tools]]></category>
+
+		<guid isPermaLink="false">http://blog.keithclark.co.uk/?p=591</guid>
+		<description><![CDATA[I&#8217;ve released a small update to my Google Analytics Debugger add-on for Firefox. This post details the latest changes. Download the Add-on HTTPS support GA Debugger now tracks data over HTTPS connections. The previous release only intercepted __utm.gif requests to http://www.google-analytics.com/. The progress listener interface now listens for requests to https://ssl.google-analytics.com too, allowing you monitor... <a href="http://blog.keithclark.co.uk/google-analytics-debugger-for-firefox-update/">Continue Reading</a>]]></description>
+				<content:encoded><![CDATA[<p>I&#8217;ve released a small update to my Google Analytics Debugger add-on for Firefox. This post details the latest changes.</p>
+<p><a href="http://keithclark.co.uk/labs/google-analytics-debugger/" class="button">Download the Add-on</a></p>
+<h2>HTTPS support</h2>
+<p>GA Debugger now tracks data over HTTPS connections. The previous release only intercepted <code>__utm.gif</code> requests to http://www.google-analytics.com/.  The progress listener interface now listens for requests to https://ssl.google-analytics.com too, allowing you monitor all your secure tracking data.</p>
+<h2>Custom variable values</h2>
+<p>Custom variables now show the correct value content. This was an issue for a few users which gave false readings when debugging. The issue was cause by incorrect parsing the <code>umte</code> parameter for <code>_setCustomVar</code> data. The previous release was looking for a pattern of <code>5(object*action*label*value)</code> instead of <code>5(object*action*label)(value)</code>.</p>
+<h2>More tracker details</h2>
+<p>GA Debugger will now show you all the domains that a tracker has captured data for &mdsash; which is handy for cross-domain tracking. It will also show the number of session requests each tracker has made which is useful for checking if you&#8217;re close to the 500 limit Google Analytics imposes on tracker requests.</p>
+<h2>UI Update</h2>
+<p>I&#8217;ve also updated the UI slightly. You can now add GA Debugger to your Firefox toolbar using the <strong>View</strong> &gt; <strong>Toolbars</strong> &gt; <strong>Customize&#8230;</strong> option &#8211; just drag the GA Debugger button into your toolbar.</p>
+<figure>
+<img src="http://blog.keithclark.co.uk/wp-content/uploads/2013/05/GA.jpg" alt="GA" width="891" height="402" /></p>
+<figcaption>How to add the GA Debugger icon to your Firefox toolbar</figcaption>
+</figure>
+<p>Clicking the button will toggle the debugger panel on and off. GA Debugger will still continue to capture data if the panel is hidden so a red &#8220;recording&#8221; overlay is shown on the button while data is being captured so you don&#8217;t forget to disable capturing while you browse the web.</p>
+<p>Finally, I&#8217;d like to say thank you everybody that provided feedback and beer donations to this project &mdash; both are greatly appreciated!</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.keithclark.co.uk/google-analytics-debugger-for-firefox-update/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

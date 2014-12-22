@@ -1,0 +1,592 @@
+<!doctype html>
+<html>
+<head>
+	<title>Creating 3D worlds with HTML and CSS | Keith Clark</title> 
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="stylesheet" href="../wp-content/themes/raw/style.css" type="text/css" media="screen">
+	<link rel="pingback" href="../xmlrpc.php">
+	<link rel="alternate" type="application/rss+xml" title="Blog post RSS feed" href="../feed/index.html">
+	<!--[if (gte IE 6)&(lte IE 8)]>
+	<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script> 
+	<script src="//s3.amazonaws.com/nwapi/nwmatcher/nwmatcher-1.2.4-min.js"></script> 
+	<script type="text/javascript" src="/wp-content/themes/raw/js/selectivizr-min.js"></script> 
+	<![endif]-->
+	<link rel="alternate" type="application/rss+xml" title="Keith Clark &raquo; Creating 3D worlds with HTML and CSS Comments Feed" href="feed/index.html">
+	<script type="text/javascript" src="../wp-content/themes/raw/js/common-ver=3.5.js"></script> 
+	<script type="text/javascript" src="../wp-includes/js/comment-reply.min-ver=3.5.js"></script> 
+	<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../xmlrpc.php-rsd.xml">
+	<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../wp-includes/wlwmanifest.xml">
+	<link rel="prev" title="The state of CSS 3D transforms" href="../the-state-of-css-3d-transforms/index.html">
+	<link rel="next" title="Google Analytics Debugger for Firefox Update" href="../google-analytics-debugger-for-firefox-update/index.html">
+	<meta name="generator" content="WordPress 3.5">
+	<link rel="canonical" href="index.html">
+	<link rel="shortlink" href="index.html">
+</head> 
+<body>
+	<div id="page">
+		<header role="banner">
+			<a href="../index.html" title="Keith Clark" rel="home">
+			<img src="../wp-content/themes/raw/logo-keithclark.png"></a> <em>Articles, experiments and discussions on developing for the web</em> 
+		</header> 
+		<section role="main">
+			<article>
+				<header>
+					<h1>Creating 3D worlds with HTML and CSS</h1> 
+					<p>By Keith Clark | <time pubdate datetime="2013-01-25">January 25, 2013</time> |
+					<a href="index.html#comments">46 Comments</a> </p> 
+				</header> 
+				<p>Last year I created a <a href="http://keithclark.co.uk/labs/3dcss/demo/">demo</a> showing how CSS 3D transforms could be used to create 3D environments. The demo was a technical showcase of what could be achieved with CSS at the time but I wanted to see how far I could push things, so over the past few months I&#8217;ve been working on a <a href="http://keithclark.co.uk/labs/css3-fps/">new version</a> with more complex models, realistic lighting, shadows and collision detection. This post documents how I did it and the techniques I used.</p> 
+				<p><a class="button" href="http://keithclark.co.uk/labs/css3-fps/">View the demo</a> <em class="note">(best experienced in Safari)</em> </p> 
+				<h2>Creating 3D objects</h2> 
+				<p>In today&#8217;s 3D engines an objects geometry is stored as a collection of points (or vertices) each having an <code>x</code>, <code>y</code> and <code>z</code> property that defines its position in 3D space. A rectangle for example would be defined by four vertices, one for each corner. Each corner can be individually manipulated allowing the rectangle to be pulled into different shapes by moving its vertices along the x, y and z axis. The 3D engine will use this vertex data and some clever math to render 3D objects on your 2D screen.</p> 
+				<p>With CSS transforms this is turned on its head. We can&#8217;t define arbitrary shapes using a set of points, we&#8217;re stuck with HTML elements which are always rectangular and have two dimensional properties such as <code>top</code>, <code>left</code>, <code>width</code> and <code>height</code> to determine their position and size. In many ways this makes dealing with 3D easier, as there&#8217;s no complex math to deal with — just apply a CSS transform to rotate an element around an axis and you&#8217;re done!</p> 
+				<p>Creating objects from rectangles seems limiting at first but you can do a surprising amount with them, especially when you start playing with PNG alpha channels. In the image below you can see the barrel top and wheel objects appear rounded despite being made up of rectangles.</p> 
+				<figure>
+					<img alt="A barrel, wheel and crate" src="../wp-content/uploads/2013/01/cssfps-objects.jpg" width="780" height="431"></p> 
+					<figcaption>An example of 3D objects built entirely from rectangular &lt;div&gt; elements</figcaption> 
+				</figure> 
+				<p>All objects are created in JavaScript using a small set functions for creating primitive geometry. The simplest object that can be created is a plane, which is basically a <code>&lt;div&gt;</code> element. Planes can be added to assemblies, (a wrapper <code>&lt;div&gt;</code> element) allowing the entire object to be rotated and moved as a single entity. A tube is an assembly containing planes rotated around an axis and a barrel is a tube with a top plane and another for the bottom.</p> 
+				<p>The following example shows this in practice &#8211; have a look at the &#8220;JS&#8221; tab:</p> 
+				<figure>
+					<p data-height="350" data-theme-id="255" data-slug-hash="ksayr" data-user="keithclark" data-default-tab="result" class='codepen'>See the Pen <a href="http://codepen.io/keithclark/pen/ksayr">3D objects in CSS</a> by Keith Clark (<a href="http://codepen.io/keithclark">@keithclark</a>) on <a href="http://codepen.io">CodePen</a> </p> 
+					<figcaption>A 3D oil drum built using rectangular &lt;div&gt; elements</figcaption> 
+				</figure> 
+				<p>
+				<script async src="http://codepen.io/assets/embed/ei.js"></script> </p> 
+				<h2>Lighting</h2> 
+				<p>Lighting was by the biggest challenge in this project. I won&#8217;t lie, the math nearly broke me, but it was worth the effort because lighting brings an incredible sense of depth and atmosphere an otherwise flat and lifeless environment.</p> 
+				<figure>
+					<img alt="A lifeless 3D room" src="../wp-content/uploads/2013/01/css3fps-unlit.jpg" width="780" height="450"></p> 
+					<figcaption>A screenshot of an unlit room</figcaption> 
+				</figure> 
+				<p>As I mentioned earlier, an object in your average 3D engine is defined by a series of vertices. To calculate lighting these vertices are used to compute a &#8220;normal&#8221; which can be used to determine how much light will hit the centre point of a surface. This poses a problem when creating 3D objects with HTML elements because this vertex data doesn&#8217;t exist. So the first challenge was to write a set of functions to calculate the four vertices (one for each corner) for an element that had been transformed with CSS so that lighting could be calculated. Once that was figured out I began to experiment with different ways to light objects. In my first experiment, I used multiple <code>background-image</code> s to simulate light hitting a surface by combining a <code>linear-gradient</code> with an image. The effect uses a gradient that begins and ends with the same <code>rgba</code> value, producing a solid block of colour. Varying the value of the alpha channel allows the underlying image to bleed through the colour block creating the illusion of shading.</p> 
+				<figure>
+					<img title="css3d-rgba" alt="5 differently shaded textures" src="../wp-content/uploads/2013/01/css3d-rgba1.jpg" width="580" height="124"></p> 
+					<figcaption>Example of using a gradient to shade a texture</figcaption> 
+				</figure> 
+				<p>To achieve the darkest effect in the above image I apply the following styles to an element:</p> 
+				<pre><code class="css">element {
+    background: linear-gradient(rgba(0,0,0,.8), rgba(0,0,0,.8)), url("texture.png");
+}</code> </pre> 
+				<p>In practice, these styles are not predefined in a stylesheet, they are calculated dynamically and applied directly to the elements <code>style</code> property using JavaScript.</p> 
+				<figure>
+					<p data-height="350" data-theme-id="255" data-slug-hash="qsdAH" data-user="keithclark" data-default-tab="result" class='codepen'>See the Pen <a href="http://codepen.io/keithclark/pen/qsdAH">3D objects in CSS with shading</a> by Keith Clark (<a href="http://codepen.io/keithclark">@keithclark</a>) on <a href="http://codepen.io">CodePen</a> </p> 
+					<figcaption>A flat shaded 3D oil drum</figcaption> 
+				</figure> 
+				<p>
+				<script async src="http://codepen.io/assets/embed/ei.js"></script> </p> 
+				<p>This technique is referred to as flat shading. It&#8217;s an effective method of shading, however it does result in the entire surface having the same detail. For example, if I created a 3D wall that extended into the distance, it would be shaded identically along its entire length. I wanted something that looked more realistic.</p> 
+				<h2>A second stab at lighting</h2> 
+				<p>To simulate real lighting, surfaces need to darken as they extend beyond the range of a light source, and if multiple lights hit the same surface it should shade accordingly.</p> 
+				<p>To flat shade a surface I only had to calculate the light hitting the centre point, but now I need to sample the light at various points on the surface so I can determine how light or dark each point should be. The math required to create this lighting data is identical to that used for flat shading.</p> 
+				<p>Initially, I tried producing a <code>radial-gradient</code> from the lighting data to use in place of the <code>linear-gradient</code> in my earlier attempt. The results were more realistic but multiple light sources were still a problem because layering multiple gradients on top of each other causes the underlying texture to get progressively darker. If CSS supported image compositing and blending modes (they are coming) it may have been possible to make radial gradients work.</p> 
+				<p>The solution was to use a <code>&lt;canvas&gt;</code> element to programatically generate a new texture that could be used as a light map. With the calculated lighting data I could draw a series of black pixels, varying each ones alpha channel based on the amount of light that would hit the surface at that point. Finally the <code>canvas.toDataURL()</code> method was used to encode the image and use it in place of the <code>linear-gradient</code> in my first experiment. Repeating this process for each surface produces a realistic lighting effect for the entire environment.</p> 
+				<p>Calculating and drawing these textures is intensive work. The basement ceiling and floor are both 1000 x 2000 pixels in size, creating a texture to cover this area isn&#8217;t practical so I only sample lights every 12 pixels, which produces a light map 12 times smaller than the surface it will cover. Setting <code>background-size: 100%</code> causes the browser to scale the texture up using bilinear (or similar) filtering so it fits the surface area. The scaling effect produces a result that is almost identical to a light map generated for every single pixel.</p> 
+				<p>The background style rule for applying a light map and texture to a surface looks something like this:</p> 
+				<pre class="pre-wrap"><code class="css">element {
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAyCAYAAAAqRkmtAAACiUlEQVRoQ9VZa0vEQAy8+/8/yPcbFVFEEREREcS/4eNSmpKmmU12t/XYD6W3beGmk8kk2a5Xq9XR5vjeHD+B47d/xjrTtdSxud3dl+d+OTmt+yvDmX4c9n8eAbtVoAeCyRRYBknMb4XRfRVyC6wEqYFK0Cj0HG4OfSr8HG56ZhR6AhoJO2u4JPxInxK4BDYCyYu9YOglk/xbsymvy8RhpjlrNEArqWRCrWlBQEsYRWC98EfAmlm/W8FoBKzWp2aT11KbZugJ6NKMzpJMFlANPJX1Wpdyjdj0NKozv9PoTjD0pRYVDb2b9VGgVtZHNKrLpuelEzb5DRhoRKel1alGox1wGfpmgFIYPbCIUa+MRiuTpdMJox7QrSdTM/bUlOFzZ7SERqM+6pbQZpqSZtq8ZhrnZkaRZoa7ZsblZjYgjgM1vmYClYOd1+LBnpRM9iQItLTFQ/0o6vLhXH9aCTTaOWnAehp1K9NZP4rUbufo2UnP9ajV82b6Tg70FudiZtKtHmrtoiOIpU9PpzD0Fwoo2n6sbZo9gJJZcwq9DGi0JpFyhjuoU7pxtSCjtXP9aDfv2gFaOoJofaKst5JJ+ukwM91kMirtyMp0a5MsOtyZicSobxMaLd3K0dZksZlt+HcZoUdsImZTY0g20PtA6OeypohFQR99MCqTDnnqA0NKp7My+ggYjerz34A+LQRUsolCrnWaNPznSqCoeyo1e/bV0T4+LV4KgCJwJAPNZI41WfV+MPzXAFDLluY2e83kqDoR2jcD6ByJhJoRrUtea31OgL4roCU9aORDWMRDIav0Fh890JR3lnz/1GVU1nsGlJX1n4UaRQkV6ZpQ+Uwm05ej0TkSycp8i2Hoo3+utUtvDhk9pwAAAABJRU5ErkJggg==") 0 0 / 100% 100%, url("texture.png") 0 0 / auto auto;
+}</code> </pre> 
+				<p>Which produces the final lit surface:</p> 
+				<figure>
+					<img alt="Light map blended with a texture map" src="../wp-content/uploads/2013/01/lightmap.jpg" width="780" height="161"></p> 
+					<figcaption>Visualisation of a low resolution light map scaled up and layered onto a texture</figcaption> 
+				</figure> 
+				<h2>Casting Shadows</h2> 
+				<p>Settling on canvas for lighting made casting shadows possible. The logic behind shadow casting turned out to be rather easy. Ordering surfaces based on their proximity to a light source allowed me to not only produce a light map for a surface but also determine if a previous surface had already been hit by the current ray of light. If it had, I could set the relevant light map pixel to be in shadow. This technique allows one image to used for both lighting and shadows.</p> 
+				<figure>
+					<img alt="An atmospheric room" src="../wp-content/uploads/2013/01/css3fps-lit.jpg" width="780" height="450"></p> 
+					<figcaption>A screenshot of the final room with lighting and shadows</figcaption> 
+				</figure> 
+				<h2>Collisions</h2> 
+				<p>Collision detection uses a height map &#8211; a top down image of the level that uses colour to represent the height of objects within it. White represents the deepest and black the highest possible position the player can reach. As the player moves around the level I convert their position into 2D coordinates and use them to check the colour in the height map. If the colour is lighter than the players last position the player falls, if it&#8217;s slightly darker the player can step up or jump on to an object. If the colour is much darker the player comes to a stop &#8211; I use this for walls and fences. Currently, this image is drawn by hand but I will be looking into creating it dynamically.</p> 
+				<figure>
+					<img alt="The level map" src="../wp-content/uploads/2013/01/3dfps-map.jpg" width="780" height="296"></p> 
+					<figcaption>Picture of the height map and how it relates to the level</figcaption> 
+				</figure> 
+				<h2>What&#8217;s next?</h2> 
+				<p>Well, a game would be a natural next step for this project — it would be interesting to see how scalable these techniques are. In the short term, I&#8217;ve started working on a prototype <a href="http://keithclark.co.uk/labs/three-js-css-renderer/demos/cubes.html">CSS3 renderer</a> for the excellent <a href="http://mrdoob.github.com/three.js/">Three.js</a> that uses these same techniques to render geometry and lights created by a real 3D engine.</p> 
+				<footer>
+					Posted in: 
+					<a href="../category/css/index.html" title="View all posts in CSS" rel="category tag">CSS</a>, <a href="../category/html/index.html" title="View all posts in HTML" rel="category tag">HTML</a>, <a href="../category/javascript/index.html" title="View all posts in JavaScript" rel="category tag">JavaScript</a> 
+				</footer> 
+			</article> 
+			<section id="comments">
+				<h2>46 comments</h2> 
+				<ul>
+					<li id="comment-4535" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/ec7f05737e66d9a90cf99c4c9d6caf09?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite>Dylan</cite> <time datetime="2013-01-25UTC01-01-55">January 25, 2013 at 1:11 am</time> 
+						</header> 
+						<p>This is one of the most amazing things I&#8217;ve ever seen. Well done!</p> 
+						<footer>
+							<a href="index.html#comment-4535">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4538" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/c8d3553f5d615ae51fc3e66762da7c92?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://tomasdostal.com" rel="external nofollow" class="url">Tomas</a> </cite> <time datetime="2013-01-25UTC06-01-35">January 25, 2013 at 6:28 am</time> 
+						</header> 
+						<p>This is completely insane. I would like to think so that im a good web developer and quite skill with JS/CSS3 and HTML5 but this is like a sci-fi movie to me. Very well done, would love to see some more live examples.</p> 
+						<footer>
+							<a href="index.html#comment-4538">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4541" class="comment">
+						<header>
+							<img alt="" src="http://1.gravatar.com/avatar/db0e8b6018342fe74116793fa3924dc9?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.madaboutphoto.com" rel="external nofollow" class="url">Kevin Roche</a> </cite> <time datetime="2013-01-25UTC08-01-35">January 25, 2013 at 8:58 am</time> 
+						</header> 
+						<p>Amazing Keith. Next time I ask you for some CSS fixes I&#8217;ll know what to expect.</p> 
+						<footer>
+							<a href="index.html#comment-4541">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4542" class="comment">
+						<header>
+							<img alt="" src="http://1.gravatar.com/avatar/7478f5f5d0165653f3ff96aae3c7bde3?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.character27.co.uk" rel="external nofollow" class="url">Gaz</a> </cite> <time datetime="2013-01-25UTC09-01-50">January 25, 2013 at 9:06 am</time> 
+						</header> 
+						<p>Keith, mate, I always said you were a frickin&#8217; genius. This is the most amazing thing I have seen in a web browser, without doubt. Awesome.</p> 
+						<footer>
+							<a href="index.html#comment-4542">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4544" class="comment">
+						<header>
+							<img alt="" src="http://1.gravatar.com/avatar/58316320ca1925cef41960d8496b74ef?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite>Matthieu</cite> <time datetime="2013-01-25UTC09-01-05">January 25, 2013 at 9:24 am</time> 
+						</header> 
+						<p>Crazy and so good! Thanks to share it with us.</p> 
+						<footer>
+							<a href="index.html#comment-4544">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4545" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/27de38b1b3a3ee1c27371881d2f3a027?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.bandpages.ie" rel="external nofollow" class="url">Liam</a> </cite> <time datetime="2013-01-25UTC09-01-42">January 25, 2013 at 9:53 am</time> 
+						</header> 
+						<p>For the first time I now truely understand the possibilities of HTML5/css/js &#8230; let the online gaming begin!! Can&#8217;t wait to see what you do next :-)</p> 
+						<footer>
+							<a href="index.html#comment-4545">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4547" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/6f7bd6dd669367abad1519809ccc2f10?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://blog.mootmoot.net" rel="external nofollow" class="url">Mooty</a> </cite> <time datetime="2013-01-25UTC10-01-30">January 25, 2013 at 10:20 am</time> 
+						</header> 
+						<p>Holly s***</p> 
+						<p>I&#8217;ve never seen things this way before.</p> 
+						<p>Who&#8217;s up to recreate Duke Nukem 3D in HTML/CSS/JS ? \o/</p> 
+						<footer>
+							<a href="index.html#comment-4547">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4555" class="comment">
+						<header>
+							<img alt="" src="http://1.gravatar.com/avatar/db2d7b1b44c05ceac427de780361d6fb?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://jimeh.me/" rel="external nofollow" class="url">Jim Myhrberg</a> </cite> <time datetime="2013-01-25UTC04-01-37">January 25, 2013 at 4:45 pm</time> 
+						</header> 
+						<p>Highly impressive dude :)</p> 
+						<footer>
+							<a href="index.html#comment-4555">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4568" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/af9c6fbdb7c984b329e15b0e2e2a8cd4?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.danielsternlicht.com" rel="external nofollow" class="url">Daniel Stetnlicht</a> </cite> <time datetime="2013-01-27UTC06-01-05">January 27, 2013 at 6:25 am</time> 
+						</header> 
+						<p>Pure awesomeness! :)</p> 
+						<footer>
+							<a href="index.html#comment-4568">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4585" class="comment">
+						<header>
+							<img alt="" src="http://1.gravatar.com/avatar/7c4bed68438342e846db8a4da86e4286?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite>Glidias</cite> <time datetime="2013-01-28UTC09-01-07">January 28, 2013 at 9:18 am</time> 
+						</header> 
+						<p>Ever thought of using traditional FPS collider approach (ellipsoid against plane tests) for collision? If you&#8217;re testing against convex solids/cells, you can rule out any possible collision so long as it doesn&#8217;t touch any of the given planes formed by the convex solid. The lighting is really good though. </p> 
+						<p>Somehow, the mousemove detection event doesn&#8217;t seem to work well on my version of Safari. Considered using a drag controller like what I did for my fps demos? My drag controller also works fine on mobile because i&#8217;m using Hammer.js api. However, having something on mobile isn&#8217;t easy in terms of performance/features/memory limits. Best uses is some Cubic VR and some 3d geometry, or some simple 3d geometry in a single room.</p> 
+						<footer>
+							<a href="index.html#comment-4585">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4591" class="comment">
+						<header>
+							<img alt="" src="http://1.gravatar.com/avatar/f2af4bc5ce56e4caf06b363ac9cdb548?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite>Rob Young</cite> <time datetime="2013-01-28UTC11-01-20">January 28, 2013 at 11:30 am</time> 
+						</header> 
+						<p>Extremely impressive, Keith! Keep up the awesome work.</p> 
+						<footer>
+							<a href="index.html#comment-4591">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4593" class="comment">
+						<header>
+							<img alt="" src="http://1.gravatar.com/avatar/1d528b0c9b74363819f31bd3880719d5?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://nbonnici.info" rel="external nofollow" class="url">Nicolas BONNICI</a> </cite> <time datetime="2013-01-28UTC02-01-46">January 28, 2013 at 2:29 pm</time> 
+						</header> 
+						<p>Great experiment! On the latest stable build of Chrome yet (Version 24.0.1312.56) running on Linux, your demo is fully functionnal but models are clipping while moving.</p> 
+						<p>Nice job in all case, very interesting!</p> 
+						<footer>
+							<a href="index.html#comment-4593">Permalink</a> 
+						</footer> 
+						<ul class="children">
+							<li id="comment-4598" class="comment">
+								<header>
+									<img alt="" src="http://1.gravatar.com/avatar/15627af5bae9d2b1c295ff2304f7383a?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.keithclark.co.uk" rel="external nofollow" class="url">Keith Clark</a> </cite> <time datetime="2013-01-29UTC07-01-53">January 29, 2013 at 7:44 am</time> 
+								</header> 
+								<p>Unfortunately Chrome does suffer from clipping issues. I&#8217;ve documented this, along with issues in other browsers in a previous <a href="../the-state-of-css-3d-transforms/index.html" rel="nofollow">blog post</a> </p> 
+								<footer>
+									<a href="index.html#comment-4598">Permalink</a> 
+								</footer> 
+							</li> 
+						</ul> 
+					</li> 
+					<li id="comment-4602" class="comment">
+						<header>
+							<img alt="" src="http://1.gravatar.com/avatar/d9c9bf49f4159619ec0f18242d6fb56d?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite>Abril</cite> <time datetime="2013-01-29UTC06-01-34">January 29, 2013 at 6:05 pm</time> 
+						</header> 
+						<p>This is an amazing job!!!</p> 
+						<footer>
+							<a href="index.html#comment-4602">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4610" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/8d14b86239e1a7eb0a85f539eb47c023?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.graphicdesignmoda.com" rel="external nofollow" class="url">Stephanie Hughes</a> </cite> <time datetime="2013-01-30UTC06-01-51">January 30, 2013 at 6:03 pm</time> 
+						</header> 
+						<p>One of the most amazing pieces of graphic and web design I have ever seen. Ground breaking. Congrats.</p> 
+						<footer>
+							<a href="index.html#comment-4610">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4613" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/8881e5962c743cc10bbfda1bafd2e184?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite>gavin</cite> <time datetime="2013-01-30UTC09-01-43">January 30, 2013 at 9:14 pm</time> 
+						</header> 
+						<p>This is Insane &#8230; Something I never thought possible !<br>
+Well, there is definitely no limit to coding &#8230;</p> 
+						<footer>
+							<a href="index.html#comment-4613">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4614" class="comment">
+						<header>
+							<img alt="" src="http://1.gravatar.com/avatar/191f8847af8d2b0587390a054aa36e06?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://wizpip.com" rel="external nofollow" class="url">Phillip Parr</a> </cite> <time datetime="2013-01-31UTC12-01-33">January 31, 2013 at 12:48 am</time> 
+						</header> 
+						<p>This is beautiful! Any idea how it compares performance wise with WebGL?</p> 
+						<footer>
+							<a href="index.html#comment-4614">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4630" class="comment">
+						<header>
+							<img alt="" src="http://1.gravatar.com/avatar/901f4989c68803f04c100c69ec1189f5?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.proteusnet.com/" rel="external nofollow" class="url">Primož Cigler</a> </cite> <time datetime="2013-02-01UTC12-02-12">February 1, 2013 at 12:21 am</time> 
+						</header> 
+						<p>Amazing and insane at the same time. Never thought anything like this is possible to achieve using only HTML and CSS.</p> 
+						<footer>
+							<a href="index.html#comment-4630">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4643" class="comment">
+						<header>
+							<img alt="" src="http://1.gravatar.com/avatar/730c5cd8ce01978ddc6b19249ff5e16a?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite>Michael</cite> <time datetime="2013-02-01UTC04-02-25">February 1, 2013 at 4:01 am</time> 
+						</header> 
+						<p>This is just ridiculously amazing. Nicely done.</p> 
+						<footer>
+							<a href="index.html#comment-4643">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4644" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/ad8ad0deda49aba8b7ff0f23cc968972?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite>David Avellaneda</cite> <time datetime="2013-02-01UTC04-02-53">February 1, 2013 at 4:01 am</time> 
+						</header> 
+						<p>This is a really amazing job, it would be even better if you use Pointer Lock :)</p> 
+						<footer>
+							<a href="index.html#comment-4644">Permalink</a> 
+						</footer> 
+						<ul class="children">
+							<li id="comment-4648" class="comment">
+								<header>
+									<img alt="" src="http://1.gravatar.com/avatar/15627af5bae9d2b1c295ff2304f7383a?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.keithclark.co.uk" rel="external nofollow" class="url">Keith Clark</a> </cite> <time datetime="2013-02-01UTC08-02-09">February 1, 2013 at 8:32 am</time> 
+								</header> 
+								<p>Pointer lock and fullscreen are implemented in the newer version of the engine</p> 
+								<footer>
+									<a href="index.html#comment-4648">Permalink</a> 
+								</footer> 
+							</li> 
+						</ul> 
+					</li> 
+					<li id="comment-4645" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/014f6a9a219e5b7fde74b2a3723461dd?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://philipdenys" rel="external nofollow" class="url">Philip Denys</a> </cite> <time datetime="2013-02-01UTC04-02-01">February 1, 2013 at 4:33 am</time> 
+						</header> 
+						<p>holy molly! (picks up jaw from the floor and runs circles around the table)</p> 
+						<p>This is so cool! I&#8217;m sure it has a lot of limitations, but i don&#8217;t stop people from proving me wrong.<br>
+I&#8217;m curious to see the next steps in these new turn of events for the &#8216;web fundamentals goes 3d gaming&#8217;.</p> 
+						<p><code>alert(me.with.more.updates);</code> </p> 
+						<p>thumbs up Keith Clark!</p> 
+						<footer>
+							<a href="index.html#comment-4645">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4654" class="comment">
+						<header>
+							<img alt="" src="http://1.gravatar.com/avatar/138549f9e1fe23e80dff6bc843bea060?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://dzone.com" rel="external nofollow" class="url">Allen</a> </cite> <time datetime="2013-02-01UTC02-02-04">February 1, 2013 at 2:53 pm</time> 
+						</header> 
+						<p>Hi Keith, </p> 
+						<p>This is absolutely killer work! I shared this with the team here at DZone, where I run the <a href="http://www.dzone.com/mz/html5" rel="nofollow">HTML5 Zone</a>, and we&#8217;re all really impressed. <em>[edit: email address removed]</em>. </p> 
+						<p>Thanks, and keep up the awesome work,<br>
+Allen</p> 
+						<footer>
+							<a href="index.html#comment-4654">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4668" class="comment">
+						<header>
+							<img alt="" src="http://1.gravatar.com/avatar/f3ff435851ce8778623421b2f148864e?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.chocolatecoveredfocusgroups.com" rel="external nofollow" class="url">Jeff Weakley</a> </cite> <time datetime="2013-02-02UTC05-02-51">February 2, 2013 at 5:03 pm</time> 
+						</header> 
+						<p>truly spectacular.  I see the future in your visionary work.  I can only imagine how much time and thought went it.  thanks for sharing.</p> 
+						<footer>
+							<a href="index.html#comment-4668">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4693" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/40d9367c220201f0dd25fbf8dd4fc102?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://joeyzhou.com" rel="external nofollow" class="url">Joey Zhou</a> </cite> <time datetime="2013-02-05UTC08-02-17">February 5, 2013 at 8:19 pm</time> 
+						</header> 
+						<p>You sir, are a genius!</p> 
+						<footer>
+							<a href="index.html#comment-4693">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4711" class="comment">
+						<header>
+							<img alt="" src="http://1.gravatar.com/avatar/5d294c0ee6f6917cff2a449cbf5bb53c?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite>A'braham Barakhyahu</cite> <time datetime="2013-02-07UTC03-02-07">February 7, 2013 at 3:52 pm</time> 
+						</header> 
+						<p>Good gravy, this is crazy!    Who cares about clipping on Chrome?  IT&#8217;S 3D AND LIGHTING WITH DIVS!  AAAAHHH! :) Excellent Job.</p> 
+						<footer>
+							<a href="index.html#comment-4711">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4714" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/242676ef113158eab233704011780def?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite>Martin Walter</cite> <time datetime="2013-02-08UTC01-02-38">February 8, 2013 at 1:37 pm</time> 
+						</header> 
+						<p>This is truly awesome, many thanks for sharing your knowledge!</p> 
+						<footer>
+							<a href="index.html#comment-4714">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4717" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/846746aa335ff0d7b818f3aada12d51a?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://webintegrations.co.uk" rel="external nofollow" class="url">Sam Jarvis</a> </cite> <time datetime="2013-02-08UTC05-02-21">February 8, 2013 at 5:21 pm</time> 
+						</header> 
+						<p>I&#8217;m in awe.</p> 
+						<footer>
+							<a href="index.html#comment-4717">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4719" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/e551ecd59ad016e3c26e66e9810185c7?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://about.me/daphnecheung" rel="external nofollow" class="url">Daphne Cheung</a> </cite> <time datetime="2013-02-08UTC05-02-52">February 8, 2013 at 5:45 pm</time> 
+						</header> 
+						<p>This is one amazing experiment and very impressive!</p> 
+						<footer>
+							<a href="index.html#comment-4719">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4720" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/aed115c68b7a66222606bc282caabfc3?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite>Shaimoom Newaz</cite> <time datetime="2013-02-08UTC05-02-57">February 8, 2013 at 5:49 pm</time> 
+						</header> 
+						<p>Complete brilliance. Thanks for this amazing exercise.</p> 
+						<footer>
+							<a href="index.html#comment-4720">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4722" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/64ee7a124a5db8fdac3464aafa5e838c?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.kapler.cz" rel="external nofollow" class="url">Tomas Kapler</a> </cite> <time datetime="2013-02-09UTC01-02-02">February 9, 2013 at 1:02 pm</time> 
+						</header> 
+						<p>Great work. Please add also your own shadow</p> 
+						<footer>
+							<a href="index.html#comment-4722">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4723" class="comment">
+						<header>
+							<img alt="" src="http://1.gravatar.com/avatar/9a4306e66b7a8a75e71077b0ddab98bf?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite>Ivan</cite> <time datetime="2013-02-09UTC02-02-12">February 9, 2013 at 2:18 pm</time> 
+						</header> 
+						<p>Awesome, just awesome.</p> 
+						<footer>
+							<a href="index.html#comment-4723">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4732" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/28782bfea901c53cfadccd88c32d63a2?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://thelucid.com" rel="external nofollow" class="url">Jamie Hill</a> </cite> <time datetime="2013-02-11UTC01-02-03">February 11, 2013 at 1:04 am</time> 
+						</header> 
+						<p>Wow, unbelievable! I&#8217;ll be interested to see where this leads, tie it in with web sockets and you&#8217;ve got an awesome platform for a multiplayer game.</p> 
+						<footer>
+							<a href="index.html#comment-4732">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4735" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/8871ccca1650bd425b52c4f04718868f?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite>Alexei</cite> <time datetime="2013-02-12UTC11-02-00">February 12, 2013 at 11:00 am</time> 
+						</header> 
+						<p>I think need using CSS shaders for lighting.<br>
+I long ago put out lighting in CSS shaders. I can re-do. My recipe was simple (normal 0 1 0, lighting like WebGL) and complex (required for some features of the matrices to transform normal).<br><a href="http://www.adobe.com/devnet/html5/articles/css-shaders.html" rel="nofollow">http://www.adobe.com/devnet/html5/articles/css-shaders.html</a> </p> 
+						<footer>
+							<a href="index.html#comment-4735">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4736" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/6b557f6f2b53249e49336ca35d33874d?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://g-petukhov.com" rel="external nofollow" class="url">Georgy</a> </cite> <time datetime="2013-02-12UTC01-02-36">February 12, 2013 at 1:21 pm</time> 
+						</header> 
+						<p>Amazing! My respect!</p> 
+						<footer>
+							<a href="index.html#comment-4736">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4744" class="comment">
+						<header>
+							<img alt="" src="http://1.gravatar.com/avatar/197a699ee26dfc83a8c4ebd8b844f695?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.plugin.io" rel="external nofollow" class="url">Gary Paluk</a> </cite> <time datetime="2013-02-14UTC12-02-41">February 14, 2013 at 12:03 pm</time> 
+						</header> 
+						<p>I hate to rain on your parade, but what will the rasterization process cost on the CSS software renderers, battery life on low end mobile devices etc&#8230;this is Flash all over again and wasteful, only the problem is already fixed and the reason for GPU solutions such as WebGL and Stage3D.</p> 
+						<footer>
+							<a href="index.html#comment-4744">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4745" class="comment">
+						<header>
+							<img alt="" src="http://1.gravatar.com/avatar/fb5cf968be6a4f8ae2e77f9a2e49deb5?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite>Dee</cite> <time datetime="2013-02-14UTC02-02-47">February 14, 2013 at 2:23 pm</time> 
+						</header> 
+						<p>Wow. Seriously impressive.</p> 
+						<footer>
+							<a href="index.html#comment-4745">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4747" class="comment">
+						<header>
+							<img alt="" src="http://1.gravatar.com/avatar/1ade77ac5ad9a4894611456889ee9891?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://gelleinad.wordpress.com/" rel="external nofollow" class="url">Dani</a> </cite> <time datetime="2013-02-14UTC03-02-47">February 14, 2013 at 3:17 pm</time> 
+						</header> 
+						<p>*jawdrop* This is amazing! Thanks for sharing!</p> 
+						<footer>
+							<a href="index.html#comment-4747">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4748" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/2823bb1368ce2106c221e139082d85ce?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.tapgram.com" rel="external nofollow" class="url">Chad</a> </cite> <time datetime="2013-02-14UTC03-02-18">February 14, 2013 at 3:29 pm</time> 
+						</header> 
+						<p>This is one of the most awesome things I have seen!<br>
+Well done!</p> 
+						<footer>
+							<a href="index.html#comment-4748">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4749" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/25b721c8b2919338bec0a2fd8ed1916b?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.filiwiese.com" rel="external nofollow" class="url">Fili Wiese</a> </cite> <time datetime="2013-02-14UTC03-02-21">February 14, 2013 at 3:53 pm</time> 
+						</header> 
+						<p>absolutely awesome! thanks for sharing :)</p> 
+						<footer>
+							<a href="index.html#comment-4749">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4751" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/20c035464c7db5a0b136e6b50293a20d?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite>CMani</cite> <time datetime="2013-02-14UTC08-02-10">February 14, 2013 at 8:10 pm</time> 
+						</header> 
+						<p>Big props.  Brilliant.</p> 
+						<footer>
+							<a href="index.html#comment-4751">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4752" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/68ee773feff06d352211277444cd57d9?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite>Rohit K</cite> <time datetime="2013-02-14UTC09-02-11">February 14, 2013 at 9:47 pm</time> 
+						</header> 
+						<p>Incredible stuff Keith!!!</p> 
+						<footer>
+							<a href="index.html#comment-4752">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4753" class="comment">
+						<header>
+							<img alt="" src="http://1.gravatar.com/avatar/142984e6aac811fc29bdf94da6ae955a?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite>kirk</cite> <time datetime="2013-02-15UTC01-02-50">February 15, 2013 at 1:26 am</time> 
+						</header> 
+						<p>My 8 year old came into the office, saw the demo and wanted to play the game.</p> 
+						<p>Impressive work.</p> 
+						<footer>
+							<a href="index.html#comment-4753">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4757" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/0a85565f2a2758654d5ffc8b89a6a7dd?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.webtutorialplus.com/" rel="external nofollow" class="url">Gunjesh Kumar</a> </cite> <time datetime="2013-02-15UTC03-02-31">February 15, 2013 at 3:09 am</time> 
+						</header> 
+						<p>Just too good to believe. It is just unimaginable that such type of work can be created with CSS3 and HTML5. Great Work!</p> 
+						<footer>
+							<a href="index.html#comment-4757">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4760" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/4869854379737d381acea2877fe2de2d?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.Lechlak.com" rel="external nofollow" class="url">Andrew Lechlak</a> </cite> <time datetime="2013-02-15UTC03-02-05">February 15, 2013 at 3:02 pm</time> 
+						</header> 
+						<p>You-make-me-sick.</p> 
+						<p>This is a fantastic piece of work. The lighting is phenomenal.</p> 
+						<footer>
+							<a href="index.html#comment-4760">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-4762" class="comment">
+						<header>
+							<img alt="" src="http://1.gravatar.com/avatar/b79be93f5f72c4d00d20868c042a65ea?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite>Denver Poria</cite> <time datetime="2013-02-15UTC07-02-26">February 15, 2013 at 7:12 pm</time> 
+						</header> 
+						<p>Very clever. I salute you :)</p> 
+						<footer>
+							<a href="index.html#comment-4762">Permalink</a> 
+						</footer> 
+					</li> 
+				</ul> 
+			</section> 
+		</section> 
+		<aside role="complementary">
+			<section id="paging">
+				<h3>Navigate</h3> 
+				<ul>
+					<li>Next: 
+						<a href="../google-analytics-debugger-for-firefox-update/index.html" rel="next">Google Analytics Debugger for Firefox Update</a> 
+					</li> 
+					<li>Previous: 
+						<a href="../the-state-of-css-3d-transforms/index.html" rel="prev">The state of CSS 3D transforms</a> 
+					</li> 
+				</ul> 
+			</section> 
+			<section id="text-3">
+				<h3>About Me</h3> 
+				<div class="textwidget">
+					<p>I'm a front-end web developer from the UK, based in Farnborough.</p> 
+					<p>When I'm not developing websites I like to create tools such as <a href="http://selectivizr.com">selectivizr</a> and <a href="http://keithclark.co.uk/labs/google-analytics-debugger/">Google Analytics Debugger</a> or <a href="http://keithclark.co.uk/labs/">experiment</a> with what's possible in a browser. This year I won a net magazine award for my <a href="http://keithclark.co.uk/labs/css3-fps-new/">CSS FPS</a> demo and was nominated for developer of the year. </p> 
+					<p>You can find me on <a href="http://twitter.com/keithclarkcouk">twitter</a> and, if you're interested in my professional experience, please have a look at my <a href="http://keithclark.co.uk/cv/">CV</a> or <a href="http://keithclark.co.uk">website</a>.</p> 
+				</div> 
+			</section> 
+		</aside> 
+		<footer role="contentinfo">
+		Design and content &copy; Keith Clark.
+		
+		</footer> 
+	</div> 
+	<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-10812217-3']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script> 
+
+</body> </html> 

@@ -1,0 +1,235 @@
+<!doctype html>
+<html>
+<head>
+	<title>Targeting first and last rows in CSS grid layouts | Keith Clark</title> 
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="stylesheet" href="../wp-content/themes/raw/style.css" type="text/css" media="screen">
+	<link rel="pingback" href="../xmlrpc.php">
+	<link rel="alternate" type="application/rss+xml" title="Blog post RSS feed" href="../feed/index.html">
+	<!--[if (gte IE 6)&(lte IE 8)]>
+	<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script> 
+	<script src="//s3.amazonaws.com/nwapi/nwmatcher/nwmatcher-1.2.4-min.js"></script> 
+	<script type="text/javascript" src="/wp-content/themes/raw/js/selectivizr-min.js"></script> 
+	<![endif]-->
+	<link rel="alternate" type="application/rss+xml" title="Keith Clark &raquo; Targeting first and last rows in CSS grid layouts Comments Feed" href="feed/index.html">
+	<script type="text/javascript" src="../wp-content/themes/raw/js/common-ver=3.5.js"></script> 
+	<script type="text/javascript" src="../wp-includes/js/comment-reply.min-ver=3.5.js"></script> 
+	<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../xmlrpc.php-rsd.xml">
+	<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../wp-includes/wlwmanifest.xml">
+	<link rel="prev" title="Google Analytics Debugger for Firefox Update" href="../google-analytics-debugger-for-firefox-update/index.html">
+	<link rel="next" title="Calculating element vertex data from CSS transforms" href="../calculating-element-vertex-data-from-css-transforms/index.html">
+	<meta name="generator" content="WordPress 3.5">
+	<link rel="canonical" href="index.html">
+	<link rel="shortlink" href="index.html">
+</head> 
+<body>
+	<div id="page">
+		<header role="banner">
+			<a href="../index.html" title="Keith Clark" rel="home">
+			<img src="../wp-content/themes/raw/logo-keithclark.png"></a> <em>Articles, experiments and discussions on developing for the web</em> 
+		</header> 
+		<section role="main">
+			<article>
+				<header>
+					<h1>Targeting first and last rows in CSS grid layouts</h1> 
+					<p>By Keith Clark | <time pubdate datetime="2013-08-09">August 9, 2013</time> |
+					<a href="index.html#comments">4 Comments</a> </p> 
+				</header> 
+				<p>I was recently asked <q>is it possible to select every element in the last row of a grid containing an arbitrary number of items using CSS selectors?</q> Not wanting to shy away from a challenge, I started hacking and found a <a href="index.html#solution">solution</a> which I&#8217;ve written up along with a few other techniques for targeting elements in the first or last row of a grid.</p> 
+				<p><a class="button" href="http://codepen.io/keithclark/full/Hygkt">View the demo</a> </p> 
+				<p>Throughout this post I&#8217;ll be using the terms &#8220;balanced grid&#8221; and &#8220;unbalanced grid&#8221;. So we&#8217;re clear, a balanced grid has content in every grid cell and an unbalanced grid doesn&#8217;t have enough content to fill every cell, resulting in whitespace in the last row.</p> 
+				<figure>
+					<img src="../wp-content/uploads/2013/08/balance-unbalanced.png" alt="balance-unbalanced" width="780" height="230"></p> 
+					<figcaption>Example of a balanced (left) and unbalanced (right) grid</figcaption> 
+				</figure> 
+				<p>For this post I&#8217;ll be working with the follow test markup. These techniques are very flexible and can be adapted to work with any markup that uses sibling elements to create a grid.</p> 
+				<pre><code class="html">&lt;ul class="grid-3"&gt;
+   &lt;li&gt;Grid item 1&lt;/li&gt;
+   &lt;li&gt;Grid item 2&lt;/li&gt;
+   ...
+   &lt;li&gt;Grid item 14&lt;/li&gt;
+   &lt;li&gt;Grid item 15&lt;/li&gt;
+&lt;/ul&gt;</code> </pre> 
+				<h2>Styling the first row of a grid</h2> 
+				<figure>
+					<img src="../wp-content/uploads/2013/08/first-row.png" alt="" width="780" height="190"></p> 
+					<figcaption>Targeting elements in the first row of a grid</figcaption> 
+				</figure> 
+				<p>Targeting elements in the first row of a grid is relatively simple. It doesn&#8217;t matter if the grid is balanced or unbalanced, the same solution applies to both cases. We need a selector that will only target the first <var>x</var> elements, where <var>x</var> is the number of columns in the grid. We can do that with the <code>:nth-child</code> pseudo-class:</p> 
+				<pre><code class="css">li:nth-child(-n+<var>x</var>) {
+  /* Add style rules */
+}</code> </pre> 
+				<h4>For a 3 column grid:</h4> 
+				<pre><code class="css">li:nth-child(-n+3) {
+    background-color: red;
+}</code> </pre> 
+				<h4>For a 5 column grid:</h4> 
+				<pre><code class="css">li:nth-child(-n+5) {
+    background-color: green;
+}</code> </pre> 
+				<h4>For a 12 column grid:</h4> 
+				<pre><code class="css">li:nth-child(-n+12) {
+    background-color: blue;
+}</code> </pre> 
+				<h2>Styling the last row of a balanced grid</h2> 
+				<figure>
+					<img src="../wp-content/uploads/2013/08/balanced-last-row.png" alt="" width="780" height="190"></p> 
+					<figcaption>Targeting elements in the last row of a balanced grid</figcaption> 
+				</figure> 
+				<p>Targeting elements in the last row of a grid is simple if the grid is balanced. The same principles used to target the first row are used here except we&#8217;ll use the <code>:nth-last-child</code> pseudo-class to target the last <var>x</var> elements in the grid. Again, we&#8217;re substituting <var>x</var> with number of columns in the grid.</p> 
+				<pre><code class="css">li:nth-last-child(-n+<var>x</var>) {
+  /* Add style rules */
+}</code> </pre> 
+				<h4>Last row of a balanced 3 column grid:</h4> 
+				<pre><code class="css">li:nth-last-child(-n+3) {
+    background-color: red;
+}</code> </pre> 
+				<h4>Last row of a balanced 5 column grid:</h4> 
+				<pre><code class="css">li:nth-last-child(-n+5) {
+    background-color: green;
+}</code> </pre> 
+				<h4>Last row of a balanced 12 column grid:</h4> 
+				<pre><code class="css">li:nth-last-child(-n+12) {
+    background-color: blue;
+}</code> </pre> 
+				<h2 id="solution">Styling the last row of a balanced or unbalanced grid</h2> 
+				<figure>
+					<img src="../wp-content/uploads/2013/08/unbalanced-last-row.png" alt="" width="780" height="190"></p> 
+					<figcaption>Targeting elements in the last row of an unbalanced grid</figcaption> 
+				</figure> 
+				<p>Styling elements in the last row is a little more tricky if the grid is unbalanced. Unlike the selector used for a balanced grid, we can&#8217;t just target the last <var>x</var> <sup>th</sup> elements and style them. What if the grid has 5 columns with only 3 elements in the last row? &#8211; we would target the last 2 elements in the previous row too.</p> 
+				<p>To style the last row of a grid we&#8217;re going to use the following rule, again, substituting <var>x</var> with number of columns in the grid.</p> 
+				<pre><code class="css">li:nth-child(<var>x</var> n+1):nth-last-child(-n+<var>x</var>),
+  li:nth-child(<var>x</var> n+1):nth-last-child(-n+<var>x</var>) ~ li {
+    /* Add style rules */
+}</code> </pre> 
+				<p>The <code class="css">:nth-child(<var>x</var> n+1)</code> pseudo-class will target every <var>x</var> <sup>th</sup> element in the grid, which will be the first item in each row. The <code class="css">:nth-last-child(-n+<var>x</var>)</code> pseudo-class will target the last <var>x</var> elements in the grid. Combining these pseudo-classes will only target elements that match both, which in our case is the first element in the last row of the grid.</p> 
+				<p>To select all elements in the last row we add a general sibling combinator <code>~</code> to the previous selector so it targets everything after the first element in the last row. </p> 
+				<h4>Last row of a balanced or unbalanced 3 column grid:</h4> 
+				<pre><code class="css">li:nth-child(3n+1):nth-last-child(-n+3),
+  li:nth-child(3n+1):nth-last-child(-n+3) ~ li {
+    background-color: red;
+}</code> </pre> 
+				<h4>Last row of a balanced or unbalanced 5 column grid:</h4> 
+				<pre><code class="css">li:nth-child(5n+1):nth-last-child(-n+5),
+  li:nth-child(5n+1):nth-last-child(-n+5) ~ li {
+    background-color: green;
+}</code> </pre> 
+				<h4>Last row of a balanced or unbalanced 12 column grid:</h4> 
+				<pre><code class="css">li:nth-child(12n+1):nth-last-child(-n+12),
+  li:nth-child(12n+1):nth-last-child(-n+12) ~ li {
+    background-color: blue;
+}</code> </pre> 
+				<p>If the grid will always have two or more rows, or if you want to completely ignore single row grids, a simpler selector can be used. This selector will fail to match the first item in a grid with a single row. To use it substitute <var>x</var> with the number of columns in the grid and <var>y</var> with the number of columns in the grid +1:</p> 
+				<pre><code class="css">li:nth-child(<var>x</var> n):nth-last-child(-n+<var>y</var>) ~ li {
+  /* Add style rules */
+}</code> </pre> 
+				<h4>Last row of a balanced or unbalanced 3 column grid with more than one row:</h4> 
+				<pre><code class="css">li:nth-child(3n):nth-last-child(-n+4) ~ li {
+    background-color: red;
+}</code> </pre> 
+				<h4>Last row of a balanced or unbalanced 5 column grid with more than one row:</h4> 
+				<pre><code class="css">li:nth-child(5n):nth-last-child(-n+6) ~ li {
+    background-color: green;
+}</code> </pre> 
+				<pre><code class="css">li:nth-child(12n):nth-last-child(-n+13) ~ li {
+    background-color: green;
+}</code> </pre> 
+				<h2>The end</h2> 
+				<p>I hope you found this useful.</p> 
+				<footer>
+					Posted in: 
+					<a href="../category/css/index.html" title="View all posts in CSS" rel="category tag">CSS</a> 
+				</footer> 
+			</article> 
+			<section id="comments">
+				<h2>4 comments</h2> 
+				<ul>
+					<li id="comment-6585" class="comment">
+						<header>
+							<img alt="" src="http://1.gravatar.com/avatar/5527fd8744712e4d366d3de3ec03cb61?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.itsleon.com" rel="external nofollow" class="url">Leon Zoutewelle</a> </cite> <time datetime="2013-08-13UTC07-08-29">August 13, 2013 at 7:41 am</time> 
+						</header> 
+						<p>Why don&#8217;t you use the <code>:last-child</code>?<br>
+Now i can&#8217;t see if your list items go from top to bottom or left to right but this makes it alot easier. </p> 
+						<p>Also why do you use a list for a grid? I can&#8217;t figure out why.</p> 
+						<footer>
+							<a href="index.html#comment-6585">Permalink</a> 
+						</footer> 
+						<ul class="children">
+							<li id="comment-6586" class="comment">
+								<header>
+									<img alt="" src="http://1.gravatar.com/avatar/15627af5bae9d2b1c295ff2304f7383a?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.keithclark.co.uk" rel="external nofollow" class="url">Keith Clark</a> </cite> <time datetime="2013-08-13UTC07-08-20">August 13, 2013 at 7:56 am</time> 
+								</header> 
+								<p><code>:last-child</code> would only select the very last element, the purpose of this is to select all elements in the last row of a grid.</p> 
+								<p>I&#8217;m using a <code>&lt;ul&gt;</code> list because this solution was originally developed for displaying a grid of products and portfolio items.</p> 
+								<footer>
+									<a href="index.html#comment-6586">Permalink</a> 
+								</footer> 
+								<ul class="children">
+									<li id="comment-6587" class="comment">
+										<header>
+											<img alt="" src="http://1.gravatar.com/avatar/5527fd8744712e4d366d3de3ec03cb61?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.itsleon.com" rel="external nofollow" class="url">Leon Zoutewelle</a> </cite> <time datetime="2013-08-13UTC08-08-13">August 13, 2013 at 8:16 am</time> 
+										</header> 
+										<p>So if im correct your using one <code>ul</code> and repeat the <code>li</code>. Well that makes things alot more clear.</p> 
+										<footer>
+											<a href="index.html#comment-6587">Permalink</a> 
+										</footer> 
+									</li> 
+								</ul> 
+							</li> 
+						</ul> 
+					</li> 
+					<li id="comment-6744" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/485eb6044a6a5d3589e96f127e986443?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.tweedsolutions.com" rel="external nofollow" class="url">George Anderson</a> </cite> <time datetime="2013-09-20UTC08-09-29">September 20, 2013 at 8:26 am</time> 
+						</header> 
+						<p>WOW &#8211; How did you manage to sort that one out. Well done and thanks for letting us see it.</p> 
+						<p>Regards<br>
+George</p> 
+						<footer>
+							<a href="index.html#comment-6744">Permalink</a> 
+						</footer> 
+					</li> 
+				</ul> 
+			</section> 
+		</section> 
+		<aside role="complementary">
+			<section id="paging">
+				<h3>Navigate</h3> 
+				<ul>
+					<li>Next: 
+						<a href="../calculating-element-vertex-data-from-css-transforms/index.html" rel="next">Calculating element vertex data from CSS transforms</a> 
+					</li> 
+					<li>Previous: 
+						<a href="../google-analytics-debugger-for-firefox-update/index.html" rel="prev">Google Analytics Debugger for Firefox Update</a> 
+					</li> 
+				</ul> 
+			</section> 
+			<section id="text-3">
+				<h3>About Me</h3> 
+				<div class="textwidget">
+					<p>I'm a front-end web developer from the UK, based in Farnborough.</p> 
+					<p>When I'm not developing websites I like to create tools such as <a href="http://selectivizr.com">selectivizr</a> and <a href="http://keithclark.co.uk/labs/google-analytics-debugger/">Google Analytics Debugger</a> or <a href="http://keithclark.co.uk/labs/">experiment</a> with what's possible in a browser. This year I won a net magazine award for my <a href="http://keithclark.co.uk/labs/css3-fps-new/">CSS FPS</a> demo and was nominated for developer of the year. </p> 
+					<p>You can find me on <a href="http://twitter.com/keithclarkcouk">twitter</a> and, if you're interested in my professional experience, please have a look at my <a href="http://keithclark.co.uk/cv/">CV</a> or <a href="http://keithclark.co.uk">website</a>.</p> 
+				</div> 
+			</section> 
+		</aside> 
+		<footer role="contentinfo">
+		Design and content &copy; Keith Clark.
+		
+		</footer> 
+	</div> 
+	<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-10812217-3']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script> 
+
+</body> </html> 

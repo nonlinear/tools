@@ -1,0 +1,577 @@
+<!doctype html>
+<html>
+<head>
+	<title>Pure CSS parallax scrolling websites | Keith Clark</title> 
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="stylesheet" href="../wp-content/themes/raw/style.css" type="text/css" media="screen">
+	<link rel="pingback" href="../xmlrpc.php">
+	<link rel="alternate" type="application/rss+xml" title="Blog post RSS feed" href="../feed/index.html">
+	<!--[if (gte IE 6)&(lte IE 8)]>
+	<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script> 
+	<script src="//s3.amazonaws.com/nwapi/nwmatcher/nwmatcher-1.2.4-min.js"></script> 
+	<script type="text/javascript" src="/wp-content/themes/raw/js/selectivizr-min.js"></script> 
+	<![endif]-->
+	<link rel="alternate" type="application/rss+xml" title="Keith Clark &raquo; Pure CSS parallax scrolling websites Comments Feed" href="feed/index.html">
+	<script type="text/javascript" src="../wp-content/themes/raw/js/common-ver=3.5.js"></script> 
+	<script type="text/javascript" src="../wp-includes/js/comment-reply.min-ver=3.5.js"></script> 
+	<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../xmlrpc.php-rsd.xml">
+	<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../wp-includes/wlwmanifest.xml">
+	<link rel="prev" title="GPU text rendering in webkit" href="../gpu-text-rendering-in-webkit/index.html">
+	<meta name="generator" content="WordPress 3.5">
+	<link rel="canonical" href="index.html">
+	<link rel="shortlink" href="index.html">
+	<meta name="robots" content="noindex,nofollow">
+</head> 
+<body>
+	<div id="page">
+		<header role="banner">
+			<a href="../index.html" title="Keith Clark" rel="home">
+			<img src="../wp-content/themes/raw/logo-keithclark.png"></a> <em>Articles, experiments and discussions on developing for the web</em> 
+		</header> 
+		<section role="main">
+			<article>
+				<header>
+					<h1>Pure CSS parallax scrolling websites</h1> 
+					<p>By Keith Clark | <time pubdate datetime="2014-08-04">August 4, 2014</time> |
+					<a href="index.html#comments">37 Comments</a> </p> 
+				</header> 
+				<p>This article demonstrates how to use CSS transforms, perspective and some scaling trickery to create a pure CSS parallax scrolling website.</p> 
+				<p>Parallax is almost always handled with JavaScript and, more often than not, it&#8217;s not very performant with the worst offenders listening for the <code>scroll</code> event, modifying the DOM directly in the handler and triggering needless reflows and paints. All this happens out of sync with the browsers rendering pipeline causing dropped frames and stuttered scrolling. Better parallax implementations monitor scrolling and defer DOM updates using <code>requestAnimationFrame</code> which can totally transform the experience &#8211; but what if you could remove the JavaScript dependency completely?</p> 
+				<p>Deferring the parallax effect to CSS removes all these issues and allows the browser to leverage hardware acceleration resulting in almost all the heavy lifting being handled directly by the compositor. The result is consistent frame rates and perfectly smooth scrolling. You can also combine the effect with other CSS features such as <a href="http://www.w3.org/TR/css3-mediaqueries/">media queries</a> or <a href="http://www.w3.org/TR/css3-conditional/">supports</a> &#8211; responsive parallax anyone?</p> 
+				<p><a class="button" href="../wp-content/uploads/2014/08/demos/3/index.html">Try the demo</a> </p> 
+				<h2 id="the-theory">The theory</h2> 
+				<p>Before we dive into how the effect works, let&#8217;s establish some barebones markup:</p> 
+				<pre><code class="html">&lt;div class=&quot;parallax&quot;&gt;
+  &lt;div class=&quot;parallax__group&quot;&gt;
+    &lt;div class=&quot;parallax__layer parallax__layer--back&quot;&gt;
+      ...
+    &lt;/div&gt;
+    &lt;div class=&quot;parallax__layer parallax__layer--base&quot;&gt;
+      ...
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;parallax__group&quot;&gt;
+    ...
+  &lt;/div&gt;
+&lt;/div&gt;</code> </pre> 
+				<p>And here are the basic style rules:</p> 
+				<pre><code class="css">.parallax {
+  perspective: 1px;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.parallax__layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.parallax__layer--base {
+  transform: translateZ(0);
+}
+.parallax__layer--back {
+  transform: translateZ(-1px);
+}</code> </pre> 
+				<p>The <code>parallax</code> class is where the parallax magic happens. Defining the <code>height</code> and <code>perspective</code> style properties of an element will lock the perspective to its centre, creating a fixed origin 3D viewport. Setting <code>overflow-y: auto</code> will allow the content inside the element to scroll in the usual way, but now descendant elements will be rendered relative to the fixed perspective. This is the key to creating the parallax effect.</p> 
+				<p>Next is the <code>parallax__layer</code> class. As the name suggests, it defines a layer of content to which the parallax effect will be applied; the element is pulled out of content flow and configured to fill the space of the container.</p> 
+				<p>Finally we have the modifier classes <code>parallax__layer--base</code> and <code>parallax__layer--back</code>. These are used to determine the scrolling speed of a parallax element by translating it along the Z axis (moving it farther away, or closer to the viewport). For brevity I have only defined two layer speeds – we&#8217;ll add more later.</p> 
+				<p><a class="button" href="../wp-content/uploads/2014/08/demos/1/index.html">Try the demo</a> </p> 
+				<h2 id="depth-correction">Depth correction</h2> 
+				<p>Since the parallax effect is created using 3D transforms, translating an element along the Z axis has a side effect &#8211; its effective size changes as we move it closer to or farther away from the viewport. To counter this we need to apply a <code>scale()</code> transform to the element so that it appears to be rendered at its original size:</p> 
+				<pre><code class="css">.parallax__layer--back {
+  transform: translateZ(-1px) scale(2);
+}</code> </pre> 
+				<p>The scale factor can be calculated with <code>1 + (translateZ * -1) / perspective)</code>. For example, if our viewport <code>perspective</code> is set to <code>1px</code> and we translate an element <code>-2px</code> along the Z axis the correction scale factor would be <code>scale(3)</code> :</p> 
+				<pre><code class="css">.parallax__layer--deep {
+  transform: translateZ(-2px) scale(3);
+}</code> </pre> 
+				<p><a class="button" href="../wp-content/uploads/2014/08/demos/2/index.html">Try the depth corrected demo</a> </p> 
+				<h2 id="controlling-layer-speed">Controlling layer speed</h2> 
+				<p>Layer speed is controlled by a combination of the perspective and the Z translation values. Elements with negative Z values will scroll slower than those with a positive value. The further the value is from <code>0</code> the more pronounced the parallax effect (i.e. <code>translateZ(-10px)</code> will scroll slower than <code>translateZ(-1px)</code>).</p> 
+				<h2 id="parallax-sections">Creating different parallax page sections</h2> 
+				<p>The previous examples demonstrate the basic techniques using very simple content but most parallax sites break the page into distinct sections where different effects can be applied. Here&#8217;s how to do that.</p> 
+				<p>Firstly, we need a <code>parallax__group</code> element to group our layers together:</p> 
+				<pre><code class="html">&lt;div class=&quot;parallax&quot;&gt;
+  &lt;div class=&quot;parallax__group&quot;&gt;
+    &lt;div class=&quot;parallax__layer parallax__layer--back&quot;&gt;
+      ...
+    &lt;/div&gt;
+    &lt;div class=&quot;parallax__layer parallax__layer--base&quot;&gt;
+      ...
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;parallax__group&quot;&gt;
+    ...
+  &lt;/div&gt;
+&lt;/div&gt;</code> </pre> 
+				<p>Here&#8217;s the CSS for the group element:</p> 
+				<pre><code class="css">.parallax__group {
+  position: relative;
+  height: 100vh;
+  transform-style: preserve-3d;
+}</code> </pre> 
+				<p>In this example, I want each group to fill the viewport so I&#8217;ve set <code>height: 100vh</code>, however arbitrary values can be set for each group if required. <code>transform-style: preserve-3d</code> prevents the browser flattening the <code>parallax__layer</code> elements and <code>position: relative</code> is used to allow the child <code>parallax__layer</code> elements to be positioned relative to the group element.</p> 
+				<p>One important rule to keep in mind when grouping elements is, we cannot clip the content of a group. Setting <code>overflow: hidden</code> on a <code>parallax__group</code> will break the parallax effect. Unclipped content will result in descendant elements overflowing, so we need to be creative with the <code>z-index</code> values of the groups to ensure content is correctly revealed/hidden as the visitor scrolls through the document.</p> 
+				<p>There are no hard and fast rules for dealing with layering as implementations will differ between designs. It&#8217;s much easier to debug layering issues if you can see how the parallax effect works &#8211; you can do that by applying simple transform to the group elements:</p> 
+				<pre><code class="css">.parallax__group {
+    transform: translate3d(700px, 0, -800px) rotateY(30deg);
+}</code> </pre> 
+				<p>Have a look at the following example &#8211; note the <strong>debug</strong> option!</p> 
+				<p><a class="button" href="../wp-content/uploads/2014/08/demos/3/index.html">Try the grouped parallax demo</a> </p> 
+				<h2 id="browser-support">Browser support</h2> 
+				<ul>
+					<li>Firefox, Safari, Opera and Chrome all support this effect.
+					</li> 
+					<li>Firefox works too but there is currently a minor issue with alignment.
+					</li> 
+					<li>IE doesn&#8217;t support 
+						<code>preserve-3d</code> yet (it&#8217;s coming) so the parallax effect won&#8217;t work. That&#8217;s ok though, you should still design your content to work without the parallax effect &#8211; You know, progressive enhancement and all that!
+					</li> 
+				</ul> 
+				<footer>
+					Posted in: 
+					<a href="../category/css/index.html" title="View all posts in CSS" rel="category tag">CSS</a> 
+				</footer> 
+			</article> 
+			<section id="comments">
+				<h2>37 comments</h2> 
+				<ul>
+					<li id="comment-9199" class="comment">
+						<header>
+							<img alt="" src="http://1.gravatar.com/avatar/7389b90dc1858e673a6f6dc8d31e7648?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="https://liebdich.biz" rel="external nofollow" class="url">DOC ASAREL</a> </cite> <time datetime="2014-08-05UTC09-08-24">August 5, 2014 at 9:38 am</time> 
+						</header> 
+						<p>I think YOU shared a lot of wisdom here. ;) Very impressive. Have a look at my site <a href="https://liebdich.biz" rel="nofollow">https://liebdich.biz</a> for an implementation with oldschool Javascript <code class="js">scroll</code> and the connected problems.</p> 
+						<p>Yours also works with touchscreens!! Which usually gets the scroll-position only on <code>touchend</code>. Love!!</p> 
+						<footer>
+							<a href="index-replytocom=9199.html#respond" data-comment-id="9199" data-post-id="1252">Reply</a> <a href="index.html#comment-9199">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-9205" class="comment">
+						<header>
+							<img alt="" src="http://1.gravatar.com/avatar/7f6bc16c50a713ecebb347a95fc69377?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite>Ali</cite> <time datetime="2014-08-06UTC07-08-38">August 6, 2014 at 7:11 am</time> 
+						</header> 
+						<p>The demo works silky smooth on chrome , but in ff it lags pretty badly. Tested on a galaxy s4+. In case you find that interesting. Thanks a ton for the demo!</p> 
+						<footer>
+							<a href="index-replytocom=9205.html#respond" data-comment-id="9205" data-post-id="1252">Reply</a> <a href="index.html#comment-9205">Permalink</a> 
+						</footer> 
+						<ul class="children">
+							<li id="comment-9207" class="comment">
+								<header>
+									<img alt="" src="http://1.gravatar.com/avatar/15627af5bae9d2b1c295ff2304f7383a?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.keithclark.co.uk" rel="external nofollow" class="url">Keith Clark</a> </cite> <time datetime="2014-08-06UTC08-08-44">August 6, 2014 at 8:23 am</time> 
+								</header> 
+								<p>Thanks Ali. I don&#8217;t have access to many mobile test devices so any feedback like this is really useful – which version of FF are you running?</p> 
+								<footer>
+									<a href="index-replytocom=9207.html#respond" data-comment-id="9207" data-post-id="1252">Reply</a> <a href="index.html#comment-9207">Permalink</a> 
+								</footer> 
+								<ul class="children">
+									<li id="comment-9243" class="comment">
+										<header>
+											<img alt="" src="http://1.gravatar.com/avatar/fa64f7a4eb094e74e3c5377c0c6080cb?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite>Tom</cite> <time datetime="2014-08-08UTC04-08-33">August 8, 2014 at 4:26 pm</time> 
+										</header> 
+										<p>Works silky smooth on lg g3. Will be planning with this idea today at work thanks!</p> 
+										<footer>
+											<a href="index.html#comment-9243">Permalink</a> 
+										</footer> 
+									</li> 
+									<li id="comment-9247" class="comment">
+										<header>
+											<img alt="" src="http://0.gravatar.com/avatar/61bc64f9789b55e8785e59e412c47310?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://raphaeltm.com" rel="external nofollow" class="url">Raphaël Titsworth-Morin</a> </cite> <time datetime="2014-08-08UTC06-08-55">August 8, 2014 at 6:47 pm</time> 
+										</header> 
+										<p>I got here from reddit, on my phone (Nexus 5).  At first I was disappointed because the effect did not work at all within the browser in my Reddit client. </p> 
+										<p>I then tried in Chrome (36 for Android 4.4.4) where it worked almost beautifully. </p> 
+										<p>Here is a screenshot of why &#8220;almost&#8221;&#8230; <a href="http://imgur.com/1Wtll2H" rel="nofollow">http://imgur.com/1Wtll2H</a> </p> 
+										<p>I checked in Chrome on my desktop and it seems that middle mouse button scrolling produces the same result&#8230; <a href="http://imgur.com/CTcDMTI" rel="nofollow">http://imgur.com/CTcDMTI</a> </p> 
+										<p>Opera (of course) seems to run into the same problem. I had no issues with Firefox, though: very smooth and didn&#8217;t let me scroll off the side of the page. </p> 
+										<p>Perhaps worth noting that I could only scroll to the right side. Not the left. </p> 
+										<p>Thanks for the cool demo!</p> 
+										<footer>
+											<a href="index.html#comment-9247">Permalink</a> 
+										</footer> 
+									</li> 
+									<li id="comment-9249" class="comment">
+										<header>
+											<img alt="" src="http://0.gravatar.com/avatar/20b96cb44961fda9bcc25bce5fa16a09?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite>John Doe</cite> <time datetime="2014-08-08UTC07-08-58">August 8, 2014 at 7:19 pm</time> 
+										</header> 
+										<p>It works perfectly fine in the latest Firefox build for me.</p> 
+										<footer>
+											<a href="index.html#comment-9249">Permalink</a> 
+										</footer> 
+									</li> 
+									<li id="comment-9259" class="comment">
+										<header>
+											<img alt="" src="http://1.gravatar.com/avatar/15627af5bae9d2b1c295ff2304f7383a?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.keithclark.co.uk" rel="external nofollow" class="url">Keith Clark</a> </cite> <time datetime="2014-08-09UTC06-08-18">August 9, 2014 at 6:44 am</time> 
+										</header> 
+										<p>Raphaël, thanks for reporting those issues. The horizontal scrolling seems to be triggered when scaling the elements up &#8211; I&#8217;ll see if that can be countered.</p> 
+										<p>With the Reddit client on your Nexus 5- did you just see a white page? if so that could be because `vh` units aren&#8217;t supported. I&#8217;ve added a fixed height fallback &#8211; could you try the demo again?</p> 
+										<footer>
+											<a href="index.html#comment-9259">Permalink</a> 
+										</footer> 
+									</li> 
+								</ul> 
+							</li> 
+							<li id="comment-9284" class="comment">
+								<header>
+									<img alt="" src="http://0.gravatar.com/avatar/8fad7923293045b9a041932e9e3312b8?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite>Lorenzo P.</cite> <time datetime="2014-08-10UTC04-08-12">August 10, 2014 at 4:07 pm</time> 
+								</header> 
+								<p>Is it possible that the Chrome MobBrowser is applying some styles that we need to get rid of, before trying to go CSS Pure Parallax?</p> 
+								<footer>
+									<a href="index-replytocom=9284.html#respond" data-comment-id="9284" data-post-id="1252">Reply</a> <a href="index.html#comment-9284">Permalink</a> 
+								</footer> 
+							</li> 
+						</ul> 
+					</li> 
+					<li id="comment-9206" class="comment">
+						<header>
+							<img alt="" src="http://1.gravatar.com/avatar/ffe68d6f71b225f7661d33f2a8908281?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://paulirish.com" rel="external nofollow" class="url">Paul Irish</a> </cite> <time datetime="2014-08-06UTC08-08-09">August 6, 2014 at 8:03 am</time> 
+						</header> 
+						<p>Nice! Thanks for writing this up.  A few more notes: </p> 
+						<p><a href="http://codepen.io/scottkellum/details/bHEcA" rel="nofollow">http://codepen.io/scottkellum/details/bHEcA</a> is where I first found this technique. I believe Scott adapted the technique by Keith. The demo in that pen has a nice 3d view of parallax on two-axises. Plus, Scott&#8217;s created a mixin that automates most of the work for you. Really handy.</p> 
+						<p><a href="http://codepen.io/keithclark/details/JycFw/" rel="nofollow">http://codepen.io/keithclark/details/JycFw/</a> by Keith has a more flashy demo of this technique.</p> 
+						<p><a href="http://frozenrockets.nl/labs/parallax/" rel="nofollow">http://frozenrockets.nl/labs/parallax/</a> has a good example of your standard masthead parallax. It could use some layer promotion to avoid paint storms on non-retina but it looks great.</p> 
+						<footer>
+							<a href="index-replytocom=9206.html#respond" data-comment-id="9206" data-post-id="1252">Reply</a> <a href="index.html#comment-9206">Permalink</a> 
+						</footer> 
+						<ul class="children">
+							<li id="comment-9236" class="comment">
+								<header>
+									<img alt="" src="http://1.gravatar.com/avatar/1bb8a53c08bba4f191d18d89fbbed3f0?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://scottkellum.com" rel="external nofollow" class="url">Scott Kellum</a> </cite> <time datetime="2014-08-08UTC12-08-00">August 8, 2014 at 12:48 pm</time> 
+								</header> 
+								<p>One of these days we should hash out credit of this technique for those who care about those things. I believe we both found the underlying technique independently but the addition of scale for depth correction is critical and that is all Keith, so Paul, feel free to call it the Keith technique in future presentations. <a href="https://twitter.com/brnnbrn" rel="nofollow">@brnnbrn</a>) helped me get the math behind the scaling correct and repeatable at various perspective values although it’s deceptively simple as explained above in the article.</p> 
+								<p>I get really excited about implementations beyond depth transforms. Adding rotation to the mix adds dimensionality to elements themselves, not just the page. If you do want to add a bit of JS into this technique you can simply change perspective based on device orientation or mouse position for some other cool effects.</p> 
+								<footer>
+									<a href="index-replytocom=9236.html#respond" data-comment-id="9236" data-post-id="1252">Reply</a> <a href="index.html#comment-9236">Permalink</a> 
+								</footer> 
+								<ul class="children">
+									<li id="comment-9250" class="comment">
+										<header>
+											<img alt="" src="http://1.gravatar.com/avatar/3e4ed71b3854008d1fb2356786bd3151?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://brennaobrien.com" rel="external nofollow" class="url">Brenna O'Brien</a> </cite> <time datetime="2014-08-08UTC07-08-03">August 8, 2014 at 7:30 pm</time> 
+										</header> 
+										<p>Thanks for the shout out, Scott! Keith, really excited to be seeing more on this technique. I&#8217;d love to help out if you&#8217;re both interested in working further on it.</p> 
+										<footer>
+											<a href="index.html#comment-9250">Permalink</a> 
+										</footer> 
+									</li> 
+								</ul> 
+							</li> 
+						</ul> 
+					</li> 
+					<li id="comment-9227" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/64852dc37e7927b55c935392e31a3e9f?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://gnagflow.info" rel="external nofollow" class="url">Wolfgang</a> </cite> <time datetime="2014-08-08UTC12-08-12">August 8, 2014 at 12:11 am</time> 
+						</header> 
+						<p>Thank you for sharing this&#8230; good article Keith&#8230; and thank you Paul Irish for the links :)</p> 
+						<footer>
+							<a href="index-replytocom=9227.html#respond" data-comment-id="9227" data-post-id="1252">Reply</a> <a href="index.html#comment-9227">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-9232" class="comment">
+						<header>
+							<img alt="" src="http://1.gravatar.com/avatar/58429def4a67a325bf196e6da1482ab5?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://zircom.uk.com" rel="external nofollow" class="url">Daniel Sailes</a> </cite> <time datetime="2014-08-08UTC08-08-58">August 8, 2014 at 8:15 am</time> 
+						</header> 
+						<p>Amazing! Always wanted something that worked well on iPads!</p> 
+						<footer>
+							<a href="index-replytocom=9232.html#respond" data-comment-id="9232" data-post-id="1252">Reply</a> <a href="index.html#comment-9232">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-9234" class="comment">
+						<header>
+							<img alt="" src="http://1.gravatar.com/avatar/dffce5b91195ab6b9743bf5e1c6b9e66?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite>misterd</cite> <time datetime="2014-08-08UTC11-08-22">August 8, 2014 at 11:42 am</time> 
+						</header> 
+						<p>Lags in Firefox 31 under Mac OS X 10.9.4</p> 
+						<footer>
+							<a href="index-replytocom=9234.html#respond" data-comment-id="9234" data-post-id="1252">Reply</a> <a href="index.html#comment-9234">Permalink</a> 
+						</footer> 
+						<ul class="children">
+							<li id="comment-9237" class="comment">
+								<header>
+									<img alt="" src="http://1.gravatar.com/avatar/15627af5bae9d2b1c295ff2304f7383a?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.keithclark.co.uk" rel="external nofollow" class="url">Keith Clark</a> </cite> <time datetime="2014-08-08UTC01-08-47">August 8, 2014 at 1:19 pm</time> 
+								</header> 
+								<p>I&#8217;m not seeing that.</p> 
+								<footer>
+									<a href="index-replytocom=9237.html#respond" data-comment-id="9237" data-post-id="1252">Reply</a> <a href="index.html#comment-9237">Permalink</a> 
+								</footer> 
+							</li> 
+							<li id="comment-9241" class="comment">
+								<header>
+									<img alt="" src="http://1.gravatar.com/avatar/702a05cca4a23f942c9326238a6d2825?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite>Geoff</cite> <time datetime="2014-08-08UTC03-08-23">August 8, 2014 at 3:17 pm</time> 
+								</header> 
+								<p>FF 31 / OSX 10.9.2 is ok here.</p> 
+								<footer>
+									<a href="index-replytocom=9241.html#respond" data-comment-id="9241" data-post-id="1252">Reply</a> <a href="index.html#comment-9241">Permalink</a> 
+								</footer> 
+							</li> 
+							<li id="comment-9253" class="comment">
+								<header>
+									<img alt="" src="http://1.gravatar.com/avatar/9175baa61f44531cb0fa2c5159b9bacc?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.jfdesgagne.com" rel="external nofollow" class="url">Jean-François</a> </cite> <time datetime="2014-08-08UTC08-08-44">August 8, 2014 at 8:34 pm</time> 
+								</header> 
+								<p>You are probably on a retina display &#8230; performances aren&#8217;t so great with CSS3 transitions.</p> 
+								<footer>
+									<a href="index-replytocom=9253.html#respond" data-comment-id="9253" data-post-id="1252">Reply</a> <a href="index.html#comment-9253">Permalink</a> 
+								</footer> 
+							</li> 
+						</ul> 
+					</li> 
+					<li id="comment-9239" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/ec669061f44c634fe5b1504a6581cf01?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite>Warren</cite> <time datetime="2014-08-08UTC02-08-47">August 8, 2014 at 2:10 pm</time> 
+						</header> 
+						<p>The demo does not work in Internet Explorer 11.0.9600 on Windows 8.1.</p> 
+						<p>I tried it in Chrome and see the desired effects, but it&#8217;s totally broken in IE 11.</p> 
+						<footer>
+							<a href="index-replytocom=9239.html#respond" data-comment-id="9239" data-post-id="1252">Reply</a> <a href="index.html#comment-9239">Permalink</a> 
+						</footer> 
+						<ul class="children">
+							<li id="comment-9258" class="comment">
+								<header>
+									<img alt="" src="http://1.gravatar.com/avatar/15627af5bae9d2b1c295ff2304f7383a?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.keithclark.co.uk" rel="external nofollow" class="url">Keith Clark</a> </cite> <time datetime="2014-08-09UTC06-08-12">August 9, 2014 at 6:02 am</time> 
+								</header> 
+								<p>Yep. I covered that the the browser support section of the article. IE11 or below doesn&#8217;t support <code>transform-style: preserve-3d</code>.</p> 
+								<footer>
+									<a href="index-replytocom=9258.html#respond" data-comment-id="9258" data-post-id="1252">Reply</a> <a href="index.html#comment-9258">Permalink</a> 
+								</footer> 
+							</li> 
+							<li id="comment-9287" class="comment">
+								<header>
+									<img alt="" src="http://1.gravatar.com/avatar/9a1e40314aff0289f01b71182d530d3d?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.jvsoftware.com" rel="external nofollow" class="url">Javier Villanueva</a> </cite> <time datetime="2014-08-10UTC05-08-14">August 10, 2014 at 5:23 pm</time> 
+								</header> 
+								<p>IE is the one that&#8217;s broken</p> 
+								<footer>
+									<a href="index-replytocom=9287.html#respond" data-comment-id="9287" data-post-id="1252">Reply</a> <a href="index.html#comment-9287">Permalink</a> 
+								</footer> 
+							</li> 
+						</ul> 
+					</li> 
+					<li id="comment-9240" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/8c4e272bd4d73fbb611807589f780358?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://fabuloso.me" rel="external nofollow" class="url">fabian</a> </cite> <time datetime="2014-08-08UTC02-08-15">August 8, 2014 at 2:21 pm</time> 
+						</header> 
+						<p>Very great work. Thank you for sharing!</p> 
+						<footer>
+							<a href="index-replytocom=9240.html#respond" data-comment-id="9240" data-post-id="1252">Reply</a> <a href="index.html#comment-9240">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-9242" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/e11cf6f351f1aff405f7b65b87a3f82c?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite>Timothee</cite> <time datetime="2014-08-08UTC03-08-10">August 8, 2014 at 3:30 pm</time> 
+						</header> 
+						<p>Is it possible to incorporate a CSS based parallax scrolling page through a WordPress theme?</p> 
+						<footer>
+							<a href="index-replytocom=9242.html#respond" data-comment-id="9242" data-post-id="1252">Reply</a> <a href="index.html#comment-9242">Permalink</a> 
+						</footer> 
+						<ul class="children">
+							<li id="comment-9262" class="comment">
+								<header>
+									<img alt="" src="http://1.gravatar.com/avatar/15627af5bae9d2b1c295ff2304f7383a?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.keithclark.co.uk" rel="external nofollow" class="url">Keith Clark</a> </cite> <time datetime="2014-08-09UTC07-08-25">August 9, 2014 at 7:47 am</time> 
+								</header> 
+								<p>Sure, the effect is achieved with CSS so you can apply the technique your WordPress theme if you so desire.</p> 
+								<footer>
+									<a href="index-replytocom=9262.html#respond" data-comment-id="9262" data-post-id="1252">Reply</a> <a href="index.html#comment-9262">Permalink</a> 
+								</footer> 
+							</li> 
+						</ul> 
+					</li> 
+					<li id="comment-9244" class="comment">
+						<header>
+							<img alt="" src="http://1.gravatar.com/avatar/31df2a150e56c9a2f22e4eb4565756ee?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite>Ty</cite> <time datetime="2014-08-08UTC04-08-23">August 8, 2014 at 4:35 pm</time> 
+						</header> 
+						<p>You&#8217;re my new personal hero! Thanks a bunch!</p> 
+						<footer>
+							<a href="index-replytocom=9244.html#respond" data-comment-id="9244" data-post-id="1252">Reply</a> <a href="index.html#comment-9244">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-9245" class="comment">
+						<header>
+							<img alt="" src="http://1.gravatar.com/avatar/7f30d3192eccb27adebe8237e4153138?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.websightdesigns.com" rel="external nofollow" class="url">webSIGHTdesigns</a> </cite> <time datetime="2014-08-08UTC05-08-01">August 8, 2014 at 5:04 pm</time> 
+						</header> 
+						<p>I&#8217;m running Firefox version 30.0 here, and no lagging noticed at all.</p> 
+						<footer>
+							<a href="index-replytocom=9245.html#respond" data-comment-id="9245" data-post-id="1252">Reply</a> <a href="index.html#comment-9245">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-9266" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/60c93612408ce7baad6e82496215a835?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://rackerpixel.co" rel="external nofollow" class="url">Erick M Acevedo</a> </cite> <time datetime="2014-08-09UTC01-08-51">August 9, 2014 at 1:59 pm</time> 
+						</header> 
+						<p>Hi! This is so amazing! a real parallax effect with no JS! great work dude!! thanks for sharing this with the Internet!</p> 
+						<footer>
+							<a href="index-replytocom=9266.html#respond" data-comment-id="9266" data-post-id="1252">Reply</a> <a href="index.html#comment-9266">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-9269" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/e7f3f6b4c868ccf2fd2680831eba2c5d?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://about.me/johanpretorius" rel="external nofollow" class="url">Johan Pretorius</a> </cite> <time datetime="2014-08-09UTC05-08-02">August 9, 2014 at 5:41 pm</time> 
+						</header> 
+						<p>Final demo works 100% on Sony Xperia and Chrome. Slight side-effect,  you can scroll to the right causing contents to move out of sight. </p> 
+						<p>Great stuff!</p> 
+						<footer>
+							<a href="index-replytocom=9269.html#respond" data-comment-id="9269" data-post-id="1252">Reply</a> <a href="index.html#comment-9269">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-9271" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/2bafb14d9a0928b1ec2876e0c8f1e078?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://krry.me/" rel="external nofollow" class="url">Kerry</a> </cite> <time datetime="2014-08-09UTC06-08-40">August 9, 2014 at 6:33 pm</time> 
+						</header> 
+						<p>Thanks for sharing! We&#8217;ve been putting off parallax effects since touchscreens don&#8217;t execute scroll-attached interactions until <code class="js">touchend</code>.  This is a revelation for developers who don&#8217;t want their progressive scroll enhancements to be lost on the mobile crowd.</p> 
+						<p>OTOH, it strikes me that many are misusing the term &#8216;parallax&#8217; to describe *scroll-activated depth effects*.  Parallax is a phenomenon that stems from having two eyes, so it requires two lines of sight to occur.  How far away is that galloping horse? Your brain can use the nearby fence and the distant tree to help you estimate that by comparing how your left and right eyes line up the three objects differently.</p> 
+						<p>Much of what we call &#8216;parallax&#8217; on the web would require your eyes to be remounted on the vertical axis (forehead and chin?).  And even then there is rarely a focal object with a foreground and background. Can we find a new term? Or is all lost? Are eggs truly dairy?</p> 
+						<p>Don&#8217;t get me wrong, I&#8217;ll likely be implementing the &#8220;Keith Technique&#8221; (Scott said was okay) in my latest project.  But I won&#8217;t be calling it parallax.</p> 
+						<footer>
+							<a href="index-replytocom=9271.html#respond" data-comment-id="9271" data-post-id="1252">Reply</a> <a href="index.html#comment-9271">Permalink</a> 
+						</footer> 
+						<ul class="children">
+							<li id="comment-9282" class="comment">
+								<header>
+									<img alt="" src="http://1.gravatar.com/avatar/1bb8a53c08bba4f191d18d89fbbed3f0?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://scottkellum.com" rel="external nofollow" class="url">Scott Kellum</a> </cite> <time datetime="2014-08-10UTC12-08-32">August 10, 2014 at 12:17 pm</time> 
+								</header> 
+								<p>Parallax is a result of linear perspective in motion and does not require stereo vision to be called parallax. This technique uses the term parallax correctly.</p> 
+								<footer>
+									<a href="index-replytocom=9282.html#respond" data-comment-id="9282" data-post-id="1252">Reply</a> <a href="index.html#comment-9282">Permalink</a> 
+								</footer> 
+							</li> 
+						</ul> 
+					</li> 
+					<li id="comment-9274" class="comment">
+						<header>
+							<img alt="" src="http://1.gravatar.com/avatar/5ff13e50a3a0826a6e57b35b71cea503?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite>Sam</cite> <time datetime="2014-08-09UTC10-08-32">August 9, 2014 at 10:39 pm</time> 
+						</header> 
+						<p>On BlackBerry Z10 v10.2.1.3247 it works smooth and glitch free. Well done!</p> 
+						<footer>
+							<a href="index-replytocom=9274.html#respond" data-comment-id="9274" data-post-id="1252">Reply</a> <a href="index.html#comment-9274">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-9283" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/8fad7923293045b9a041932e9e3312b8?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite>Lorenzo P.</cite> <time datetime="2014-08-10UTC03-08-38">August 10, 2014 at 3:51 pm</time> 
+						</header> 
+						<p>This is really great but a question came to my mind. If we are translating the ZIndex of the fore\back-grounds so to create a perspective, as you said we will lose some dimension on those elements that have less zIndex.</p> 
+						<p>You solved the problem by scaling the div that is on the background so that they are actually the same size, tricking perspective given by the CSS. Magnificent, and really smart. That said:</p> 
+						<p>We are scaling something to 2x (in the above case) so that all elements retain the visual size they had prior to 3D transforms, which is fine, but the problem (if there is one) comes with the visual elements you are serving to the users; If everything you were parallaxing and scaling was text or SVG, no problem, that&#8217;d be awesome, but if you are scaling 2x an image that is supposed to look good on 1x, wouldn&#8217;t you like like A LOT of quality on that image?<br>
+The trick would be to serve the user with a 2x image (just like we do when working with 2x Pixel Ratio devices) but we would also charge more loading times and memory usage on the users, wouldn&#8217;t we?</p> 
+						<p>I await your response because I am eager to know more about your method!</p> 
+						<p>Best of luck to you !</p> 
+						<footer>
+							<a href="index-replytocom=9283.html#respond" data-comment-id="9283" data-post-id="1252">Reply</a> <a href="index.html#comment-9283">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-9285" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/ad80d3c1c126acf589e6e595495695c8?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite>pk</cite> <time datetime="2014-08-10UTC04-08-37">August 10, 2014 at 4:33 pm</time> 
+						</header> 
+						<p>height=100vh isn&#8217;t going to fly on iOS (bug), so don&#8217;t forget to have some media queries to change that for iPad and smaller. Neat technique though, I can&#8217;t wait to try it.</p> 
+						<footer>
+							<a href="index-replytocom=9285.html#respond" data-comment-id="9285" data-post-id="1252">Reply</a> <a href="index.html#comment-9285">Permalink</a> 
+						</footer> 
+						<ul class="children">
+							<li id="comment-9309" class="comment">
+								<header>
+									<img alt="" src="http://1.gravatar.com/avatar/1bb8a53c08bba4f191d18d89fbbed3f0?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://scottkellum.com" rel="external nofollow" class="url">Scott Kellum</a> </cite> <time datetime="2014-08-11UTC01-08-24">August 11, 2014 at 1:43 pm</time> 
+								</header> 
+								<p>I usually use <code class="css">html,body {height: 100%}</code> <code> when using this technique and that does the trick with better browser support.</code> </p> 
+								<footer>
+									<a href="index-replytocom=9309.html#respond" data-comment-id="9309" data-post-id="1252">Reply</a> <a href="index.html#comment-9309">Permalink</a> 
+								</footer> 
+							</li> 
+						</ul> 
+					</li> 
+					<li id="comment-9295" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/2b0623df3bc7a7db6f56e0ac42a9abb1?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://kevinlorenz.com" rel="external nofollow" class="url">verpixelt</a> </cite> <time datetime="2014-08-11UTC12-08-21">August 11, 2014 at 12:40 am</time> 
+						</header> 
+						<p>Hey Keith thanks a bunch for this super easy to follow tutorial/explanation. I have one question though. I&#8217;ve encountered the following problem on the implementation inside my project: If I add a layer with translateZ(-3px) I need a scale of 4 to get the correct size of the element back. This works but on the other hand it enlarges my page (on the y-axis) for a unnecessary  and weird looking large amount. I don&#8217;t understand exactly why this is happening nor how to prevent it. Any ideas?</p> 
+						<footer>
+							<a href="index-replytocom=9295.html#respond" data-comment-id="9295" data-post-id="1252">Reply</a> <a href="index.html#comment-9295">Permalink</a> 
+						</footer> 
+						<ul class="children">
+							<li id="comment-9300" class="comment">
+								<header>
+									<img alt="" src="http://1.gravatar.com/avatar/15627af5bae9d2b1c295ff2304f7383a?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.keithclark.co.uk" rel="external nofollow" class="url">Keith Clark</a> </cite> <time datetime="2014-08-11UTC06-08-16">August 11, 2014 at 6:40 am</time> 
+								</header> 
+								<p>I hadn&#8217;t noticed this side-effect until I published this post and stated receiving feedback. The issue seems to be the same thing that causes the horizontal scroll in webkit. It seems some browsers are calculating the scaled elements size based on the dimensions of an element in 2D space and not accounting for the 3D depth &#8211; that&#8217;s what causing your strange page size issue.</p> 
+								<p>My demo doesn&#8217;t show this because the last slide doesn&#8217;t feature an parallax elements.</p> 
+								<footer>
+									<a href="index-replytocom=9300.html#respond" data-comment-id="9300" data-post-id="1252">Reply</a> <a href="index.html#comment-9300">Permalink</a> 
+								</footer> 
+								<ul class="children">
+									<li id="comment-9302" class="comment">
+										<header>
+											<img alt="" src="http://0.gravatar.com/avatar/2b0623df3bc7a7db6f56e0ac42a9abb1?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://kevinlorenz.com" rel="external nofollow" class="url">verpixelt</a> </cite> <time datetime="2014-08-11UTC08-08-26">August 11, 2014 at 8:57 am</time> 
+										</header> 
+										<p>Thanks Keith, for taking time to look into it. Your comment has given me the right hint to fix my problem. I set a max-height for the &#8216;slides&#8217;, have to reposition them afterwards, but the scale factor is correct and the page doesn&#8217;t get larger than it should get.</p> 
+										<footer>
+											<a href="index.html#comment-9302">Permalink</a> 
+										</footer> 
+									</li> 
+								</ul> 
+							</li> 
+						</ul> 
+					</li> 
+					<li id="comment-9303" class="comment">
+						<header>
+							<img alt="" src="http://1.gravatar.com/avatar/5cb4452b4f45f720672ceb30993062d3?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.curromatteo.com" rel="external nofollow" class="url">Matteo</a> </cite> <time datetime="2014-08-11UTC10-08-37">August 11, 2014 at 10:58 am</time> 
+						</header> 
+						<p>Simply Amazing! Thanks for sharing!</p> 
+						<footer>
+							<a href="index-replytocom=9303.html#respond" data-comment-id="9303" data-post-id="1252">Reply</a> <a href="index.html#comment-9303">Permalink</a> 
+						</footer> 
+					</li> 
+				</ul> 
+				<div id="respond">
+					<h3 id="reply-title">Leave a Reply to <a href="index-replytocom=9244.html#comment-9244">Ty</a> <small><a rel="nofollow" id="cancel-comment-reply-link" href="index.html#respond">Cancel reply</a> </small> </h3> 
+					<form action="/wp-comments-post.php" method="post" id="commentform">
+						<p>Your email address will not be published. Required fields are marked <span class="required">*</span> </p> 
+						<label>Name <span class="required">*</span> 
+						<input id="author" name="author" type="text" required placeholder="Your name" value="" size="30" aria-required="true"></label> 
+						<label>Email <span class="required">*</span> 
+						<input id="email" name="email" type="email" required placeholder="email@example.com" value="" size="30" aria-required="true"></label> 
+						<label>Website
+						<input id="url" name="url" type="text" placeholder="www.example.com" value="" size="30"></label> 
+						<label>Comment <span class="required">*</span> <textarea id="comment" name="comment" required placeholder="Share your wisdom..." cols="45" rows="8" aria-required="true"></textarea> </label> 
+						<p>You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes: <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;pre&gt; &lt;code class=&quot;&quot;&gt; </code>. Syntax hilighting can be applied to source code using <code>&lt;code class="<var>lang</var>"&gt;</code> where <var>lang</var> is <code>html</code>, <code>css</code>, <code>js</code> or <code>php</code>. Please wrap blocks of code in <code>&lt;pre&gt;&lt;code&gt;</code>.</p> 
+						<p class="form-submit">
+						<input name="submit" type="submit" id="submit" value="Post Comment">
+						<input type="hidden" name="comment_post_ID" value="1252" id="comment_post_ID">
+						<input type="hidden" name="comment_parent" id="comment_parent" value="9244"></p> 
+					</form> 
+				</div> 
+				<!-- #respond -->
+			</section> 
+		</section> 
+		<aside role="complementary">
+			<section id="paging">
+				<h3>Navigate</h3> 
+				<ul>
+					<li>Previous: 
+						<a href="../gpu-text-rendering-in-webkit/index.html" rel="prev">GPU text rendering in webkit</a> 
+					</li> 
+				</ul> 
+			</section> 
+			<section id="text-3">
+				<h3>About Me</h3> 
+				<div class="textwidget">
+					<p>I'm a front-end web developer from the UK, based in Farnborough.</p> 
+					<p>When I'm not developing websites I like to create tools such as <a href="http://selectivizr.com">selectivizr</a> and <a href="http://keithclark.co.uk/labs/google-analytics-debugger/">Google Analytics Debugger</a> or <a href="http://keithclark.co.uk/labs/">experiment</a> with what's possible in a browser. This year I won a net magazine award for my <a href="http://keithclark.co.uk/labs/css3-fps-new/">CSS FPS</a> demo and was nominated for developer of the year. </p> 
+					<p>You can find me on <a href="http://twitter.com/keithclarkcouk">twitter</a> and, if you're interested in my professional experience, please have a look at my <a href="http://keithclark.co.uk/cv/">CV</a> or <a href="http://keithclark.co.uk">website</a>.</p> 
+				</div> 
+			</section> 
+		</aside> 
+		<footer role="contentinfo">
+		Design and content &copy; Keith Clark.
+		
+		</footer> 
+	</div> 
+	<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-10812217-3']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script> 
+
+</body> </html> 

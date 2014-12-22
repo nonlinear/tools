@@ -1,0 +1,242 @@
+<!doctype html>
+<html>
+<head>
+	<title>Moving IE specific CSS into @media blocks | Keith Clark</title> 
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="stylesheet" href="../wp-content/themes/raw/style.css" type="text/css" media="screen">
+	<link rel="pingback" href="../xmlrpc.php">
+	<link rel="alternate" type="application/rss+xml" title="Blog post RSS feed" href="../feed/index.html">
+	<!--[if (gte IE 6)&(lte IE 8)]>
+	<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script> 
+	<script src="//s3.amazonaws.com/nwapi/nwmatcher/nwmatcher-1.2.4-min.js"></script> 
+	<script type="text/javascript" src="/wp-content/themes/raw/js/selectivizr-min.js"></script> 
+	<![endif]-->
+	<link rel="alternate" type="application/rss+xml" title="Keith Clark &raquo; Moving IE specific CSS into @media blocks Comments Feed" href="feed/index.html">
+	<script type="text/javascript" src="../wp-content/themes/raw/js/common-ver=3.5.js"></script> 
+	<script type="text/javascript" src="../wp-includes/js/comment-reply.min-ver=3.5.js"></script> 
+	<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../xmlrpc.php-rsd.xml">
+	<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../wp-includes/wlwmanifest.xml">
+	<link rel="prev" title="Working with elements before the DOM is ready" href="../working-with-elements-before-the-dom-is-ready/index.html">
+	<link rel="next" title="The state of CSS 3D transforms" href="../the-state-of-css-3d-transforms/index.html">
+	<meta name="generator" content="WordPress 3.5">
+	<link rel="canonical" href="index.html">
+	<link rel="shortlink" href="index.html">
+</head> 
+<body>
+	<div id="page">
+		<header role="banner">
+			<a href="../index.html" title="Keith Clark" rel="home">
+			<img src="../wp-content/themes/raw/logo-keithclark.png"></a> <em>Articles, experiments and discussions on developing for the web</em> 
+		</header> 
+		<section role="main">
+			<article>
+				<header>
+					<h1>Moving IE specific CSS into @media blocks</h1> 
+					<p>By Keith Clark | <time pubdate datetime="2012-11-08">November 8, 2012</time> |
+					<a href="index.html#comments">8 Comments</a> </p> 
+				</header> 
+				<p>Here&#8217;s an alternative method for writing IE specific style rules without having to move them into separate files. The idea is to put your IE styles into a <code>@media</code> block that will only be applied in certain versions of IE. I discovered this trick while looking for a way to write a media query pass-through filter for older versions of IE.</p> 
+				<h2>It&#8217;s a hack!</h2> 
+				<p>As with all CSS hacks this technique works by exploiting errors in a browsers style sheet parser. We&#8217;ll be using a combination of strategically placed <code>\0</code>, <code>\,</code> and <code>\9</code> character escapes which IE will happily accept as valid syntax causing it to parse the <code>@media</code> block and apply any style rules defined inside it. Other browsers correctly identify the syntax error and discard the <code>@media</code> block along with its contents.</p> 
+				<h3>The @media rule hacks</h3> 
+				<h4>To target IE 6 and 7</h4> 
+				<pre><code class="css">@media screen\9 {
+    body { background: red; }
+}</code> </pre> 
+				<h4>To target IE 6, 7 and 8</h4> 
+				<pre><code class="css">@media \0screen\,screen\9 {
+    body { background: green; }
+}</code> </pre> 
+				<h4>To target IE 8</h4> 
+				<pre><code class="css">@media \0screen {
+    body { background: blue; }
+}</code> </pre> 
+				<h4>To target IE 8, 9 and 10</h4> 
+				<pre><code class="css">@media screen\0 {
+    body { background: orange; }
+}</code> </pre> 
+				<h4>To target IE 9 and 10</h4> 
+				<pre><code class="css">@media screen and (min-width:0\0) {
+    body { background: yellow; }
+}</code> </pre> 
+				<h2>Using the hack</h2> 
+				<p>This says it all really:</p> 
+				<pre><code class="css">body {
+  background: pink;
+}
+
+/* IE 6 and 7 fallback styles */
+@media all\9 {
+    body {
+        background: red;
+    }
+    h1 {
+        color: yellow;
+    }
+}
+
+/* IE 6 and 7 fallback print styles */
+@media print\9 {
+    body {
+        color: blue;
+    }
+    h1 {
+        color: red;
+    }
+}
+</code> </pre> 
+				<p>Note that the <code>@media</code> type can be any of the <a href="http://www.w3.org/TR/CSS2/media.html#media-types">supported types</a>, so rules in <code>@media screen\9</code> will target screens and <code>@media print\9</code> will only apply to print style sheets.</p> 
+				<h2>Testing tool</h2> 
+				<p>These hacks were discovered using a <a href="../wp-content/uploads/2012/11/ie-media-block-tests.php.html"><code>@media</code> syntax testing tool</a> that I wrote for testing browser parsing of <code>@media</code> blocks.</p> 
+				<h2>Disclaimer</h2> 
+				<p>I&#8217;m not advocating the use of these techniques, I&#8217;ve shared this information because it&#8217;s not documented anywhere. Use this if it suits you to do so but be warned, the word hack appears frequently in this post for a reason.</p> 
+				<footer>
+					Posted in: 
+					<a href="../category/css/index.html" title="View all posts in CSS" rel="category tag">CSS</a> 
+				</footer> 
+			</article> 
+			<section id="comments">
+				<h2>8 comments</h2> 
+				<ul>
+					<li id="comment-3379" class="comment">
+						<header>
+							<img alt="" src="http://1.gravatar.com/avatar/f663783f35c2fbf89fc5f64f6c363377?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://fedemp.com.ar" rel="external nofollow" class="url">Federico Panico</a> </cite> <time datetime="2012-11-08UTC01-11-28">November 8, 2012 at 1:42 pm</time> 
+						</header> 
+						<p>Just a small typo: Last line, where it says &#8220;work&#8221; it should say &#8220;word&#8221;. Had to think a moment to understand what you intented to say. :)</p> 
+						<footer>
+							<a href="index.html#comment-3379">Permalink</a> 
+						</footer> 
+						<ul class="children">
+							<li id="comment-3381" class="comment">
+								<header>
+									<img alt="" src="http://1.gravatar.com/avatar/15627af5bae9d2b1c295ff2304f7383a?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.keithclark.co.uk" rel="external nofollow" class="url">Keith Clark</a> </cite> <time datetime="2012-11-08UTC04-11-53">November 8, 2012 at 4:18 pm</time> 
+								</header> 
+								<p>I&#8217;ve updated the post. Thanks for pointing that out.</p> 
+								<footer>
+									<a href="index.html#comment-3381">Permalink</a> 
+								</footer> 
+							</li> 
+						</ul> 
+					</li> 
+					<li id="comment-3382" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/c220e06972e2de8c2c824153fbf1192e?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite>Florian Grell</cite> <time datetime="2012-11-08UTC09-11-32">November 8, 2012 at 9:13 pm</time> 
+						</header> 
+						<p>This is good news for mobile first. Now you can keep your stylesheets together. I made a quick test and this worked (IE9/Win7):</p> 
+						<pre><code class="css">
+body { background:red; }
+@media screen,screen\9,screen and (min-width:640px) {
+	body {background:green;}
+}
+</code> </pre> 
+						<footer>
+							<a href="index.html#comment-3382">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-3383" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/c220e06972e2de8c2c824153fbf1192e?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite>Florian Grell</cite> <time datetime="2012-11-08UTC09-11-21">November 8, 2012 at 9:15 pm</time> 
+						</header> 
+						<p>Backslash Zero seems to get filtered&#8230;</p> 
+						<pre><code class="css">
+body { background:red; }
+@media \0screen\0,screen\9,screen and (min-width:640px) {
+	body {background:green;}
+}
+</code> </pre> 
+						<footer>
+							<a href="index.html#comment-3383">Permalink</a> 
+						</footer> 
+						<ul class="children">
+							<li id="comment-3391" class="comment">
+								<header>
+									<img alt="" src="http://1.gravatar.com/avatar/15627af5bae9d2b1c295ff2304f7383a?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.keithclark.co.uk" rel="external nofollow" class="url">Keith Clark</a> </cite> <time datetime="2012-11-09UTC09-11-45">November 9, 2012 at 9:16 am</time> 
+								</header> 
+								<p>That hack seems to apply the <code>@media</code> rules to every browser except IE8. It also causes IE9 and IE10 to ignore the media query all together.</p> 
+								<footer>
+									<a href="index.html#comment-3391">Permalink</a> 
+								</footer> 
+							</li> 
+							<li id="comment-3393" class="comment">
+								<header>
+									<img alt="" src="http://1.gravatar.com/avatar/15627af5bae9d2b1c295ff2304f7383a?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.keithclark.co.uk" rel="external nofollow" class="url">Keith Clark</a> </cite> <time datetime="2012-11-09UTC10-11-12">November 9, 2012 at 10:05 am</time> 
+								</header> 
+								<p>A better solution for the above would be:</p> 
+								<pre><code class="css">@media screen and (min-width:640px), screen/9 {
+    body {
+        background: green;
+    }
+}</code> </pre> 
+								<p>This allows all non-IE browsers to render the styles and keeps media query support in IE9/10. It also creates a pass-through filter for IE6/7 but we&#8217;re still stuck with IE8 ignoring the entire block.</p> 
+								<footer>
+									<a href="index.html#comment-3393">Permalink</a> 
+								</footer> 
+							</li> 
+						</ul> 
+					</li> 
+					<li id="comment-3392" class="comment">
+						<header>
+							<img alt="" src="http://1.gravatar.com/avatar/d4e12b4b771f185be9b432f6e81fc53f?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.suborganik.com" rel="external nofollow" class="url">Conor</a> </cite> <time datetime="2012-11-09UTC09-11-30">November 9, 2012 at 9:26 am</time> 
+						</header> 
+						<p>Nice tip, thanks!</p> 
+						<p>But&#8230;<br>
+&#8220;Here’s an alternative method for writing IE specific style rules without having to move them into separate files&#8221;</p> 
+						<p>I personally like keeping my IE rules in a separate stylesheet. Partially just to punish IE users, and mainly to keep my main CSS pure :)<br>
+To each their own I guess. This method could still be used inside the IE stylesheet too though to hit the different versions. </p> 
+						<p>Keep up the good blog :)</p> 
+						<footer>
+							<a href="index.html#comment-3392">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-3444" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/0cb56bfd72ace74277ffa344ed165948?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.css3files.com" rel="external nofollow" class="url">Christian Krammer</a> </cite> <time datetime="2012-11-14UTC06-11-20">November 14, 2012 at 6:22 am</time> 
+						</header> 
+						<p>Since these are only hacks I wouldn&#8217;t recommend them to anyone. In particular because Conditional Comments are the &#8220;official&#8221; way and far away from hacks, I can see no point for the media blocks. But thanks for the clarification. ;)</p> 
+						<footer>
+							<a href="index.html#comment-3444">Permalink</a> 
+						</footer> 
+					</li> 
+				</ul> 
+			</section> 
+		</section> 
+		<aside role="complementary">
+			<section id="paging">
+				<h3>Navigate</h3> 
+				<ul>
+					<li>Next: 
+						<a href="../the-state-of-css-3d-transforms/index.html" rel="next">The state of CSS 3D transforms</a> 
+					</li> 
+					<li>Previous: 
+						<a href="../working-with-elements-before-the-dom-is-ready/index.html" rel="prev">Working with elements before the DOM is ready</a> 
+					</li> 
+				</ul> 
+			</section> 
+			<section id="text-3">
+				<h3>About Me</h3> 
+				<div class="textwidget">
+					<p>I'm a front-end web developer from the UK, based in Farnborough.</p> 
+					<p>When I'm not developing websites I like to create tools such as <a href="http://selectivizr.com">selectivizr</a> and <a href="http://keithclark.co.uk/labs/google-analytics-debugger/">Google Analytics Debugger</a> or <a href="http://keithclark.co.uk/labs/">experiment</a> with what's possible in a browser. This year I won a net magazine award for my <a href="http://keithclark.co.uk/labs/css3-fps-new/">CSS FPS</a> demo and was nominated for developer of the year. </p> 
+					<p>You can find me on <a href="http://twitter.com/keithclarkcouk">twitter</a> and, if you're interested in my professional experience, please have a look at my <a href="http://keithclark.co.uk/cv/">CV</a> or <a href="http://keithclark.co.uk">website</a>.</p> 
+				</div> 
+			</section> 
+		</aside> 
+		<footer role="contentinfo">
+		Design and content &copy; Keith Clark.
+		
+		</footer> 
+	</div> 
+	<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-10812217-3']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script> 
+
+</body> </html> 

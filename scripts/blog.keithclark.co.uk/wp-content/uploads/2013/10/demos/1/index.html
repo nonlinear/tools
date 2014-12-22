@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>CSS Vertex Demo 1: Flat Face</title>
+    <link rel="stylesheet" href="../base.css">
+    <style>
+        .vertex, .face {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+        }
+        .face {
+            background-color: rgba(50, 40, 60, .25);
+        }
+        .vertex {
+            width: 9px;
+            height: 9px;
+            margin: -4px;
+            background: rgba(255, 0, 0, .5);
+            border-radius: 7px;
+            color: #333;
+            font: 10px / 1 "Courier New", monospace;
+            text-indent: 14px;
+            white-space: nowrap;
+        }
+        #scene {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+        #test-face {
+            width: 300px;
+            height: 200px;
+            margin: -100px -150px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CSS Vertex Demo 1: Flat Face</h1>
+    </header>
+
+    <div id="scene">
+        <div id="test-face" class="face"></div>
+    </div>
+
+    <footer>
+        Please see the accompanying <a href="../../../../../../calculating-element-vertex-data-from-css-transforms/index.html">blog post</a>
+	or discuss on <a href="http://twitter.com/keithclarkcouk">twitter</a><br>
+	<span class=credit>A <a href="http://keithclark.co.uk/labs">Keith Clark</a> experiment</span>
+    </footer>
+
+    <!-- 
+    This script block should be in an external file but I've inlined it to 
+    make the source code easier to follow.
+    -->
+    <script>
+
+        /* Returns A, B, C and D vertices of an element
+        ---------------------------------------------------------------- */
+
+        function computeVertexData (elem) {
+            var w = elem.offsetWidth,
+                h = elem.offsetHeight,
+                v = {
+                    a: { x: -w / 2, y: -h / 2, z: 0 },
+                    b: { x: w / 2, y: -h / 2, z: 0 },
+                    c: { x: w / 2, y: h / 2, z: 0 },
+                    d: { x: -w / 2, y: h / 2, z: 0 }
+                };
+            return v;
+        }
+
+    </script>
+
+    <script>
+ 
+        // Select the face
+        var face = document.getElementById("test-face");
+
+        // Compute the vertices
+        var vertexData = computeVertexData(face);
+
+        // Draw the vertices 
+        renderVertex("a", face, vertexData.a);
+        renderVertex("b", face, vertexData.b);
+        renderVertex("c", face, vertexData.c);
+        renderVertex("d", face, vertexData.d);
+ 
+
+        /* Renders a vertex to the DOM
+        ---------------------------------------------------------------- */
+
+        function renderVertex (id, face, vertex) {
+            var id = "_vertex_" + id,
+                vertexElem = face[id],
+                x = vertex.x.toFixed(2),
+                y = vertex.y.toFixed(2),
+                z = vertex.z.toFixed(2),
+                s = 1 - vertex.z / 400; // scale to keep the text readable
+
+            if (!vertexElem) {
+                vertexElem = face[id] = document.createElement("div");
+                vertexElem.className = "vertex";
+                document.getElementById("scene").appendChild(vertexElem);
+            }
+
+            // show the vertex coordinates
+            vertexElem.textContent = "x:" + x + " y:" + y + " z:" + z;
+            
+            // apply the tralsation to the vertex
+            vertexElem.style.cssText = 
+                "-webkit-transform: translate3d(" + x + "px," + y + "px," + z + "px) scale(" + s + ");" +
+                "-moz-transform: translate3d(" + x + "px," + y + "px," + z + "px) scale(" + s + ");" +
+                "-ms-transform: translate3d(" + x + "px," + y + "px," + z + "px) scale(" + s + ");" +
+                "transform: translate3d(" + x + "px," + y + "px," + z + "px) scale(" + s + ");";
+        }
+
+    </script>
+
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-10812217-3']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+</body>
+</html>

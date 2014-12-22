@@ -1,0 +1,507 @@
+<!doctype html>
+<html>
+<head>
+	<title>Responsive images using cookies | Keith Clark</title> 
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="stylesheet" href="../wp-content/themes/raw/style.css" type="text/css" media="screen">
+	<link rel="pingback" href="../xmlrpc.php">
+	<link rel="alternate" type="application/rss+xml" title="Blog post RSS feed" href="../feed/index.html">
+	<!--[if (gte IE 6)&(lte IE 8)]>
+	<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script> 
+	<script src="//s3.amazonaws.com/nwapi/nwmatcher/nwmatcher-1.2.4-min.js"></script> 
+	<script type="text/javascript" src="/wp-content/themes/raw/js/selectivizr-min.js"></script> 
+	<![endif]-->
+	<link rel="alternate" type="application/rss+xml" title="Keith Clark &raquo; Responsive images using cookies Comments Feed" href="feed/index.html">
+	<script type="text/javascript" src="../wp-content/themes/raw/js/common-ver=3.5.js"></script> 
+	<script type="text/javascript" src="../wp-includes/js/comment-reply.min-ver=3.5.js"></script> 
+	<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../xmlrpc.php-rsd.xml">
+	<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../wp-includes/wlwmanifest.xml">
+	<link rel="prev" title="IE conditional comments and asset load order" href="../ie-conditional-comments-and-asset-load-order/index.html">
+	<link rel="next" title="Faster parallax scrolling websites in Firefox" href="../faster-scrolling-parallax-websites-in-firefox/index.html">
+	<meta name="generator" content="WordPress 3.5">
+	<link rel="canonical" href="index.html">
+	<link rel="shortlink" href="index.html">
+</head> 
+<body>
+	<div id="page">
+		<header role="banner">
+			<a href="../index.html" title="Keith Clark" rel="home">
+			<img src="../wp-content/themes/raw/logo-keithclark.png"></a> <em>Articles, experiments and discussions on developing for the web</em> 
+		</header> 
+		<section role="main">
+			<article>
+				<header>
+					<h1>Responsive images using cookies</h1> 
+					<p>By Keith Clark | <time pubdate datetime="2011-06-18">June 18, 2011</time> |
+					<a href="index.html#comments">30 Comments</a> </p> 
+				</header> 
+				<p>A while ago now, I <a href="http://twitter.com/#!/keithclarkcouk/status/53807492957880320">tweeted</a> about using cookies as a means of serving images to a browser  based on the size of the device viewport. <a href="http://twitter.com/scottjehl">Scott Jehl</a> has already implemented the idea into a <a href="https://github.com/filamentgroup/Responsive-Images/tree/cookie-driven">branch of his responsive images script</a> but now that I have a platform to document my ideas I&#8217;ve decided to write up my approach to responsive images.</p> 
+				<p>CSS media queries allow us to develop flexible designs that adapt to the device rendering them. Initially designers worked in a “desktop-down” fashion designing for large screen sizes, working down to the smallest. This approach has since been challenged and now projects such as <a href="http://html5boilerplate.com/mobile/">Mobile Boilerplate</a> and &#8216;<a href="http://stuffandnonsense.co.uk/projects/320andup/">320 and Up</a> &#8216; are encouraging a “mobile-up” approach to design.</p> 
+				<p>When it comes to imagery it doesn’t matter which way you choose to implement responsive design because you’ll always end up with the same problem; the dimensions of the images used in a page will always be dictated by the largest screen resolution you designed for.</p> 
+				<p>This becomes an issue as a design scales down to fit smaller screens. The high resolution image is still downloaded by the browser before it’s scaled down to fit into a smaller space. Not only is this a waste of bandwidth, downloading oversized images can also significantly delay the initial page render time. These issues are compounded if the visitor is browsing over a mobile network.</p> 
+				<p>We need a way to serve a scaled version of an image based on the dimensions of the device viewport. There have been a few approaches to this issue, most of which require JavaScript to dynamically modify the <code>src</code> attribute of <code>&lt;img&gt;</code> tags based on the window size of the browser. I have a different approach to solving this problem.</p> 
+				<h2>Enter cookies&#8230;</h2> 
+				<p>Whenever a browser requests a file from a server it automatically forwards any cookie data along with the request. If we use JavaScript to populate a cookie with the current screen dimensions all subsequent requests made by the browser will pass this data to the server. In other words, the server would know the screen size of the device asking for the file.</p> 
+				<p>Setting the cookie is easy. A single line of JavaScript will do the trick, but it must be added to the page <code>&lt;head&gt;</code> to ensure the cookie is set before any images are requested from the server.</p> 
+				<pre><code class="js">document.cookie = "device_dimensions=" + screen.width + "x" + screen.height;</code> </pre> 
+				<p>I’m storing the dimensions of the screen rather than the browser window so the server can determine the maximum size an image could be rendered at. I can’t reliably use the dimensions of the browser window because it could start out at relatively small size causing low-res images to be downloaded on a hi-res screen and these images would look terrible if the browser was later increased in size.</p> 
+				<h2>Working with the cookie on the server</h2> 
+				<p>Now the server is able to detect the dimensions of the requesting device we need a script to act on this information and send back an optimised image. For this example I&#8217;m using PHP, the code we need is listed below:</p> 
+				<pre><code class="php">&lt;?php
+  $device_width = 0;
+  $device_height = 0;
+  $file = $_SERVER['QUERY_STRING'];
+
+  if (file_exists($file)) {
+
+    // Read the device viewport dimensions
+    if (isset($_COOKIE['device_dimensions'])) {
+      $dimensions = explode('x', $_COOKIE['device_dimensions']);
+      if (count($dimensions)==2) {
+        $device_width = intval($dimensions[0]);
+        $device_height = intval($dimensions[1]);
+      }
+    }
+
+    if ($device_width &gt; 0) {
+
+      $fileext = pathinfo($file, PATHINFO_EXTENSION);
+
+      // Low resolution image
+      if ($device_width &lt;= 800) {
+        $output_file = substr_replace($file, '-low', -strlen($fileext)-1, 0);
+      } 
+
+      // Medium resolution image
+      else if ($device_width &lt;= 1024) {
+        $output_file = substr_replace($file, '-med', -strlen($fileext)-1, 0);
+      }
+
+      // check the file exists
+      if (isset($output_file) &amp;&amp; file_exists($output_file)) {
+        $file = $output_file;
+      }
+    }
+
+    // return the file;
+    readfile($file);
+  }
+?&gt;</code> </pre> 
+				<p>In my website&#8217;s ‘images’ folder I created ‘index.php’ and populated it with this code. I also added my high resolution image ‘test.png’ along with two smaller versions named ‘test-med.png’ and ‘test-low.png’, these we will be sent to smaller screens.</p> 
+				<p>And finally we need an html document:</p> 
+				<pre><code class="html">&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Responsive Images Test&lt;/title&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;script&gt;
+    document.cookie = "device_dimensions=" + screen.width + "x" + screen.height;
+  &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;img src="images/?test.png"&gt;
+  &lt;!-- the above is equivalent to: &lt;img src="images/index.php?test.png"&gt; --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code> </pre> 
+				<h2>How it works</h2> 
+				<p>The html page contains the JavaScript to set the cookie and a <code>&lt;img&gt;</code> element. The image points to the ‘index.php’ script, using the query string (the part after the &#8216;?&#8217;) to specify the file name of the required image. The cookie will be set before the image is requested so the screen dimensions of the device will also be passed to the php script.</p> 
+				<p>The php script itself is pretty simple. It checks for the existence of the cookie and sets the <code>$device_width</code> and <code>$device_height</code> variables accordingly. If the cookie isn’t set these variables would evaluate to zero causing the script to return the high resolution version of the image. If <code>$device_width</code> is not zero, the script then determines which image would be appropriate for the screen and, if it exists, returns it to the browser.</p> 
+				<p>I purposely named the php script ‘index.php’ so I can omit it’s name from file references. I also added it to the images folder so I can toggle progressive and non-progressive images by adding / removing the ‘?’</p> 
+				<h2>What if cookies or JavaScript are disabled?</h2> 
+				<p>If JavaScript or cookies are disabled then the device dimensions cookie will never be set, which means the high-resolution version of the file will be downloaded as a fallback. Nothing breaks, and we’re no worse off than we were before using this technique.</p> 
+				<h2>Are there any caveats?</h2> 
+				<p>Yes, but only one. Any images will need to be hosted on a cookie enabled domain.</p> 
+				<h2>Summary</h2> 
+				<p>This technique isn’t limited to <code>&lt;img&gt;</code> elements. It could be used to serve responsive images to your CSS. In fact, it can be used for much more than serving images &#8211; any file requested from the server could, in theory, be responsive.</p> 
+				<p>We could improve this technique further by appending <code>window.devicePixelRatio</code> to the cookie the php script can detect for HD and Retina displays and serve higher resolution graphics. The php script could also be adapted to automatically scale down images for us.</p> 
+				<footer>
+					Posted in: 
+					<a href="../category/html/index.html" title="View all posts in HTML" rel="category tag">HTML</a>, <a href="../category/javascript/index.html" title="View all posts in JavaScript" rel="category tag">JavaScript</a> 
+				</footer> 
+			</article> 
+			<section id="comments">
+				<h2>30 comments</h2> 
+				<ul>
+					<li id="comment-6" class="comment">
+						<header>
+							<img alt="" src="http://1.gravatar.com/avatar/393d38a4f33cda7940f84ed378a0b553?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite>Phil Ricketts</cite> <time datetime="2011-06-18UTC02-06-18">June 18, 2011 at 2:17 pm</time> 
+						</header> 
+						<p>Great to finally read a bit more about your experimentation with this, Keith!</p> 
+						<p>I will certainly be experimenting with this soon.</p> 
+						<p>The only problem, like you said, is for those who are using a cookie-free domain (such as <a href="http://static.domain.com" rel="nofollow">http://static.domain.com</a>) for serving up cookie-less assets. I suppose, you could configure the subdomain to send cookies with image extensions.</p> 
+						<footer>
+							<a href="index.html#comment-6">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-7" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/22ed378fbf1d918ef43a45b2a1f34634?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://weston.ruter.net/" rel="external nofollow" class="url">Weston Ruter</a> </cite> <time datetime="2011-06-18UTC06-06-30">June 18, 2011 at 6:46 pm</time> 
+						</header> 
+						<p>Clever approach. I do have another caveat, however, and that is with server-side caching. Each of these different-sized images all have the exact same URL, and if the images are served with far-future <code>Expires</code> headers (as they should), then edge servers like Akamai and other intermediary proxies (CDNs) will want to hold onto the response for the first image URL they see, and thereafter setting the client&#8217;s cookie will have no effect on subsequent requests to that image URL from any client: each client will be served the first image encountered by the proxy. </p> 
+						<p>In this case, you&#8217;ll need to make sure that such proxies do not cache these resources, for example via a <code>Cache-Control: private</code> response header. (Another option would be a <code>Vary: Cookie</code> response header, but this wouldn&#8217;t work if multiple cookies are stored on the client, like session IDs, for obvious reasons.) </p> 
+						<p>Disallowing CDNs from caching images is a big disadvantage to this approach. Maybe there&#8217;s a workaround I&#8217;m not thinking of? The <code>Vary: Cookie</code> response header could indeed be used if only the <code>device_dimensions</code> is included in the cookie. If the page is located at <a href="http://www.example.com" rel="nofollow">http://www.example.com</a> then perhaps a solution would be to limit the scope of the cookie to the (formerly) cookie-free domain at images.example.com used to load images from, e.g.:</p> 
+						<p><code>document.cookie = "device_dimensions=" + screen.width + "x" + screen.height + "; Domain=images.example.com";</code> </p> 
+						<p>I&#8217;m not sure if the browser security model allows cookies to be set for other subdomains; this might also first need <code>document.domain = 'example.com';</code>.</p> 
+						<p>Or am I missing something?</p> 
+						<footer>
+							<a href="index.html#comment-7">Permalink</a> 
+						</footer> 
+						<ul class="children">
+							<li id="comment-9" class="comment">
+								<header>
+									<img alt="" src="http://1.gravatar.com/avatar/15627af5bae9d2b1c295ff2304f7383a?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.keithclark.co.uk" rel="external nofollow" class="url">Keith Clark</a> </cite> <time datetime="2011-06-18UTC08-06-01">June 18, 2011 at 8:01 pm</time> 
+								</header> 
+								<p>The caching issue you&#8217;ve raised is important and is certainly something to think about. </p> 
+								<p>In this example assets are processed by a PHP script and (as far as I know) PHP, like other server languages doesn&#8217;t create far-future <code>Expires</code> headers for it&#8217;s output so caching shouldn&#8217;t be an issue if assets are requested directly from the server. That said, your point about proxies holding onto assets based on their URL could present another issue if they decide not to honour PHP cache settings.</p> 
+								<p>I guess some experimentation is required.</p> 
+								<footer>
+									<a href="index.html#comment-9">Permalink</a> 
+								</footer> 
+								<ul class="children">
+									<li id="comment-12" class="comment">
+										<header>
+											<img alt="" src="http://0.gravatar.com/avatar/22ed378fbf1d918ef43a45b2a1f34634?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://weston.ruter.net/" rel="external nofollow" class="url">Weston Ruter</a> </cite> <time datetime="2011-06-19UTC01-06-19">June 19, 2011 at 1:02 am</time> 
+										</header> 
+										<p>Yeah, I&#8217;m not sure if the benefits gained from device-tailored resources outweigh both client-side caching and edge-caching: the net result might be even less responsive if we don&#8217;t have the latter?</p> 
+										<footer>
+											<a href="index.html#comment-12">Permalink</a> 
+										</footer> 
+									</li> 
+									<li id="comment-15" class="comment">
+										<header>
+											<img alt="" src="http://1.gravatar.com/avatar/15627af5bae9d2b1c295ff2304f7383a?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.keithclark.co.uk" rel="external nofollow" class="url">Keith Clark</a> </cite> <time datetime="2011-06-19UTC10-06-47">June 19, 2011 at 10:03 am</time> 
+										</header> 
+										<p>You&#8217;re right about client side caching. If it&#8217;s not utilised, the browser will continually request the same image and the potential gains of &#8220;responsiveness&#8221; will be lost.  Setting a far-future <code>Expires</code> header will work for browser caching as the device screen dimensions won&#8217;t change between requests. It&#8217;s proxies that present the biggest problem.</p> 
+										<p>Is there a way to separately set <code>Expires</code> headers for edge and client caching?</p> 
+										<footer>
+											<a href="index.html#comment-15">Permalink</a> 
+										</footer> 
+									</li> 
+								</ul> 
+							</li> 
+						</ul> 
+					</li> 
+					<li id="comment-8" class="comment">
+						<header>
+							<img alt="" src="http://1.gravatar.com/avatar/1d84382865c6c3378c04a35348fdfa07?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://alerque.com" rel="external nofollow" class="url">Caleb Maclennan</a> </cite> <time datetime="2011-06-18UTC07-06-50">June 18, 2011 at 7:39 pm</time> 
+						</header> 
+						<p>I understand the conceptual advantage of making the actual resources responsive, but the drawbacks including the inability to edge cache the resources maybe too much to bear for some. In those cases, you can move the responsiveness one step up stream into the html being rendered.</p> 
+						<p>&lt;img src=&quot;/file.jpg&#8221; /&gt;</p> 
+						<p>This would leave you with unique filenames for each set of resource sizes that could be dynamically generated and cached as needed.</p> 
+						<footer>
+							<a href="index.html#comment-8">Permalink</a> 
+						</footer> 
+						<ul class="children">
+							<li id="comment-14" class="comment">
+								<header>
+									<img alt="" src="http://1.gravatar.com/avatar/15627af5bae9d2b1c295ff2304f7383a?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.keithclark.co.uk" rel="external nofollow" class="url">Keith Clark</a> </cite> <time datetime="2011-06-19UTC09-06-36">June 19, 2011 at 9:50 am</time> 
+								</header> 
+								<p>The issue I see with this approach is, the cookie won&#8217;t be set until the HTML has been delivered to the client and the cookie JavaScript code has executed, but by then it&#8217;s too late to dynamically set the image path. The second request to the page could contain the cookie allowing your method to work.</p> 
+								<footer>
+									<a href="index.html#comment-14">Permalink</a> 
+								</footer> 
+								<ul class="children">
+									<li id="comment-17" class="comment">
+										<header>
+											<img alt="" src="http://1.gravatar.com/avatar/1d84382865c6c3378c04a35348fdfa07?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://alerque.com" rel="external nofollow" class="url">Caleb Maclennan</a> </cite> <time datetime="2011-06-19UTC07-06-01">June 19, 2011 at 7:38 pm</time> 
+										</header> 
+										<p>Keith you can easily take care of that problem without having to wait for a second page load. Even in your example your are using PHP to set the cookie, so you obviously have the data you need at a that point. This is presumably in some library file sourced early on in the execution of site code. All you need is, when you set the cookie, ALSO set those values in a temporary global variable. In your php function that checks for a cookie and outputs a path if it finds data, check first for a cookie, then if none check for settings in your global variable.</p> 
+										<footer>
+											<a href="index.html#comment-17">Permalink</a> 
+										</footer> 
+									</li> 
+									<li id="comment-131" class="comment">
+										<header>
+											<img alt="" src="http://1.gravatar.com/avatar/1cf0770522223715996d00a7fe911003?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://iandunn.name" rel="external nofollow" class="url">Ian Dunn</a> </cite> <time datetime="2011-08-25UTC08-08-56">August 25, 2011 at 8:22 pm</time> 
+										</header> 
+										<p>Caleb, he&#8217;s not using PHP to set the cookie, only to read it. He&#8217;s using JavaScript to set it. If PHP had the screen width then you wouldn&#8217;t need to set a cookie in the first place, but I&#8217;m pretty sure it doesn&#8217;t. As far as I know the browser doesn&#8217;t send that in the HTTP request, so the only way you can get it is on the client side.</p> 
+										<p>I still prefer your idea about having PHP outputting the real path, though. That avoids the faux URL and any caching issues. The fact that it doesn&#8217;t kick in until the 2nd HTTP request seems like almost a non-issue. As long as the first request after the document itself isn&#8217;t a large image then you&#8217;re fine. 99% of the time the CSS file in the head will be loaded before any images in the body.</p> 
+										<footer>
+											<a href="index.html#comment-131">Permalink</a> 
+										</footer> 
+									</li> 
+									<li id="comment-150" class="comment">
+										<header>
+											<img alt="" src="http://1.gravatar.com/avatar/1cf0770522223715996d00a7fe911003?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://iandunn.name" rel="external nofollow" class="url">Ian Dunn</a> </cite> <time datetime="2011-09-03UTC07-09-26">September 3, 2011 at 7:09 am</time> 
+										</header> 
+										<p>Er, nevermind. All the markup would already be generated before the cookie is set, so it would take effect the effects wouldn&#8217;t be realized until the second page load.</p> 
+										<p>I wonder if using flush() after /head would get the cookie set before the body markup is generated? Probably not, but it might be worth a shot.</p> 
+										<p>Either way, I think waiting until the 2nd page request to get the smaller images is an acceptable compromise.</p> 
+										<footer>
+											<a href="index.html#comment-150">Permalink</a> 
+										</footer> 
+									</li> 
+								</ul> 
+							</li> 
+						</ul> 
+					</li> 
+					<li id="comment-10" class="comment">
+						<header>
+							<img alt="" src="http://1.gravatar.com/avatar/1d84382865c6c3378c04a35348fdfa07?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://alerque.com" rel="external nofollow" class="url">Caleb Maclennan</a> </cite> <time datetime="2011-06-18UTC08-06-12">June 18, 2011 at 8:19 pm</time> 
+						</header> 
+						<p>The comment system appears to have eaten my code instead of escaping it. Here is the function I imagined in php:</p> 
+						<p>    function scaledImagePath() {<br>
+        /*try for a cookie and set screen size into $w and $h */<br>
+        // Return a path with the WxH value or embeded or just a root one<br>
+        return &#8220;/images&#8221; . is_int($w) ? &#8220;/{$w}x$h&#8221; : &#8221;;<br>
+    }</p> 
+						<p>Then in the tag, you would add a call to it inside the quotes before the initial slash:  src=&#8221;&lt;?php echo scaledImagePath(); ?&gt;/file.jpg&#8221;</p> 
+						<footer>
+							<a href="index.html#comment-10">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-11" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/4b06396d81aeb20c89976726e5562389?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.tyssendesign.com.au" rel="external nofollow" class="url">John Faulds</a> </cite> <time datetime="2011-06-18UTC09-06-58">June 18, 2011 at 9:53 pm</time> 
+						</header> 
+						<p>I like Caleb&#8217;s idea because it removes the need to manually create images at different sizes and instead transfers that job to the server which can do it dynamically, which is definitely a good thing when you consider images uploaded to a CMS by an editor without technical capabilities to edit images first.</p> 
+						<footer>
+							<a href="index.html#comment-11">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-13" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/a789cdaa8d6d590d775b7f6675126cb1?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite>Henry p</cite> <time datetime="2011-06-19UTC03-06-52">June 19, 2011 at 3:10 am</time> 
+						</header> 
+						<p>I&#8217;ve been using Sencha&#8217;s io src with much success.  I think a combination of this technique with Sencha Src would be really impressive.</p> 
+						<footer>
+							<a href="index.html#comment-13">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-16" class="comment">
+						<header>
+							<img alt="" src="http://1.gravatar.com/avatar/7096dcb1690ef7418c4e94518f2fed31?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://twitter.com/derSchepp" rel="external nofollow" class="url">Schepp</a> </cite> <time datetime="2011-06-19UTC05-06-52">June 19, 2011 at 5:22 pm</time> 
+						</header> 
+						<p>What if you leave cookies aside and instead dynamically insert a base-tag into your HTML and combine it on the server side with URL rewriting or branching? E.g.:</p> 
+						<p>&lt;base href=&#8221;http://www.domain.com/low&#8221; /&gt;<br>
++<br>
+URL rewrtiting</p> 
+						<p>or</p> 
+						<p>&lt;base href=&#8221;http://low.domain.com&#8221; /&gt;<br>
++<br>
+hostname-branching</p> 
+						<p>The advantages:<br>
+a) should work well with CDNs and far future expires headers,<br>
+b) request headers for static resources remain cookie free</p> 
+						<p>And you can still have your fallback for non-JS-enabled user agents. Seems like the best solution to me.</p> 
+						<p>Regards</p> 
+						<p>Schepp</p> 
+						<footer>
+							<a href="index.html#comment-16">Permalink</a> 
+						</footer> 
+						<ul class="children">
+							<li id="comment-24" class="comment">
+								<header>
+									<img alt="" src="http://0.gravatar.com/avatar/22ed378fbf1d918ef43a45b2a1f34634?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://weston.ruter.net/" rel="external nofollow" class="url">Weston Ruter</a> </cite> <time datetime="2011-06-21UTC07-06-11">June 21, 2011 at 7:05 am</time> 
+								</header> 
+								<p>This is a very clever hack, I think it would solve the problem. Here&#8217;s a proof of your concept: <a href="http://jsbin.com/ugodu3/7/edit" rel="nofollow">http://jsbin.com/ugodu3/7/edit</a> </p> 
+								<p>The only caveat with this one is that all responsive images must not indicate a host in their URL, but every other URL must include the host.</p> 
+								<footer>
+									<a href="index.html#comment-24">Permalink</a> 
+								</footer> 
+								<ul class="children">
+									<li id="comment-25" class="comment">
+										<header>
+											<img alt="" src="http://1.gravatar.com/avatar/7096dcb1690ef7418c4e94518f2fed31?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://twitter.com/derSchepp" rel="external nofollow" class="url">Schepp</a> </cite> <time datetime="2011-06-21UTC07-06-11">June 21, 2011 at 7:54 am</time> 
+										</header> 
+										<p>Nice!</p> 
+										<p>You can avoid the need for full URLs by removing the base-element again before &lt;/body&gt; or ondomready / onload, see: <a href="http://jsbin.com/ugodu3/10" rel="nofollow">http://jsbin.com/ugodu3/10</a> <br>
+Even though your test will not pass then anymore, still the right image gets loaded (exception: Firefox 3.6). And works for me in Safari on Windows, too.</p> 
+										<footer>
+											<a href="index.html#comment-25">Permalink</a> 
+										</footer> 
+									</li> 
+									<li id="comment-26" class="comment">
+										<header>
+											<img alt="" src="http://0.gravatar.com/avatar/22ed378fbf1d918ef43a45b2a1f34634?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://weston.ruter.net/" rel="external nofollow" class="url">Weston Ruter</a> </cite> <time datetime="2011-06-21UTC08-06-03">June 21, 2011 at 8:05 am</time> 
+										</header> 
+										<p>Correction on mine: it does work in Safari, and all other browsers I can test (Firefox, Safari, Chrome, Opera): <a href="http://jsbin.com/ugodu3/12/edit" rel="nofollow">http://jsbin.com/ugodu3/12/edit</a> </p> 
+										<p>And I don&#8217;t know if I like removing the  element onload; it seems like this would introduce race conditions, and you&#8217;d have to have all of the JS and CSS assets still include the host name in the URL as they would load before onload, and if someone tried to click a relative link before onload, it would 404. So I don&#8217;t think it&#8217;s an enhancement in the end, although it is clever.</p> 
+										<footer>
+											<a href="index.html#comment-26">Permalink</a> 
+										</footer> 
+									</li> 
+									<li id="comment-28" class="comment">
+										<header>
+											<img alt="" src="http://0.gravatar.com/avatar/22ed378fbf1d918ef43a45b2a1f34634?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://weston.ruter.net/" rel="external nofollow" class="url">Weston Ruter</a> </cite> <time datetime="2011-06-21UTC08-06-43">June 21, 2011 at 8:25 am</time> 
+										</header> 
+										<p>I&#8217;ve got another improvement which avoids having to use multiple domains and thus from having to include the host name in non-image links! You can dynamically set/override the <code>base.href</code> to a path with JS: <a href="http://jsbin.com/ugodu3/13/edit" rel="nofollow">http://jsbin.com/ugodu3/13/edit</a> </p> 
+										<p>I had tried this before with a <code>document.write()</code> that wrote a <code>base</code> element before the static <code>base</code> element, and HTML5 says that only the first one should be honored, but unfortunately Safari and Opera don&#8217;t respect this (though Firefox and Chrome do): <a href="http://jsbin.com/ugodu3/4/edit" rel="nofollow">http://jsbin.com/ugodu3/4/edit</a> </p> 
+										<p>However, changing the <code>base</code> element dynamically seems to do the trick.</p> 
+										<footer>
+											<a href="index.html#comment-28">Permalink</a> 
+										</footer> 
+									</li> 
+									<li id="comment-29" class="comment">
+										<header>
+											<img alt="" src="http://0.gravatar.com/avatar/22ed378fbf1d918ef43a45b2a1f34634?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://weston.ruter.net/" rel="external nofollow" class="url">Weston Ruter</a> </cite> <time datetime="2011-06-21UTC04-06-17">June 21, 2011 at 4:26 pm</time> 
+										</header> 
+										<p>OK, maybe my last iteration on your idea: <a href="http://jsbin.com/ugodu3/21/edit" rel="nofollow">http://jsbin.com/ugodu3/21/edit</a> </p> 
+										<p>This one dynamically changes the <code>base.href</code> not only when first loading the page but also on resize. This probably doesn&#8217;t gain us a whole lot, but it is cool nonetheless.</p> 
+										<footer>
+											<a href="index.html#comment-29">Permalink</a> 
+										</footer> 
+									</li> 
+									<li id="comment-27" class="comment">
+										<header>
+											<img alt="" src="http://1.gravatar.com/avatar/15627af5bae9d2b1c295ff2304f7383a?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.keithclark.co.uk" rel="external nofollow" class="url">Keith Clark</a> </cite> <time datetime="2011-06-21UTC08-06-56">June 21, 2011 at 8:22 am</time> 
+										</header> 
+										<p>I agree, that&#8217;s clever. I think the <code>&lt;base&gt;</code> element would have to be in the document for non-JS environments so the high res images will still download. The script could then dynamically change the href attribute.</p> 
+										<footer>
+											<a href="index.html#comment-27">Permalink</a> 
+										</footer> 
+									</li> 
+									<li id="comment-30" class="comment">
+										<header>
+											<img alt="" src="http://0.gravatar.com/avatar/22ed378fbf1d918ef43a45b2a1f34634?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://weston.ruter.net/" rel="external nofollow" class="url">Weston Ruter</a> </cite> <time datetime="2011-06-21UTC04-06-45">June 21, 2011 at 4:35 pm</time> 
+										</header> 
+										<p>Just realized another caveat: it won&#8217;t allow for responsive background images as the background images with relative URLs are relative to the containing stylesheet, not the host page. So in this case, you&#8217;d have to serve a different stylesheet for each different resolution.</p> 
+										<footer>
+											<a href="index.html#comment-30">Permalink</a> 
+										</footer> 
+									</li> 
+									<li id="comment-31" class="comment">
+										<header>
+											<img alt="" src="http://1.gravatar.com/avatar/15b3e5a002a06fb3300239520a202fa5?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://bencollier.net" rel="external nofollow" class="url">Ben Collier</a> </cite> <time datetime="2011-06-21UTC05-06-59">June 21, 2011 at 5:13 pm</time> 
+										</header> 
+										<p>We&#8217;ve got media queries for the responsive background images ;-)</p> 
+										<footer>
+											<a href="index.html#comment-31">Permalink</a> 
+										</footer> 
+									</li> 
+									<li id="comment-81" class="comment">
+										<header>
+											<img alt="" src="http://1.gravatar.com/avatar/b32ba9e7b52a7318792e2c620bd430f0?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://blog.yoav.ws" rel="external nofollow" class="url">Yoav Weiss</a> </cite> <time datetime="2011-07-22UTC10-07-44">July 22, 2011 at 10:24 pm</time> 
+										</header> 
+										<p>I was thinking of more or less the same solution, but a couple of major things bother me about it:<br>
+* Modifying the base element using script is frowned upon (<a href="http://blogs.msdn.com/b/ieinternals/archive/2011/07/18/optimal-html-head-ordering-to-avoid-parser-restarts-redownloads-and-improve-performance.aspx" rel="nofollow">http://blogs.msdn.com/b/ieinternals/archive/2011/07/18/optimal-html-head-ordering-to-avoid-parser-restarts-redownloads-and-improve-performance.aspx</a>). It probably messes up the preload parser at the very least.<br>
+* document.write is bad news in general, even though it might not be that bad in this context.</p> 
+										<p>You can see my proposal (i.e. not a technique you can use today) on <a href="http://blog.yoav.ws/2011/05/My-take-on-adaptive-images" rel="nofollow">http://blog.yoav.ws/2011/05/My-take-on-adaptive-images</a> . It is based on the same idea (i.e. modifying the URL with a base), but is more flexible then a general base tag.</p> 
+										<footer>
+											<a href="index.html#comment-81">Permalink</a> 
+										</footer> 
+									</li> 
+								</ul> 
+							</li> 
+						</ul> 
+					</li> 
+					<li id="comment-18" class="comment">
+						<header>
+							<img alt="" src="http://1.gravatar.com/avatar/7096dcb1690ef7418c4e94518f2fed31?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://twitter.com/derSchepp" rel="external nofollow" class="url">Schepp</a> </cite> <time datetime="2011-06-19UTC08-06-15">June 19, 2011 at 8:12 pm</time> 
+						</header> 
+						<p>PS: You&#8217;d maybe also need a &lt;link rel=&#8221;canonical&#8221; /&gt; or you need to remove the base-Tag after page load.</p> 
+						<footer>
+							<a href="index.html#comment-18">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-19" class="comment">
+						<header>
+							<img alt="" src="http://1.gravatar.com/avatar/7096dcb1690ef7418c4e94518f2fed31?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://twitter.com/derSchepp" rel="external nofollow" class="url">Schepp</a> </cite> <time datetime="2011-06-19UTC09-06-29">June 19, 2011 at 9:34 pm</time> 
+						</header> 
+						<p>Different peeps were pointing me to Scott Jehl&#8217;s library which already uses the base-tag:<br><a href="https://github.com/filamentgroup/Responsive-Images" rel="nofollow">https://github.com/filamentgroup/Responsive-Images</a> </p> 
+						<p>Nice! Just two small caveats I see there:<br>
+a) it uses cookies<br>
+b) it disables caching in proxies like Squid because of its query parameter usage</p> 
+						<footer>
+							<a href="index.html#comment-19">Permalink</a> 
+						</footer> 
+					</li> 
+					<li id="comment-20" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/0bca02458e94ffff0d81d44b0c04d389?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://tripleodeon.com" rel="external nofollow" class="url">James Pearce</a> </cite> <time datetime="2011-06-20UTC01-06-50">June 20, 2011 at 1:08 am</time> 
+						</header> 
+						<p>I see that src.sencha.io (aka tinySrc) has been alluded to &#8211; which obviously I think is a flexible &#038; powerful alternative ;-)</p> 
+						<p>But you could also take a look at my modernizr-server project which uses client property gathering in a similar way but for a far broader range of capabilities. </p> 
+						<p>Suffice to say I think we are all on to something here. Thicker clients, thinner servers, and perhaps the cloud to pick up what can&#8217;t be done by either.</p> 
+						<footer>
+							<a href="index.html#comment-20">Permalink</a> 
+						</footer> 
+						<ul class="children">
+							<li id="comment-22" class="comment">
+								<header>
+									<img alt="" src="http://1.gravatar.com/avatar/15627af5bae9d2b1c295ff2304f7383a?s=64&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.keithclark.co.uk" rel="external nofollow" class="url">Keith Clark</a> </cite> <time datetime="2011-06-20UTC08-06-26">June 20, 2011 at 8:27 am</time> 
+								</header> 
+								<p>James, I&#8217;m aware of your modernizr-server project. I see you get round the issue of setting the cookie by serving a simple page containing the JS code which then reloads itself, resulting in the server returning the original markup.</p> 
+								<p>I was hoping to avoid the requirement for a page reload &#8211; especially considering the <a href="index.html#comment-7" rel="nofollow">caching issues</a> Weston brought up.</p> 
+								<footer>
+									<a href="index.html#comment-22">Permalink</a> 
+								</footer> 
+							</li> 
+						</ul> 
+					</li> 
+					<li id="comment-23" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/40e9ae388896c289b46b46676e71e8e5?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://www.olivertreend.com" rel="external nofollow" class="url">Ollie Treend</a> </cite> <time datetime="2011-06-20UTC09-06-59">June 20, 2011 at 9:22 am</time> 
+						</header> 
+						<p>A very nice article! It&#8217;s a very simple idea, but is very effective.</p> 
+						<p>My only concern would be the performance of PHP for reading files. A straight HTTP request without hitting a server-side scripting language would provide optimal performance. Although I haven&#8217;t looked into this enough, I&#8217;m pretty sure something could be done within an nginx location{} or an Apache .htaccess file to read the value of the cookie and rewrite to the appropriate file. This could also allow for cleaner URLs without mentioning script names.</p> 
+						<p>Again, a brilliant idea. I&#8217;m just suggesting that PHP might not be the best way to output files to the client as far as performance is concerned. Cheers!</p> 
+						<footer>
+							<a href="index.html#comment-23">Permalink</a> 
+						</footer> 
+						<ul class="children">
+							<li id="comment-134" class="comment">
+								<header>
+									<img alt="" src="http://0.gravatar.com/avatar/ea2f68835ee8d5cb3f6c2efcf3eb3cfc?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://martin-grandrath.de" rel="external nofollow" class="url">Martin Grandrath</a> </cite> <time datetime="2011-08-26UTC09-08-30">August 26, 2011 at 9:13 am</time> 
+								</header> 
+								<p>Another way to mitigate the performance issue when serving image data through a script is to use the script to respond with a redirect to the actual static image resource. This way clients and proxies can cache the resource and it also works with CDNs. The tradeoff is the additional HTTP request of course.</p> 
+								<footer>
+									<a href="index.html#comment-134">Permalink</a> 
+								</footer> 
+							</li> 
+						</ul> 
+					</li> 
+					<li id="comment-133" class="comment">
+						<header>
+							<img alt="" src="http://0.gravatar.com/avatar/ea2f68835ee8d5cb3f6c2efcf3eb3cfc?s=64&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D64&r=G" class="avatar avatar-64 photo" height="64" width="64"><cite><a href="http://martin-grandrath.de" rel="external nofollow" class="url">Martin Grandrath</a> </cite> <time datetime="2011-08-26UTC09-08-56">August 26, 2011 at 9:12 am</time> 
+						</header> 
+						<p>I like to point out to effects I noticed:</p> 
+						<p>When testing your cookie approach I noticed that for example IE9 doesn&#8217;t send the cookie when requesting the image. I&#8217;m not sure why that happens as script tags are supposed to block further evaluation of the document. Can you reproduce this?</p> 
+						<p>Firefox (at least version 6 under Linux) shows another undesired behaviour. It fetches the image twice (first the default one and then it realizes that something has changed and re-fetches it). Firefox does so for the cookie approach as well as the base tag approach.</p> 
+						<footer>
+							<a href="index.html#comment-133">Permalink</a> 
+						</footer> 
+					</li> 
+				</ul> 
+			</section> 
+		</section> 
+		<aside role="complementary">
+			<section id="paging">
+				<h3>Navigate</h3> 
+				<ul>
+					<li>Next: 
+						<a href="../faster-scrolling-parallax-websites-in-firefox/index.html" rel="next">Faster parallax scrolling websites in Firefox</a> 
+					</li> 
+					<li>Previous: 
+						<a href="../ie-conditional-comments-and-asset-load-order/index.html" rel="prev">IE conditional comments and asset load order</a> 
+					</li> 
+				</ul> 
+			</section> 
+			<section id="text-3">
+				<h3>About Me</h3> 
+				<div class="textwidget">
+					<p>I'm a front-end web developer from the UK, based in Farnborough.</p> 
+					<p>When I'm not developing websites I like to create tools such as <a href="http://selectivizr.com">selectivizr</a> and <a href="http://keithclark.co.uk/labs/google-analytics-debugger/">Google Analytics Debugger</a> or <a href="http://keithclark.co.uk/labs/">experiment</a> with what's possible in a browser. This year I won a net magazine award for my <a href="http://keithclark.co.uk/labs/css3-fps-new/">CSS FPS</a> demo and was nominated for developer of the year. </p> 
+					<p>You can find me on <a href="http://twitter.com/keithclarkcouk">twitter</a> and, if you're interested in my professional experience, please have a look at my <a href="http://keithclark.co.uk/cv/">CV</a> or <a href="http://keithclark.co.uk">website</a>.</p> 
+				</div> 
+			</section> 
+		</aside> 
+		<footer role="contentinfo">
+		Design and content &copy; Keith Clark.
+		
+		</footer> 
+	</div> 
+	<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-10812217-3']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script> 
+
+</body> </html> 

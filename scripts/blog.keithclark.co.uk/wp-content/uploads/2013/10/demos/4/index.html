@@ -1,0 +1,190 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>CSS Vertex Demo 4: Shaded Cube</title>
+    <link rel="stylesheet" href="../base.css">
+    <style>
+        .face, .assembly, .light {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform-style: preserve-3d;
+            -moz-transform-style: preserve-3d;
+            -ms-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+        }
+        .face {
+            background-color: rgb(64, 128, 255);
+        }
+        .light {
+            width:16px;
+            height:16px;
+            margin:-8px;
+            background:#ff0;
+            opacity: 0;
+            -webkit-transform: translateZ(400px);
+            -moz-transform: translateZ(400px);
+            -ms-transform: translateZ(400px);
+            transform: translateZ(400px);
+        }
+        #scene {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            -webkit-perspective: 400px;
+            -moz-perspective: 400px;
+            -ms-perspective: 400px;
+            perspective: 400px;
+            -webkit-transform-style: preserve-3d;
+            -moz-transform-style: preserve-3d;
+            -ms-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+        }
+        .cube {
+            -webkit-animation: spin 20s linear infinite;
+            -moz-animation: spin 20s linear infinite;
+            -ms-animation: spin 20s linear infinite;
+            animation: spin 20s linear infinite;
+        }
+        .cube .face {
+            width: 200px;
+            height: 200px;
+            margin: -100px;
+        }
+        .cube .face:nth-child(1) {
+            -webkit-transform: translateZ(100px);
+            -moz-transform: translateZ(100px);
+            -ms-transform: translateZ(100px);
+            transform: translateZ(100px);
+        }
+        .cube .face:nth-child(2) {
+            -webkit-transform: translateZ(-100px) rotateY(180deg);
+            -moz-transform: translateZ(-100px) rotateY(180deg);
+            -ms-transform: translateZ(-100px) rotateY(180deg);
+            transform: translateZ(-100px) rotateY(180deg);
+        }
+        .cube .face:nth-child(3) {
+            -webkit-transform: translateX(-100px) rotateY(-90deg);
+            -moz-transform: translateX(-100px) rotateY(-90deg);
+            -ms-transform: translateX(-100px) rotateY(-90deg);
+            transform: translateX(-100px) rotateY(-90deg);
+        }
+        .cube .face:nth-child(4) {
+            -webkit-transform: translateX(100px) rotateY(90deg);
+            -moz-transform: translateX(100px) rotateY(90deg);
+            -ms-transform: translateX(100px) rotateY(90deg);
+            transform: translateX(100px) rotateY(90deg);
+        }
+        .cube .face:nth-child(5) {
+            -webkit-transform: translateY(100px) rotateX(-90deg);
+            -moz-transform: translateY(100px) rotateX(-90deg);
+            -ms-transform: translateY(100px) rotateX(-90deg);
+            transform: translateY(100px) rotateX(-90deg);
+        }
+        .cube .face:nth-child(6) {
+            -webkit-transform: translateY(-100px) rotateX(90deg);
+            -moz-transform: translateY(-100px) rotateX(90deg);
+            -ms-transform: translateY(-100px) rotateX(90deg);
+            transform: translateY(-100px) rotateX(90deg);
+        }
+        @-webkit-keyframes spin {
+            to {
+                -webkit-transform: rotateX(360deg) rotateY(1080deg) rotateZ(720deg);
+            }
+        }
+        @-moz-keyframes spin {
+            to {
+                -moz-transform: rotateX(360deg) rotateY(1080deg) rotateZ(720deg);
+            }
+        }
+        @keyframes spin {
+            to {
+                transform: rotateX(360deg) rotateY(1080deg) rotateZ(720deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CSS Vertex Demo 4: Shaded Cube</h1>
+    </header>
+
+    <div id="scene">
+        <div id="cube" class="assembly cube">
+            <div id="face" class="face"></div>
+            <div id="face" class="face"></div>
+            <div id="face" class="face"></div>
+            <div id="face" class="face"></div>
+            <div id="face" class="face"></div>
+            <div id="face" class="face"></div>
+        </div>
+        <div id="light" class="light"></div>
+    </div>
+
+    <footer>
+        Please see the accompanying <a href="../../../../../../calculating-element-vertex-data-from-css-transforms/index.html">blog post</a>
+	or discuss on <a href="http://twitter.com/keithclarkcouk">twitter</a><br>
+	<span class=credit>A <a href="http://keithclark.co.uk/labs">Keith Clark</a> experiment</span>
+    </footer>
+
+    <script src="../js.js"></script>
+    <script src="../vect3.js"></script>
+    <script>
+
+        // shim requestAnimationFrame
+        window.requestAnimationFrame =
+            window.requestAnimationFrame ||
+            window.webkitRequestAnimationFrame ||
+            window.mozRequestAnimationFrame ||
+            function(f) { setTimeout(f, 1000/60); };
+
+
+        // Select the light
+        var light = document.getElementById("light");
+
+        // Select the faces
+        var faces = [].slice.call(document.querySelectorAll(".face"));
+
+
+        /* Loop
+        ---------------------------------------------------------------- */
+
+        function loop() {
+
+            var lightPosition = getTransform(light).translate;
+
+            // Schedule the next render
+            requestAnimationFrame(loop);
+
+            // Light each face
+            faces.forEach(function (face, i) {
+                var vertices = computeVertexData(face);
+                var faceCenter = Vect3.divs(Vect3.sub(vertices.c, vertices.a), 2);
+                var faceNormal = Vect3.normalize(Vect3.cross(Vect3.sub(vertices.b, vertices.a), Vect3.sub(vertices.c, vertices.a)));
+                var direction = Vect3.normalize(Vect3.sub(lightPosition, faceCenter));
+                var amount = 1 - Math.max(0, Vect3.dot(faceNormal, direction)).toFixed(3);
+                face.style.backgroundImage = "linear-gradient(rgba(0,0,0," + amount + "), rgba(0,0,0," + amount + "))";
+            });
+        }      
+
+        // start the loop
+        loop();
+
+    </script>
+
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-10812217-3']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+</body>
+</html>

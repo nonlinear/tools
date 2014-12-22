@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Keith Clark &#187; HTML</title>
+	<atom:link href="http://blog.keithclark.co.uk/category/html/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.keithclark.co.uk</link>
+	<description>Articles, experiments and discussions on developing for the web</description>
+	<lastBuildDate>Mon, 04 Aug 2014 22:34:16 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=3.5</generator>
+		<item>
+		<title>Creating 3D worlds with HTML and CSS</title>
+		<link>http://blog.keithclark.co.uk/creating-3d-worlds-with-html-and-css/</link>
+		<comments>http://blog.keithclark.co.uk/creating-3d-worlds-with-html-and-css/#comments</comments>
+		<pubDate>Fri, 25 Jan 2013 00:14:58 +0000</pubDate>
+		<dc:creator>Keith Clark</dc:creator>
+				<category><![CDATA[CSS]]></category>
+		<category><![CDATA[HTML]]></category>
+		<category><![CDATA[JavaScript]]></category>
+
+		<guid isPermaLink="false">http://blog.keithclark.co.uk/?p=426</guid>
+		<description><![CDATA[Last year I created a demo showing how CSS 3D transforms could be used to create 3D environments. The demo was a technical showcase of what could be achieved with CSS at the time but I wanted to see how far I could push things, so over the past few months I&#8217;ve been working on... <a href="http://blog.keithclark.co.uk/creating-3d-worlds-with-html-and-css/">Continue Reading</a>]]></description>
+				<content:encoded><![CDATA[<p>Last year I created a <a href="http://keithclark.co.uk/labs/3dcss/demo/">demo</a> showing how CSS 3D transforms could be used to create 3D environments. The demo was a technical showcase of what could be achieved with CSS at the time but I wanted to see how far I could push things, so over the past few months I&#8217;ve been working on a <a href="http://keithclark.co.uk/labs/css3-fps/">new version</a> with more complex models, realistic lighting, shadows and collision detection. This post documents how I did it and the techniques I used.</p>
+<p><a class="button" href="http://keithclark.co.uk/labs/css3-fps/">View the demo</a> <em class="note">(best experienced in Safari)</em></p>
+<h2>Creating 3D objects</h2>
+<p>In today&#8217;s 3D engines an objects geometry is stored as a collection of points (or vertices) each having an <code>x</code>, <code>y</code> and <code>z</code> property that defines its position in 3D space. A rectangle for example would be defined by four vertices, one for each corner. Each corner can be individually manipulated allowing the rectangle to be pulled into different shapes by moving its vertices along the x, y and z axis. The 3D engine will use this vertex data and some clever math to render 3D objects on your 2D screen.</p>
+<p>With CSS transforms this is turned on its head. We can&#8217;t define arbitrary shapes using a set of points, we&#8217;re stuck with HTML elements which are always rectangular and have two dimensional properties such as <code>top</code>, <code>left</code>, <code>width</code> and <code>height</code> to determine their position and size. In many ways this makes dealing with 3D easier, as there&#8217;s no complex math to deal with — just apply a CSS transform to rotate an element around an axis and you&#8217;re done!</p>
+<p>Creating objects from rectangles seems limiting at first but you can do a surprising amount with them, especially when you start playing with PNG alpha channels. In the image below you can see the barrel top and wheel objects appear rounded despite being made up of rectangles.</p>
+<figure><img alt="A barrel, wheel and crate" src="http://blog.keithclark.co.uk/wp-content/uploads/2013/01/cssfps-objects.jpg" width="780" height="431" /></p>
+<figcaption>An example of 3D objects built entirely from rectangular &lt;div&gt; elements</figcaption>
+</figure>
+<p>All objects are created in JavaScript using a small set functions for creating primitive geometry. The simplest object that can be created is a plane, which is basically a <code>&lt;div&gt;</code> element. Planes can be added to assemblies, (a wrapper <code>&lt;div&gt;</code> element) allowing the entire object to be rotated and moved as a single entity. A tube is an assembly containing planes rotated around an axis and a barrel is a tube with a top plane and another for the bottom.</p>
+<p>The following example shows this in practice &#8211; have a look at the &#8220;JS&#8221; tab:</p>
+<figure>
+<p data-height="350" data-theme-id="255" data-slug-hash="ksayr" data-user="keithclark" data-default-tab="result" class='codepen'>See the Pen <a href='http://codepen.io/keithclark/pen/ksayr'>3D objects in CSS</a> by Keith Clark (<a href='http://codepen.io/keithclark'>@keithclark</a>) on <a href='http://codepen.io'>CodePen</a></p>
+<figcaption>A 3D oil drum built using rectangular &lt;div&gt; elements</figcaption>
+</figure>
+<p><script async src="http://codepen.io/assets/embed/ei.js"></script></p>
+<h2>Lighting</h2>
+<p>Lighting was by the biggest challenge in this project. I won&#8217;t lie, the math nearly broke me, but it was worth the effort because lighting brings an incredible sense of depth and atmosphere an otherwise flat and lifeless environment.</p>
+<figure><img alt="A lifeless 3D room" src="http://blog.keithclark.co.uk/wp-content/uploads/2013/01/css3fps-unlit.jpg" width="780" height="450" /></p>
+<figcaption>A screenshot of an unlit room</figcaption>
+</figure>
+<p>As I mentioned earlier, an object in your average 3D engine is defined by a series of vertices. To calculate lighting these vertices are used to compute a &#8220;normal&#8221; which can be used to determine how much light will hit the centre point of a surface. This poses a problem when creating 3D objects with HTML elements because this vertex data doesn&#8217;t exist. So the first challenge was to write a set of functions to calculate the four vertices (one for each corner) for an element that had been transformed with CSS so that lighting could be calculated. Once that was figured out I began to experiment with different ways to light objects. In my first experiment, I used multiple <code>background-image</code>s to simulate light hitting a surface by combining a <code>linear-gradient</code> with an image. The effect uses a gradient that begins and ends with the same <code>rgba</code> value, producing a solid block of colour. Varying the value of the alpha channel allows the underlying image to bleed through the colour block creating the illusion of shading.</p>
+<figure><img title="css3d-rgba" alt="5 differently shaded textures" src="http://blog.keithclark.co.uk/wp-content/uploads/2013/01/css3d-rgba1.jpg" width="580" height="124" /></p>
+<figcaption>Example of using a gradient to shade a texture</figcaption>
+</figure>
+<p>To achieve the darkest effect in the above image I apply the following styles to an element:</p>
+<pre><code class="css">element {
+    background: linear-gradient(rgba(0,0,0,.8), rgba(0,0,0,.8)), url("texture.png");
+}</code></pre>
+<p>In practice, these styles are not predefined in a stylesheet, they are calculated dynamically and applied directly to the elements <code>style</code> property using JavaScript.</p>
+<figure>
+<p data-height="350" data-theme-id="255" data-slug-hash="qsdAH" data-user="keithclark" data-default-tab="result" class='codepen'>See the Pen <a href='http://codepen.io/keithclark/pen/qsdAH'>3D objects in CSS with shading</a> by Keith Clark (<a href='http://codepen.io/keithclark'>@keithclark</a>) on <a href='http://codepen.io'>CodePen</a></p>
+<figcaption>A flat shaded 3D oil drum</figcaption>
+</figure>
+<p><script async src="http://codepen.io/assets/embed/ei.js"></script></p>
+<p>This technique is referred to as flat shading. It&#8217;s an effective method of shading, however it does result in the entire surface having the same detail. For example, if I created a 3D wall that extended into the distance, it would be shaded identically along its entire length. I wanted something that looked more realistic.</p>
+<h2>A second stab at lighting</h2>
+<p>To simulate real lighting, surfaces need to darken as they extend beyond the range of a light source, and if multiple lights hit the same surface it should shade accordingly.</p>
+<p>To flat shade a surface I only had to calculate the light hitting the centre point, but now I need to sample the light at various points on the surface so I can determine how light or dark each point should be. The math required to create this lighting data is identical to that used for flat shading.</p>
+<p>Initially, I tried producing a <code>radial-gradient</code> from the lighting data to use in place of the <code>linear-gradient</code> in my earlier attempt. The results were more realistic but multiple light sources were still a problem because layering multiple gradients on top of each other causes the underlying texture to get progressively darker. If CSS supported image compositing and blending modes (they are coming) it may have been possible to make radial gradients work.</p>
+<p>The solution was to use a <code>&lt;canvas&gt;</code> element to programatically generate a new texture that could be used as a light map. With the calculated lighting data I could draw a series of black pixels, varying each ones alpha channel based on the amount of light that would hit the surface at that point. Finally the <code>canvas.toDataURL()</code> method was used to encode the image and use it in place of the <code>linear-gradient</code> in my first experiment. Repeating this process for each surface produces a realistic lighting effect for the entire environment.</p>
+<p>Calculating and drawing these textures is intensive work. The basement ceiling and floor are both 1000 x 2000 pixels in size, creating a texture to cover this area isn&#8217;t practical so I only sample lights every 12 pixels, which produces a light map 12 times smaller than the surface it will cover. Setting <code>background-size: 100%</code> causes the browser to scale the texture up using bilinear (or similar) filtering so it fits the surface area. The scaling effect produces a result that is almost identical to a light map generated for every single pixel.</p>
+<p>The background style rule for applying a light map and texture to a surface looks something like this:</p>
+<pre class="pre-wrap"><code class="css">element {
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAyCAYAAAAqRkmtAAACiUlEQVRoQ9VZa0vEQAy8+/8/yPcbFVFEEREREcS/4eNSmpKmmU12t/XYD6W3beGmk8kk2a5Xq9XR5vjeHD+B47d/xjrTtdSxud3dl+d+OTmt+yvDmX4c9n8eAbtVoAeCyRRYBknMb4XRfRVyC6wEqYFK0Cj0HG4OfSr8HG56ZhR6AhoJO2u4JPxInxK4BDYCyYu9YOglk/xbsymvy8RhpjlrNEArqWRCrWlBQEsYRWC98EfAmlm/W8FoBKzWp2aT11KbZugJ6NKMzpJMFlANPJX1Wpdyjdj0NKozv9PoTjD0pRYVDb2b9VGgVtZHNKrLpuelEzb5DRhoRKel1alGox1wGfpmgFIYPbCIUa+MRiuTpdMJox7QrSdTM/bUlOFzZ7SERqM+6pbQZpqSZtq8ZhrnZkaRZoa7ZsblZjYgjgM1vmYClYOd1+LBnpRM9iQItLTFQ/0o6vLhXH9aCTTaOWnAehp1K9NZP4rUbufo2UnP9ajV82b6Tg70FudiZtKtHmrtoiOIpU9PpzD0Fwoo2n6sbZo9gJJZcwq9DGi0JpFyhjuoU7pxtSCjtXP9aDfv2gFaOoJofaKst5JJ+ukwM91kMirtyMp0a5MsOtyZicSobxMaLd3K0dZksZlt+HcZoUdsImZTY0g20PtA6OeypohFQR99MCqTDnnqA0NKp7My+ggYjerz34A+LQRUsolCrnWaNPznSqCoeyo1e/bV0T4+LV4KgCJwJAPNZI41WfV+MPzXAFDLluY2e83kqDoR2jcD6ByJhJoRrUtea31OgL4roCU9aORDWMRDIav0Fh890JR3lnz/1GVU1nsGlJX1n4UaRQkV6ZpQ+Uwm05ej0TkSycp8i2Hoo3+utUtvDhk9pwAAAABJRU5ErkJggg==") 0 0 / 100% 100%, url("texture.png") 0 0 / auto auto;
+}</code></pre>
+<p>Which produces the final lit surface:</p>
+<figure><img alt="Light map blended with a texture map" src="http://blog.keithclark.co.uk/wp-content/uploads/2013/01/lightmap.jpg" width="780" height="161" /></p>
+<figcaption>Visualisation of a low resolution light map scaled up and layered onto a texture</figcaption>
+</figure>
+<h2>Casting Shadows</h2>
+<p>Settling on canvas for lighting made casting shadows possible. The logic behind shadow casting turned out to be rather easy. Ordering surfaces based on their proximity to a light source allowed me to not only produce a light map for a surface but also determine if a previous surface had already been hit by the current ray of light. If it had, I could set the relevant light map pixel to be in shadow. This technique allows one image to used for both lighting and shadows.</p>
+<figure><img alt="An atmospheric room" src="http://blog.keithclark.co.uk/wp-content/uploads/2013/01/css3fps-lit.jpg" width="780" height="450" /></p>
+<figcaption>A screenshot of the final room with lighting and shadows</figcaption>
+</figure>
+<h2>Collisions</h2>
+<p>Collision detection uses a height map &#8211; a top down image of the level that uses colour to represent the height of objects within it. White represents the deepest and black the highest possible position the player can reach. As the player moves around the level I convert their position into 2D coordinates and use them to check the colour in the height map. If the colour is lighter than the players last position the player falls, if it&#8217;s slightly darker the player can step up or jump on to an object. If the colour is much darker the player comes to a stop &#8211; I use this for walls and fences. Currently, this image is drawn by hand but I will be looking into creating it dynamically.</p>
+<figure><img alt="The level map" src="http://blog.keithclark.co.uk/wp-content/uploads/2013/01/3dfps-map.jpg" width="780" height="296" /></p>
+<figcaption>Picture of the height map and how it relates to the level</figcaption>
+</figure>
+<h2>What&#8217;s next?</h2>
+<p>Well, a game would be a natural next step for this project — it would be interesting to see how scalable these techniques are. In the short term, I&#8217;ve started working on a prototype <a href="http://keithclark.co.uk/labs/three-js-css-renderer/demos/cubes.html">CSS3 renderer</a> for the excellent <a href="http://mrdoob.github.com/three.js/">Three.js</a> that uses these same techniques to render geometry and lights created by a real 3D engine.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.keithclark.co.uk/creating-3d-worlds-with-html-and-css/feed/</wfw:commentRss>
+		<slash:comments>46</slash:comments>
+		</item>
+		<item>
+		<title>Working with elements before the DOM is ready</title>
+		<link>http://blog.keithclark.co.uk/working-with-elements-before-the-dom-is-ready/</link>
+		<comments>http://blog.keithclark.co.uk/working-with-elements-before-the-dom-is-ready/#comments</comments>
+		<pubDate>Fri, 17 Aug 2012 11:31:21 +0000</pubDate>
+		<dc:creator>Keith Clark</dc:creator>
+				<category><![CDATA[CSS]]></category>
+		<category><![CDATA[HTML]]></category>
+		<category><![CDATA[JavaScript]]></category>
+
+		<guid isPermaLink="false">http://blog.keithclark.co.uk/?p=266</guid>
+		<description><![CDATA[I&#8217;ve been looking into ways to modify elements before DOMContentLoaded so that enhancements can be made as an element is rendered to the screen allowing users to begin interacting with a page even if it hasn&#8217;t finished loading or if rendering is being blocked by 3rd party assets such as banner ads or tracking code.... <a href="http://blog.keithclark.co.uk/working-with-elements-before-the-dom-is-ready/">Continue Reading</a>]]></description>
+				<content:encoded><![CDATA[<p>I&#8217;ve been looking into ways to modify elements before <code>DOMContentLoaded</code> so that enhancements can be made as an element is rendered to the screen allowing users to begin interacting with a page even if it hasn&#8217;t finished loading or if rendering is being blocked by 3rd party assets such as banner ads or tracking code. The most robust way to do this is to include an inline <code>&lt;script&gt;</code> directly after each element you need to enhance which calls the relevant JavaScript functions &mdash; this works, but it&#8217;s not very DRY and it&#8217;s not easy to maintain.</p>
+<p>Recently, I stumbled across a hack in an <a href="http://davidwalsh.name/detect-node-insertion">article</a> by <a href="https://twitter.com/davidwalshblog">David Walsh</a> which uses a CSS animation and the <code>animationStart</code> event to detect when an element has been inserted into the DOM. It works by exploiting the fact that CSS animations run as soon as an element is appended to the document. Creating a simple animation that runs for a tiny duration and applying it to any elements you to want modify will fire a <code>animationStart</code> event for each element as it&#8217;s inserted, essentially emulating the (now defunct) DOM mutation events. What&#8217;s great about this technique is it also works during page load!</p>
+<h2>The trick</h2>
+<p>Let&#8217;s say we want to enhance all <code>&lt;input&gt;</code> fields:</p>
+<pre><code class="html">&lt;input type="text" size="50"&gt;</code></pre>
+<p>We&#8217;ll need to set up a CSS animation and apply it to every <code>&lt;input&gt;</code> field with CSS: </p>
+<pre><code class="css">/* prefixes omitted for brevity */
+input {
+    animation-name: nodeReady;
+    animation-duration: 0.001s;
+}
+
+@keyframes nodeReady {  
+    from { clip: rect(1px, auto, auto, auto); }
+    to { clip: rect(0px, auto, auto, auto); }  
+}</code></pre>
+<p>Finally, we need to make our &#8220;enhancements&#8221; with JavaScript:</p>
+<pre><code class="js">/* prefixed variants omitted for brevity */
+document.addEventListener("animationstart", function(e) {
+    if (e.animationName == "nodeReady") {
+        e.target.value = new Date();
+    }
+}, false);</code></pre>
+<p>That&#8217;s it, if the browser supports CSS animations all <code>&lt;input&gt;</code> elements will be modified as the page loads.</p>
+<h2>Fallbacks</h2>
+<p>If the browser doesn&#8217;t support CSS animations we need a fallback to ensure theses elements are still modified. Handling this case is actually really simple, just use <code>DOMContentLoaded</code> or the window <code>load</code> event to fire the code you would have run in the <code>animationStart</code> event. In this situation things will behave the way they always have.</p>
+<h2>Credit</h2>
+<p>Credit must go to David Walsh for his <a href="http://davidwalsh.name/detect-node-insertion">article</a> and to Daniel Buchner for the <a href="http://www.backalleycoder.com/2012/04/25/i-want-a-damnodeinserted/">original discovery</a>. Also, <a href="https://twitter.com/james_allardice">James Allardice</a> is working on wrapping this up into something easily deployable.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.keithclark.co.uk/working-with-elements-before-the-dom-is-ready/feed/</wfw:commentRss>
+		<slash:comments>5</slash:comments>
+		</item>
+		<item>
+		<title>Faster parallax scrolling websites in Firefox</title>
+		<link>http://blog.keithclark.co.uk/faster-scrolling-parallax-websites-in-firefox/</link>
+		<comments>http://blog.keithclark.co.uk/faster-scrolling-parallax-websites-in-firefox/#comments</comments>
+		<pubDate>Mon, 04 Jul 2011 15:45:14 +0000</pubDate>
+		<dc:creator>Keith Clark</dc:creator>
+				<category><![CDATA[HTML]]></category>
+		<category><![CDATA[JavaScript]]></category>
+
+		<guid isPermaLink="false">http://blog.keithclark.co.uk/?p=159</guid>
+		<description><![CDATA[Parallax scrolling websites have become very popular recently. Some of the effects are pretty striking and create a very engaging user experience. I&#8217;ve been looking into parallax scrolling for something I&#8217;m designing but noticed a real issue with speed when using the effect in Firefox, so over the weekend, I set about addressing the problem.... <a href="http://blog.keithclark.co.uk/faster-scrolling-parallax-websites-in-firefox/">Continue Reading</a>]]></description>
+				<content:encoded><![CDATA[<p>Parallax scrolling websites have become very popular recently. <a href="http://www.janploch.de/">Some</a> of the <a href="http://www.nikebetterworld.com/">effects</a> are pretty <a href="http://www.campaignmonitor.com/hiring/">striking</a> and create a very engaging user experience. I&#8217;ve been looking into parallax scrolling for something I&#8217;m designing but noticed a real issue with speed when using the effect in Firefox, so over the weekend, I set about addressing the problem. Here&#8217;s what I came up with:</p>
+<h2>What causes the issue?</h2>
+<p>The techniques used to achieve the parallax effect essentially boil down to hooking into the document&#8217;s <code>scroll</code> event and adjusting element properties based on the position of the vertical scroll bar. If you&#8217;re a Firefox user (especially if you&#8217;re on a PC) you&#8217;ve probably noticed that these sites appear to lag or jump around while you scroll. Generally speaking, these sites lack the slick, responsive experience you get from Safari, Chrome, Opera or IE.</p>
+<p>The reason Firefox struggles to render parallax scrolling websites at a reasonable speed is because it doesn&#8217;t dispatch <code>scroll</code> events anywhere near as frequently as the other browsers. This means the script responsible for modifying element properties doesn&#8217;t fire as often and this ruins the parallax effect.</p>
+<h2>Increasing the scroll event frequency</h2>
+<p>The idea is to make the scrolling more responsive without changing the way events are added to the document and avoiding the need for helper functions with code paths for different browsers. All I want to do is increase the rate at which Firefox dispatches <code>scroll</code> events.</p>
+<p>Increasing the scroll event frequency requires creating and dispatching a custom DOM <code>scroll</code> event. Creating the event is easy, the big problem is; how to dispatch the event while the user is scrolling the page?</p>
+<p>The solution lies in a Firefox specific &#8220;feature&#8221;. Firefox triggers mouse events inside scroll bar tracks. Exploiting this feature allows us to detect mouse movement in the document&#8217;s vertical scroll bar using the <code>mousemove</code> event. Since <code>mousemove</code> fires every time the mouse moves, it can be used to dispatch a custom <code>scroll</code> event to the <code>document</code> giving us the increased frequency required to achieve a fluid parallax effect.</p>
+<p>The second step is to sync the mouse-wheel scroll repaints. To do this I&#8217;ve added a handler to the Gecko specific <code>DOMMouseScroll</code> event. The handler disables the default scrolling action and dispatches the custom <code>scroll</code> event. Since the default action is disabled, I also have to recreate the scrolling effect by modifying the <code>document.documentElement.scrollTop</code> property based on the event data. </p>
+<h2>The script</h2>
+<p>Here it is:</p>
+<pre><code class="js">/*
+Firefox super responsive scroll (c) Keith Clark - MIT Licensed
+*/
+(function(doc) {
+
+  var root = doc.documentElement;
+
+  // Not ideal, but better than UA sniffing.
+  if ("MozAppearance" in root.style) {
+
+    // determine the vertical scrollbar width
+    var scrollbarWidth = root.clientWidth;
+    root.style.overflow = "scroll";
+    scrollbarWidth -= root.clientWidth;
+    root.style.overflow = "";
+    
+    // create a synthetic scroll event
+    var scrollEvent = doc.createEvent("UIEvent")
+    scrollEvent.initEvent("scroll", true, true);
+    
+    // event dispatcher
+    function scrollHandler() {
+      doc.dispatchEvent(scrollEvent)
+    }
+
+    // detect mouse events in the document scrollbar track
+    doc.addEventListener("mousedown", function(e) {
+      if (e.clientX > root.clientWidth - scrollbarWidth) {
+        doc.addEventListener("mousemove", scrollHandler, false);
+        doc.addEventListener("mouseup", function() {
+          doc.removeEventListener("mouseup", arguments.callee, false);
+          doc.removeEventListener("mousemove", scrollHandler, false);
+        }, false)
+      }
+    }, false)
+
+    // override mouse wheel behaviour.
+    doc.addEventListener("DOMMouseScroll", function(e) {
+      // Don't disable hot key behaviours
+      if (!e.ctrlKey &#038;&#038; !e.shiftKey) {
+        root.scrollTop += e.detail * 16;
+        scrollHandler.call(this, e);
+        e.preventDefault()
+      }
+    }, false)
+ 
+  }
+})(document);</code></pre>
+<h2>Try it out</h2>
+<p>Visit the <a href="http://www.nikebetterworld.com/">Nike Better World</a> and <a href="http://www.iutopi.com/">Iutopi</a> websites (any parallax site will do) in Firefox and scroll through them (noting the lag), then paste the JavaScript above into the console (Firebug) and execute it. Scroll again, things should look much smoother — especially if you&#8217;re using a PC.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.keithclark.co.uk/faster-scrolling-parallax-websites-in-firefox/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		</item>
+		<item>
+		<title>Responsive images using cookies</title>
+		<link>http://blog.keithclark.co.uk/responsive-images-using-cookies/</link>
+		<comments>http://blog.keithclark.co.uk/responsive-images-using-cookies/#comments</comments>
+		<pubDate>Sat, 18 Jun 2011 14:05:55 +0000</pubDate>
+		<dc:creator>Keith Clark</dc:creator>
+				<category><![CDATA[HTML]]></category>
+		<category><![CDATA[JavaScript]]></category>
+
+		<guid isPermaLink="false">http://blog.keithclark.co.uk/?p=92</guid>
+		<description><![CDATA[A while ago now, I tweeted about using cookies as a means of serving images to a browser based on the size of the device viewport. Scott Jehl has already implemented the idea into a branch of his responsive images script but now that I have a platform to document my ideas I&#8217;ve decided to... <a href="http://blog.keithclark.co.uk/responsive-images-using-cookies/">Continue Reading</a>]]></description>
+				<content:encoded><![CDATA[<p>A while ago now, I <a href="http://twitter.com/#!/keithclarkcouk/status/53807492957880320">tweeted</a> about using cookies as a means of serving images to a browser  based on the size of the device viewport. <a href="http://twitter.com/scottjehl">Scott Jehl</a> has already implemented the idea into a <a href="https://github.com/filamentgroup/Responsive-Images/tree/cookie-driven">branch of his responsive images script</a> but now that I have a platform to document my ideas I&#8217;ve decided to write up my approach to responsive images.</p>
+<p>CSS media queries allow us to develop flexible designs that adapt to the device rendering them. Initially designers worked in a “desktop-down” fashion designing for large screen sizes, working down to the smallest. This approach has since been challenged and now projects such as <a href="http://html5boilerplate.com/mobile/">Mobile Boilerplate</a> and &#8216;<a href="http://stuffandnonsense.co.uk/projects/320andup/">320 and Up</a>&#8216; are encouraging a “mobile-up” approach to design.</p>
+<p>When it comes to imagery it doesn’t matter which way you choose to implement responsive design because you’ll always end up with the same problem; the dimensions of the images used in a page will always be dictated by the largest screen resolution you designed for.</p>
+<p>This becomes an issue as a design scales down to fit smaller screens. The high resolution image is still downloaded by the browser before it’s scaled down to fit into a smaller space. Not only is this a waste of bandwidth, downloading oversized images can also significantly delay the initial page render time. These issues are compounded if the visitor is browsing over a mobile network.</p>
+<p>We need a way to serve a scaled version of an image based on the dimensions of the device viewport. There have been a few approaches to this issue, most of which require JavaScript to dynamically modify the <code>src</code> attribute of <code>&lt;img&gt;</code> tags based on the window size of the browser. I have a different approach to solving this problem.</p>
+<h2>Enter cookies&#8230;</h2>
+<p>Whenever a browser requests a file from a server it automatically forwards any cookie data along with the request. If we use JavaScript to populate a cookie with the current screen dimensions all subsequent requests made by the browser will pass this data to the server. In other words, the server would know the screen size of the device asking for the file.</p>
+<p>Setting the cookie is easy. A single line of JavaScript will do the trick, but it must be added to the page <code>&lt;head&gt;</code> to ensure the cookie is set before any images are requested from the server.</p>
+<pre><code class="js">document.cookie = "device_dimensions=" + screen.width + "x" + screen.height;</code></pre>
+<p>I’m storing the dimensions of the screen rather than the browser window so the server can determine the maximum size an image could be rendered at. I can’t reliably use the dimensions of the browser window because it could start out at relatively small size causing low-res images to be downloaded on a hi-res screen and these images would look terrible if the browser was later increased in size.</p>
+<h2>Working with the cookie on the server</h2>
+<p>Now the server is able to detect the dimensions of the requesting device we need a script to act on this information and send back an optimised image. For this example I&#8217;m using PHP, the code we need is listed below:</p>
+<pre><code class="php">&lt;?php
+  $device_width = 0;
+  $device_height = 0;
+  $file = $_SERVER['QUERY_STRING'];
+
+  if (file_exists($file)) {
+
+    // Read the device viewport dimensions
+    if (isset($_COOKIE['device_dimensions'])) {
+      $dimensions = explode('x', $_COOKIE['device_dimensions']);
+      if (count($dimensions)==2) {
+        $device_width = intval($dimensions[0]);
+        $device_height = intval($dimensions[1]);
+      }
+    }
+
+    if ($device_width &gt; 0) {
+
+      $fileext = pathinfo($file, PATHINFO_EXTENSION);
+
+      // Low resolution image
+      if ($device_width &lt;= 800) {
+        $output_file = substr_replace($file, '-low', -strlen($fileext)-1, 0);
+      } 
+
+      // Medium resolution image
+      else if ($device_width &lt;= 1024) {
+        $output_file = substr_replace($file, '-med', -strlen($fileext)-1, 0);
+      }
+
+      // check the file exists
+      if (isset($output_file) &amp;&amp; file_exists($output_file)) {
+        $file = $output_file;
+      }
+    }
+
+    // return the file;
+    readfile($file);
+  }
+?&gt;</code></pre>
+<p>In my website&#8217;s ‘images’ folder I created ‘index.php’ and populated it with this code. I also added my high resolution image ‘test.png’ along with two smaller versions named ‘test-med.png’ and ‘test-low.png’, these we will be sent to smaller screens.</p>
+<p>And finally we need an html document:</p>
+<pre><code class="html">&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Responsive Images Test&lt;/title&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;script&gt;
+    document.cookie = "device_dimensions=" + screen.width + "x" + screen.height;
+  &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;img src="images/?test.png"&gt;
+  &lt;!-- the above is equivalent to: &lt;img src="images/index.php?test.png"&gt; --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h2>How it works</h2>
+<p>The html page contains the JavaScript to set the cookie and a <code>&lt;img&gt;</code> element. The image points to the ‘index.php’ script, using the query string (the part after the &#8216;?&#8217;) to specify the file name of the required image. The cookie will be set before the image is requested so the screen dimensions of the device will also be passed to the php script.</p>
+<p>The php script itself is pretty simple. It checks for the existence of the cookie and sets the <code>$device_width</code> and <code>$device_height</code> variables accordingly. If the cookie isn’t set these variables would evaluate to zero causing the script to return the high resolution version of the image. If <code>$device_width</code> is not zero, the script then determines which image would be appropriate for the screen and, if it exists, returns it to the browser.</p>
+<p>I purposely named the php script ‘index.php’ so I can omit it’s name from file references. I also added it to the images folder so I can toggle progressive and non-progressive images by adding / removing the ‘?’</p>
+<h2>What if cookies or JavaScript are disabled?</h2>
+<p>If JavaScript or cookies are disabled then the device dimensions cookie will never be set, which means the high-resolution version of the file will be downloaded as a fallback. Nothing breaks, and we’re no worse off than we were before using this technique.</p>
+<h2>Are there any caveats?</h2>
+<p>Yes, but only one. Any images will need to be hosted on a cookie enabled domain.</p>
+<h2>Summary</h2>
+<p>This technique isn’t limited to <code>&lt;img&gt;</code> elements. It could be used to serve responsive images to your CSS. In fact, it can be used for much more than serving images &#8211; any file requested from the server could, in theory, be responsive.</p>
+<p>We could improve this technique further by appending <code>window.devicePixelRatio</code> to the cookie the php script can detect for HD and Retina displays and serve higher resolution graphics. The php script could also be adapted to automatically scale down images for us.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.keithclark.co.uk/responsive-images-using-cookies/feed/</wfw:commentRss>
+		<slash:comments>30</slash:comments>
+		</item>
+		<item>
+		<title>IE conditional comments and asset load order</title>
+		<link>http://blog.keithclark.co.uk/ie-conditional-comments-and-asset-load-order/</link>
+		<comments>http://blog.keithclark.co.uk/ie-conditional-comments-and-asset-load-order/#comments</comments>
+		<pubDate>Tue, 07 Jun 2011 14:03:53 +0000</pubDate>
+		<dc:creator>Keith Clark</dc:creator>
+				<category><![CDATA[CSS]]></category>
+		<category><![CDATA[HTML]]></category>
+		<category><![CDATA[JavaScript]]></category>
+
+		<guid isPermaLink="false">http://blog.keithclark.co.uk/?p=4</guid>
+		<description><![CDATA[Yesterday I was experimenting with a few ideas for decreasing the start-up time of selectivizr (something I&#8217;ll be posting about in the future). Part of the testing process was to establish if the position of the selectivizr script in a document had any affect on its start-up time. While testing I noticed an interesting side... <a href="http://blog.keithclark.co.uk/ie-conditional-comments-and-asset-load-order/">Continue Reading</a>]]></description>
+				<content:encoded><![CDATA[<p>Yesterday I was experimenting with a few ideas for decreasing the start-up time of <a href="http://selectivizr.com/">selectivizr</a> (something I&#8217;ll be posting about in the future). Part of the testing process was to establish if the position of the selectivizr script in a document had any affect  on its start-up time. While testing I noticed an interesting side effect relating to the way assets are downloaded when they are mixed with conditional comments. I couldn&#8217;t find any specific information on this behavior so I thought I&#8217;d document my findings here.</p>
+<p>Like most scripts and style sheets that uniquely target IE, the recommended method of inserting selectivizr into a document is to wrap it in a conditional comment, hiding it from other browsers. Inevitably these IE only scripts and styles become mixed with other unconditional assets but the way these assets are mixed together can actually alter their download order.</p>
+<p>The code sample below shows the script &#8217;2.js&#8217; wrapped in a conditional comment that targets IE&lt;9. Note that the script &#8217;2.js&#8217; is the second asset in the document but in IE6-8 it will actually download last.</p>
+<pre><code class="html">&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;script src="1.js"&gt;&lt;/script&gt;
+  &lt;!--[if lt IE 9]&gt;&lt;script src="2.js"&gt;&lt;/script&gt;&lt;![endif]--&gt;
+  &lt;script src="3.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;script src="4.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h2>Time to do some testing</h2>
+<p>My test consisted of a single HTML document &#8216;index.html&#8217; populated with the above markup and four JavaScript files, each consisting of a single comment. The test files were hosted on a local web server (IIS) and delivered over HTTP. The conditional comment containing the script ‘2.js’ (coloured red in the network graphs) was inserted at various points in the document and the browser was refreshed. The subsequent download sequence was captured using the Network tab in IE&#8217;s developer tools.</p>
+<p>The following results are from the IE8 tests but the outcomes were identical in IE6 and IE7.</p>
+<h2>Test #1</h2>
+<p>Browsing to &#8216;index.html&#8217; produced the following network graph:</p>
+<p><img class="alignnone size-full wp-image-29" title="Network timeline showing '2.js' loading out of sequence" src="http://blog.keithclark.co.uk/wp-content/uploads/2011/06/grab1.png" alt="" width="596" height="110" /></p>
+<p>The graph shows that &#8217;2.js&#8217; has loaded out of sequence when compared with the document structure. The original markup shows &#8217;2.js&#8217; as the second asset in the document tree yet the time line clearly shows &#8217;2.js&#8217; loading last, after &#8217;4.js&#8217;.</p>
+<p>I decided to add four images after the &#8217;4.js&#8217; script to see if theses assets would have any impact on the download order – they did:</p>
+<p><img class="alignnone size-full wp-image-55" title="Network timeline showing 2.js loading after all other assets" src="http://blog.keithclark.co.uk/wp-content/uploads/2011/06/grab5.png" alt="" width="596" height="177" /></p>
+<p>As you can see, &#8217;2.js&#8217; isn&#8217;t just the last script to download, it&#8217;s also the last file to download.</p>
+<h2>Test #2</h2>
+<p>Next, I rearranged the scripts a little. The conditional comment containing &#8217;2.js&#8217; was moved below the &#8217;3.js&#8217; script:</p>
+<pre><code class="html">&lt;script src="1.js"&gt;&lt;/script&gt;
+&lt;script src="3.js"&gt;&lt;/script&gt;
+&lt;!--[if lt IE 9]&gt;&lt;script src="2.js"&gt;&lt;/script&gt;&lt;![endif]--&gt;</code></pre>
+<p>Refreshing the page produced the same result, the download order was out of sequence. &#8217;2.js&#8217; was still the last file to download:</p>
+<p><img class="alignnone size-full wp-image-32" title="Network timeline showing that '2.js' is still loading out of sequence " src="http://blog.keithclark.co.uk/wp-content/uploads/2011/06/grab2.png" alt="" width="596" height="110" /></p>
+<h2>Test #3</h2>
+<p>Moving the conditional comment before the other <code>&lt;script&gt;</code> tags caused something else to happen:</p>
+<pre><code class="html">&lt;!--[if lt IE 9]&gt;&lt;script src="2.js"&gt;&lt;/script&gt;&lt;![endif]--&gt;
+&lt;script src="1.js"&gt;&lt;/script&gt;
+&lt;script src="3.js"&gt;&lt;/script&gt;</code></pre>
+<p>Refreshing the page revealed the <code>&lt;script&gt;</code>s were now downloading in the correct sequence. Moving the conditional comment before all the other <code>&lt;script&gt;</code> tags had restored the download order:</p>
+<p><img class="alignnone size-full wp-image-33" title="Network timeline showing '2.js' loading in the correct position" src="http://blog.keithclark.co.uk/wp-content/uploads/2011/06/grab3.png" alt="" width="596" height="110" /></p>
+<p>Something else had happened. In the first three network graphs you&#8217;ll notice that &#8217;2.js&#8217; didn’t start downloading until the other files had finished. It was being blocked. The graph above clearly shows all four &#8216;.js&#8217; files downloading in parallel.</p>
+<h2>What about IE9?</h2>
+<p>Until now my tests had been focused on selectivizr&#8217;s target browsers, IE6-8 but I wanted to see what happened in IE9. I restored the markup to it’s original state (moving &#8217;2.js&#8217; back to it&#8217;s position as the 2nd script) and removed the version operator (the &#8216;lt IE 9&#8242; part) from the conditional comment:</p>
+<pre><code class="html">&lt;!--[if IE]&gt;&lt;script src="2.js"&gt;&lt;/script&gt;&lt;![endif]--&gt;</code></pre>
+<p>After making the changes I reloaded the page in IE8 to check my results were correct before moving on to IE9. They were different! This time the network graph showed that the download order has been correctly preserved and the .js files had downloaded in parallel:</p>
+<p><img class="alignnone size-full wp-image-35" title="Network timeline showing '2.js' loading in the correct sequence" src="http://blog.keithclark.co.uk/wp-content/uploads/2011/06/grab4.png" alt="" width="596" height="110" /></p>
+<p>So it seems that conditional comment operators can affect download order too. But that’s not all, the download order is also preserved if the page and it&#8217;s assets are loaded directly from the file system (with or without a conditional operator).</p>
+<p>When I did eventually test in IE9 I found the download order was correct in every test, so this anomaly has disappeared in the latest version of IE.</p>
+<h2>Wrapping up</h2>
+<p>In IE8 and below the download sequence of assets varies depending on the position of conditional comments, the operators used and where the files are being served from. IE9 (and probably IE10) always download assets in the document order.</p>
+<p>It&#8217;s important to note that although the sequence in which assets are  downloaded can differ they are always processed in document order.</p>
+<p>Finally, I recreated this test using <code>&lt;link&gt;</code>&#8216;d style sheets instead of <code>&lt;scripts&gt;</code>s. The outcome was identical, the style sheet download order differed depending on the configuration of the conditional comment but the style sheet cascade still reflected the document order.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.keithclark.co.uk/ie-conditional-comments-and-asset-load-order/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+		</item>
+	</channel>
+</rss>

@@ -1,0 +1,840 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Keith Clark &#187; CSS</title>
+	<atom:link href="http://blog.keithclark.co.uk/category/css/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.keithclark.co.uk</link>
+	<description>Articles, experiments and discussions on developing for the web</description>
+	<lastBuildDate>Mon, 04 Aug 2014 22:34:16 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=3.5</generator>
+		<item>
+		<title>Pure CSS parallax scrolling websites</title>
+		<link>http://blog.keithclark.co.uk/pure-css-parallax-websites/</link>
+		<comments>http://blog.keithclark.co.uk/pure-css-parallax-websites/#comments</comments>
+		<pubDate>Mon, 04 Aug 2014 22:33:37 +0000</pubDate>
+		<dc:creator>Keith Clark</dc:creator>
+				<category><![CDATA[CSS]]></category>
+
+		<guid isPermaLink="false">http://blog.keithclark.co.uk/?p=1252</guid>
+		<description><![CDATA[This article demonstrates how to use CSS transforms, perspective and some scaling trickery to create a pure CSS parallax scrolling website. Parallax is almost always handled with JavaScript and, more often than not, it&#8217;s not very performant with the worst offenders listening for the scroll event, modifying the DOM directly in the handler and triggering... <a href="http://blog.keithclark.co.uk/pure-css-parallax-websites/">Continue Reading</a>]]></description>
+				<content:encoded><![CDATA[<p>This article demonstrates how to use CSS transforms, perspective and some scaling trickery to create a pure CSS parallax scrolling website.</p>
+<p>Parallax is almost always handled with JavaScript and, more often than not, it&#8217;s not very performant with the worst offenders listening for the <code>scroll</code> event, modifying the DOM directly in the handler and triggering needless reflows and paints. All this happens out of sync with the browsers rendering pipeline causing dropped frames and stuttered scrolling. Better parallax implementations monitor scrolling and defer DOM updates using <code>requestAnimationFrame</code> which can totally transform the experience &#8211; but what if you could remove the JavaScript dependency completely?</p>
+<p>Deferring the parallax effect to CSS removes all these issues and allows the browser to leverage hardware acceleration resulting in almost all the heavy lifting being handled directly by the compositor. The result is consistent frame rates and perfectly smooth scrolling. You can also combine the effect with other CSS features such as <a href="http://www.w3.org/TR/css3-mediaqueries/">media queries</a> or <a href="http://www.w3.org/TR/css3-conditional/">supports</a> &#8211; responsive parallax anyone?</p>
+<p><a class="button" href="http://blog.keithclark.co.uk/wp-content/uploads/2014/08/demos/3/">Try the demo</a></p>
+<h2 id="the-theory">The theory</h2>
+<p>Before we dive into how the effect works, let&#8217;s establish some barebones markup:</p>
+<pre><code class="html">&lt;div class=&quot;parallax&quot;&gt;
+  &lt;div class=&quot;parallax__group&quot;&gt;
+    &lt;div class=&quot;parallax__layer parallax__layer--back&quot;&gt;
+      ...
+    &lt;/div&gt;
+    &lt;div class=&quot;parallax__layer parallax__layer--base&quot;&gt;
+      ...
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;parallax__group&quot;&gt;
+    ...
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<p>And here are the basic style rules:</p>
+<pre><code class="css">.parallax {
+  perspective: 1px;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.parallax__layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.parallax__layer--base {
+  transform: translateZ(0);
+}
+.parallax__layer--back {
+  transform: translateZ(-1px);
+}</code></pre>
+<p>The <code>parallax</code> class is where the parallax magic happens. Defining the <code>height</code> and <code>perspective</code> style properties of an element will lock the perspective to its centre, creating a fixed origin 3D viewport. Setting <code>overflow-y: auto</code> will allow the content inside the element to scroll in the usual way, but now descendant elements will be rendered relative to the fixed perspective. This is the key to creating the parallax effect.</p>
+<p>Next is the <code>parallax__layer</code> class. As the name suggests, it defines a layer of content to which the parallax effect will be applied; the element is pulled out of content flow and configured to fill the space of the container.</p>
+<p>Finally we have the modifier classes <code>parallax__layer--base</code> and <code>parallax__layer--back</code>. These are used to determine the scrolling speed of a parallax element by translating it along the Z axis (moving it farther away, or closer to the viewport). For brevity I have only defined two layer speeds – we&#8217;ll add more later.</p>
+<p><a class="button" href="http://blog.keithclark.co.uk/wp-content/uploads/2014/08/demos/1/">Try the demo</a></p>
+<h2 id="depth-correction">Depth correction</h2>
+<p>Since the parallax effect is created using 3D transforms, translating an element along the Z axis has a side effect &#8211; its effective size changes as we move it closer to or farther away from the viewport. To counter this we need to apply a <code>scale()</code> transform to the element so that it appears to be rendered at its original size:</p>
+<pre><code class="css">.parallax__layer--back {
+  transform: translateZ(-1px) scale(2);
+}</code></pre>
+<p>The scale factor can be calculated with <code>1 + (translateZ * -1) / perspective)</code>. For example, if our viewport <code>perspective</code> is set to <code>1px</code> and we translate an element <code>-2px</code> along the Z axis the correction scale factor would be <code>scale(3)</code>:</p>
+<pre><code class="css">.parallax__layer--deep {
+  transform: translateZ(-2px) scale(3);
+}</code></pre>
+<p><a class="button" href="http://blog.keithclark.co.uk/wp-content/uploads/2014/08/demos/2/">Try the depth corrected demo</a></p>
+<h2 id="controlling-layer-speed">Controlling layer speed</h2>
+<p>Layer speed is controlled by a combination of the perspective and the Z translation values. Elements with negative Z values will scroll slower than those with a positive value. The further the value is from <code>0</code> the more pronounced the parallax effect (i.e. <code>translateZ(-10px)</code> will scroll slower than <code>translateZ(-1px)</code>).</p>
+<h2 id="parallax-sections">Creating different parallax page sections</h2>
+<p>The previous examples demonstrate the basic techniques using very simple content but most parallax sites break the page into distinct sections where different effects can be applied. Here&#8217;s how to do that.</p>
+<p>Firstly, we need a <code>parallax__group</code> element to group our layers together:</p>
+<pre><code class="html">&lt;div class=&quot;parallax&quot;&gt;
+  &lt;div class=&quot;parallax__group&quot;&gt;
+    &lt;div class=&quot;parallax__layer parallax__layer--back&quot;&gt;
+      ...
+    &lt;/div&gt;
+    &lt;div class=&quot;parallax__layer parallax__layer--base&quot;&gt;
+      ...
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;parallax__group&quot;&gt;
+    ...
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<p>Here&#8217;s the CSS for the group element:</p>
+<pre><code class="css">.parallax__group {
+  position: relative;
+  height: 100vh;
+  transform-style: preserve-3d;
+}</code></pre>
+<p>In this example, I want each group to fill the viewport so I&#8217;ve set <code>height: 100vh</code>, however arbitrary values can be set for each group if required. <code>transform-style: preserve-3d</code> prevents the browser flattening the <code>parallax__layer</code> elements and <code>position: relative</code> is used to allow the child <code>parallax__layer</code> elements to be positioned relative to the group element.</p>
+<p>One important rule to keep in mind when grouping elements is, we cannot clip the content of a group. Setting <code>overflow: hidden</code> on a <code>parallax__group</code> will break the parallax effect. Unclipped content will result in descendant elements overflowing, so we need to be creative with the <code>z-index</code> values of the groups to ensure content is correctly revealed/hidden as the visitor scrolls through the document.</p>
+<p>There are no hard and fast rules for dealing with layering as implementations will differ between designs. It&#8217;s much easier to debug layering issues if you can see how the parallax effect works &#8211; you can do that by applying simple transform to the group elements:</p>
+<pre><code class="css">.parallax__group {
+    transform: translate3d(700px, 0, -800px) rotateY(30deg);
+}</code></pre>
+<p>Have a look at the following example &#8211; note the <strong>debug</strong> option!</p>
+<p><a class="button" href="http://blog.keithclark.co.uk/wp-content/uploads/2014/08/demos/3/">Try the grouped parallax demo</a></p>
+<h2 id="browser-support">Browser support</h2>
+<ul>
+<li>Firefox, Safari, Opera and Chrome all support this effect.</li>
+<li>Firefox works too but there is currently a minor issue with alignment.</li>
+<li>IE doesn&#8217;t support <code>preserve-3d</code> yet (it&#8217;s coming) so the parallax effect won&#8217;t work. That&#8217;s ok though, you should still design your content to work without the parallax effect &#8211; You know, progressive enhancement and all that!</li>
+</ul>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.keithclark.co.uk/pure-css-parallax-websites/feed/</wfw:commentRss>
+		<slash:comments>39</slash:comments>
+		</item>
+		<item>
+		<title>GPU text rendering in webkit</title>
+		<link>http://blog.keithclark.co.uk/gpu-text-rendering-in-webkit/</link>
+		<comments>http://blog.keithclark.co.uk/gpu-text-rendering-in-webkit/#comments</comments>
+		<pubDate>Wed, 18 Jun 2014 20:53:44 +0000</pubDate>
+		<dc:creator>Keith Clark</dc:creator>
+				<category><![CDATA[CSS]]></category>
+
+		<guid isPermaLink="false">http://blog.keithclark.co.uk/?p=1050</guid>
+		<description><![CDATA[Webkit will render an element differently when the responsibility of painting it is passed from the CPU to the GPU. This switch can trigger unintended rendering artefacts which, although most obvious in text, apply to all types of content. Changes in antialiasing With the exception of IE11, every browser I tested uses subpixel antialiasing on... <a href="http://blog.keithclark.co.uk/gpu-text-rendering-in-webkit/">Continue Reading</a>]]></description>
+				<content:encoded><![CDATA[<p>Webkit will render an element differently when the responsibility of painting it is passed from the CPU to the GPU. This switch can trigger unintended rendering artefacts which, although most obvious in text, apply to all types of content.</p>
+<h2>Changes in antialiasing</h2>
+<p>With the exception of IE11, every browser I tested uses subpixel antialiasing on the CPU. If an element is promoted to the GPU in current versions of Chrome, Safari or Opera then you lose subpixel antialiasing and text is rendered using the greyscale method. Firefox 30 retains subpixel antialiasing when an element is promoted to the GPU, while IE11 appears to use the greyscale method for both CPU and GPU.</p>
+<figure><img alt="" src="http://blog.keithclark.co.uk/wp-content/uploads/2014/05/text-cpu-vs-gpu.png" width="780" height="172" /></p>
+<figcaption>Text rendered by the GPU doesn&#8217;t have subpixel antialiasing in webkit browsers</figcaption>
+</figure>
+<p>In truth, the switch between these antialiasing methods in webkit browsers is hardly noticeable. However, if you are applying an animation or transition to the element and you do notice a subtle rendering change, you can force the CPU to match the GPU greyscale antialiasing like this:</p>
+<pre><code class="css">#box {
+    -webkit-font-smoothing: antialiased;
+}</code></pre>
+<h2>Content blurring</h2>
+<p>Blurred content is a webkit specific side effect that occurs when a GPU promoted element is rendered on a non-integer boundary. The effect is most often noticed if hardware acceleration is triggered by applying an animation or transition but it can also be triggered with a simple transform. Let&#8217;s look at an example:</p>
+<pre><code class="css">#box {
+    position: absolute;
+    top: 500px;
+    -webkit-transform: translateY(-50%) translateZ(0);
+}</code></pre>
+<p><em>Note: in this example I&#8217;m using <code>translateZ(0)</code> to force hardware acceleration.</em></p>
+<p>Here the element is positioned 500px from the top of its container (for simplicity let&#8217;s assume the container has a top and left offset of 0). The <code>transform: translateY(-50%)</code> declaration pulls the element up by half its height, so if the element is 20px high its effective top would be 490px (top &#8211; height / 2) and its bottom would be 510px (top + height / 2). The vertical rendering of the element would occur in pixels 490 through 510. In this state the effective top/bottom of the element resolves to an integer value which means it will look identical (except for antialiasing change discussed above) when rendered on the CPU or GPU.</p>
+<figure><img alt="" src="http://blog.keithclark.co.uk/wp-content/uploads/2014/06/webkit-cpu-vs-gpu.png" width="780" height="225" /></p>
+<figcaption>CPU and GPU rendering are almost identical when an element is positioned on integer boundaries.</figcaption>
+</figure>
+<p>If the element is 21px high its effective top would be 489.5px and bottom would be 510.5px. Webkit browsers don&#8217;t appear to round pixel values down so the texture has to be resampled using bilinear filtering (or similar) to account for the half-pixel boundaries &#8211; it&#8217;s this resampling that causes the blurring effect. The 21 pixel high element now touches pixels 489 through 511 which means 22 pixels need to be painted. Here&#8217;s what that looks like.</p>
+<figure><img alt="" src="http://blog.keithclark.co.uk/wp-content/uploads/2014/06/webkit-halfpixel-cpu-vs-gpu.png" width="780" height="225" /></p>
+<figcaption>Blurring occurs when an element is positioned on non-integer boundaries.</figcaption>
+</figure>
+<p>Notice the halo around the text and the lack of clarity in the &#8216;e&#8217; character? These rendering artefacts are also exhibited when the element is translated along the x-axis. Things are made worse if both the X and Y translations resolve to non-integer values &#8211; in this case you will see the blurring along both axis resulting in a further loss of clarity.</p>
+<figure><img alt="" src="http://blog.keithclark.co.uk/wp-content/uploads/2014/06/webkit-halfpixel-x-y-cpu-vs-gpu.png" width="780" height="225" /></p>
+<figcaption>Blurring effect is exacerbated if both x and y positions are non-integer</figcaption>
+</figure>
+<h2>Can I fix it?</h2>
+<p>Sort of. It&#8217;s possible to counter the blurring effect using JavaScript to ensure affected elements have a width and height that are divisible by 2. This can be achieved with something as simple as:</p>
+<pre><code class="js">var elem = document.getElementById("box");
+elem.style.height = (Math.ceil(elem.offsetHeight / 2) * 2) + "px";
+elem.style.width = (Math.ceil(elem.offsetWidth / 2) * 2) + "px";</code></pre>
+<p>Simple? Yes. Practical? No. Forcing a width and height will fix the blurring issue but the element will no longer reflow if the viewport changes size. Sure, you could listen for the window <code>resize</code> event and clear the <code>width</code> and <code>height</code> style properties to allow reflow before setting them again, but what happens if the content of the element changes, if the user changes the text size or if you have to handle any of the other countless edge cases?</p>
+<h2>Summary</h2>
+<p>For now the only real solution is to avoid hardware accelerating text layers if you can&#8217;t guarantee their dimensions will resolve to integer values. Unfortunately that also means avoiding animations and transitions that trigger hardware acceleration.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.keithclark.co.uk/gpu-text-rendering-in-webkit/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Calculating element vertex data from CSS transforms</title>
+		<link>http://blog.keithclark.co.uk/calculating-element-vertex-data-from-css-transforms/</link>
+		<comments>http://blog.keithclark.co.uk/calculating-element-vertex-data-from-css-transforms/#comments</comments>
+		<pubDate>Fri, 18 Oct 2013 08:22:41 +0000</pubDate>
+		<dc:creator>Keith Clark</dc:creator>
+				<category><![CDATA[CSS]]></category>
+		<category><![CDATA[JavaScript]]></category>
+
+		<guid isPermaLink="false">http://blog.keithclark.co.uk/?p=721</guid>
+		<description><![CDATA[CSS transforms make it easy to manipulate an element in 3D space without worrying about the complex maths involved. But what if you want do more than transform elements? How can you shade an element or test if two transformed elements intersect? To do that you need access to the elements vertex data &#8212; unfortunately... <a href="http://blog.keithclark.co.uk/calculating-element-vertex-data-from-css-transforms/">Continue Reading</a>]]></description>
+				<content:encoded><![CDATA[<p>CSS transforms make it easy to manipulate an element in 3D space without worrying about the complex maths involved. But what if you want do more than transform elements? How can you shade an element or test if two transformed elements intersect? To do that you need access to the elements vertex data &mdash; unfortunately that data doesn&#8217;t exist.</p>
+<p>In this post I&#8217;m going to explain how to generate vertex data for elements transformed using CSS and demonstrate how to use this data to shade elements using a light source. This research made the lighting and shadow techniques in my <a href="http://blog.keithclark.co.uk/creating-3d-worlds-with-html-and-css/">CSS3 FPS</a> tech demo possible. (Also, if you recently attended <a href="http://www.meetup.com/HNLondon/‎">Hacker News London</a> and heard my CSS 3D <a href="http://vimeo.com/75454802">talk</a>, this is the blog post as promised).</p>
+<p><a class="button" href="http://blog.keithclark.co.uk/wp-content/uploads/2013/10/demos/6/">See the shaded X-Wing demo</a></p>
+<p>Before we can calculate anything we need to set a few ground rules. Firstly, all elements must be absolutely positioned in the centre of the viewport and can only be moved using CSS transforms. Secondly, when an element is added to the viewport I ensure its position reference and transform origins are the same &mdash; it makes transforms easier to work with. By default, elements are positioned relative to their corners (using the <code>top</code>, <code>left</code> <code>bottom</code> or <code>right</code> properties) and transforms are relative to the centre point. I prefer to work with the centre point as my reference, normalising the origins by pulling the element up by half its height and left by half its width using negative margins:</p>
+<pre><code class="html">&lt;style&gt;
+   #face {
+        width: 300px;
+        height: 200px;
+        margin: -150px -100px; /* pull element into position */
+   }
+&lt;/style&gt;
+&lt;div id="face"&gt;&lt;/div&gt;</code></pre>
+<p>With both origins aligned we can determine the 4 vertices for the corners of the element. The convention is to define the vertices in a clockwise direction as points <code>a</code>, <code>b</code>, <code>c</code> and <code>d</code> with point <code>a</code> as the top left corner of the element, <code>b</code> as the top right, <code>c</code> as bottom right and <code>d</code> as bottom left.</p>
+<p>The first step is to ignore any CSS transforms and calculate the corner positions of the element in its flat 2D state. To do this we need to determine the element&#8217;s width and height and halve them. These values are then used to set the <code>x</code> and <code>y</code> property of each vertex. Corners above and to the left of the centre will have negative values and those below and to the right and will have positive values. The <code>z</code> property is always <code>0</code> as this element only exists in 2D space at the moment.</p>
+<p>These simple calculations are handled by the following function:</p>
+<pre><code class="js">function computeVertexData (elem) {
+    var w = elem.offsetWidth / 2,
+        h = elem.offsetHeight / 2,
+        v = {
+            a: {x: -w, y: -h, z: 0},
+            b: {x: w, y: -h, z: 0},
+            c: {x: w, y: h, z: 0},
+            d: {x: -w, y: h, z: 0}
+        };
+    return v;
+}</code></pre>
+<p>If we call <code>computeVertexData</code>, passing in our 300 x 200 element, it will return the following vertex data:</p>
+<pre><code class="js">{
+    a: {x: -150, y: -100, z: 0},     // top left corner
+    b: {x: 150, y: -100, z: 0},      // top right corner
+    c: {x: 150, y: 100, z: 0},       // bottom right corner
+    d: {x: -150, y: 100, z: 0}       // bottom left corner
+}</code></pre>
+<p>To test the function we can add four <code>&lt;div&gt;</code> elements to the DOM and set their <code>transform</code> properties to the calculated values above, positioning them over the corners of the element:</p>
+<pre><code class="js">// compute the vertex data
+var v = computeVertexData(elem);
+
+// create a new vertex marker element
+var markerA = document.createElement("div");
+markerA.style.transform = "translate3d(" + v.a.x + "px, " + v.a.y + "px, " + v.a.z + "px);";
+scene.appendChild(markerA);
+
+// ... repeat for B, C and D vertices ...</code></pre>
+<p><a class="button" href="http://blog.keithclark.co.uk/wp-content/uploads/2013/10/demos/1/">Try the demo</a></p>
+<h2>Accounting for transforms</h2>
+<p>Now that we have the vertex data for a 2D element we need to determine the rotation and translation of the element in 3D space by decomposing its <code>transform</code> matrix. We do this by querying the <code>transform</code> property of the element using <code>window.getComputedStyle</code>:</p>
+<pre><code class="js">var matrix = getComputedStyle(elem, null).transform; // vendor prefixed variants omitted</code></pre>
+<p>The resulting value (a string) will depend on the transform that was applied to the element:</p>
+<ul>
+<li><code>none</code> &#8211; no transform was applied to the element
+<li><code>matrix(m11, m12, ... , m23)</code> &#8211; 2D transform was applied to the element
+<li><code>matrix3d(m11, m12, m13, ... , m44)</code> &#8211; a 3D transform was applied to the element
+</ul>
+<p>The string is split into its component parts and converted into a 4&#215;4 matrix (see the <code>parseMatrix</code> function to see how this is achieved) which can be decomposed to determine the original rotation and translation of the element.</p>
+<p>Here is the function that handles the matrix decomposition for translation and rotation:</p>
+<pre><code class="js">function getTransform (elem) {
+    var matrix = parseMatrix(getComputedStyle(elem, null).transform),
+        rotateY = Math.asin(-matrix.m13),
+        rotateX, 
+        rotateZ;
+
+    if (Math.cos(rotateY) !== 0) {
+        rotateX = Math.atan2(matrix.m23, matrix.m33);
+        rotateZ = Math.atan2(matrix.m12, matrix.m11);
+    } else {
+        rotateX = Math.atan2(-matrix.m31, matrix.m22);
+        rotateZ = 0;
+    }
+    return {
+        rotate: { x: rotateX, y: rotateY, z: rotateZ },
+        translate: { x: matrix.m41, y: matrix.m42, z: matrix.m43 }
+    };
+}</code></pre>
+<p>Now that we can calculate the rotation and translation values of an element we can apply a CSS transform to our element and update its flat 2D vertex data with the 3D components.</p>
+<pre><code class="html">&lt;style&gt;
+    #face {
+        width: 300px;
+        height: 200px;
+        margin: -150px -100px;
+        transform: translateX(50px) translateY(-20px) translateZ(100px);
+    }
+&lt;/style&gt;
+&lt;div id="face"&gt;&lt;/div&gt;</code></pre>
+<p>Calling <code>getTransform(document.getElementById("face"))</code> will return:</p>
+<pre><code class="js">{
+    rotate: {x: 0, y: 0, z: 0},
+    translate: {x: 50, y: -20, z: 100}
+}</code></pre>
+<p>If we add the <code>x</code>, <code>y</code> and <code>z</code> components of the <code>translate</code> property to the <code>x</code>, <code>y</code> and <code>z</code> components of the flat vertex data we end up with:</p>
+<pre><code class="js">{
+    a: {x: -100, y: -120, z: 100},     // x = -150 + 50   y = -100 + -20   z = 0 + 100
+    b: {x: 200, y: -120, z: 100},      // x =  150 + 50   y = -100 + -20   z = 0 + 100
+    c: {x: 200, y: 80, z: 100},        // x =  150 + 50   y =  100 + -20   z = 0 + 100
+    d: {x: -100, y: 80, z: 100}        // x = -150 + 50   y =  100 + -20   z = 0 + 100
+}</code></pre>
+<p>We do the same for rotation, albeit with more complicated maths (see demo), and voila! our <code>a</code>, <code>b</code>, <code>c</code> and <code>d</code> vertices are now real coordinates in 3D space.</p>
+<figure><img alt="Screenshot of an translated element" src="http://blog.keithclark.co.uk/wp-content/uploads/2013/10/demo2.png" width="780" height="450" /></p>
+<figcaption>A transformed element and its vertices</figcaption>
+</figure>
+<p><a class="button" href="http://blog.keithclark.co.uk/wp-content/uploads/2013/10/demos/2/">Try the transformed vertices demo</a></p>
+<h2>Complex objects</h2>
+<p>Until now we have been working with a single element but we also have to account for nesting. Elements are transformed relative to their parent so we need to walk up the DOM tree and add parent transforms to the vertex data. Once we have accounted for ancestor transforms, our final <code>computeVertexData</code> function looks like this:</p>
+<pre><code class="js">function computeVertexData (elem) {
+    var w = elem.offsetWidth / 2,
+        h = elem.offsetHeight / 2,
+        v = {
+            a: { x: -w, y: -h, z: 0 },
+            b: { x: w, y: -h, z: 0 },
+            c: { x: w, y: h, z: 0 },
+            d: { x: -w, y: h, z: 0 }
+        },
+        transform;
+
+    // Walk up the DOM and apply parent element transforms to each vertex
+    while (elem.nodeType === 1) {
+        transform = getTransform(elem);
+        v.a = addVectors(rotateVector(v.a, transform.rotate), transform.translate);
+        v.b = addVectors(rotateVector(v.b, transform.rotate), transform.translate);
+        v.c = addVectors(rotateVector(v.c, transform.rotate), transform.translate);
+        v.d = addVectors(rotateVector(v.d, transform.rotate), transform.translate);
+        elem = elem.parentNode;
+    }
+    return v;
+}</code></pre>
+<p>The following demo shows nested transforms in action. It features an exploded cube that rotates using a CSS animation. For each animation frame the face vertex data is recalculated and repainted to reflect the transform of the parent element.</p>
+<figure><img alt="Screenshot of an exploded cube" src="http://blog.keithclark.co.uk/wp-content/uploads/2013/10/demo3.png" width="780" height="450" /></p>
+<figcaption>An exploded cube and its vertices</figcaption>
+</figure>
+<p><a class="button" href="http://blog.keithclark.co.uk/wp-content/uploads/2013/10/demos/3/">Try the exploded cube demo</a></p>
+<h2>Using vertex data to shade faces</h2>
+<p>Now we have the vertex data for our element we can use established, well documented techniques for calculating light, shadows, collisions etc. I&#8217;m going to keep things simple and implement flat shading. We&#8217;re going to need a small JavaScript library to help with the vector maths (I&#8217;m using my own, <a href="http://blog.keithclark.co.uk/wp-content/uploads/2013/10/demos/vect3.js">vect3.js</a>) and a <a href="http://www.flipcode.com/archives/Doing_Your_Own_Lighting.shtml">tutorial</a> to explain how to implement lighting.</p>
+<figure><img alt="Screenshot of a shaded" src="http://blog.keithclark.co.uk/wp-content/uploads/2013/10/demo4.png" width="780" height="450" /></p>
+<figcaption>Screenshot of a shaded cube</figcaption>
+</figure>
+<p>Did you read the tutorial? &mdash; I didn&#8217;t think so. Well, it doesn&#8217;t matter for now. Essentially, for each element we need to determine its <a href="http://en.wikipedia.org/wiki/Normal_(geometry)">normal</a>, centre point and the direction to the light. We then take the <a href="http://en.wikipedia.org/wiki/Dot_product">dot product</a> of the normal and direction vectors to determine how similar they are. The more similar, the more light the element receives. Here&#8217;s the implementation:</p>
+<pre><code class="js">// Select the light
+var light = document.getElementById("light");
+
+// Select the faces
+var faces = [].slice.call(document.querySelectorAll(".face"));
+
+// Get the light position
+var lightPosition = getTransform(light).translate;
+
+// Light each face
+faces.forEach(function (face, i) {
+    var vertices = computeVertexData(face),
+        faceCenter = Vect3.divs(Vect3.sub(vertices.c, vertices.a), 2),
+        faceNormal = Vect3.normalize(Vect3.cross(Vect3.sub(vertices.b, vertices.a), Vect3.sub(vertices.c, vertices.a))),
+        direction = Vect3.normalize(Vect3.sub(lightPosition, faceCenter)),
+        amount = 1 - Math.max(0, Vect3.dot(faceNormal, direction)).toFixed(3);
+
+    face.style.backgroundImage = "linear-gradient(rgba(0,0,0," + amount + "), rgba(0,0,0," + amount + "))";
+});</code></pre>
+<p>To shade the element I&#8217;m using a black <code>linear-gradient</code> and varying the alpha channel values to control how much of the <code>background-color</code> bleeds through. See my <a href="http://blog.keithclark.co.uk/creating-3d-worlds-with-html-and-css/">Creating 3D worlds with HTML and CSS</a> post for more information on the technique.</p>
+<p><a class="button" href="http://blog.keithclark.co.uk/wp-content/uploads/2013/10/demos/4/">Try the shaded cube demo</a></p>
+<h2>Shading complex objects</h2>
+<p>Let&#8217;s shade something a little more complicated. Recently, <a href="https://twitter.com/JulianGarnier">Julian Garnier</a> released his CSS editor <a href="http://tridiv.com">Tridiv</a> which comes with a X-Wing model &mdash; let&#8217;s use that.</p>
+<p>The X-Wing model has 297 faces and a reasonably deep DOM tree. Shading this many elements at once brings the browser to its knees resulting in a dismal 2-3 FPS at best. I think we can do a little better than that.</p>
+<figure><img alt="Screenshot of a shaded X-Wing" src="http://blog.keithclark.co.uk/wp-content/uploads/2013/10/demo5.png" width="780" height="450" /></p>
+<figcaption>A shaded X-Wing</figcaption>
+</figure>
+<p><a class="button" href="http://blog.keithclark.co.uk/wp-content/uploads/2013/10/demos/5/">Try the unoptimised X-Wing demo</a> </p>
+<h2>It&#8217;s optimisation time!</h2>
+<p>Running a quick profile in Chrome developer tools reveals that calls to <code>computeVertexData</code> are the biggest bottleneck. The function queries the DOM triggering multiple style recalculations (or reflows). It then decomposes the matrix of the element and its ancestors to determine the final transform calculations.</p>
+<p>Instead of doing this work for every animation frame we can calculate most of what we need upfront. Pre-calculating the vertex data will remove all calls to <code>computeVertexData</code> from the rendering loop, eradicating the DOM reflow bottlenecks.</p>
+<pre><code class="js">// Grab the X-Wing element
+var xWing = document.querySelector(".scene");
+
+// Precalculate the normals and centres for each face 
+var faces = [].slice.call(xWing.querySelectorAll(".face")).map(function (face) {
+    var verticies = computeVertexData(face);
+    return {
+        verticies: verticies,
+        normal: Vect3.normalize(Vect3.cross(Vect3.sub(verticies.b, verticies.a), Vect3.sub(verticies.c, verticies.a))),
+        center: Vect3.divs(Vect3.sub(verticies.c, verticies.a), 2),
+        elem: face 
+    };
+});</code></pre>
+<p>Now we have our pre-calculated face normals and centres the render loop has to extract the transform components of the X-Wing wrapper element and add them to the pre-calculated face values. I&#8217;m also storing the last calculated light value for each face so I can check if it actually changed between frames before committing to a DOM update. These changes boost rendering performance to around 30 FPS.</p>
+<pre><code class="js">function render() {
+    var faceNormal, faceCenter, direction, amount,
+        xwingTransform = getTransform(xWing),
+        lightTransform = getTransform(light);
+
+    faces.forEach(function (face) {
+        // add the X-Wing translations to each face
+        faceNormal = Vect3.rotate(face.normal, xwingTransform.rotate);
+        faceCenter = Vect3.add(face.center, xwingTransform.translate);
+        faceCenter = Vect3.rotate(faceCenter, xwingTransform.translate);
+        direction = Vect3.normalize(Vect3.sub(lightTransform.translate, faceCenter));
+        amount = 1 - Math.max(0, Vect3.dot(faceNormal, direction)).toFixed(2);
+        
+        // only repaint if the light changed
+        if (face.light != amount) {
+            face.light = amount;
+            face.elem.style.backgroundImage = "linear-gradient(rgba(0,0,0," + amount + "),rgba(0,0,0," + amount + "))";
+        }
+    });
+}</code></pre>
+<p>There&#8217;s still room for improvement. Recalculating the normals and translations for each face, every frame quickly eats up precious processing time. We&#8217;re performing these calculations to determine the position of 279 faces relative to a light source, so why not just move the light instead? Decomposing and inverting the transforms applied to the X-Wing wrapper and applying them to the light source means we only need to perform a single translation calculation per frame.</p>
+<pre><code class="js">function render() {
+    var xwingTransform = getTransform(xWing),
+        lightTransform = getTransform(light),
+        lightPosition = Vect3.rotate(lightTransform.translate, Vect3.muls(xwingTransform.rotate, -1));
+
+    faces.forEach(function (face) {
+        var direction = Vect3.normalize(Vect3.sub(lightPosition, face.center));
+        var amount = 1 - Math.max(0, Vect3.dot(face.normal, direction)).toFixed(2); 
+        if (face.light != amount) {
+            face.light = amount;
+            face.elem.style.backgroundImage = "linear-gradient(rgba(0,0,0," + amount + "),rgba(0,0,0," + amount + "))";
+        }
+    });
+}</code></pre>
+<p>The final change was to add a throttle to the <code>render</code> function so we can bail-out after a specific amount of time &mdash; 2ms in this case. This allows the renderer to do as much work as it can yet keep frame rates as high as possible (60FPS in Chrome / Safari).</p>
+<p>This approach means the model will always rotate and translate at fast as the browser can manage but the shading is progressively generated over 2 or 3 frames. This is a great trick to use if you&#8217;re wrestling with multiple DOM updates.</p>
+<pre><code class="js">var nextFaceIndex = 0;   // store the render counter
+
+function render (startTime) {
+    var face, direction, amount,
+        faceNum = 0, faceCount = faces.length,
+        xwingTransform = getTransform(xWing),
+        lightTransform = getTransform(light),
+        lightPosition = Vect3.rotate(lightTransform.translate, Vect3.muls(xwingTransform.rotate, -1));
+
+    while (++faceNum < faceCount &#038;&#038; performance.now() - startTime <= 2) {
+        face = faces[nextFaceIndex];
+        direction = Vect3.normalize(Vect3.sub(lightPosition, face.center));
+        amount = 1 - Math.max(0, Vect3.dot(face.normal, direction)).toFixed(2);
+        if (face.light != amount) {
+            face.light = amount
+            face.elem.style.backgroundImage = "linear-gradient(rgba(0,0,0," + amount + "),rgba(0,0,0," + amount + "))";
+        }
+        nextFaceIndex = (nextFaceIndex + 1) % faceCount;
+    }
+}</code></pre>
+<p><a class="button" href="http://blog.keithclark.co.uk/wp-content/uploads/2013/10/demos/6/">Try the optimised X-Wing demo</a></p>
+<h2>That's it</h2>
+<p>...phew! I appreciate the content of this post may not be everyone's cup of tea but if you stuck with it, thanks for reading and I hope you found it interesting.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.keithclark.co.uk/calculating-element-vertex-data-from-css-transforms/feed/</wfw:commentRss>
+		<slash:comments>4</slash:comments>
+		</item>
+		<item>
+		<title>Targeting first and last rows in CSS grid layouts</title>
+		<link>http://blog.keithclark.co.uk/targeting-first-and-last-rows-in-css-grid-layouts/</link>
+		<comments>http://blog.keithclark.co.uk/targeting-first-and-last-rows-in-css-grid-layouts/#comments</comments>
+		<pubDate>Fri, 09 Aug 2013 07:04:47 +0000</pubDate>
+		<dc:creator>Keith Clark</dc:creator>
+				<category><![CDATA[CSS]]></category>
+
+		<guid isPermaLink="false">http://blog.keithclark.co.uk/?p=617</guid>
+		<description><![CDATA[I was recently asked is it possible to select every element in the last row of a grid containing an arbitrary number of items using CSS selectors? Not wanting to shy away from a challenge, I started hacking and found a solution which I&#8217;ve written up along with a few other techniques for targeting elements... <a href="http://blog.keithclark.co.uk/targeting-first-and-last-rows-in-css-grid-layouts/">Continue Reading</a>]]></description>
+				<content:encoded><![CDATA[<p>I was recently asked <q>is it possible to select every element in the last row of a grid containing an arbitrary number of items using CSS selectors?</q> Not wanting to shy away from a challenge, I started hacking and found a <a href="#solution">solution</a> which I&#8217;ve written up along with a few other techniques for targeting elements in the first or last row of a grid.</p>
+<p><a class="button" href="http://codepen.io/keithclark/full/Hygkt">View the demo</a></p>
+<p>Throughout this post I&#8217;ll be using the terms &#8220;balanced grid&#8221; and &#8220;unbalanced grid&#8221;. So we&#8217;re clear, a balanced grid has content in every grid cell and an unbalanced grid doesn&#8217;t have enough content to fill every cell, resulting in whitespace in the last row.</p>
+<figure>
+	<img src="http://blog.keithclark.co.uk/wp-content/uploads/2013/08/balance-unbalanced.png" alt="balance-unbalanced" width="780" height="230"/></p>
+<figcaption>Example of a balanced (left) and unbalanced (right) grid</figcaption>
+</figure>
+<p>For this post I&#8217;ll be working with the follow test markup. These techniques are very flexible and can be adapted to work with any markup that uses sibling elements to create a grid.</p>
+<pre><code class="html">&lt;ul class="grid-3"&gt;
+   &lt;li&gt;Grid item 1&lt;/li&gt;
+   &lt;li&gt;Grid item 2&lt;/li&gt;
+   ...
+   &lt;li&gt;Grid item 14&lt;/li&gt;
+   &lt;li&gt;Grid item 15&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+<h2>Styling the first row of a grid</h2>
+<figure>
+	<img src="http://blog.keithclark.co.uk/wp-content/uploads/2013/08/first-row.png" alt="" width="780" height="190"/></p>
+<figcaption>Targeting elements in the first row of a grid</figcaption>
+</figure>
+<p>Targeting elements in the first row of a grid is relatively simple. It doesn&#8217;t matter if the grid is balanced or unbalanced, the same solution applies to both cases. We need a selector that will only target the first <var>x</var> elements, where <var>x</var> is the number of columns in the grid. We can do that with the <code>:nth-child</code> pseudo-class:</p>
+<pre><code class="css">li:nth-child(-n+<var>x</var>) {
+  /* Add style rules */
+}</code></pre>
+<h4>For a 3 column grid:</h4>
+<pre><code class="css">li:nth-child(-n+3) {
+    background-color: red;
+}</code></pre>
+<h4>For a 5 column grid:</h4>
+<pre><code class="css">li:nth-child(-n+5) {
+    background-color: green;
+}</code></pre>
+<h4>For a 12 column grid:</h4>
+<pre><code class="css">li:nth-child(-n+12) {
+    background-color: blue;
+}</code></pre>
+<h2>Styling the last row of a balanced grid</h2>
+<figure>
+	<img src="http://blog.keithclark.co.uk/wp-content/uploads/2013/08/balanced-last-row.png" alt="" width="780" height="190"/></p>
+<figcaption>Targeting elements in the last row of a balanced grid</figcaption>
+</figure>
+<p>Targeting elements in the last row of a grid is simple if the grid is balanced. The same principles used to target the first row are used here except we&#8217;ll use the <code>:nth-last-child</code> pseudo-class to target the last <var>x</var> elements in the grid. Again, we&#8217;re substituting <var>x</var> with number of columns in the grid.</p>
+<pre><code class="css">li:nth-last-child(-n+<var>x</var>) {
+  /* Add style rules */
+}</code></pre>
+<h4>Last row of a balanced 3 column grid:</h4>
+<pre><code class="css">li:nth-last-child(-n+3) {
+    background-color: red;
+}</code></pre>
+<h4>Last row of a balanced 5 column grid:</h4>
+<pre><code class="css">li:nth-last-child(-n+5) {
+    background-color: green;
+}</code></pre>
+<h4>Last row of a balanced 12 column grid:</h4>
+<pre><code class="css">li:nth-last-child(-n+12) {
+    background-color: blue;
+}</code></pre>
+<h2 id="solution">Styling the last row of a balanced or unbalanced grid</h2>
+<figure>
+	<img src="http://blog.keithclark.co.uk/wp-content/uploads/2013/08/unbalanced-last-row.png" alt="" width="780" height="190"/></p>
+<figcaption>Targeting elements in the last row of an unbalanced grid</figcaption>
+</figure>
+<p>Styling elements in the last row is a little more tricky if the grid is unbalanced. Unlike the selector used for a balanced grid, we can&#8217;t just target the last <var>x</var><sup>th</sup> elements and style them. What if the grid has 5 columns with only 3 elements in the last row? &#8211; we would target the last 2 elements in the previous row too.</p>
+<p>To style the last row of a grid we&#8217;re going to use the following rule, again, substituting <var>x</var> with number of columns in the grid.</p>
+<pre><code class="css">li:nth-child(<var>x</var>n+1):nth-last-child(-n+<var>x</var>),
+  li:nth-child(<var>x</var>n+1):nth-last-child(-n+<var>x</var>) ~ li {
+    /* Add style rules */
+}</code></pre>
+<p>The <code class="css">:nth-child(<var>x</var>n+1)</code> pseudo-class will target every <var>x</var><sup>th</sup> element in the grid, which will be the first item in each row. The <code class="css">:nth-last-child(-n+<var>x</var>)</code> pseudo-class will target the last <var>x</var> elements in the grid. Combining these pseudo-classes will only target elements that match both, which in our case is the first element in the last row of the grid.</p>
+<p>To select all elements in the last row we add a general sibling combinator <code>~</code> to the previous selector so it targets everything after the first element in the last row. </p>
+<h4>Last row of a balanced or unbalanced 3 column grid:</h4>
+<pre><code class="css">li:nth-child(3n+1):nth-last-child(-n+3),
+  li:nth-child(3n+1):nth-last-child(-n+3) ~ li {
+    background-color: red;
+}</code></pre>
+<h4>Last row of a balanced or unbalanced 5 column grid:</h4>
+<pre><code class="css">li:nth-child(5n+1):nth-last-child(-n+5),
+  li:nth-child(5n+1):nth-last-child(-n+5) ~ li {
+    background-color: green;
+}</code></pre>
+<h4>Last row of a balanced or unbalanced 12 column grid:</h4>
+<pre><code class="css">li:nth-child(12n+1):nth-last-child(-n+12),
+  li:nth-child(12n+1):nth-last-child(-n+12) ~ li {
+    background-color: blue;
+}</code></pre>
+<p>If the grid will always have two or more rows, or if you want to completely ignore single row grids, a simpler selector can be used. This selector will fail to match the first item in a grid with a single row. To use it substitute <var>x</var> with the number of columns in the grid and <var>y</var> with the number of columns in the grid +1:</p>
+<pre><code class="css">li:nth-child(<var>x</var>n):nth-last-child(-n+<var>y</var>) ~ li {
+  /* Add style rules */
+}</code></pre>
+<h4>Last row of a balanced or unbalanced 3 column grid with more than one row:</h4>
+<pre><code class="css">li:nth-child(3n):nth-last-child(-n+4) ~ li {
+    background-color: red;
+}</code></pre>
+<h4>Last row of a balanced or unbalanced 5 column grid with more than one row:</h4>
+<pre><code class="css">li:nth-child(5n):nth-last-child(-n+6) ~ li {
+    background-color: green;
+}</code></pre>
+<pre><code class="css">li:nth-child(12n):nth-last-child(-n+13) ~ li {
+    background-color: green;
+}</code></pre>
+<h2>The end</h2>
+<p>I hope you found this useful.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.keithclark.co.uk/targeting-first-and-last-rows-in-css-grid-layouts/feed/</wfw:commentRss>
+		<slash:comments>4</slash:comments>
+		</item>
+		<item>
+		<title>Creating 3D worlds with HTML and CSS</title>
+		<link>http://blog.keithclark.co.uk/creating-3d-worlds-with-html-and-css/</link>
+		<comments>http://blog.keithclark.co.uk/creating-3d-worlds-with-html-and-css/#comments</comments>
+		<pubDate>Fri, 25 Jan 2013 00:14:58 +0000</pubDate>
+		<dc:creator>Keith Clark</dc:creator>
+				<category><![CDATA[CSS]]></category>
+		<category><![CDATA[HTML]]></category>
+		<category><![CDATA[JavaScript]]></category>
+
+		<guid isPermaLink="false">http://blog.keithclark.co.uk/?p=426</guid>
+		<description><![CDATA[Last year I created a demo showing how CSS 3D transforms could be used to create 3D environments. The demo was a technical showcase of what could be achieved with CSS at the time but I wanted to see how far I could push things, so over the past few months I&#8217;ve been working on... <a href="http://blog.keithclark.co.uk/creating-3d-worlds-with-html-and-css/">Continue Reading</a>]]></description>
+				<content:encoded><![CDATA[<p>Last year I created a <a href="http://keithclark.co.uk/labs/3dcss/demo/">demo</a> showing how CSS 3D transforms could be used to create 3D environments. The demo was a technical showcase of what could be achieved with CSS at the time but I wanted to see how far I could push things, so over the past few months I&#8217;ve been working on a <a href="http://keithclark.co.uk/labs/css3-fps/">new version</a> with more complex models, realistic lighting, shadows and collision detection. This post documents how I did it and the techniques I used.</p>
+<p><a class="button" href="http://keithclark.co.uk/labs/css3-fps/">View the demo</a> <em class="note">(best experienced in Safari)</em></p>
+<h2>Creating 3D objects</h2>
+<p>In today&#8217;s 3D engines an objects geometry is stored as a collection of points (or vertices) each having an <code>x</code>, <code>y</code> and <code>z</code> property that defines its position in 3D space. A rectangle for example would be defined by four vertices, one for each corner. Each corner can be individually manipulated allowing the rectangle to be pulled into different shapes by moving its vertices along the x, y and z axis. The 3D engine will use this vertex data and some clever math to render 3D objects on your 2D screen.</p>
+<p>With CSS transforms this is turned on its head. We can&#8217;t define arbitrary shapes using a set of points, we&#8217;re stuck with HTML elements which are always rectangular and have two dimensional properties such as <code>top</code>, <code>left</code>, <code>width</code> and <code>height</code> to determine their position and size. In many ways this makes dealing with 3D easier, as there&#8217;s no complex math to deal with — just apply a CSS transform to rotate an element around an axis and you&#8217;re done!</p>
+<p>Creating objects from rectangles seems limiting at first but you can do a surprising amount with them, especially when you start playing with PNG alpha channels. In the image below you can see the barrel top and wheel objects appear rounded despite being made up of rectangles.</p>
+<figure><img alt="A barrel, wheel and crate" src="http://blog.keithclark.co.uk/wp-content/uploads/2013/01/cssfps-objects.jpg" width="780" height="431" /></p>
+<figcaption>An example of 3D objects built entirely from rectangular &lt;div&gt; elements</figcaption>
+</figure>
+<p>All objects are created in JavaScript using a small set functions for creating primitive geometry. The simplest object that can be created is a plane, which is basically a <code>&lt;div&gt;</code> element. Planes can be added to assemblies, (a wrapper <code>&lt;div&gt;</code> element) allowing the entire object to be rotated and moved as a single entity. A tube is an assembly containing planes rotated around an axis and a barrel is a tube with a top plane and another for the bottom.</p>
+<p>The following example shows this in practice &#8211; have a look at the &#8220;JS&#8221; tab:</p>
+<figure>
+<p data-height="350" data-theme-id="255" data-slug-hash="ksayr" data-user="keithclark" data-default-tab="result" class='codepen'>See the Pen <a href='http://codepen.io/keithclark/pen/ksayr'>3D objects in CSS</a> by Keith Clark (<a href='http://codepen.io/keithclark'>@keithclark</a>) on <a href='http://codepen.io'>CodePen</a></p>
+<figcaption>A 3D oil drum built using rectangular &lt;div&gt; elements</figcaption>
+</figure>
+<p><script async src="http://codepen.io/assets/embed/ei.js"></script></p>
+<h2>Lighting</h2>
+<p>Lighting was by the biggest challenge in this project. I won&#8217;t lie, the math nearly broke me, but it was worth the effort because lighting brings an incredible sense of depth and atmosphere an otherwise flat and lifeless environment.</p>
+<figure><img alt="A lifeless 3D room" src="http://blog.keithclark.co.uk/wp-content/uploads/2013/01/css3fps-unlit.jpg" width="780" height="450" /></p>
+<figcaption>A screenshot of an unlit room</figcaption>
+</figure>
+<p>As I mentioned earlier, an object in your average 3D engine is defined by a series of vertices. To calculate lighting these vertices are used to compute a &#8220;normal&#8221; which can be used to determine how much light will hit the centre point of a surface. This poses a problem when creating 3D objects with HTML elements because this vertex data doesn&#8217;t exist. So the first challenge was to write a set of functions to calculate the four vertices (one for each corner) for an element that had been transformed with CSS so that lighting could be calculated. Once that was figured out I began to experiment with different ways to light objects. In my first experiment, I used multiple <code>background-image</code>s to simulate light hitting a surface by combining a <code>linear-gradient</code> with an image. The effect uses a gradient that begins and ends with the same <code>rgba</code> value, producing a solid block of colour. Varying the value of the alpha channel allows the underlying image to bleed through the colour block creating the illusion of shading.</p>
+<figure><img title="css3d-rgba" alt="5 differently shaded textures" src="http://blog.keithclark.co.uk/wp-content/uploads/2013/01/css3d-rgba1.jpg" width="580" height="124" /></p>
+<figcaption>Example of using a gradient to shade a texture</figcaption>
+</figure>
+<p>To achieve the darkest effect in the above image I apply the following styles to an element:</p>
+<pre><code class="css">element {
+    background: linear-gradient(rgba(0,0,0,.8), rgba(0,0,0,.8)), url("texture.png");
+}</code></pre>
+<p>In practice, these styles are not predefined in a stylesheet, they are calculated dynamically and applied directly to the elements <code>style</code> property using JavaScript.</p>
+<figure>
+<p data-height="350" data-theme-id="255" data-slug-hash="qsdAH" data-user="keithclark" data-default-tab="result" class='codepen'>See the Pen <a href='http://codepen.io/keithclark/pen/qsdAH'>3D objects in CSS with shading</a> by Keith Clark (<a href='http://codepen.io/keithclark'>@keithclark</a>) on <a href='http://codepen.io'>CodePen</a></p>
+<figcaption>A flat shaded 3D oil drum</figcaption>
+</figure>
+<p><script async src="http://codepen.io/assets/embed/ei.js"></script></p>
+<p>This technique is referred to as flat shading. It&#8217;s an effective method of shading, however it does result in the entire surface having the same detail. For example, if I created a 3D wall that extended into the distance, it would be shaded identically along its entire length. I wanted something that looked more realistic.</p>
+<h2>A second stab at lighting</h2>
+<p>To simulate real lighting, surfaces need to darken as they extend beyond the range of a light source, and if multiple lights hit the same surface it should shade accordingly.</p>
+<p>To flat shade a surface I only had to calculate the light hitting the centre point, but now I need to sample the light at various points on the surface so I can determine how light or dark each point should be. The math required to create this lighting data is identical to that used for flat shading.</p>
+<p>Initially, I tried producing a <code>radial-gradient</code> from the lighting data to use in place of the <code>linear-gradient</code> in my earlier attempt. The results were more realistic but multiple light sources were still a problem because layering multiple gradients on top of each other causes the underlying texture to get progressively darker. If CSS supported image compositing and blending modes (they are coming) it may have been possible to make radial gradients work.</p>
+<p>The solution was to use a <code>&lt;canvas&gt;</code> element to programatically generate a new texture that could be used as a light map. With the calculated lighting data I could draw a series of black pixels, varying each ones alpha channel based on the amount of light that would hit the surface at that point. Finally the <code>canvas.toDataURL()</code> method was used to encode the image and use it in place of the <code>linear-gradient</code> in my first experiment. Repeating this process for each surface produces a realistic lighting effect for the entire environment.</p>
+<p>Calculating and drawing these textures is intensive work. The basement ceiling and floor are both 1000 x 2000 pixels in size, creating a texture to cover this area isn&#8217;t practical so I only sample lights every 12 pixels, which produces a light map 12 times smaller than the surface it will cover. Setting <code>background-size: 100%</code> causes the browser to scale the texture up using bilinear (or similar) filtering so it fits the surface area. The scaling effect produces a result that is almost identical to a light map generated for every single pixel.</p>
+<p>The background style rule for applying a light map and texture to a surface looks something like this:</p>
+<pre class="pre-wrap"><code class="css">element {
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAyCAYAAAAqRkmtAAACiUlEQVRoQ9VZa0vEQAy8+/8/yPcbFVFEEREREcS/4eNSmpKmmU12t/XYD6W3beGmk8kk2a5Xq9XR5vjeHD+B47d/xjrTtdSxud3dl+d+OTmt+yvDmX4c9n8eAbtVoAeCyRRYBknMb4XRfRVyC6wEqYFK0Cj0HG4OfSr8HG56ZhR6AhoJO2u4JPxInxK4BDYCyYu9YOglk/xbsymvy8RhpjlrNEArqWRCrWlBQEsYRWC98EfAmlm/W8FoBKzWp2aT11KbZugJ6NKMzpJMFlANPJX1Wpdyjdj0NKozv9PoTjD0pRYVDb2b9VGgVtZHNKrLpuelEzb5DRhoRKel1alGox1wGfpmgFIYPbCIUa+MRiuTpdMJox7QrSdTM/bUlOFzZ7SERqM+6pbQZpqSZtq8ZhrnZkaRZoa7ZsblZjYgjgM1vmYClYOd1+LBnpRM9iQItLTFQ/0o6vLhXH9aCTTaOWnAehp1K9NZP4rUbufo2UnP9ajV82b6Tg70FudiZtKtHmrtoiOIpU9PpzD0Fwoo2n6sbZo9gJJZcwq9DGi0JpFyhjuoU7pxtSCjtXP9aDfv2gFaOoJofaKst5JJ+ukwM91kMirtyMp0a5MsOtyZicSobxMaLd3K0dZksZlt+HcZoUdsImZTY0g20PtA6OeypohFQR99MCqTDnnqA0NKp7My+ggYjerz34A+LQRUsolCrnWaNPznSqCoeyo1e/bV0T4+LV4KgCJwJAPNZI41WfV+MPzXAFDLluY2e83kqDoR2jcD6ByJhJoRrUtea31OgL4roCU9aORDWMRDIav0Fh890JR3lnz/1GVU1nsGlJX1n4UaRQkV6ZpQ+Uwm05ej0TkSycp8i2Hoo3+utUtvDhk9pwAAAABJRU5ErkJggg==") 0 0 / 100% 100%, url("texture.png") 0 0 / auto auto;
+}</code></pre>
+<p>Which produces the final lit surface:</p>
+<figure><img alt="Light map blended with a texture map" src="http://blog.keithclark.co.uk/wp-content/uploads/2013/01/lightmap.jpg" width="780" height="161" /></p>
+<figcaption>Visualisation of a low resolution light map scaled up and layered onto a texture</figcaption>
+</figure>
+<h2>Casting Shadows</h2>
+<p>Settling on canvas for lighting made casting shadows possible. The logic behind shadow casting turned out to be rather easy. Ordering surfaces based on their proximity to a light source allowed me to not only produce a light map for a surface but also determine if a previous surface had already been hit by the current ray of light. If it had, I could set the relevant light map pixel to be in shadow. This technique allows one image to used for both lighting and shadows.</p>
+<figure><img alt="An atmospheric room" src="http://blog.keithclark.co.uk/wp-content/uploads/2013/01/css3fps-lit.jpg" width="780" height="450" /></p>
+<figcaption>A screenshot of the final room with lighting and shadows</figcaption>
+</figure>
+<h2>Collisions</h2>
+<p>Collision detection uses a height map &#8211; a top down image of the level that uses colour to represent the height of objects within it. White represents the deepest and black the highest possible position the player can reach. As the player moves around the level I convert their position into 2D coordinates and use them to check the colour in the height map. If the colour is lighter than the players last position the player falls, if it&#8217;s slightly darker the player can step up or jump on to an object. If the colour is much darker the player comes to a stop &#8211; I use this for walls and fences. Currently, this image is drawn by hand but I will be looking into creating it dynamically.</p>
+<figure><img alt="The level map" src="http://blog.keithclark.co.uk/wp-content/uploads/2013/01/3dfps-map.jpg" width="780" height="296" /></p>
+<figcaption>Picture of the height map and how it relates to the level</figcaption>
+</figure>
+<h2>What&#8217;s next?</h2>
+<p>Well, a game would be a natural next step for this project — it would be interesting to see how scalable these techniques are. In the short term, I&#8217;ve started working on a prototype <a href="http://keithclark.co.uk/labs/three-js-css-renderer/demos/cubes.html">CSS3 renderer</a> for the excellent <a href="http://mrdoob.github.com/three.js/">Three.js</a> that uses these same techniques to render geometry and lights created by a real 3D engine.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.keithclark.co.uk/creating-3d-worlds-with-html-and-css/feed/</wfw:commentRss>
+		<slash:comments>46</slash:comments>
+		</item>
+		<item>
+		<title>The state of CSS 3D transforms</title>
+		<link>http://blog.keithclark.co.uk/the-state-of-css-3d-transforms/</link>
+		<comments>http://blog.keithclark.co.uk/the-state-of-css-3d-transforms/#comments</comments>
+		<pubDate>Wed, 21 Nov 2012 14:01:56 +0000</pubDate>
+		<dc:creator>Keith Clark</dc:creator>
+				<category><![CDATA[CSS]]></category>
+
+		<guid isPermaLink="false">http://blog.keithclark.co.uk/?p=373</guid>
+		<description><![CDATA[If you follow me on twitter you&#8217;ll know I&#8217;ve been experimenting with CSS 3D transforms to see how far I can push them. A while back I wrote a very simple first person demo built using HTML, CSS3 and a splash of JavaScript. The 3D enviroment was constructed entirely from &#60;div&#62; elements that were positioned... <a href="http://blog.keithclark.co.uk/the-state-of-css-3d-transforms/">Continue Reading</a>]]></description>
+				<content:encoded><![CDATA[<p>If you follow me on <a href="http://twitter.com/keithclarkcouk">twitter</a> you&#8217;ll know I&#8217;ve been experimenting with CSS 3D transforms to see how far I can push them. A while back I wrote a very simple <a href="http://www.keithclark.co.uk/labs/3dcss/demo/">first person demo</a> built using HTML, CSS3 and a splash of JavaScript. The 3D enviroment was constructed entirely from <code>&lt;div&gt;</code> elements that were positioned in 3D space using CSS transforms.</p>
+<p><img src="http://blog.keithclark.co.uk/wp-content/uploads/2012/11/fps11.jpg" alt="" title="Original prototype" width="780" height="440" /></p>
+<p>In my free time I&#8217;ve been evolving the idea to see if I could actually create a full 3D environment with lighting, shadows, collision etc. (I&#8217;ll be posting about the new version soon). So far, it&#8217;s going really well but pushing the boundaries of 3D transforms has revealed various bugs and inconstancies across all browsers so I thought I&#8217;d document them here.</p>
+<p><img title="New prototype" src="http://blog.keithclark.co.uk/wp-content/uploads/2012/11/fps2.jpg" alt="" width="780" height="440" /></p>
+<h2>Chrome</h2>
+<p>When it comes to rendering a large number of elements manipulated with 3D transforms Chrome does a great job. Of all the browsers I&#8217;ve been looking at Chrome is definitely the fastest at this.</p>
+<p>The only major issue is the inconsistent rendering of elements as you transform them between repaints. Groups of elements are intermittent missed when the browser redraws the screen causing terrible flicker.</p>
+<p>The second issue relates to <code>-webkit-mask-image</code>. On some machine configurations the mask image is incorrectly scaled to fit inside the viewport when using a 3D transform. The image that the mask is applied to is not scaled which produces an interesting side-effect.</p>
+<p>The <code>-webkit-mask-image</code> problem appears to be a hardware accelerated graphics issue because it doesn&#8217;t happen on machines with older GPUs unless you force hardware acceleration via <code>about:flags</code>. I&#8217;ve filed a <a href="https://bugs.webkit.org/show_bug.cgi?id=91493">bug</a> about this.</p>
+<h2>Safari</h2>
+<p>Safari is almost perfect. It&#8217;s pretty fast at rendering hundreds of elements using 3D transforms, there&#8217;s no flicker between frames and the whole experience is silky smooth. Sounds too good to be true&#8230;</p>
+<p>Unfortunately, there is a problem. Safari doesn&#8217;t apply the <code>Z</code> value to the transform matrix when you use <code>-webkit-transform-origin</code> which makes moving a &#8220;camera&#8221; impossible unless you build up the transform matrix long hand. In my <a href="http://www.keithclark.co.uk/labs/3dcss/demo/">original prototype</a> you could only move along the X and Z axis. There was no vertical movement so I switched the Z axis for the Y axis to get round this issue. For my new prototype I want stairs, jumping and falling so I need movement in all three axis.</p>
+<p>I filed a <a href="https://bugs.webkit.org/show_bug.cgi?id=91494">bug</a> for this issue which was eventually closed as duplicate of <a href="https://bugs.webkit.org/show_bug.cgi?id=88587">this</a> better documented bug.</p>
+<h2>Firefox</h2>
+<p>Firefox suffers from similar rendering issues to Chrome, it&#8217;s also very slow. So slow that it chokes on even a few transformed elements. I suspect Firefox isn&#8217;t using the GPU to render 3D transforms &#8211; I&#8217;d like to get some clarification on this.</p>
+<h2>Internet Explorer</h2>
+<p>Oh dear. No support for <code>transform-style: preserve-3d</code> which means nested elements aren&#8217;t transformed. This makes the project a non starter for IE. It&#8217;s a real shame, but somehow, deep down I always knew this was never going to work in IE.</p>
+<h2>Summary</h2>
+<p>Although each browser has its own issues, generally they all do a great job of rendering transformed elements accurately (except for IE not supporting <code>preserve-3d</code>). So, provided you make modest use of 3D transforms, you&#8217;ll probably never encounter any of these issues.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.keithclark.co.uk/the-state-of-css-3d-transforms/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+		</item>
+		<item>
+		<title>Moving IE specific CSS into @media blocks</title>
+		<link>http://blog.keithclark.co.uk/moving-ie-specific-css-into-media-blocks/</link>
+		<comments>http://blog.keithclark.co.uk/moving-ie-specific-css-into-media-blocks/#comments</comments>
+		<pubDate>Thu, 08 Nov 2012 13:14:58 +0000</pubDate>
+		<dc:creator>Keith Clark</dc:creator>
+				<category><![CDATA[CSS]]></category>
+
+		<guid isPermaLink="false">http://blog.keithclark.co.uk/?p=321</guid>
+		<description><![CDATA[Here&#8217;s an alternative method for writing IE specific style rules without having to move them into separate files. The idea is to put your IE styles into a @media block that will only be applied in certain versions of IE. I discovered this trick while looking for a way to write a media query pass-through... <a href="http://blog.keithclark.co.uk/moving-ie-specific-css-into-media-blocks/">Continue Reading</a>]]></description>
+				<content:encoded><![CDATA[<p>Here&#8217;s an alternative method for writing IE specific style rules without having to move them into separate files. The idea is to put your IE styles into a <code>@media</code> block that will only be applied in certain versions of IE. I discovered this trick while looking for a way to write a media query pass-through filter for older versions of IE.</p>
+<h2>It&#8217;s a hack!</h2>
+<p>As with all CSS hacks this technique works by exploiting errors in a browsers style sheet parser. We&#8217;ll be using a combination of strategically placed <code>\0</code>, <code>\,</code> and <code>\9</code> character escapes which IE will happily accept as valid syntax causing it to parse the <code>@media</code> block and apply any style rules defined inside it. Other browsers correctly identify the syntax error and discard the <code>@media</code> block along with its contents.</p>
+<h3>The @media rule hacks</h3>
+<h4>To target IE 6 and 7</h4>
+<pre><code class="css">@media screen\9 {
+    body { background: red; }
+}</code></pre>
+<h4>To target IE 6, 7 and 8</h4>
+<pre><code class="css">@media \0screen\,screen\9 {
+    body { background: green; }
+}</code></pre>
+<h4>To target IE 8</h4>
+<pre><code class="css">@media \0screen {
+    body { background: blue; }
+}</code></pre>
+<h4>To target IE 8, 9 and 10</h4>
+<pre><code class="css">@media screen\0 {
+    body { background: orange; }
+}</code></pre>
+<h4>To target IE 9 and 10</h4>
+<pre><code class="css">@media screen and (min-width:0\0) {
+    body { background: yellow; }
+}</code></pre>
+<h2>Using the hack</h2>
+<p>This says it all really:</p>
+<pre><code class="css">body {
+  background: pink;
+}
+
+/* IE 6 and 7 fallback styles */
+@media all\9 {
+    body {
+        background: red;
+    }
+    h1 {
+        color: yellow;
+    }
+}
+
+/* IE 6 and 7 fallback print styles */
+@media print\9 {
+    body {
+        color: blue;
+    }
+    h1 {
+        color: red;
+    }
+}
+</code></pre>
+<p>Note that the <code>@media</code> type can be any of the <a href="http://www.w3.org/TR/CSS2/media.html#media-types">supported types</a>, so rules in <code>@media screen\9</code> will target screens and <code>@media print\9</code> will only apply to print style sheets.</p>
+<h2>Testing tool</h2>
+<p>These hacks were discovered using a <a href="/wp-content/uploads/2012/11/ie-media-block-tests.php"><code>@media</code> syntax testing tool</a> that I wrote for testing browser parsing of <code>@media</code> blocks.</p>
+<h2>Disclaimer</h2>
+<p>I&#8217;m not advocating the use of these techniques, I&#8217;ve shared this information because it&#8217;s not documented anywhere. Use this if it suits you to do so but be warned, the word hack appears frequently in this post for a reason.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.keithclark.co.uk/moving-ie-specific-css-into-media-blocks/feed/</wfw:commentRss>
+		<slash:comments>8</slash:comments>
+		</item>
+		<item>
+		<title>Working with elements before the DOM is ready</title>
+		<link>http://blog.keithclark.co.uk/working-with-elements-before-the-dom-is-ready/</link>
+		<comments>http://blog.keithclark.co.uk/working-with-elements-before-the-dom-is-ready/#comments</comments>
+		<pubDate>Fri, 17 Aug 2012 11:31:21 +0000</pubDate>
+		<dc:creator>Keith Clark</dc:creator>
+				<category><![CDATA[CSS]]></category>
+		<category><![CDATA[HTML]]></category>
+		<category><![CDATA[JavaScript]]></category>
+
+		<guid isPermaLink="false">http://blog.keithclark.co.uk/?p=266</guid>
+		<description><![CDATA[I&#8217;ve been looking into ways to modify elements before DOMContentLoaded so that enhancements can be made as an element is rendered to the screen allowing users to begin interacting with a page even if it hasn&#8217;t finished loading or if rendering is being blocked by 3rd party assets such as banner ads or tracking code.... <a href="http://blog.keithclark.co.uk/working-with-elements-before-the-dom-is-ready/">Continue Reading</a>]]></description>
+				<content:encoded><![CDATA[<p>I&#8217;ve been looking into ways to modify elements before <code>DOMContentLoaded</code> so that enhancements can be made as an element is rendered to the screen allowing users to begin interacting with a page even if it hasn&#8217;t finished loading or if rendering is being blocked by 3rd party assets such as banner ads or tracking code. The most robust way to do this is to include an inline <code>&lt;script&gt;</code> directly after each element you need to enhance which calls the relevant JavaScript functions &mdash; this works, but it&#8217;s not very DRY and it&#8217;s not easy to maintain.</p>
+<p>Recently, I stumbled across a hack in an <a href="http://davidwalsh.name/detect-node-insertion">article</a> by <a href="https://twitter.com/davidwalshblog">David Walsh</a> which uses a CSS animation and the <code>animationStart</code> event to detect when an element has been inserted into the DOM. It works by exploiting the fact that CSS animations run as soon as an element is appended to the document. Creating a simple animation that runs for a tiny duration and applying it to any elements you to want modify will fire a <code>animationStart</code> event for each element as it&#8217;s inserted, essentially emulating the (now defunct) DOM mutation events. What&#8217;s great about this technique is it also works during page load!</p>
+<h2>The trick</h2>
+<p>Let&#8217;s say we want to enhance all <code>&lt;input&gt;</code> fields:</p>
+<pre><code class="html">&lt;input type="text" size="50"&gt;</code></pre>
+<p>We&#8217;ll need to set up a CSS animation and apply it to every <code>&lt;input&gt;</code> field with CSS: </p>
+<pre><code class="css">/* prefixes omitted for brevity */
+input {
+    animation-name: nodeReady;
+    animation-duration: 0.001s;
+}
+
+@keyframes nodeReady {  
+    from { clip: rect(1px, auto, auto, auto); }
+    to { clip: rect(0px, auto, auto, auto); }  
+}</code></pre>
+<p>Finally, we need to make our &#8220;enhancements&#8221; with JavaScript:</p>
+<pre><code class="js">/* prefixed variants omitted for brevity */
+document.addEventListener("animationstart", function(e) {
+    if (e.animationName == "nodeReady") {
+        e.target.value = new Date();
+    }
+}, false);</code></pre>
+<p>That&#8217;s it, if the browser supports CSS animations all <code>&lt;input&gt;</code> elements will be modified as the page loads.</p>
+<h2>Fallbacks</h2>
+<p>If the browser doesn&#8217;t support CSS animations we need a fallback to ensure theses elements are still modified. Handling this case is actually really simple, just use <code>DOMContentLoaded</code> or the window <code>load</code> event to fire the code you would have run in the <code>animationStart</code> event. In this situation things will behave the way they always have.</p>
+<h2>Credit</h2>
+<p>Credit must go to David Walsh for his <a href="http://davidwalsh.name/detect-node-insertion">article</a> and to Daniel Buchner for the <a href="http://www.backalleycoder.com/2012/04/25/i-want-a-damnodeinserted/">original discovery</a>. Also, <a href="https://twitter.com/james_allardice">James Allardice</a> is working on wrapping this up into something easily deployable.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.keithclark.co.uk/working-with-elements-before-the-dom-is-ready/feed/</wfw:commentRss>
+		<slash:comments>5</slash:comments>
+		</item>
+		<item>
+		<title>IE conditional comments and asset load order</title>
+		<link>http://blog.keithclark.co.uk/ie-conditional-comments-and-asset-load-order/</link>
+		<comments>http://blog.keithclark.co.uk/ie-conditional-comments-and-asset-load-order/#comments</comments>
+		<pubDate>Tue, 07 Jun 2011 14:03:53 +0000</pubDate>
+		<dc:creator>Keith Clark</dc:creator>
+				<category><![CDATA[CSS]]></category>
+		<category><![CDATA[HTML]]></category>
+		<category><![CDATA[JavaScript]]></category>
+
+		<guid isPermaLink="false">http://blog.keithclark.co.uk/?p=4</guid>
+		<description><![CDATA[Yesterday I was experimenting with a few ideas for decreasing the start-up time of selectivizr (something I&#8217;ll be posting about in the future). Part of the testing process was to establish if the position of the selectivizr script in a document had any affect on its start-up time. While testing I noticed an interesting side... <a href="http://blog.keithclark.co.uk/ie-conditional-comments-and-asset-load-order/">Continue Reading</a>]]></description>
+				<content:encoded><![CDATA[<p>Yesterday I was experimenting with a few ideas for decreasing the start-up time of <a href="http://selectivizr.com/">selectivizr</a> (something I&#8217;ll be posting about in the future). Part of the testing process was to establish if the position of the selectivizr script in a document had any affect  on its start-up time. While testing I noticed an interesting side effect relating to the way assets are downloaded when they are mixed with conditional comments. I couldn&#8217;t find any specific information on this behavior so I thought I&#8217;d document my findings here.</p>
+<p>Like most scripts and style sheets that uniquely target IE, the recommended method of inserting selectivizr into a document is to wrap it in a conditional comment, hiding it from other browsers. Inevitably these IE only scripts and styles become mixed with other unconditional assets but the way these assets are mixed together can actually alter their download order.</p>
+<p>The code sample below shows the script &#8217;2.js&#8217; wrapped in a conditional comment that targets IE&lt;9. Note that the script &#8217;2.js&#8217; is the second asset in the document but in IE6-8 it will actually download last.</p>
+<pre><code class="html">&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;script src="1.js"&gt;&lt;/script&gt;
+  &lt;!--[if lt IE 9]&gt;&lt;script src="2.js"&gt;&lt;/script&gt;&lt;![endif]--&gt;
+  &lt;script src="3.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;script src="4.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h2>Time to do some testing</h2>
+<p>My test consisted of a single HTML document &#8216;index.html&#8217; populated with the above markup and four JavaScript files, each consisting of a single comment. The test files were hosted on a local web server (IIS) and delivered over HTTP. The conditional comment containing the script ‘2.js’ (coloured red in the network graphs) was inserted at various points in the document and the browser was refreshed. The subsequent download sequence was captured using the Network tab in IE&#8217;s developer tools.</p>
+<p>The following results are from the IE8 tests but the outcomes were identical in IE6 and IE7.</p>
+<h2>Test #1</h2>
+<p>Browsing to &#8216;index.html&#8217; produced the following network graph:</p>
+<p><img class="alignnone size-full wp-image-29" title="Network timeline showing '2.js' loading out of sequence" src="http://blog.keithclark.co.uk/wp-content/uploads/2011/06/grab1.png" alt="" width="596" height="110" /></p>
+<p>The graph shows that &#8217;2.js&#8217; has loaded out of sequence when compared with the document structure. The original markup shows &#8217;2.js&#8217; as the second asset in the document tree yet the time line clearly shows &#8217;2.js&#8217; loading last, after &#8217;4.js&#8217;.</p>
+<p>I decided to add four images after the &#8217;4.js&#8217; script to see if theses assets would have any impact on the download order – they did:</p>
+<p><img class="alignnone size-full wp-image-55" title="Network timeline showing 2.js loading after all other assets" src="http://blog.keithclark.co.uk/wp-content/uploads/2011/06/grab5.png" alt="" width="596" height="177" /></p>
+<p>As you can see, &#8217;2.js&#8217; isn&#8217;t just the last script to download, it&#8217;s also the last file to download.</p>
+<h2>Test #2</h2>
+<p>Next, I rearranged the scripts a little. The conditional comment containing &#8217;2.js&#8217; was moved below the &#8217;3.js&#8217; script:</p>
+<pre><code class="html">&lt;script src="1.js"&gt;&lt;/script&gt;
+&lt;script src="3.js"&gt;&lt;/script&gt;
+&lt;!--[if lt IE 9]&gt;&lt;script src="2.js"&gt;&lt;/script&gt;&lt;![endif]--&gt;</code></pre>
+<p>Refreshing the page produced the same result, the download order was out of sequence. &#8217;2.js&#8217; was still the last file to download:</p>
+<p><img class="alignnone size-full wp-image-32" title="Network timeline showing that '2.js' is still loading out of sequence " src="http://blog.keithclark.co.uk/wp-content/uploads/2011/06/grab2.png" alt="" width="596" height="110" /></p>
+<h2>Test #3</h2>
+<p>Moving the conditional comment before the other <code>&lt;script&gt;</code> tags caused something else to happen:</p>
+<pre><code class="html">&lt;!--[if lt IE 9]&gt;&lt;script src="2.js"&gt;&lt;/script&gt;&lt;![endif]--&gt;
+&lt;script src="1.js"&gt;&lt;/script&gt;
+&lt;script src="3.js"&gt;&lt;/script&gt;</code></pre>
+<p>Refreshing the page revealed the <code>&lt;script&gt;</code>s were now downloading in the correct sequence. Moving the conditional comment before all the other <code>&lt;script&gt;</code> tags had restored the download order:</p>
+<p><img class="alignnone size-full wp-image-33" title="Network timeline showing '2.js' loading in the correct position" src="http://blog.keithclark.co.uk/wp-content/uploads/2011/06/grab3.png" alt="" width="596" height="110" /></p>
+<p>Something else had happened. In the first three network graphs you&#8217;ll notice that &#8217;2.js&#8217; didn’t start downloading until the other files had finished. It was being blocked. The graph above clearly shows all four &#8216;.js&#8217; files downloading in parallel.</p>
+<h2>What about IE9?</h2>
+<p>Until now my tests had been focused on selectivizr&#8217;s target browsers, IE6-8 but I wanted to see what happened in IE9. I restored the markup to it’s original state (moving &#8217;2.js&#8217; back to it&#8217;s position as the 2nd script) and removed the version operator (the &#8216;lt IE 9&#8242; part) from the conditional comment:</p>
+<pre><code class="html">&lt;!--[if IE]&gt;&lt;script src="2.js"&gt;&lt;/script&gt;&lt;![endif]--&gt;</code></pre>
+<p>After making the changes I reloaded the page in IE8 to check my results were correct before moving on to IE9. They were different! This time the network graph showed that the download order has been correctly preserved and the .js files had downloaded in parallel:</p>
+<p><img class="alignnone size-full wp-image-35" title="Network timeline showing '2.js' loading in the correct sequence" src="http://blog.keithclark.co.uk/wp-content/uploads/2011/06/grab4.png" alt="" width="596" height="110" /></p>
+<p>So it seems that conditional comment operators can affect download order too. But that’s not all, the download order is also preserved if the page and it&#8217;s assets are loaded directly from the file system (with or without a conditional operator).</p>
+<p>When I did eventually test in IE9 I found the download order was correct in every test, so this anomaly has disappeared in the latest version of IE.</p>
+<h2>Wrapping up</h2>
+<p>In IE8 and below the download sequence of assets varies depending on the position of conditional comments, the operators used and where the files are being served from. IE9 (and probably IE10) always download assets in the document order.</p>
+<p>It&#8217;s important to note that although the sequence in which assets are  downloaded can differ they are always processed in document order.</p>
+<p>Finally, I recreated this test using <code>&lt;link&gt;</code>&#8216;d style sheets instead of <code>&lt;scripts&gt;</code>s. The outcome was identical, the style sheet download order differed depending on the configuration of the conditional comment but the style sheet cascade still reflected the document order.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.keithclark.co.uk/ie-conditional-comments-and-asset-load-order/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+		</item>
+	</channel>
+</rss>

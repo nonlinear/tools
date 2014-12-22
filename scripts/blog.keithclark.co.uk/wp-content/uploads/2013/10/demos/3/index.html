@@ -1,0 +1,213 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>CSS Vertex Demo 3: Exploded Cube</title>
+    <link rel="stylesheet" href="../base.css">
+    <style>
+        .vertex, .face, .assembly {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform-style: preserve-3d;
+            -moz-transform-style: preserve-3d;
+            -ms-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+        }
+        .face {
+            background-color: rgba(50, 40, 60, .35);
+        }
+        .vertex {
+            width: 9px;
+            height: 9px;
+            margin: -4px;
+            background: rgba(255, 0, 0, .5);
+            border-radius: 7px;
+            color: #333;
+            font: 10px / 1 "Courier New", monospace;
+            text-indent: 14px;
+            white-space: nowrap;
+        }
+        #scene {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            -webkit-perspective: 400px;
+            -moz-perspective: 400px;
+            -ms-perspective: 400px;
+            perspective: 400px;
+            -webkit-transform-style: preserve-3d;
+            -moz-transform-style: preserve-3d;
+            -ms-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+        }
+        .cube {
+            -webkit-animation: spin 20s linear infinite;
+            -moz-animation: spin 20s linear infinite;
+            -ms-animation: spin 20s linear infinite;
+            animation: spin 20s linear infinite;
+        }
+        .cube .face {
+            width: 200px;
+            height: 200px;
+            margin: -100px;
+        }
+        .cube .face:nth-child(1) {
+            -webkit-transform: translateZ(200px);
+            -moz-transform: translateZ(200px);
+            -ms-transform: translateZ(200px);
+            transform: translateZ(200px);
+        }
+        .cube .face:nth-child(2) {
+            -webkit-transform: translateZ(-200px) rotateY(180deg);
+            -moz-transform: translateZ(-200px) rotateY(180deg);
+            -ms-transform: translateZ(-200px) rotateY(180deg);
+            transform: translateZ(-200px) rotateY(180deg);
+        }
+        .cube .face:nth-child(3) {
+            -webkit-transform: translateX(-200px) rotateY(-90deg);
+            -moz-transform: translateX(-200px) rotateY(-90deg);
+            -ms-transform: translateX(-200px) rotateY(-90deg);
+            transform: translateX(-200px) rotateY(-90deg);
+        }
+        .cube .face:nth-child(4) {
+            -webkit-transform: translateX(200px) rotateY(90deg);
+            -moz-transform: translateX(200px) rotateY(90deg);
+            -ms-transform: translateX(200px) rotateY(90deg);
+            transform: translateX(200px) rotateY(90deg);
+        }
+        .cube .face:nth-child(5) {
+            -webkit-transform: translateY(200px) rotateX(-90deg);
+            -moz-transform: translateY(200px) rotateX(-90deg);
+            -ms-transform: translateY(200px) rotateX(-90deg);
+            transform: translateY(200px) rotateX(-90deg);
+        }
+        .cube .face:nth-child(6) {
+            -webkit-transform: translateY(-200px) rotateX(90deg);
+            -moz-transform: translateY(-200px) rotateX(90deg);
+            -ms-transform: translateY(-200px) rotateX(90deg);
+            transform: translateY(-200px) rotateX(90deg);
+        }
+        @-webkit-keyframes spin {
+            to {
+                -webkit-transform: rotateX(360deg) rotateY(1080deg) rotateZ(720deg);
+            }
+        }
+        @-moz-keyframes spin {
+            to {
+                -moz-transform: rotateX(360deg) rotateY(1080deg) rotateZ(720deg);
+            }
+        }
+        @keyframes spin {
+            to {
+                transform: rotateX(360deg) rotateY(1080deg) rotateZ(720deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CSS Vertex Demo 3: Exploded Cube</h1>
+    </header>
+
+    <div id="scene">
+        <div id="cube" class="assembly cube">
+            <div id="face" class="face"></div>
+            <div id="face" class="face"></div>
+            <div id="face" class="face"></div>
+            <div id="face" class="face"></div>
+            <div id="face" class="face"></div>
+            <div id="face" class="face"></div>
+        </div>
+    </div>
+
+    <footer>
+        Please see the accompanying <a href="../../../../../../calculating-element-vertex-data-from-css-transforms/index.html">blog post</a>
+	or discuss on <a href="http://twitter.com/keithclarkcouk">twitter</a><br>
+	<span class=credit>A <a href="http://keithclark.co.uk/labs">Keith Clark</a> experiment</span>
+    </footer>
+
+    <script src="../js.js"></script>
+    <script>
+
+        // shim requestAnimationFrame
+        window.requestAnimationFrame =
+            window.requestAnimationFrame ||
+            window.webkitRequestAnimationFrame ||
+            window.mozRequestAnimationFrame ||
+            function(f) { setTimeout(f, 1000/60); };
+
+
+        // Select the faces
+        var faces = [].slice.call(document.querySelectorAll(".face"));
+
+
+        /* Loop
+        ---------------------------------------------------------------- */
+
+        function loop() {
+
+            // shedule the next update
+            requestAnimationFrame(loop);
+
+            faces.forEach(function (face, i) {
+                // Extract the elements transform
+                var vertexData = computeVertexData(face);
+
+                // Draw the vertices 
+                renderVertex("a", face, vertexData.a);
+                renderVertex("b", face, vertexData.b);
+                renderVertex("c", face, vertexData.c);
+                renderVertex("d", face, vertexData.d);
+            });
+        }      
+
+        // start the loop
+        loop();
+
+
+        /* Renders a vertex to the DOM
+        ---------------------------------------------------------------- */
+
+        function renderVertex (id, face, vertex) {
+            var id = "_vertex_" + id,
+                vertexElem = face[id],
+                x = vertex.x.toFixed(2),
+                y = vertex.y.toFixed(2),
+                z = vertex.z.toFixed(2),
+                s = 1 - vertex.z / 400; // scale to keep the text readable
+
+            if (!vertexElem) {
+                vertexElem = face[id] = document.createElement("div");
+                vertexElem.className = "vertex";
+                document.getElementById("scene").appendChild(vertexElem);
+            }
+
+            // show the vertex coordinates
+            vertexElem.textContent = "x:" + x + " y:" + y + " z:" + z;
+            
+            // apply the tralsation to the vertex
+            vertexElem.style.cssText = 
+                "-webkit-transform: translate3d(" + x + "px," + y + "px," + z + "px) scale(" + s + ");" +
+                "-moz-transform: translate3d(" + x + "px," + y + "px," + z + "px) scale(" + s + ");" +
+                "-ms-transform: translate3d(" + x + "px," + y + "px," + z + "px) scale(" + s + ");" +
+                "transform: translate3d(" + x + "px," + y + "px," + z + "px) scale(" + s + ");";
+        }
+
+    </script>
+
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-10812217-3']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+</body>
+</html>
