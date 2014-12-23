@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Scrolling Progress Bar</title>
+  <link href="style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+  
+  <!-- Montserrat Sans -->
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400, 700' rel='stylesheet' type='text/css'>        
+  
+</head>
+
+<body>
+  <div id="demo-bar"></div>
+  <div class="container">
+    <a href="http://webdesigncrowd.com" class="btn"><span class="title">WebDesignCrowd</span></a>
+    <a href="http://www.webdesigncrowd.com/sliding-icon-button/" class="btn"><span class="title">Back to Article</span></a>
+    <h1>Scrolling Progress Bar</h1>
+
+    <div class="content">
+      <div id="intro">
+        <h2>Introduction</h2>
+        <p>Nullam condimentum leo in nunc feugiat gravida. Nunc sed tellus et eros mattis auctor. Nam luctus commodo metus, pretium commodo nisl congue et. Sed vel ipsum eget ligula aliquam fringilla quis vel quam. Sed pulvinar libero id egestas rutrum. Ut quis metus ut lacus cursus commodo. Nam in pharetra leo. Donec augue enim, aliquam eget est quis, imperdiet aliquet mauris. Ut id augue vel tortor aliquam feugiat. </p>
+        <p>Nullam facilisis, urna nec hendrerit tempus, tellus tortor molestie libero, ac malesuada dui odio condimentum tellus. Curabitur posuere id ipsum eget convallis. Suspendisse accumsan magna id pharetra sodales. Cras sit amet mi non turpis auctor dapibus eu in justo. Aliquam erat ipsum, dictum et elementum quis, dictum et diam. Mauris elementum eleifend nulla, in consectetur quam tristique a. Donec consequat elit in dolor semper, et aliquam mauris euismod.</p>
+        <p>Aliquam id tellus purus. Fusce fermentum interdum mauris a lobortis. Donec vehicula at nulla vel sagittis. Maecenas commodo dapibus ipsum, tincidunt bibendum magna. Maecenas libero odio, dapibus a tortor blandit, vestibulum porta felis. Donec quis massa eu elit semper rutrum. Sed mattis nisl sed elit placerat, id aliquet magna sodales. Donec a malesuada sem. Praesent accumsan cursus viverra. Morbi dapibus lacinia bibendum. Duis ut egestas dui.</p>
+        <p>Integer id tellus dictum, ullamcorper lacus iaculis, interdum quam. Pellentesque fringilla cursus adipiscing. Morbi fermentum volutpat gravida. Cras quis commodo neque, ac tempus nisi. Curabitur facilisis leo at ligula sagittis, in pharetra sem molestie. Nulla sagittis libero ut tortor sollicitudin, nec mollis augue gravida. Nulla diam felis, sodales et ipsum et, commodo suscipit nunc. Aenean accumsan leo eros, tristique elementum arcu pellentesque sed. In sed tempor neque. Phasellus vulputate, est at adipiscing rhoncus, turpis magna ultricies nisi, nec lacinia nisi nulla quis ipsum. Nullam auctor turpis vel risus ultrices, quis luctus nisi bibendum. In accumsan, nibh sit amet ultrices mattis, justo neque luctus sapien, porttitor ornare turpis tortor vel sem. Nulla et sapien ut est hendrerit volutpat at non tortor. Praesent faucibus sit amet sapien et pharetra.</p>
+      </div>
+      <div id="part-1">
+        <h2>Part 1: Do this thing!</h2>
+        <p>Nullam condimentum leo in nunc feugiat gravida. Nunc sed tellus et eros mattis auctor. Nam luctus commodo metus, pretium commodo nisl congue et. Sed vel ipsum eget ligula aliquam fringilla quis vel quam. Sed pulvinar libero id egestas rutrum. Ut quis metus ut lacus cursus commodo. Nam in pharetra leo. Donec augue enim, aliquam eget est quis, imperdiet aliquet mauris. Ut id augue vel tortor aliquam feugiat. </p>
+        <p>Nullam facilisis, urna nec hendrerit tempus, tellus tortor molestie libero, ac malesuada dui odio condimentum tellus. Curabitur posuere id ipsum eget convallis. Suspendisse accumsan magna id pharetra sodales. Cras sit amet mi non turpis auctor dapibus eu in justo. Aliquam erat ipsum, dictum et elementum quis, dictum et diam. Mauris elementum eleifend nulla, in consectetur quam tristique a. Donec consequat elit in dolor semper, et aliquam mauris euismod.</p>
+        <p>Aliquam id tellus purus. Fusce fermentum interdum mauris a lobortis. Donec vehicula at nulla vel sagittis. Maecenas commodo dapibus ipsum, tincidunt bibendum magna. Maecenas libero odio, dapibus a tortor blandit, vestibulum porta felis. Donec quis massa eu elit semper rutrum. Sed mattis nisl sed elit placerat, id aliquet magna sodales. Donec a malesuada sem. Praesent accumsan cursus viverra. Morbi dapibus lacinia bibendum. Duis ut egestas dui.</p>
+      </div>
+
+      <div id="part-2">
+        <h2>Part 2: Do that other thing!</h2>
+        <p>Integer id tellus dictum, ullamcorper lacus iaculis, interdum quam. Pellentesque fringilla cursus adipiscing. Morbi fermentum volutpat gravida. Cras quis commodo neque, ac tempus nisi. Curabitur facilisis leo at ligula sagittis, in pharetra sem molestie. Nulla sagittis libero ut tortor sollicitudin, nec mollis augue gravida. Nulla diam felis, sodales et ipsum et, commodo suscipit nunc. Aenean accumsan leo eros, tristique elementum arcu pellentesque sed. In sed tempor neque. Phasellus vulputate, est at adipiscing rhoncus, turpis magna ultricies nisi, nec lacinia nisi nulla quis ipsum. Nullam auctor turpis vel risus ultrices, quis luctus nisi bibendum. In accumsan, nibh sit amet ultrices mattis, justo neque luctus sapien, porttitor ornare turpis tortor vel sem. Nulla et sapien ut est hendrerit volutpat at non tortor. Praesent faucibus sit amet sapien et pharetra.</p>
+      </div>
+      
+    </div>
+    <div class="progress">
+      <div class="wrapper">
+        <div class="bar">
+          <a href="#intro">Introduction</a>
+          <i class="icon-ok"></i>
+          <span></span>
+        </div>
+        <div class="bar">
+          <a href="#part-1">Part 1: Do this thing!</a>
+          <i class="icon-ok"></i>
+          <span></span>
+        </div>
+        <div class="bar">
+          <a href="#part-2">Part 2: Do that other thing!</a>
+          <i class="icon-ok"></i>
+          <span></span>
+        </div>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+
+  <div class="footer">
+    Footer! So the progress bar can finish
+  </div>
+
+  <!-- Javascript -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="js/init.js"></script>
+  <script> 
+    $(function(){
+      $("#demo-bar").load("../demo-bar.html"); 
+    });
+  </script> 
+</body>
+</html>
