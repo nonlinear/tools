@@ -1,0 +1,148 @@
+@import "compass/css3";
+
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,700);
+
+$black:       #1a1a1a;
+$blue:        #3498db;
+$gray:        #cbd0d3;
+$white:       #ffffff;
+
+// Base Styles
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: $gray;
+  color: $black;
+  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+}
+input, textarea {
+  border: none;
+  outline: none;
+  resize: none;
+  width: 100%;
+  @include appearance(none);
+}
+label {
+  &:hover { cursor: text; }
+}
+.credit {
+  bottom: 40px;
+  color: darken($gray,20%);
+  font-size: 12px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  z-index: 99;
+  a {
+    color: darken($gray,35%);
+    text-decoration: none;
+    &:hover { color: $black; }
+    &:active { color: lighten($black,10%); }
+  }
+}
+
+// Form Styles
+.contact-form {
+  background: $white;
+  height: auto;
+  margin: 100px auto;
+  max-width: 500px;
+  overflow: hidden;
+  width: 65%;
+  @include border-radius(5px);
+  @include box-shadow(rgba($black,0.1) 0 1px 3px 0);
+  @media (max-width: 500px) {
+    margin: 0 0 100px;
+    width: 100%;
+  }
+  .email, .message, .name {
+    position: relative;
+    input, textarea {
+      &:focus {
+        background: lighten($gray,15%);
+      }
+    }
+    label {
+      color: $gray;
+      left: 23px;
+      position: absolute;
+      top: 23px;
+      @include transition(all,150ms);
+    }
+    &.typing label {
+      color: $blue;
+      font-size: 10px;
+      top: 7px;
+    }
+  }
+  .email, .name {
+    width: calc(50% - 1px);
+    @media (max-width: 500px) {
+      width: 100%;
+    }
+    input {
+      // height: 45px;
+      padding: 23px 0 8px 23px;
+    }
+  }
+  .email {
+    border-left: 1px darken($white,10%) solid;
+    float: right;
+    @media (max-width: 500px) {
+      border-left: none;
+      border-top: 1px darken($white,10%) solid;
+    }
+  }
+  .message {
+    border-bottom: 1px darken($white,10%) solid;
+    border-top: 1px darken($white,10%) solid;
+    clear: both;
+    textarea {
+      height: 200px;
+      padding: 23px;
+    }
+  }
+  .name {
+    float: left;
+  }
+  .submit {
+    background: lighten($gray,15%);
+    display: block;
+    overflow: hidden;
+    padding: 23px;
+    .button {
+      background: $blue;
+      border: 1px $blue solid;
+      color: $white;
+      float: right;
+      padding: 9px 0;
+      width: 100px;
+      @include border-radius(5px);
+      @media (max-width: 500px) {
+        float: none;
+      }
+      &:hover { background: lighten($blue,5%); }
+      &:active { background: darken($blue,5%); }
+      &:focus {
+        border-color: lighten($blue,30%);
+        @include box-shadow(
+          lighten($blue,15%) 0 0 4px 1px,
+          lighten($blue,15%) 0 0 4px 1px inset
+        );
+      }
+    }
+    .user-message {
+      float: left;
+      padding-top: 22px;
+      @media (max-width: 500px) {
+        float: none;
+        padding: 0 0 10px;
+      }
+    }
+  }
+}

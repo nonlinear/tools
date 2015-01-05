@@ -1,0 +1,193 @@
+@import url('http://fonts.googleapis.com/css?family=Roboto');
+
+$b: #aaa;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font: 16px/1 'Roboto', sans-serif;
+  text-align: center;
+  color: #555;
+  background: #ddd;
+}
+
+.title {
+  padding: 35px 0 40px;
+  color: #999;
+  border-bottom: 1px solid $b;
+}
+
+.title span {
+  display: block;
+  margin: 0 0 15px;
+  font-size: 30px;
+  color: #555;
+}
+
+.demo {
+  padding: 35px 0;
+  border-bottom: 1px solid $b;
+  background: #eee;
+}
+
+.demo:nth-child(odd) {
+  background: none;
+}
+
+.demo:last-child {
+  border: 0;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+  border: 0;
+  outline: 0;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+input[type='text'] {
+  width: 220px;
+  padding: 10px 10px 12px 60px;
+  font-size: 12px;
+  color: #555;
+  border: 1px solid $b;
+  background-color: #fff;
+}
+
+.css {
+  display: inline-block;
+  position: relative;
+  margin: 0 5px 0 0;
+}
+
+.css input {
+  transition: .1s all linear;
+}
+
+.css label {
+  position: absolute;
+  top: 13px;
+  left: 15px;
+  font-size: 12px;
+  color: #aaa;
+  transition: .1s all linear;
+  cursor: text;
+}
+
+.demo1 .css.active input {
+  padding-left: 45px;
+}
+
+.demo1 .css.active label {
+  left: 6px;
+  opacity: .5;
+}
+
+.demo2 .css.active input {
+  padding-left: 15px;
+}
+
+.demo2 .css.active label {
+  top: 3px;
+  font-size: 9px;
+  opacity: .8;
+}
+
+.demo3 .css.active input {
+  padding-left: 15px;
+}
+
+.demo3 .css.active label {
+  top: -18px;
+}
+
+.demo4 .css.active input {
+  padding-left: 15px;
+}
+
+.demo4 .css.active label {
+  top: 0;
+  left: 0;
+  font-size: 40px;
+  opacity: .1;
+}
+
+.demo5 .css.active label {
+  top: 8px;
+  left: 10px;
+  padding: 5px;
+  color: #fff;
+  background: $b;
+}
+
+.demo6 .css.active input {
+  padding-left: 70px;
+}
+
+.demo6 .css.active label {
+  top: 0;
+  left: 0;
+  padding: 14px;
+  color: #fff;
+  background: $b;
+}
+
+.demo7 .css.active label {
+  top: 8px;
+  left: 10px;
+  padding: 5px;
+  background: #eee;
+  box-shadow: inset 0 0 0 1px $b;
+}
+
+.demo8 .css.active input {
+  padding-left: 25px;
+}
+
+.demo8 .css.active label {
+  top: 15px;
+  left: 0;
+  font-size: 10px;
+  transform: rotate(-90deg);
+}
+
+.demo9 .css.active input {
+  padding-left: 15px;
+}
+
+.demo9 .css.active label {
+  top: -15px;
+  left: 0;
+  padding: 3px 5px;
+  font-size: 10px;
+  color: #fff;
+  background: $b;
+}
+
+.demo10 .css.active input {
+  padding-left: 15px;
+}
+
+.demo10 .css.active label {
+  top: 39px;
+  left: 0;
+  width: 220px;
+  padding: 3px 5px;
+  font-size: 10px;
+  color: #fff;
+  background: $b;
+}

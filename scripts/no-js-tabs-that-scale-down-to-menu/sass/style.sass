@@ -1,0 +1,388 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400|Inconsolata)
+
+
+  
+/////////////////  
+// VARIABLES
+/////////////////
+
+$tab-count: 5
+$menu-item-height: 46px
+  
+$color-primary-light: #E74C3C
+$color-primary-dark: #C0392B
+$color-text: #444
+
+$color-border: #dfdfdf
+$color-border-top: $color-primary-dark
+
+$color-label-bg-inactive: #ECF0F1
+$color-label-bg-active: #fff
+$color-label-active: $color-border-top
+$color-label-inactive: #BDC3C7
+
+$btn-border-top-thickness: 6px
+
+$tab-padding: 24px
+$tab-transition-duration: 200ms
+$tab-base-border-style: 1px solid $color-border
+$tab-trans-border-style: 1px solid transparent
+  
+$panel-transition-duration: 600ms
+$main-padding: 48px 24px
+$menu-padding: 12px 24px
+
+
+
+/////////////////
+// ELEMENTS
+/////////////////
+
+// global list style
+ul#tabs-list
+  list-style: none
+  text-align: center
+  border-bottom: $tab-base-border-style
+  margin: 0
+  padding: 0
+  
+  
+  
+// global label style
+label.panel-label
+  user-select: none
+  display: block
+  width: 100%
+  color: $color-label-inactive
+  cursor: pointer
+  background-color: $color-label-bg-inactive
+  transition-property: border-top, background-color, color
+  transition-duration: $tab-transition-duration
+  // hover style
+  &:hover
+    color: $color-label-active
+    
+    
+    
+// global panel style
+#panels
+  background-color: $color-label-bg-active
+  .container
+    margin: 0 auto
+    width: 90%
+  section
+    header
+      label.panel-label
+        padding: $menu-padding
+        box-sizing: border-box
+    main
+      box-sizing: border-box
+      max-height: 0
+      opacity: 0
+      transition: opacity $panel-transition-duration
+      overflow-y: hidden
+
+        
+        
+/////////////////
+// MIXINS
+/////////////////
+
+// tabs list style
+=tabs-list-style
+  text-align: center
+  border-bottom: $tab-base-border-style
+  // li child
+  li
+    display: inline-block
+    text-align: center
+    font-size: 0.875em
+    width: (100% / $tab-count) - 2%
+    box-shadow: 0px -2px 2px rgba(0, 0, 0, 0.05)
+    border-top: $tab-base-border-style
+    border-right: $tab-base-border-style
+    transition-property: border-top-color
+    transition-delay: $tab-transition-duration
+    transition-duration: $tab-transition-duration
+    position: relative
+
+    // hover
+    &:hover
+      transition: none
+      border-top: 1px solid transparent
+      border-right: none
+      // conditional transborder on last li
+      &.last
+        border-right: $tab-trans-border-style
+      & + li
+        border-left: $tab-base-border-style
+    // tab labels
+    label.panel-label
+      border-top: 0px solid $color-border-top
+      padding: $tab-padding 0
+      &:hover
+        border-top-width: $btn-border-top-thickness
+        padding-top: $tab-padding + 1
+        
+        
+        
+// global active label styles
+=active-label
+  background-color: $color-label-bg-active
+  color: $color-border-top
+  
+  
+  
+// active tab label style
+=active-tab-label
+  border-top: $btn-border-top-thickness solid $color-border-top
+  // add extra pixel for shifting li downward over border
+  padding-top: $tab-padding + 2
+  
+// active tab li style
+=active-tab-li-style
+  pointer-events: none
+  cursor: default
+  // shift down over border. label has extra pixel in padding.
+  transform: translate(0, 1px)
+  box-shadow: none
+  border-top: none
+  border-right: none
+  // conditional transborder on last li
+  &.last
+    border-right: $tab-trans-border-style
+  // next li border-left
+  & + li
+    border-left: $tab-base-border-style
+  label.panel-label
+    +active-label
+    +active-tab-label
+    
+    
+    
+// active menu label style
+=active-menu-label
+  background-color: $color-label-active
+  color: $color-label-bg-active
+
+// active menu li style
+=active-menu-li-style
+  max-height: $menu-item-height
+  opacity: 1
+  label.panel-label
+    +active-label
+    +active-menu-label
+  
+    
+    
+// active panel style
+=active-panel-style
+  main
+    max-height: initial
+    opacity: 1
+    padding: $main-padding
+    
+    
+    
+// panel toggling
+@for $i from 1 through $tab-count
+  #panel-#{$i}-ctrl:checked ~ #panels #panel-#{$i}
+    +active-panel-style
+
+    
+
+/////////////////
+// MEDIA QUERIES
+/////////////////
+    
+// small devices
+@media all and (max-width: 767px)
+  // displaying menu nav
+  @for $i from 1 through $tab-count
+    #nav-ctrl:checked ~ #tabs-list #li-for-panel-#{$i}
+      max-height: $menu-item-height
+      opacity: 1
+
+  // "show" open nav label when closed, hide when open
+  #open-nav-label
+    display: block
+    position: absolute
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    cursor: pointer
+    //background: rgba(0,0,0,0.6)
+  #nav-ctrl:checked ~ #tabs-list #open-nav-label
+    display: none
+  // "show" close nav label when open, hide when closed
+  #close-nav-label
+    display: block
+    max-height: 0
+    overflow-y: hidden
+    background-color: $color-text
+    color: $color-label-bg-inactive
+    padding: 0px
+    transition: max-height $tab-transition-duration
+    cursor: pointer
+    text-transform: uppercase
+    font-size: 12px
+    line-height: 22px
+    letter-spacing: 1px
+  #nav-ctrl:checked ~ #tabs-list #close-nav-label
+    max-height: 36px
+    opacity: 1
+    padding: $menu-padding
+      
+  // tabs list style
+  #tabs-list
+    position: relative
+    label.panel-label
+      padding: ($tab-padding / 2) 0
+    @for $i from 1 through $tab-count
+      #li-for-panel-#{$i}
+        max-height: 0
+        overflow-y: hidden
+        transition: max-height $tab-transition-duration
+
+  // tab controller triggering menu     
+  @for $i from 1 through $tab-count
+    #panel-#{$i}-ctrl:checked ~ #tabs-list #li-for-panel-#{$i}
+      +active-menu-li-style
+      
+  #panels 
+    .container
+      width: 100%
+    section header
+      display: block
+
+        
+        
+// big devices
+@media all and (min-width: 768px)
+  // tab controller triggering tabs
+  @for $i from 1 through $tab-count
+    #panel-#{$i}-ctrl:checked ~ #tabs-list #li-for-panel-#{$i}
+      +active-tab-li-style
+  
+  // tabs list style
+  ul#tabs-list
+    +tabs-list-style
+    
+  // nav label
+  #open-nav-label,
+  #close-nav-label
+    display: none
+      
+  // nav checkbox
+  #nav-ctrl
+    display: none
+
+        
+
+// real big devices
+@media all and (min-width: 900px)
+  main
+    width: 70%
+    margin: 0 auto
+    
+    
+    
+/////////////////
+// DEMO STYLES
+/////////////////
+
+// radios
+.panel-radios
+  $width: 20px
+  $offset: $width / 2
+  $middle: ceil($tab-count/2)
+  //display: none
+  position: fixed
+  left: 50%
+  top: 10px
+  width: $width
+  opacity: 0.5
+  z-index: 99
+  // conditionally centering at top of screen (cant have wrapper...ugh math)
+  @for $i from 1 through $tab-count
+    @if $i < ceil($tab-count/2)
+      &:nth-child(#{$i})
+        transform: translateX((-1 * ($width * ($middle - $i))) - $offset)
+    @if $i == ceil($tab-count/2)
+      &:nth-child(#{$i})
+        transform: translateX(-1 * $offset)
+    @if $i > ceil($tab-count/2)
+      &:nth-child(#{$i})
+        transform: translateX($width * ($i - $middle) - $offset)
+  // menu checkbox
+  &:nth-child(#{$tab-count+1})
+    top: 30px
+    transform: translateX(-1 * ($width/2))
+    display: block
+
+// body
+body
+  background: $color-primary-light
+  color: $color-text
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, sans-serif
+
+// banner
+#introduction
+  width: 90%
+  margin: 0 auto
+  padding: $main-padding
+  color: white
+  h1
+    font-weight: 300
+    text-align: center
+      
+// content text formatting
+main
+  h1
+    margin-top: 0
+    font-weight: 300
+    color: $color-primary-dark
+  p
+    line-height: 1.8
+  hr
+    margin: 12px 0
+    border-top: $tab-base-border-style
+    
+// demo styles    
+label.demo-label
+  background-color: $color-primary-dark
+  color: $color-label-bg-active
+  padding: 4px 8px
+  border-radius: 2px
+  cursor: pointer
+  display: inline-block
+  user-select: none
+  &:hover
+    background-color: $color-primary-light
+#demo-child-toggle
+  display: none
+  &:checked ~ #demo-parent #demo-child
+    color: $color-primary-dark
+    font-weight: bold
+    text-transform: uppercase
+#demo-parent
+  margin-top: 8px
+
+// styling that code
+code,
+pre
+  color: $color-primary-dark
+  font-family: Inconsolata, 'Andale Mono', Andale, monowidth
+  background-color: $color-label-bg-inactive
+  border: $tab-base-border-style
+  border-radius: 2px
+
+code
+  padding: 2px 6px
+pre
+  padding: 12px
+  line-height: 1.6
+  strong
+    color: $color-text
+  
