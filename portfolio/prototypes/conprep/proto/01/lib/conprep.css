@@ -1,0 +1,37 @@
+body, html {
+	background-color: #ccc;
+}
+.sidebar {
+	background-color: #f7f7db;
+}
+#header {
+	background-color: #dbd8ac;
+}
+#logo {
+	background-color: #888b8e;
+}
+input, textarea, select {
+	border: solid 1px #E5E5E5;
+}
+/*
+input, textarea, select, .button, sup, .rich-combobox-list-decoration, .rich-combobox, .daterange .range, .rich-menu-item-label, .rich-tree-node-handle {
+	box-shadow: rgba(43, 115, 0, 0.35) 0px 0px 10px;
+	-moz-box-shadow: rgba(43, 115, 0, 0.35) 0px 0px 10px;
+	-webkit-box-shadow: rgba(43, 115, 0, 0.35) 0px 0px 10px;
+}.titleunit {
+	box-shadow: rgba(43, 115, 0, 0.2) 0px 0px 5px;
+	-moz-box-shadow: rgba(43, 115, 0, 0.2) 0px 0px 5px;
+	-webkit-box-shadow: rgba(43, 115, 0, 0.2) 0px 0px 5px;
+}
+input:hover, textarea:hover, input:focus, textarea:focus, select:hover, select:focus, .button:hover, .button:focus, a:hover sup, .rich-tab-active sup, .rich-combobox-list-decoration:hover, .rich-combobox-list-decoration:focus, .rich-combobox:hover, .rich-combobox:focus, .daterange:hover .range, .daterange:focus .range, .propertyFilter:hover .propertyFilter input, .propertyFilter:focus .propertyFilter input, .rich-menu-item-label:hover, .rich-menu-item-label:focus, .rich-tree-node-handle:hover, .rich-tree-node-handle:focus, .titleunit:hover {
+	box-shadow: rgba(43, 115, 0, .9) 0px 0px 20px;
+	-moz-box-shadow: rgba(43, 115, 0, .9) 0px 0px 20px;
+	-webkit-box-shadow: rgba(43, 115, 0, .9) 0px 0px 20px;
+}
+*/
+.button:hover:not(.off), .button:focus, a:hover sup, .rich-tab-header:hover, .rich-menu-item:hover, .rich-menu-item:focus, .titleunit:hover {
+	color: #F30;
+}
+.rich-tab-active, .rich-tab-active:hover {
+	color: #000;
+}

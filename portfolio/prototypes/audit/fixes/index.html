@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Portico Audit</title>
+<link rel="stylesheet" href="../css/forms.css">
+<link rel="stylesheet" href="../css/preso.css">
+<script src="../js/modernizr-2.0.6.min.js"></script>
+</head>
+
+<body class="preso">
+<h2>Portico Audit</h2>
+<h2>CSS Fixes</h2>
+<ol>
+  <li><a target="proto" class="pending" href="Login_error.html">Login, Error</a></li>
+  <li><a target="proto" class="pending" href="home.html">Home</a></li>
+  <li><a target="proto" class="pending" href="journal.html">Journal</a></li>
+  <li><a target="proto" class="pending" href="journal_holdings.html">Journal, Holdings</a></li>
+  <li><a target="proto" class="pending" href="journal_holdings_2.html">Journal, Holdings 2</a></li>
+</ol>
+<h2>Errors</h2>
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>Error</td>
+    <td>Page</td>
+    <td>Browser</td>
+    <td> Fix</td>
+  </tr>
+  <tr>
+    <td>Login/password, no linebreak<br /></td>
+    <td><a target="live" href="http://aa2ptcingest01.ithaka.org:8080/portico/jsf/login.xhtml">Login</a></td>
+    <td>IE7</td>
+    <td>CSS</td>
+  </tr>
+  <tr>
+    <td>checkbox, too long</td>
+    <td><a target="live" href="http://aa2ptcingest01.ithaka.org:8080/portico/jsf/login.xhtml">Login</a></td>
+    <td>IE7</td>
+    <td>CSS</td>
+  </tr>
+  <tr>
+    <td>search field, still &quot;s&quot;</td>
+    <td><a target="live" href="http://aa2ptcingest01.ithaka.org:8080/portico/jsf/home.xhtml?cid=419">Home</a></td>
+    <td>IE7</td>
+    <td>Specs</td>
+  </tr>
+  <tr>
+    <td>&quot;what is digital preservation&quot; menu, not working.</td>
+    <td><a target="live" href="http://aa2ptcingest01.ithaka.org:8080/portico/jsf/home.xhtml?cid=419">Home</a></td>
+    <td>IE7</td>
+    <td>CSS</td>
+  </tr>
+  <tr>
+    <td>portico audit logo is cut on the bottom</td>
+    <td><a target="live" href="http://aa2ptcingest01.ithaka.org:8080/portico/jsf/home.xhtml?cid=419">Home</a></td>
+    <td>IE7</td>
+    <td>CSS</td>
+  </tr>
+  <tr>
+    <td>&quot;compare holdings&quot; menu doesn't work</td>
+    <td><a target="live" href="http://aa2ptcingest01.ithaka.org:8080/portico/jsf/journal.xhtml">Content Type</a></td>
+    <td>IE7</td>
+    <td>Code</td>
+  </tr>
+  <tr>
+    <td>&quot;download holdings&quot; opens a new window, same page.</td>
+    <td><a target="live" href="http://aa2ptcingest01.ithaka.org:8080/portico/jsf/journal.xhtml">Content Type</a></td>
+    <td>IE7</td>
+    <td>Code</td>
+  </tr>
+  <tr>
+    <td>graph datestamp, too small</td>
+    <td><a target="live" href="http://aa2ptcingest01.ithaka.org:8080/portico/jsf/contentSet.xhtml?cid=527">Content Set</a></td>
+    <td>IE7</td>
+    <td>CSS</td>
+  </tr>
+  <tr>
+    <td>warning breaks (ul)</td>
+    <td><a target="live" href="http://aa2ptcingest01.ithaka.org:8080/portico/jsf/login.xhtml">Login</a> (error)</td>
+    <td>ALL</td>
+    <td>CSS</td>
+  </tr>
+  <tr>
+    <td>tooltip on content (remove title=)</td>
+    <td><a target="live" href="http://aa2ptcingest01.ithaka.org:8080/portico/jsf/home.xhtml?cid=419">Home</a></td>
+    <td>ALL</td>
+    <td>Code</td>
+  </tr>
+  <tr>
+    <td>growth title has no tooltip</td>
+    <td><a target="live" href="http://aa2ptcingest01.ithaka.org:8080/portico/jsf/home.xhtml?cid=419">Home</a></td>
+    <td>ALL</td>
+    <td>Code</td>
+  </tr>
+  <tr>
+    <td>search needs a placeholder</td>
+    <td><a target="live" href="http://aa2ptcingest01.ithaka.org:8080/portico/jsf/home.xhtml?cid=419">Home</a></td>
+    <td>ALL</td>
+    <td>Specs</td>
+  </tr>
+  <tr>
+    <td>search layout</td>
+    <td><a target="live" href="http://aa2ptcingest01.ithaka.org:8080/portico/jsf/home.xhtml?cid=419">Home</a></td>
+    <td>Firefox</td>
+    <td>Code</td>
+  </tr>
+  <tr>
+    <td>loading image, find another one</td>
+    <td><a target="live" href="http://aa2ptcingest01.ithaka.org:8080/portico/jsf/journal.xhtml">Content Type</a></td>
+    <td>ALL</td>
+    <td>CSS</td>
+  </tr>
+  <tr>
+    <td>letters tooltips copy is just &quot;N&quot; should be &quot;N items&quot;</td>
+    <td><a target="live" href="http://aa2ptcingest01.ithaka.org:8080/portico/jsf/journal.xhtml">Content Type</a></td>
+    <td>ALL</td>
+    <td>Code</td>
+  </tr>
+  <tr>
+    <td>menu on the left, titles are incorrect  (<a href="../CT_ejournallist.html" target="proto">view prototype</a>)</td>
+    <td><a target="live" href="http://aa2ptcingest01.ithaka.org:8080/portico/jsf/journal.xhtml">Content Type</a></td>
+    <td>ALL</td>
+    <td>Code</td>
+  </tr>
+  <tr>
+    <td>graph timestamp, bg layout</td>
+    <td><a target="live" href="http://aa2ptcingest01.ithaka.org:8080/portico/jsf/journal.xhtml">Content Type</a></td>
+    <td>ALL</td>
+    <td>CSS</td>
+  </tr>
+  <tr>
+    <td>upload form layout</td>
+    <td><a target="live" href="http://aa2ptcingest01.ithaka.org:8080/portico/jsf/journal.xhtml">Content Type (Holdings)</a></td>
+    <td>ALL</td>
+    <td>CSS</td>
+  </tr>
+  <tr>
+    <td>form has no &quot;Save&quot; button</td>
+    <td><a target="live" href="http://aa2ptcingest01.ithaka.org:8080/portico/jsf/journal.xhtml">Content Type (Holdings)</a></td>
+    <td>ALL</td>
+    <td>Code</td>
+  </tr>
+  <tr>
+    <td>century/decade/year, need instructions (<a href="../CS_1.html" target="proto">view prototype</a>)</td>
+    <td><a target="live" href="http://aa2ptcingest01.ithaka.org:8080/portico/jsf/contentSet.xhtml?cid=527">Content Set</a></td>
+    <td>ALL</td>
+    <td>Code</td>
+  </tr>
+  <tr>
+    <td>century/decade/year pulldowns, selected tab</td>
+    <td><a target="live" href="http://aa2ptcingest01.ithaka.org:8080/portico/jsf/contentSet.xhtml?cid=527">Content Set</a></td>
+    <td>ALL</td>
+    <td>Specs</td>
+  </tr>
+  <tr>
+    <td>&quot;no data found&quot;</td>
+    <td><a target="live" href="http://aa2ptcingest01.ithaka.org:8080/portico/jsf/contentSet.xhtml?cid=527">Content Set</a></td>
+    <td>ALL</td>
+    <td>Code</td>
+  </tr>
+</table>
+</body>
+<!--[if IE]>
+ <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+ <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+ <![endif]-->
+<script src="../js/jquery-plus-jquery-ui.js"></script>
+<script src="../js/jquery.qtip-1.0.0-rc3.js"></script>
+<script src="../js/script.js"></script>
+<script src="../js/charts/raphael.js"></script>
+<script src="../js/charts/g_pie.js"></script>
+<script src="../js/charts/g.js"></script>
+</body>
+</html>

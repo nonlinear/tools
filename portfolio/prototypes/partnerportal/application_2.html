@@ -1,0 +1,329 @@
+
+        <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>On Deck Capital Partner Portal</title>
+
+  <!-- Framework CSS -->
+	<link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection" />
+	<link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print" />
+  <!--[if IE]><link rel="stylesheet" href="blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
+	
+	<!-- Import fancy-type plugin for the sample page. -->
+    <link href="css/style.css" rel="stylesheet" type="text/css" /><!--[if lt IE 7]>
+  <link rel="stylesheet" type="text/css" href="styleIE.css" />
+<![endif]-->
+    
+
+	
+</head>
+
+<!--[if lt IE 7 ]> <body class="ie6"> <![endif]-->
+<!--[if IE 7 ]> <body class="ie7"> <![endif]-->
+<!--[if IE 8 ]> <body class="ie8"> <![endif]-->
+<!--[if !IE]>--> <body class="notIE"> <!--<![endif]--><div  class="container">
+
+<div id="header">
+
+		<div class="span-9 logo"><a href="home.html"><img src="images/blank.gif" /></a></div>
+<div id="nav" class="span-15 rightalign last"><form method="post" action="$link.setRelative('deal_list.html')">Welcome, ${name} <a href="logout.html" target="_self">Sign Out</a><br /> 
+            <label> Deal Status</label> <input id="merchantName" type="text" value="Merchant Name" name="merchantName" onFocus="if(this.value=='Merchant Name')this.value='';" onBlur="if(this.value=='')this.value='Merchant Name';" /><input name="" type="button" id="search" value="OK" /></form>
+    </div>
+	 
+</div>
+
+
+
+<div id="menu"><ul>
+<li><a href="home.html">Home</a></li>
+	<li><a href="application_1.html" class="selected">Submit Application</a></li>
+    <li><a href="deals.html">Deal Pipeline</a></li>
+    <li><a href="resources.html">Resources</a></li>
+    
+    <li class="last"></li>
+</ul>
+			</div>
+            
+            <div class="content">
+            <div class="span-5 colborder title">
+		      <div class="noicon"><h2>Submit Application</h2></div>
+		      <ul>
+	<li>1. Business Info</li>
+    <li class="selected">2. Owner Info</li>
+    <li>3. Terms and Conditions</li><li class="li_credit">Instant Credit</li>
+    <li>4. Results</li>
+</ul>
+			
+		      </div>
+              
+          <div class="span-12 colborder"><form id="form" method="post"><div class="field span-12 last">
+          
+          <label>Please select one of the following option indicating how many owners the business has</label>
+        
+        
+                <input type="radio" class="radio" name="ownerBusiness" value="2"
+                ${attributes} />
+                The business owner is relying solely on his/her own income/assets and not the income/assets of another person as the basic for repayment of the credit requested. <br />
+                <input type="radio" class="radio" name="ownerBusiness" value="1"
+                ${attributes} />
+                There are multiple business partners / co-owners and they are applying for joint credit. <br />
+      
+      <input type="radio" class="radio" name="ownerBusiness" value="0"
+                ${attributes} />
+The business owner is applying for individual credit, but but he/she is relying on income from alimony, child support, or separate maintenance or on the income or assets of another person as the basis for repayment of the credit requested. </div><div class="clear"></div><hr />
+<div id="owner1">
+  <h3>Owner 1 Information</h3>
+  <div class="span-6">
+    <div class="field">
+      <label>First Name</label>
+      <input type="text" id="ownOneFirstName" name="ownOneFirstName" value="" />
+    </div>
+    <div class="field">
+      <label>MI</label>
+      <input type="text" id="ownOneMiddleName" name="ownOneMiddleName" value="" />
+    </div>
+    <div class="field">
+      <label>Last Name</label>
+      <input type="text" id="ownOneLastName" name="ownOneLastName" value="" />
+    </div>
+    <div class="field">
+      <label> E-Mail</label>
+      <input type="text" id="ownOneEmail" name="ownOneEmail" value="" />
+    </div>
+    <div class="field">
+      <label>Home Phone</label>
+      <input type="text" id="ownOneHomePhone" name="ownOneHomePhone" value="" />
+    </div>
+    <div class="field">
+      <label>Cell Phone</label>
+      <input type="text" id="ownOneCellPhone" name="ownOneCellPhone" value="" />
+    </div>
+    <div class="field">
+      <label>Home address (no P.O. boxes)</label>
+      <input type="text" id="ownOneHomeAddress" name="ownOneHomeAddress" value="" />
+    </div>
+    <div class="field">
+      <label>Zip Code</label>
+      <input type="text" id="ownOneZipCode" name="ownOneZipCode" value="" />
+    </div>
+    <div class="field">
+      <label>City</label>
+      <input type="text" id="ownOneCity" name="ownOneCity" value="" />
+    </div>
+    <div class="field">
+      <label>State</label>
+      <select id="ownOneState" name="ownOneState" ${attributes}>
+        <option value=""
+                            selected="selected"
+            > Select...</option>
+        <option value="1"
+            > NY</option>
+        <option value="0"
+            > Other</option>
+      </select>
+    </div>
+  </div>
+  <div class="span-6 last">
+    <div class="field">
+      <label>Rent / Own</label>
+      <select id="ownOneRent" name="ownOneRent" ${attributes}>
+        <option value=""
+                            selected="selected"
+            > Select...</option>
+        <option value="1"
+            > Rent</option>
+        <option value="0"
+            > Other</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Years at current address</label>
+      <input type="text" id="ownOneYearAtAddress" name="ownOneYearAtAddress" value="" />
+    </div>
+    <div class="field">
+      <label>Business Ownership %</label>
+      <input type="text" id="ownOneOwnership" name="ownOneOwnership" value="" />
+    </div>
+    <div class="field">
+      <label>Date of Birth</label>
+      <input type="text" id="replace" name="replace" value="MM/DD/YYYY" onFocus="if(this.value=='MM/DD/YYYY')this.value='';" onBlur="if(this.value=='')this.value='MM/DD/YYYY';" />
+    </div>
+    <div class="field">
+      <label>Social Security Number</label>
+      <input type="text" id="ownOneSocialSecurity" name="ownOneSocialSecurity" value="" />
+    </div>
+    <div class="field">
+      <label>Driver's License Number</label>
+      <input type="text" id="ownOneDriverLicense" name="ownOneDriverLicense" value="" />
+    </div>
+    <div class="field">
+      <label>Driver’s License State</label>
+      <select id="ownOneStateLicense" name="ownOneStateLicense" ${attributes}>
+        <option value=""
+                            selected="selected"
+            > Select...</option>
+        <option value="1"
+            > NY</option>
+        <option value="0"
+            > Other</option>
+      </select>
+    </div>
+    <div class="field quote">
+      <label>Annual Income</label>
+      <input type="text" id="ownOneAnualIncome" name="ownOneAnualIncome" value="" />
+    </div>
+    <div class="field quote">
+      <label>Other Income</label>
+      <input type="text" id="ownOneOtherIncome" name="ownOneOtherIncome" value="" />
+    </div>
+    <div class="field">
+      <label>Sources of Other Income</label>
+      <input type="text" id="ownOneSourcesOtherIncome" name="ownOneSourcesOtherIncome" value="" />
+    </div>
+  </div>
+</div>
+<hr />
+<div id="owner2">
+  <h3>Owner 2 Information</h3>
+  <div class="span-6">
+    <div class="field">
+      <label>First Name</label>
+      <input type="text" id="ownTwoFirstName" name="ownTwoFirstName" value="" />
+    </div>
+    <div class="field">
+      <label>MI</label>
+      <input type="text" id="ownTwoMiddleName" name="ownTwoMiddleName" value="" />
+    </div>
+    <div class="field">
+      <label>Last Name</label>
+      <input type="text" id="ownTwoLastName" name="ownTwoLastName" value="" />
+    </div>
+    <div class="field">
+      <label> E-Mail</label>
+      <input type="text" id="ownTwoEmail" name="ownTwoEmail" value="" />
+    </div>
+    <div class="field">
+      <label>Home Phone</label>
+      <input type="text" id="ownTwoHomePhone" name="ownTwoHomePhone" value="" />
+    </div>
+    <div class="field">
+      <label>Cell Phone</label>
+      <input type="text" id="ownTwoCellPhone" name="ownTwoCellPhone" value="" />
+    </div>
+    <div class="field">
+      <label>Home address (no P.O. boxes)</label>
+      <input type="text" id="ownTwoHomeAddress" name="ownTwoHomeAddress" value="" />
+    </div>
+    <div class="field">
+      <label>Zip Code</label>
+      <input type="text" id="ownTwoZipCode" name="ownTwoZipCode" value="" />
+    </div>
+    <div class="field">
+      <label>City</label>
+      <input type="text" id="ownTwoCity" name="ownTwoCity" value="" />
+    </div>
+    <div class="field">
+      <label>State</label>
+      <select id="ownTwoState" name="ownTwoState" ${attributes}>
+        <option value=""
+                            selected="selected"
+            > Select...</option>
+        <option value="1"
+            > NY</option>
+        <option value="0"
+            > Other</option>
+      </select>
+    </div>
+  </div>
+  <div class="span-6 last">
+    <div class="field">
+      <label>Rent / Own</label>
+      <select id="ownTwoRent" name="ownTwoRent" ${attributes}>
+        <option value=""
+                            selected="selected"
+            > Select...</option>
+        <option value="1"
+            > Rent</option>
+        <option value="0"
+            > Other</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Years at current address</label>
+      <input type="text" id="ownTwoYearAtAddress" name="ownTwoYearAtAddress" value="" />
+    </div>
+    <div class="field">
+      <label>Business Ownership %</label>
+      <input type="text" id="ownTwoOwnership" name="ownTwoOwnership" value="" />
+    </div>
+    <div class="field">
+      <label>Date of Birth</label>
+     <input type="text" id="replace" name="replace" value="MM/DD/YYYY" onFocus="if(this.value=='MM/DD/YYYY')this.value='';" onBlur="if(this.value=='')this.value='MM/DD/YYYY';" />
+    </div>
+    <div class="field">
+      <label>Social Security Number</label>
+      <input type="text" id="ownTwoSocialSecurity" name="ownTwoSocialSecurity" value="" />
+    </div>
+    <div class="field">
+      <label>Driver's License Number</label>
+      <input type="text" id="ownTwoDriverLicense" name="ownTwoDriverLicense" value="" />
+    </div>
+    <div class="field">
+      <label>Driver’s License State</label>
+      <select id="ownTwoStateLicense" name="ownTwoStateLicense" ${attributes}>
+        <option value=""
+                            selected="selected"
+            > Select...</option>
+        <option value="1"
+            > NY</option>
+        <option value="0"
+            > Other</option>
+      </select>
+    </div>
+    <div class="field quote">
+      <label>Annual Income</label>
+      <input type="text" id="ownTwoAnualIncome" name="ownTwoAnualIncome" value="" />
+    </div>
+    <div class="field quote">
+      <label>Other Income</label>
+      <input type="text" id="ownTwoOtherIncome" name="ownTwoOtherIncome" value="" />
+    </div>
+    <div class="field">
+      <label>Sources of Other Income</label>
+      <input type="text" id="ownTwoSourcesOtherIncome" name="ownTwoSourcesOtherIncome" value="" />
+    </div>
+  </div>
+</div><hr />
+<div class="span-12 last">
+        <div class="span-6"><input name="" type="button" id="previousbutton" value="Return" /></div>
+        <div class="span-6 last"><input name="" type="button" id="nextbutton" value="Next" /></div>
+        
+        </div></form>
+        </div>
+        <div class="span-5  last"><div class="noicon application"></div><!--<div class="error">Error Message here
+            <ol>
+                <li>1st reason</li>
+              <li>2nd reason</li>
+              <li>3rd reason</li><li>etc</li>
+            </ol>
+          </div>-->
+          <p class="sig">Your time is valuable, so we've made our application form as easy as possible to fill out.  Simply submit the requested information for each of the three steps and we'll get back to you within 2 business days of receiving your completed application. If you have questions or require assistance, please email us at <a href="mailto:partnersupport@ondeckcapital.com">partnersupport@ondeckcapital.com</a> or call us at (888) 269-4246.</p><hr />
+              <img src="images/required.gif" /> = Required<p></p>
+        </div>
+            
+            </div>
+            
+            <div class="clear"></div>            <div id="footer"><ul>
+<li><a href="http://www.ondeckcapital.com/">On Deck Capital Home</a></li>
+	<li><a href="http://www.ondeckcapital.com/privacy.php">Privacy &amp; Security</a></li>
+    <li><a href="http://www.ondeckcapital.com/faq.php">Frequently Asked Questions</a></li>
+    <li><a href="mailto:partnersupport@ondeckcapital.com">Contact Us</a></li><li>(888) 269-4246</li>
+</ul></div>
+
+</div>
+
+</body>
+</html>

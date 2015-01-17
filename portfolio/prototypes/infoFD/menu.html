@@ -1,0 +1,69 @@
+<ul class="menulist" id="listMenuRoot">
+     <li><a href="index.php?id=about">About Us</a>
+         <ul>
+           <li><a href="index.php?id=about_b">Employee Services</a></li>
+           <li><a href="index.php?id=about_c">Employee Relations</a></li>
+           <li><a href="index.php?id=talent">Recruitment/Talent Acquisition</a></li>
+         </ul>
+     </li>
+     <li><a href="index.php?id=department">Department Listing </a></li>
+     <li><a href="index.php?id=ecentral">Employee Central </a>
+         <ul>
+           <li><a href="index.php?id=benefits">Employee Benefits</a></li>
+           <li><a href="index.php?id=discounts">Employee Discounts</a></li>
+           <li> <a href="index.php?id=eforms">Employee Forms</a></li>
+           <li><a href="manual.php?id=emanual">Employee Manual</a>
+               <ul>
+                 <li> <a href="manual.php?id=emanualE_A">in English</a></li>
+                 <li> <a href="manual.php?id=emanualS_A"><em>en Espa&ntilde;ol</em></a></li>
+               </ul>
+           </li>
+           <li><a href="index.php?id=kronos">Kronos FAQ's</a>
+		   <li><a href="index.php?id=proof">Proof of Employment</a></li>
+         </ul>
+     </li>
+     <li><?php
+	 		if (!(empty($usr)))
+			{
+		    	// specify file with authorized names to viw manager central
+				$filename = "includes/authuserlist.txt";
+
+				// make sure the file exists and it's readable
+				if (file_exists($filename) && is_readable ($filename))
+				{
+					// import the data into an array variable
+					$ids=file($filename, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+
+					// Loop array, and if user is authorize display link and set session variable
+					for ($counter=0; $counter <= sizeof($ids)-1; $counter++)
+					{
+						$username = explode("@", $ids[$counter]);
+					
+						if ($username[0] == $usr)
+						{
+				    	 	 echo '<a href="index.php?id=mcentral">Manager Central</a>';
+					    	 echo '<ul>';
+					    	 echo '<li><a href="index.php?id=mforms">Manager Forms</a></li>';
+					    	 echo '<li><a href="index.php?id=processdocuments">Process Documents</a>';
+					    	 //echo '<ul>';
+				    		 //echo '<li><a href="index.php?id=kronos_guide">Terminal General Information - Guides</a></li>';
+				    		 //echo '<li><a href="index.php?id=kronos_FAQ">Frequently Asked Questions</a></li>';
+					    	 //echo '</ul>';
+					    	 echo '</li>';
+				    		 echo '</ul>';
+						 break;
+						}
+					}
+				}
+			}
+	 ?></li>
+     <li> <a href="index.php?id=training">Employee Training</a>
+         <ul>
+           <li> <a href="index.php?id=operation">Operation Training</a></li>
+           <!--- <li> <a href="index.php?id=development">Talent Development Program</a></li> --->
+           <li> <a href="index.php?id=training_catalogue">Training Catalogue</a></li>
+           <li> <a href="index.php?id=office">Microsoft Office Training</a></li>
+         </ul>
+     </li>
+     <li><a href="index.php?id=wellness">Wellness</a></li>
+   </ul>

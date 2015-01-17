@@ -1,0 +1,100 @@
+.rich-mpnl-content {
+	margin: 40px;
+}
+body, html {
+	background-color: white;
+	font-family:Arial, Helvetica, sans-serif;
+}
+.preso {
+	font-size: 20px;
+}
+.preso a {
+	color: #333;
+	text-decoration:none;
+	border-bottom: dotted 1px #fff;
+	-webkit-transition: all 400ms ease-out;
+	-moz-transition: all 400ms ease-out;
+	-o-transition: all 400ms ease-out;
+	transition: all 400ms ease-out;
+}
+.preso ul li a:not(:first-child) {
+	border-left: solid 1px #ccc;
+	padding-left: 10px;
+	margin-left: 10px;
+}
+.preso a:after {
+	font: 15px 'Pictos', sans-serif;
+	font-weight: normal;
+	padding-left: 10px;
+	content: "3";
+	color: #060;
+	vertical-align: super;
+}
+.preso .legend a:after {
+	font: 12px 'Pictos', sans-serif;
+}
+.preso .legend a:first-child { margin-left: 0px; pdding-left: 0px;}
+.preso .live:after {
+	content: "e";
+	color: #060;
+}
+.preso a.pending:after {
+	content: "d";
+	color:#900;
+}
+.preso a.approval:after {
+	content: "s";
+	color:#F60;
+}
+.preso a.incomplete:after {
+	content: "p";
+	color:#F60;
+}
+.preso li {
+	margin-top: 10px;
+}
+.legend, .sig {
+	font-size: 12px;
+	font-weight:normal;
+}
+.preso a:hover, .preso a:hover:after {
+	color: #f00;
+}
+.preso a:hover {
+	border-bottom: dotted 1px #f00;
+}
+.preso h2 {
+	margin-bottom: 0px;
+}
+.legend a, .legend a:hover {
+	border: none;
+	color: #666;
+	padding: 0px 5px;
+	border-left: solid 1px #ccc;
+	margin: 0 5px;
+}
+.legend a:first-child {
+	border: none;
+	padding-left: none;
+	margin-left: none;
+}
+.preso ul { display: block}
+.preso ul li {
+	display: inline-block;
+	vertical-align: top;
+	margin-right: 20px;
+	padding-right: 20px;
+	border-right: solid 1px #999;
+}
+.preso ul li:last-child {
+	margin-right: 0;
+	padding-right: 0;
+	border-right: none;
+}
+.preso ol li {
+	display:block;
+	margin-right: 0;
+	padding-right: 0;
+	border-right: none;
+}
+.sig:after { display: none;}

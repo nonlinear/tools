@@ -1,0 +1,237 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ITHAKA | CONPREP</title>
+<script src="junk/framework.js" type="text/javascript"></script><script src="junk/ui.js" type="text/javascript"></script>
+<link class="component" href="junk/eAGTcz60MXT5DGkAD2IDhA___003.css" rel="stylesheet" type="text/css">
+<link class="component" href="junk/eAGTcz60MXT5DGkAD2IDhA__.css" rel="stylesheet" type="text/css">
+<link class="component" href="junk/eAGTcz60MXT5DGkAD2IDhA___002.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">window.RICH_FACES_EXTENDED_SKINNING_ON=true;</script>
+<link rel="shortcut icon" href="http://localhost:8080/conprepUi2/favicon.ico">
+<link rel="stylesheet" href="lib/style.css">
+</head>
+<body class="batch listview">
+<script type="text/javascript">//<![CDATA[
+function protectLinks(elm, param) {
+	var selector = "a:not([href=\'#\'\x5D)";
+	try {
+		selector = eval("a:not([href=\'#\'\x5D)");
+	} catch (e) {}
+	
+	jQuery(elm || selector).click( function() {   var howMany = jQuery('.saveOrCancel:not(.disabled)').length;   if ( howMany != 0 ) {    if ( confirm('There appear to be unsaved changes, really leave this record?') ) {     return true;     }    return false;    }   return true;   }  );
+}
+//]]></script><script type="text/javascript">//<![CDATA[
+  jQuery(document).ready(function() {
+	var selector = "a:not([href=\'#\'\x5D)";
+	try {
+		selector = eval("a:not([href=\'#\'\x5D)");
+	} catch (e) {}
+	jQuery(selector).click( function() {   var howMany = jQuery('.saveOrCancel:not(.disabled)').length;   if ( howMany != 0 ) {    if ( confirm('There appear to be unsaved changes, really leave this record?') ) {     return true;     }    return false;    }   return true;   }  );
+ });
+//]]></script> 
+<script>A4J.AJAX._scriptEvaluated=true;</script>
+<div style="position: absolute; z-index: 100; background-color: inherit;" id="batchBulkUpdatePanelContainer" class="rich-modalpanel modal">
+  <div style="z-index: -1;" id="batchBulkUpdatePanelDiv" class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div">
+    <button id="batchBulkUpdatePanelFirstHref" class="rich-mpnl-button"></button>
+  </div>
+  <div class="rich-mpnl-panel">
+    <div id="batchBulkUpdatePanelCDiv" class="rich-mp-container">
+      <div style="width: 1030px; height: 584px;" id="batchBulkUpdatePanelShadowDiv" class="rich-mpnl-shadow"></div>
+      <div style="width: 900px; height: 600px;" id="batchBulkUpdatePanelContentDiv" class="rich-mpnl-ovf-hd rich-mpnl-trim rich-mpnl-content">
+        <table style="height: 100%; width: 100%;" id="batchBulkUpdatePanelContentTable" class="rich-mp-content-table" border="0" cellpadding="0" cellspacing="0">
+          <tbody>
+            <tr style="height: 99%;">
+              <td class="rich-mpnl-body" valign="top"><div id="batchmodalDiv">
+                  <form target="" action="javascript:A4J.AJAX.SubmitForm('batchwizard',{'similarityGroupingId':'batchwizard','parameters':{'ajaxSingle':'batchwizard','batchwizard':'batchwizard'}%20,'actionUrl':'/conprepUi2/lists/BatchList.seam'}%20)" method="post" name="batchwizard" id="batchwizard">
+                    <span id="batchwizard:j_id965"><script type="text/javascript">        /* <![CDATA[ */
+                        function emulateRadios(chkbx, styleClass) {
+                                jQuery('.' + styleClass).each(function(){ 
+                                        this.checked = false; 
+                                }); 
+                                chkbx.checked = true;
+                        }
+        /* ]]> */
+    </script>
+                    <div class="title">
+                      <div class="span-9">
+                        <h1>Resume Auto Processing</h1>
+                      </div>
+                      <div class="span-16 last">
+                        <ul>
+                          <li>1. Confirm</li>
+                          <li class="selected">2. Change</li>
+                          <li>3. Results</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="cluster">
+                      <table class="field required radiochoice">
+                        <tbody>
+                          <tr>
+                            <td><input autocomplete="off" onclick="emulateRadios(this, 'entity_checkbox');" onchange="A4J.AJAX.Submit('batchwizard',event,{'control':this,'status':'globalWaitStatus','similarityGroupingId':'batchwizard:j_id965:j_id1776:0:j_id1779','parameters':{'batchwizard:j_id965:j_id1776:0:j_id1779':'batchwizard:j_id965:j_id1776:0:j_id1779','ajaxSingle':'batchwizard:j_id965:j_id1776:0:j_id1778'} ,'eventsQueue':'journalQueue','actionUrl':'/conprepUi2/lists/BatchList.seam'} )" class="entity_checkbox" name="batchwizard:j_id965:j_id1776:0:j_id1778" type="checkbox"></td>
+                            <td>Resume all batches</td>
+                            <td>Resume Auto Processing all your batch(es) even if they have fatal or warning messages.</td>
+                          </tr>
+                          <tr>
+                            <td><input checked="checked" autocomplete="off" onclick="emulateRadios(this, 'entity_checkbox');" onchange="A4J.AJAX.Submit('batchwizard',event,{'control':this,'status':'globalWaitStatus','similarityGroupingId':'batchwizard:j_id965:j_id1776:1:j_id1779','parameters':{'ajaxSingle':'batchwizard:j_id965:j_id1776:1:j_id1778','batchwizard:j_id965:j_id1776:1:j_id1779':'batchwizard:j_id965:j_id1776:1:j_id1779'} ,'eventsQueue':'journalQueue','actionUrl':'/conprepUi2/lists/BatchList.seam'} )" class="entity_checkbox" name="batchwizard:j_id965:j_id1776:1:j_id1778" type="checkbox"></td>
+                            <td>Resume if the only fatals and warnings are</td>
+                            <td>The
+                              system will ignore the error codes listed here and Resume Auto 
+                              Processing any batch that has only these codes when you hit Continue.</td>
+                          </tr>
+                          <tr>
+                            <td><input autocomplete="off" onclick="emulateRadios(this, 'entity_checkbox');" onchange="A4J.AJAX.Submit('batchwizard',event,{'control':this,'status':'globalWaitStatus','similarityGroupingId':'batchwizard:j_id965:j_id1776:2:j_id1779','parameters':{'ajaxSingle':'batchwizard:j_id965:j_id1776:2:j_id1778','batchwizard:j_id965:j_id1776:2:j_id1779':'batchwizard:j_id965:j_id1776:2:j_id1779'} ,'eventsQueue':'journalQueue','actionUrl':'/conprepUi2/lists/BatchList.seam'} )" class="entity_checkbox" name="batchwizard:j_id965:j_id1776:2:j_id1778" type="checkbox"></td>
+                            <td>Resume batches with no fatals or warnings</td>
+                            <td>Resume Auto Processing all your batch(es) only if they have no fatal or warning messages.</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <table id="batchwizard:j_id965:codesTable" class="rich-table" border="0" cellpadding="0" cellspacing="0">
+                        <colgroup span="2">
+                        </colgroup>
+                        <thead class="rich-table-thead">
+                          <tr class="rich-table-header">
+                            <th scope="colgroup" colspan="2" class="rich-table-headercell">Selected tags to resume</th>
+                          </tr>
+                        </thead>
+                        <tbody id="batchwizard:j_id965:codesTable:tb">
+                        </tbody>
+                      </table>
+                      <div id="batchwizard:j_id965:codesComboBox">
+                        <div style="width: 150px;" id="batchwizard:j_id965:codesComboBoxcombobox" class="rich-combobox-font rich-combobox">
+                          <div class="rich-combobox-list-cord"></div>
+                          <div style="width: 150px;" class="rich-combobox-font rich-combobox-shell">
+                            <input value="Please select.." style="width: 121px;" name="batchwizard:j_id965:codesComboBoxcomboboxField" id="batchwizard:j_id965:codesComboBoxcomboboxField" class="rich-combobox-font-disabled rich-combobox-input-disabled" autocomplete="off" type="text">
+                            <input autocomplete="off" tabindex="-1" readonly="true" id="batchwizard:j_id965:codesComboBoxcomboBoxButtonBG" class="rich-combobox-font-inactive rich-combobox-button-background rich-combobox-button-inactive" type="text">
+                            <input autocomplete="off" tabindex="-1" style="" readonly="true" id="batchwizard:j_id965:codesComboBoxcomboboxButton" class="rich-combobox-font-inactive rich-combobox-button-icon-inactive rich-combobox-button-inactive" type="text">
+                            <div style="width: 140px;" class="rich-combobox-strut rich-combobox-font">Strut</div>
+                          </div>
+                          <div style="position: absolute; z-index: 1000; visibility: visible; display: none;" id="batchwizard:j_id965:codesComboBoxlistParent" class="rich-combobox-list-cord">
+                            <div class="rich-combobox-shadow">
+                              <table id="batchwizard:j_id965:codesComboBoxshadow" border="0" cellpadding="0" cellspacing="0">
+                                <tbody>
+                                  <tr>
+                                    <td class="rich-combobox-shadow-tl"><img style="border: 0pt none;" src="junk/spacer.gif" alt="" width="10" height="1"><br></td>
+                                    <td class="rich-combobox-shadow-tr"><img style="border: 0pt none;" src="junk/spacer.gif" alt="" width="1" height="10"><br></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="rich-combobox-shadow-bl"><img style="border: 0pt none;" src="junk/spacer.gif" alt="" width="1" height="10"><br></td>
+                                    <td class="rich-combobox-shadow-br"><img style="border: 0pt none;" src="junk/spacer.gif" alt="" width="10" height="10"><br></td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                            <div id="batchwizard:j_id965:codesComboBoxlistPosition" class="rich-combobox-list-position">
+                              <div id="batchwizard:j_id965:codesComboBoxlistDecoration" class="rich-combobox-list-decoration">
+                                <div id="batchwizard:j_id965:codesComboBoxlist" class="rich-combobox-list-scroll"></div>
+                              </div>
+                            </div>
+                          </div>
+                          <input value="" name="batchwizard:j_id965:codesComboBox" id="batchwizard:j_id965:codesComboBoxcomboboxValue" autocomplete="off" type="hidden">
+                        </div>
+                        <script type="text/javascript">//<![CDATA[
+new Richfaces.ComboBox("batchwizard:j_id965:codesComboBox",{'listOptions':{'itemsText':['U100','U101','U102','U120','U121','U122','U123','U124','U125','U126','U140','U141','U142','U160','U161','U180','C400','C401','C402','C403','C410','C411','C412','C413','C420','C421','C430','C431','C440','C441','C442','C443','C444','C445','C446','C447','C448','C449','C450','C451','C452','C453','C454','C455','C456','C459','C460','C461','C462','C463','C464','C465','C466','C467','C468','C469','C470','C471','C472','C473','C474','C475','C476','C477','C478','C479','C480','C481','C482','C483','C484','C485','C486','C487','C488','C489','C490','C491','C494','C495','C500','C501','C502','C510','C511','C512','C513','C514','C515','C516','C517','C518','C519','C530','C531','C532','C533','C534','C535','C550','C551','C555','C556','C560','C570','C571','C572','C573','C574','C575','C576','C577','C600','C601','C602','C603','C604','C605','C606','C607','C608','C610','C700','C701','C702','C703','C800','C801','C802','C803','C804','C805','C806','C900','C901'] ,'listWidth':'150px','selectFirstOnUpdate':false} ,'fields':{'onselect':function(event){A4J.AJAX.Submit('batchwizard',event,{'control':this,'ignoreDupResponses':true,'implicitEventsQueue':'batchwizard:j_id965:j_id1790','status':'globalWaitStatus','similarityGroupingId':'batchwizard:j_id965:j_id1790','parameters':{'ajaxSingle':'batchwizard:j_id965:codesComboBox','batchwizard:j_id965:j_id1790':'batchwizard:j_id965:j_id1790'} ,'actionUrl':'/conprepUi2/lists/BatchList.seam'} )},'defaultLabel':'Please select..','directInputSuggestions':true} } );
+//]]>
+</script></div>
+                      Next activity
+                      <select onchange="A4J.AJAX.Submit('batchwizard',event,{'control':this,'ignoreDupResponses':true,'implicitEventsQueue':'batchwizard:j_id965:j_id1796','status':'globalWaitStatus','similarityGroupingId':'batchwizard:j_id965:j_id1796','parameters':{'batchwizard:j_id965:j_id1796':'batchwizard:j_id965:j_id1796','ajaxSingle':'batchwizard:j_id965:j_id1794'} ,'actionUrl':'/conprepUi2/lists/BatchList.seam'} )" size="1" name="batchwizard:j_id965:j_id1794">
+                        <option selected="selected" value="Initialize Environment">Initialize Environment</option>
+                        <option value="Initialize Batch">Initialize Batch</option>
+                        <option value="Capture OffSystem Metdata">Capture OffSystem Metdata</option>
+                        <option value="Exclude Files">Exclude Files</option>
+                        <option value="Verify Checksum">Verify Checksum</option>
+                        <option value="Apply Override">Apply Override</option>
+                        <option value="Remove Layer">Remove Layer</option>
+                        <option value="Interpret Packaging">Interpret Packaging</option>
+                        <option value="Extract Dataset Toc">Extract Dataset Toc</option>
+                        <option value="Characterize Supplied Files">Characterize Supplied Files</option>
+                        <option value="Transform Files">Transform Files</option>
+                        <option value="Copy Metadata">Copy Metadata</option>
+                        <option value="Extract File References">Extract File References</option>
+                        <option value="Resolve File References">Resolve File References</option>
+                        <option value="Replace File References">Replace File References</option>
+                        <option value="Generate DMD">Generate DMD</option>
+                        <option value="Assign Content Set Name">Assign Content Set Name</option>
+                        <option value="Assign Preservation Level">Assign Preservation Level</option>
+                        <option value="Check for Completeness">Check for Completeness</option>
+                        <option value="Generate Random Sample">Generate Random Sample</option>
+                        <option value="Prepare for Inspection">Prepare for Inspection</option>
+                        <option value="Prepare Supplied Files AU">Prepare Supplied Files AU</option>
+                        <option value="Generate Checksum">Generate Checksum</option>
+                        <option value="Prepare PMD">Prepare PMD</option>
+                        <option value="Generate PMD">Generate PMD</option>
+                        <option value="Ingest To Archive">Ingest To Archive</option>
+                        <option value="Clean Up">Clean Up</option>
+                      </select>
+                    </div>
+                    <div class="action">
+                      <div class="span-5"><a onclick="A4J.AJAX.Submit('batchwizard',event,{'status':'globalWaitStatus','oncomplete':function(request,event,data){document.getElementById('batchBulkUpdateQuit').component.show(); return false;},'similarityGroupingId':'batchwizard:j_id965:j_id1798','parameters':{'batchwizard:j_id965:j_id1798':'batchwizard:j_id965:j_id1798'} ,'eventsQueue':'batchListeventsQueue','actionUrl':'/conprepUi2/lists/BatchList.seam'} );return false;" name="batchwizard:j_id965:j_id1798" id="batchwizard:j_id965:j_id1798" href="#" class="button cancel">Quit</a></div>
+                      <div class="span-20 last"><a onclick="A4J.AJAX.Submit('batchwizard',event,{'status':'globalWaitStatus','similarityGroupingId':'batchwizard:j_id965:j_id1800','parameters':{'batchwizard:j_id965:j_id1800':'batchwizard:j_id965:j_id1800'} ,'eventsQueue':'batchListeventsQueue','actionUrl':'/conprepUi2/lists/BatchList.seam'} );return false;" name="batchwizard:j_id965:j_id1800" id="batchwizard:j_id965:j_id1800" href="#" class="button save">Save</a></div>
+                    </div>
+                    </span>
+                    <input value="batchwizard" name="batchwizard" autocomplete="off" type="hidden">
+                    <input value="" name="autoScroll" autocomplete="off" type="hidden">
+                    <script type="text/javascript">//<![CDATA[
+function clear_batchwizard() {
+_clearJSFFormParameters('batchwizard','',['batchwizard:j_idcl','batchwizard:_link_hidden_']);
+}
+function clearFormHiddenParams_batchwizard(){clear_batchwizard();}
+function clearFormHiddenParams_batchwizard(){clear_batchwizard();}
+clear_batchwizard();
+//]]>
+</script><script type="text/javascript">//<![CDATA[
+A4J.setupForm('batchwizard');
+//]]>
+</script>
+                    <input autocomplete="off" value="j_id3" id="javax.faces.ViewState" name="javax.faces.ViewState" type="hidden">
+                  </form>
+                </div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="width: 1030px; height: 4px; cursor: n-resize; left: 0px; top: 0px;" id="batchBulkUpdatePanelResizerN" class="rich-mpnl-resizer"></div>
+      <div style="height: 584px; width: 4px; cursor: e-resize; left: 1026px; top: 0px;" id="batchBulkUpdatePanelResizerE" class="rich-mpnl-resizer"></div>
+      <div style="width: 1030px; height: 4px; cursor: s-resize; left: 0px; top: 580px;" id="batchBulkUpdatePanelResizerS" class="rich-mpnl-resizer"></div>
+      <div style="height: 584px; width: 4px; cursor: w-resize; left: 0px; top: 0px;" id="batchBulkUpdatePanelResizerW" class="rich-mpnl-resizer"></div>
+      <div style="width: 40px; height: 4px; cursor: nw-resize; left: 0px; top: 0px;" id="batchBulkUpdatePanelResizerNWU" class="rich-mpnl-resizer"></div>
+      <div style="height: 40px; width: 4px; cursor: ne-resize; left: 1026px; top: 0px;" id="batchBulkUpdatePanelResizerNEU" class="rich-mpnl-resizer"></div>
+      <div style="width: 40px; height: 4px; cursor: ne-resize; left: 990px; top: 0px;" id="batchBulkUpdatePanelResizerNEL" class="rich-mpnl-resizer"></div>
+      <div style="height: 40px; width: 4px; cursor: se-resize; left: 1026px; top: 544px;" id="batchBulkUpdatePanelResizerSEU" class="rich-mpnl-resizer"></div>
+      <div style="width: 40px; height: 4px; cursor: se-resize; left: 990px; top: 580px;" id="batchBulkUpdatePanelResizerSEL" class="rich-mpnl-resizer"></div>
+      <div style="height: 40px; width: 4px; cursor: sw-resize; left: 0px; top: 544px;" id="batchBulkUpdatePanelResizerSWL" class="rich-mpnl-resizer"></div>
+      <div style="width: 40px; height: 4px; cursor: sw-resize; left: 0px; top: 580px;" id="batchBulkUpdatePanelResizerSWU" class="rich-mpnl-resizer"></div>
+      <div style="height: 40px; width: 4px; cursor: nw-resize; left: 0px; top: 0px;" id="batchBulkUpdatePanelResizerNWL" class="rich-mpnl-resizer"></div>
+    </div>
+  </div>
+  <div style="z-index: -200;" id="batchBulkUpdatePanelCursorDiv" class="rich-mpnl-mask-div rich-mpnl-mask-div-transparent">
+    <button id="batchBulkUpdatePanelLastHref" class="rich-mpnl-button"></button>
+  </div>
+  <script type="text/javascript">//<![CDATA[
+new ModalPanel('batchBulkUpdatePanel',
+                                {
+                                        width: 900,
+                                        height: 600,
+
+                                        minWidth: -1,
+                                        minHeight: -1,
+
+                                        resizeable: true,
+                                        moveable: true,
+
+                                        left: "auto",
+                                        top: "auto",
+
+                                        zindex: 100,onresize: '',onmove: '',onshow: '',onhide: '',onbeforeshow: '',onbeforehide: '',
+                                        domElementAttachment: "",                               
+                                        keepVisualState: false,
+                                        showWhenRendered: false,
+                                        selectBehavior: "disable",
+
+                                        autosized: false,
+                                        overlapEmbedObjects: false});
+//]]>
+</script></div>
+</body>
+</html>

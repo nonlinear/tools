@@ -1,0 +1,17 @@
+@CHARSET "ISO-8859-1";
+.rich-table {
+    background-color: #FFFFFF;
+    border-left: 0px;
+    border-top: 0px;
+    empty-cells: show;
+}
+.rich-table-cell {
+    font-family: verdana,arial,helvetica;
+  	border-bottom: dotted 1px #ccc;
+	padding: 1px 0;
+	font-size: 12px;
+	border-right: 0px;
+}
+.rich-table-row{
+	height: 15px;
+}

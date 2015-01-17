@@ -1,0 +1,206 @@
+
+        <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>On Deck Capital Partner Portal</title>
+
+  <!-- Framework CSS -->
+	<link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection" />
+	<link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print" />
+  <!--[if IE]><link rel="stylesheet" href="blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
+	
+	<!-- Import fancy-type plugin for the sample page. -->
+    <link href="css/style.css" rel="stylesheet" type="text/css" /><!--[if lt IE 7]>
+  <link rel="stylesheet" type="text/css" href="styleIE.css" />
+<![endif]-->
+    
+
+	
+</head>
+
+<!--[if lt IE 7 ]> <body class="ie6"> <![endif]-->
+<!--[if IE 7 ]> <body class="ie7"> <![endif]-->
+<!--[if IE 8 ]> <body class="ie8"> <![endif]-->
+<!--[if !IE]>--> <body class="notIE"> <!--<![endif]--><div  class="container">
+
+<div id="header">
+
+		<div class="span-9 logo"><a href="home.html"><img src="images/blank.gif" /></a></div>
+<div id="nav" class="span-15 rightalign last"><form method="post" action="$link.setRelative('deal_list.html')">Welcome, ${name} <a href="logout.html" target="_self">Sign Out</a><br />
+            <label>Deal Status</label><input id="merchantName" type="text" value="Merchant Name" name="merchantName" onFocus="if(this.value=='Merchant Name')this.value='';" onBlur="if(this.value=='')this.value='Merchant Name';" />u</form>
+    </div>
+	 
+</div>
+
+
+
+<div id="menu"><ul>
+<li><a href="home.html">Home</a></li>
+	<li><a href="application_1.html">Submit Application</a></li>
+    <li><a href="deals.html" class="selected">Deal Pipeline</a></li>
+    <li><a href="resources.html">Resources</a></li>
+    
+    <li class="last"></li>
+</ul>
+			</div>
+            
+            <div class="content">
+            <div class="span-5 colborder title">
+		      <div class="noicon deal1">
+		        <h2>Deal <br />
+	            Pipeline</h2>
+		      </div>
+		      </div>
+            <div class="span-18 last">
+                <form method="post" action="/partnerportal/deal_list.html" id="form" >
+                  <div class="span-6"><div class="field required"><label id="lblAccountName" name="lblAccountName">Account Name</label>
+                  <input type="text" id="merchantName2" name="merchantName2" maxlength='100' />
+                 </div><div class="field">
+                   <input name="uniqueOption" id="uniqueOption" type="radio" value="stage" class="radio" onClick="stateOption(this, 'stage', 'decisionStatus');"
+                                                    checked="checked" />
+                 Stage
+                    </input>
+                    <select id="stage" name="stage" >
+                      <option value=""
+                            selected="selected"
+            >Select an Item...</option>
+                      <option value="Application Received"
+            >Application Received</option>
+                      <option value="Partner Eligibility Screen"
+            >Partner Eligibility Screen</option>
+                      <option value="Credit Filter (Incorrect Data)"
+            >Credit Filter (Incorrect Data)</option>
+                      <option value="Renewal Filter"
+            >Renewal Filter</option>
+                      <option value="Collect/Verify Merchant Data"
+            >Collect/Verify Merchant Data</option>
+                      <option value="Collect Merchant Data (Invalid Data)"
+            >Collect Merchant Data (Invalid Data)</option>
+                      <option value="Credit Verification"
+            >Credit Verification</option>
+                      <option value="Credit Verification (Pending)"
+            >Credit Verification (Pending)</option>
+                      <option value="Line Assignment"
+            >Line Assignment</option>
+                      <option value="Prep Loan Documents"
+            >Prep Loan Documents</option>
+                      <option value="Assignment Call"
+            >Assignment Call</option>
+                      <option value="Waiting on Loan Docs from Merchant"
+            >Waiting on Loan Docs from Merchant</option>
+                      <option value="Loan Docs Incomplete/Missing"
+            >Loan Docs Incomplete/Missing</option>
+                      <option value="Waiting on Site Visit"
+            >Waiting on Site Visit</option>
+                      <option value="Merchant Boarding"
+            >Merchant Boarding</option>
+                      <option value="Boarding Check/Approval"
+            >Boarding Check/Approval</option>
+                      <option value="Create Transfer Account"
+            >Create Transfer Account</option>
+                      <option value="Merchant Switching Processor"
+            >Merchant Switching Processor</option>
+                      <option value="Funding"
+            >Funding</option>
+                      <option value="Closed Won"
+            >Closed Won</option>
+                      <option value="Closed Lost: DQ (Merchant Data)"
+            >Closed Lost: DQ (Merchant Data)</option>
+                      <option value="Closed Lost: DQ (Credit Data)"
+            >Closed Lost: DQ (Credit Data)</option>
+                      <option value="Closed Lost: DQ (Credit Filter)"
+            >Closed Lost: DQ (Credit Filter)</option>
+                      <option value="Closed Lost: DQ (Ineligible)"
+            >Closed Lost: DQ (Ineligible)</option>
+                      <option value="Closed Lost: Customer Rejects"
+            >Closed Lost: Customer Rejects</option>
+                      <option value="Closed Lost: Customer Leaves Process"
+            >Closed Lost: Customer Leaves Process</option>
+                      <option value="Application Dormant"
+            >Application Dormant</option>
+                      <option value="Application Dormant (Incorrect Data)"
+            >Application Dormant (Incorrect Data)</option>
+                      <option value="Application Dormant (Contract Expired)"
+            >Application Dormant (Contract Expired)</option>
+                      <option value="Recycle Bin"
+            >Recycle Bin</option>
+                      <option value="Parking Lot"
+            >Parking Lot</option>
+                    </select><input name="uniqueOption" id="uniqueOption" type="radio" class="radio" value="decisionStatus" onClick="stateOption(this, 'stage', 'decisionStatus');" />Decision Status
+                    </input>
+                    <select id="decisionStatus" name="decisionStatus" disabled='disabled'>
+                      <option value=""
+                            selected="selected"
+            >Select an Item...</option>
+                      <option value="Approved"
+            >Approved</option>
+                      <option value="Pending"
+            >Pending</option>
+                      <option value="Declined"
+            >Declined</option>
+                      <option value="Booked"
+            >Booked</option>
+                      <option value="Unscored"
+            >Unscored</option>
+                    </select>
+                     </div></div><div class="span-6 last">
+                  <div class="field"><label id="lblCreateDate" name="lblCreateDate">Create Date</label> Between<br />
+                  <input type="text" id="replace" name="replace" value="MM/DD/YYYY" onFocus="if(this.value=='MM/DD/YYYY')this.value='';" onBlur="if(this.value=='')this.value='MM/DD/YYYY';" />
+                  and<br />
+                <input type="text" id="replace" name="replace" value="MM/DD/YYYY" onFocus="if(this.value=='MM/DD/YYYY')this.value='';" onBlur="if(this.value=='')this.value='MM/DD/YYYY';" />
+                </div><input name="" type="button" id="nextbutton" value="Filter" />
+                </div>
+                </form>
+              <hr /><div class="error">Error message here</div>
+              <table border="0" cellpadding="0" cellspacing="0" id="tbl_deals" class="dealtable">
+                <thead>
+                  <tr>
+                    <td><a href="/partnerportal/deal_list.html?show=5&index=0&sort=desc&col=applicationNumber">APP ID</a></td>
+                    <td><a href="/partnerportal/deal_list.html?show=5&index=0&sort=desc&col=merchantName">Account Name</a></td>
+                    <td><a href="/partnerportal/deal_list.html?show=5&index=0&sort=desc&col=createDate">Created</a></td>
+                    <td><a href="/partnerportal/deal_list.html?show=5&index=0&sort=desc&col=closeDate">Close Date</a></td>
+                    <td><a href="/partnerportal/deal_list.html?show=5&index=0&sort=desc&col=stage">Stage</a></td>
+                    <td><a href="/partnerportal/deal_list.html?show=5&index=0&sort=desc&col=decisionStatus">Decision Status</a></td>
+                    <td><a href="/partnerportal/deal_list.html?show=5&index=0&sort=desc&col=declineReason">Decline Reason</a></td>
+                    <td><a href="/partnerportal/deal_list.html?show=5&index=0&sort=desc&col=loanAmount">Loan Amount</a></td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>7899</td>
+                    <td><a href="deals_2.html">Grapes Grocery LLC Renewal #1</a></td>
+                    <td>02/18/2009</td>
+                    <td>04/04/2009</td>
+                    <td>Loan Docs Incomplete/ Missing</td>
+                    <td>Approved</td>
+                    <td>&nbsp;</td>
+                    <td>$35,000.00</td>
+                  </tr>
+                  <tr>
+                    <td>7899</td>
+                    <td><a href="deals_2.html">Grapes Grocery LLC</a></td>
+                    <td>02/11/2009</td>
+                    <td>03/28/2009</td>
+                    <td>Assignment Call</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>$35,000.00</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            </div>
+            <div class="clear"></div>           <div id="footer"><ul>
+<li><a href="http://www.ondeckcapital.com/">On Deck Capital Home</a></li>
+	<li><a href="http://www.ondeckcapital.com/privacy.php">Privacy &amp; Security</a></li>
+    <li><a href="http://www.ondeckcapital.com/faq.php">Frequently Asked Questions</a></li>
+    <li><a href="mailto:partnersupport@ondeckcapital.com">Contact Us</a></li><li>(888) 269-4246</li>
+</ul></div>
+
+</div>
+
+</body>
+</html>

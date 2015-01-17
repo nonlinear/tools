@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>On Deck Capital Partner Portal</title>
+<!-- Framework CSS -->
+<link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection" />
+<link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print" />
+<!--[if IE]><link rel="stylesheet" href="blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
+<!-- Import fancy-type plugin for the sample page. -->
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<!--[if lt IE 7]>
+  <link rel="stylesheet" type="text/css" href="styleIE.css" />
+<![endif]-->
+</head>
+<!--[if lt IE 7 ]> <body class="ie6"> <![endif]-->
+<!--[if IE 7 ]> <body class="ie7"> <![endif]-->
+<!--[if IE 8 ]> <body class="ie8"> <![endif]-->
+<!--[if !IE]>--> <body class="notIE"> <!--<![endif]-->
+<div  class="container">
+  <div id="header">
+    <div class="span-9 logo"><a href="home.html"><img src="images/blank.gif" /></a></div>
+    <div id="nav" class="span-15 rightalign last">
+      <form method="post" action="$link.setRelative('deal_list.html')">
+        Welcome, ${name} <a href="logout.html" target="_self">Sign Out</a><br />
+        <label> Deal Status</label>
+        <input id="merchantName" type="text" value="Merchant Name" name="merchantName" onFocus="if(this.value=='Merchant Name')this.value='';" onBlur="if(this.value=='')this.value='Merchant Name';" />
+        <input name="" type="button" id="search" value="OK" />
+      </form>
+    </div>
+  </div>
+  <div id="menu">
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="application_1.html" class="selected">Submit Application</a></li>
+      <li><a href="deals.html">Deal Pipeline</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li class="last"></li>
+    </ul>
+  </div>
+  <div class="content">
+    <div class="span-5 colborder title">
+      <div class="noicon">
+        <h2>Confirmation</h2>
+      </div>
+    </div>
+    <div class="span-12 colborder">
+      <div class="success">
+        <h3>Thank you for submitting this application. </h3>
+        <p>Here’s what you should expect next:</p>
+        <ol>
+          <li> If the application is missing any information, On Deck will reach out to you as soon as possible to collect it.</li>
+          <li> If the application is complete, you will receive notification within 2 business days with our loan decision.</li>
+          <li> If approved, the merchant can be funded in as little as 3 additional business days of submitting the completed closing paperwork.</li>
+        </ol>
+        <p> If you have any questions while we are reviewing this application, please do not hesitate to contact us at <a href="mailto:partnersupport@ondeckcapital.com">partnersupport@ondeckcapital.com</a> or at (888) 269-4246.</p>
+        <ul>
+          <li> <a href="application_1.html">Click here</a> to submit an application for another merchant.</li>
+          <li> <a href="home.html">Click here</a> to return to the home page.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="span-5  last">
+      <div class="noicon application"></div>
+      <!--<div class="error">Error Message here
+            <ol>
+                <li>1st reason</li>
+              <li>2nd reason</li>
+              <li>3rd reason</li><li>etc</li>
+            </ol>
+          </div>-->
+    </div>
+  </div>
+  <div class="clear"></div>
+  <div id="footer">
+    <ul>
+      <li><a href="http://www.ondeckcapital.com/">On Deck Capital Home</a></li>
+      <li><a href="http://www.ondeckcapital.com/privacy.php">Privacy &amp; Security</a></li>
+      <li><a href="http://www.ondeckcapital.com/faq.php">Frequently Asked Questions</a></li>
+      <li><a href="mailto:partnersupport@ondeckcapital.com">Contact Us</a></li>
+      <li>(888) 269-4246</li>
+    </ul>
+  </div>
+</div>
+</body></html>

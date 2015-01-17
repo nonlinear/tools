@@ -1,0 +1,668 @@
+/*
+=================================
+LIST FIX
+=================================
+*/
+section .rich-table-cell.col {
+	margin-bottom: 0px;
+	padding: 3px 0px;
+}
+/*
+=================================
+BUTTON SUBSTITUTES
+=================================
+*/
+.rich-fileupload-button-border {
+	display: inline-block;
+	background: -moz-linear-gradient(top, rgba(204,204,204,1) 0%, rgba(238,238,238,1) 18%, rgba(255,255,255,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(204,204,204,1)), color-stop(18%, rgba(238,238,238,1)), color-stop(100%, rgba(255,255,255,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(204,204,204,1) 0%, rgba(238,238,238,1) 18%, rgba(255,255,255,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(204,204,204,1) 0%, rgba(238,238,238,1) 18%, rgba(255,255,255,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(204,204,204,1) 0%, rgba(238,238,238,1) 18%, rgba(255,255,255,1) 100%); /* IE10+ */
+	background: linear-gradient(top, rgba(204,204,204,1) 0%, rgba(238,238,238,1) 18%, rgba(255,255,255,1) 100%);
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	padding: 4px 10px 2px 10px;
+	font-size: 13px;
+	-webkit-appearance: none;
+	cursor: pointer;
+	font-weight: bold;
+	border: none;
+	text-decoration: none;
+	text-shadow: #fff 0 1px 1px;
+	color: #000;
+	margin-left: 0;
+	margin-right: 5px;
+	-webkit-transition: all 300ms ease-out;
+	-moz-transition: all 300ms ease-out;
+	-o-transition: all 300ms ease-out;
+	transition: all 300ms ease-out;
+	vertical-align: bottom;
+}
+.rich-fileupload-button-border:active {
+	background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(238,238,238,1) 55%, rgba(204,204,204,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(55%, rgba(238,238,238,1)), color-stop(100%, rgba(204,204,204,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(238,238,238,1) 55%, rgba(204,204,204,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(238,238,238,1) 55%, rgba(204,204,204,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(238,238,238,1) 55%, rgba(204,204,204,1) 100%); /* IE10+ */
+	background: linear-gradient(top, rgba(255,255,255,1) 0%, rgba(238,238,238,1) 55%, rgba(204,204,204,1) 100%);
+}
+
+.oldie .rich-fileupload-button-border:active, .oldie .rich-fileupload-button-border {
+	background: #eee;
+	border: solid 1px #ccc;
+}
+.oldie .rich-fileupload-button-border {
+	border-top: solid 1px #fff;
+	border-bottom: solid 1px #999;
+}
+.oldie .rich-fileupload-button-border:active {
+	border-bottom: solid 1px #fff;
+	border-top: solid 1px #999;
+}
+.rich-fileupload-button-border:empty {
+	font: 20px 'Pictos', sans-serif;
+	font-weight: normal;
+	border-right: none;
+	margin-right: 10px;
+	height: 13px;
+	width: 10px;
+	font-size: 12px;
+	padding: 5px 5px 2px 5px;
+}
+.rich-fileupload-button-border:before {
+	float: left;
+	padding-top: 1px;
+	padding-right: 5px;
+	margin-right: 5px;
+	border-right: solid 1px #ccc;
+	font:20px 'Pictos', sans-serif;
+	font-weight: normal;
+}
+.rich-fileupload-button-border:nth-child(3) {
+	width: 15px;
+	overflow: hidden;
+	height: 20px;
+}
+.rich-fileupload-button-border:nth-child(3):before {
+	margin-right: 0px;
+	padding-right: 0px;
+	border: none;
+	content: '#';
+}
+.oldie .rich-fileupload-button-border:nth-child(3) {
+	background-image: url(../img/oldie_trash.gif);
+	background-repeat: no-repeat;
+	background-position: 5px center;
+}
+.oldie .rich-fileupload-button-border:nth-child(3):before {
+	display: none;
+}
+.rich-fileupload-del {
+	text-align: right;
+}
+.rich-fileupload-anc {
+	color: #406D0C;
+	margin-right: 10px;
+}
+.rich-fileupload-button-border:empty:before {
+	font: 12px 'Pictos', sans-serif;
+	font-weight: normal;
+	border-right: none;
+	margin-right: 10px;
+	height: 13px;
+	width: 10px;
+}
+.rich-fileupload-button-border {
+	border: solid 1px #E5E5E5;
+	outline: 0;
+	font-family: Arial, Helvetica, sans-serif;
+	box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+	-moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+	-webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+	-webkit-transition: all 300ms ease-out;
+	-moz-transition: all 300ms ease-out;
+	-o-transition: all 300ms ease-out;
+	transition: all 300ms ease-out;
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+.rich-fileupload-button-border:hover:not(.off) {
+	-webkit-animation-name: pulse;
+	-webkit-animation-duration: 2s;
+	-webkit-animation-iteration-count: infinite;
+}
+}
+/*
+=================================
+RICH UPLOAD
+=================================
+*/
+.rich-fileupload-list-decor, .rich-fileupload-toolbar-decor {
+	border: none;
+	background: none;
+	width: 100% !important;
+	margin: 0px;
+	padding: 0px;
+}
+.rich-fileupload-button, rich-fileupload-hidden:hover {
+	background: none;
+	margin: 0px;
+}
+.rich-fileupload-button-content {
+	font-family: Verdana, Geneva, sans-serif !important;
+	font-size: 11px;
+	padding: 0px;
+	margin: 0px;
+	-webkit-transition: all 200ms ease-out;
+	-moz-transition: all 200ms ease-out;
+	-o-transition: all 200ms ease-out;
+	transition: all 200ms ease-out;
+}
+.rich-fileupload-button-content:before {
+	float: left;
+	padding-top: 1px;
+	padding-right: 5px;
+	margin-right: 5px;
+	border-right: solid 1px #ccc;
+	font:20px 'Pictos', sans-serif;
+	font-weight: normal;
+	content: '&';
+}
+.rich-fileupload-button-border:nth-child(2) .rich-fileupload-button-content:before {
+	content: '*';
+}
+.oldie .rich-fileupload-button-content:before, .oldie .rich-fileupload-button-border:before {
+	display: none;
+}
+.rich-fileupload-button-border {
+	height: 21px !important;
+}
+.rich-fileupload-button, .rich-fileupload-button-light, .rich-fileupload-button-press {
+	border: 0px;
+	background: none;
+	margin: 0px;
+	padding: 0px;
+}
+.rich-fileupload-button-light .rich-fileupload-button-content {
+	color: #7CAB45;
+}
+.rich-fileupload-button .rich-fileupload-button-content, .rich-fileupload-button-light .rich-fileupload-button-content, .rich-fileupload-button-press .rich-fileupload-button-content {
+	padding: 0px;
+	margin: 0px;
+}
+/*
+=================================
+RICH TREE
+=================================
+*/
+
+.rich-tree-h-ic-line {
+	background-image:url(../img/bg_tree1.gif);
+}
+.rich-tree-node {
+	height: 30px !important;
+}
+.rich-tree-h-ic-line-node {
+	background-image:url(../img/bg_tree2.gif);
+	background-position: left top;
+	height: 30px !important;
+}
+.rich-tree-h-ic-line-last {
+	background-image:url(../img/bg_tree3.gif);
+	height: 30px;
+	background-position: left top;
+	background-repeat: no-repeat;
+}
+p.rich-tree-last-node-marker+* .rich-tree-h-ic-line-node {
+	background-image:url(../img/bg_tree3.gif);
+	height: 30px;
+	background-position: left top;
+	background-repeat: no-repeat;
+}
+p.rich-tree-last-node-marker+*+div.rich-tree-h-ic-line {
+	background-image:none;
+}
+.rich-tree-h-ic-line-exp {
+	background-image:none;
+}
+.rich-tree-h-ic-line-clp {
+	background-image:none;
+}
+.rich-tree-node-handleicon {
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+}
+.rich-tree-node-handleicon-collapsed, .rich-tree-node-handleicon-expanded {
+	width: 20px;
+	height: 20px;
+}
+.rich-tree-node-handleicon img {
+	displaY: none;
+}
+.rich-tree-node {
+	padding: 0;
+	margin: 0;
+	-webkit-transition: all 300ms ease-out;
+	-moz-transition: all 300ms ease-out;
+	-o-transition: all 300ms ease-out;
+	transition: all 300ms ease-out;
+	background: #fff;
+	background: url(../img/bg_unit.gif) left top repeat-x;
+}
+.rich-tree-node:hover {
+	background: url(../img/bg_unit.gif) left bottom repeat-x;
+}
+.rich-tree-node-text {
+	padding: 0;
+}
+.rich-tree-node-text, .rich-tree-node-highlighted, .rich-tree-node-selected, .inspectionview .title {
+	font-family:"Courier New", Courier, monospace;
+	border: none;
+	background: none;
+	text-wrap: suppress;
+}
+#cluster .rich-tree-node-text {
+	width: 1000px;
+}
+.rich-tree-node:hover p, .rich-tree-node:hover p:first-line {
+	color: #000;
+}
+.rich-tree-node-handle {
+	-webkit-appearance: none;
+	background: rgb(255,255,255); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(238,238,238,1) 55%, rgba(204,204,204,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(55%, rgba(238,238,238,1)), color-stop(100%, rgba(204,204,204,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(238,238,238,1) 55%, rgba(204,204,204,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(238,238,238,1) 55%, rgba(204,204,204,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(238,238,238,1) 55%, rgba(204,204,204,1) 100%); /* IE10+ */
+	background: linear-gradient(top, rgba(255,255,255,1) 0%, rgba(238,238,238,1) 55%, rgba(204,204,204,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#cccccc', GradientType=0 ); /* IE6-9 */
+	border: solid 1px #ccc;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 10px;
+	font-weight: bold;
+	text-decoration: none;
+	text-shadow: white 0px 1px 1px;
+	width: auto;
+	box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+	-moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+	-webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+	-webkit-transition: all 300ms ease-out;
+	-moz-transition: all 300ms ease-out;
+	-o-transition: all 300ms ease-out;
+	transition: all 300ms ease-out;
+	font-family: Arial, Helvetica, sans-serif;
+	outline: 0px;
+	width: 15px;
+	height: 15px;
+	margin: 5px;
+	padding: 3px;
+	-webkit-border-radius:20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+}
+.rich-tree-node-handle:hover, .rich-tree-node-handle:focus {
+	box-shadow: rgba(0, 0, 0, .5) 0px 0px 8px;
+	-moz-box-shadow: rgba(0, 0, 0, .5) 0px 0px 8px;
+	-webkit-box-shadow: rgba(0, 0, 0, .5) 0px 0px 8px;
+	cursor: pointer;
+}
+.rich-tree-node-handle.off:hover, .rich-tree-node-handle.off:focus {
+	box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+	-moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+	-webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+	cursor: pointer;
+}
+.rich-tree-node-handle:active {
+	background: rgb(204,204,204); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(204,204,204,1) 0%, rgba(238,238,238,1) 18%, rgba(255,255,255,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(204,204,204,1)), color-stop(18%, rgba(238,238,238,1)), color-stop(100%, rgba(255,255,255,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(204,204,204,1) 0%, rgba(238,238,238,1) 18%, rgba(255,255,255,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(204,204,204,1) 0%, rgba(238,238,238,1) 18%, rgba(255,255,255,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(204,204,204,1) 0%, rgba(238,238,238,1) 18%, rgba(255,255,255,1) 100%); /* IE10+ */
+	background: linear-gradient(top, rgba(204,204,204,1) 0%, rgba(238,238,238,1) 18%, rgba(255,255,255,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cccccc', endColorstr='#ffffff', GradientType=0 ); /* IE6-9 */
+}
+.rich-tree-node-handle.off {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+	filter:alpha(opacity=100);
+	-moz-opacity:1;
+	-khtml-opacity: 1;
+	opacity: 1;
+}
+.rich-tree-node-icon img {
+	display: none;
+}
+.rich-tree-node-icon, .rich-tree-node-icon-leaf {
+	display: none;
+}
+.rich-tree-node-handle:after {
+	margin-left: 5px;
+	padding-left: 5px;
+	border-left: 1px solid #666;
+	vertical-align: top;
+}
+.nochild .rich-tree-node-handle:after {
+	margin-left: 0px;
+	padding-left: 0px;
+	border-left: none;
+}
+.nochild .rich-tree-node-handle img {
+	display: none;
+}
+.nochild .rich-tree-node-handle:hover {
+	box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+	-moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+	-webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+}
+.nochild.unit-FU .rich-tree-node-handle:after {
+	border-left: none;
+}
+.unit-FU .rich-tree-node-handle img {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+	filter:alpha(opacity=50);
+	-moz-opacity:0.5;
+	-khtml-opacity: 0.5;
+	opacity: 0.5;
+}
+.rich-tree-node {
+	display: block;
+	vertical-align: middle;
+}
+.rich-tree-node-highlighted {
+	text-decoration: none;
+	color: #000;
+}
+.rich-tree-node-handleicon {
+	width: 35px;
+}
+.rich-tree-node {
+	height: 30px;
+}
+:not(.oldie) .rich-tree-node-handle .rich-tree-node-handleicon-expanded:before, :not(.oldie) .rich-tree-node-handle .rich-tree-node-handleicon-collapsed:before {
+	font-family: Pictos;
+	font-size: 15px;
+}
+:not(.oldie) .rich-tree-node-handle .rich-tree-node-handleicon-expanded:before {
+	content: '-';
+}
+:not(.oldie) .rich-tree-node-handle .rich-tree-node-handleicon-collapsed:before {
+	content: '+';
+}
+.oldie .rich-tree-node-handle .rich-tree-node-handleicon-expanded {
+	background-image: url(../img/bg_expanded.gif);
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+.oldie .rich-tree-node-handle .rich-tree-node-handleicon-collapsed {
+	background-image: url(../img/bg_collapsed.gif);
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+.rich-tree-node .rich-tree-node-text {
+	color: #999;
+}
+.rich-tree-node:hover .rich-tree-node-text {
+	color: #000;
+}
+.rich-tree-node .rich-tree-node-text:first-line {
+	color: #000;
+}
+.rich-tree-node-icon, .rich-tree-node-icon-leaf, .rich-tree-node-handleicon {
+	padding: 0;
+	width: 27px;
+}
+.rich-tree-node-children {
+	margin-left: 0;
+	padding-left: 13px;
+}
+.rich-tree-node-children .rich-tree-node-children:last-child, .rich-tree-node-children .rich-tree-node-children .rich-tree-node-children:last-child {
+	border-left: solid 1px white
+}
+.rich-tree-node-text {
+	font-size: 12px;
+}
+.unit-FU .titleunit, .unit-FU .titleunit:hover {
+	background: none;
+	background: rgb(243,244,193);
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
+	filter:alpha(opacity=75);
+	-moz-opacity:0.75;
+	-khtml-opacity: 0.75;
+	opacity: 0.75;
+	color: #000;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+}
+.rich-tree, .inspection table, .rich-tree-node tr, .rich-tree-node-selected, .rich-tree-node-text {
+	width: 100% !important;
+	padding: 0px;
+	margin: 0px;
+	heighT: 5px;
+	vertical-align: middle;
+}
+.rich-tree-node-text span {
+	margin-left: 5px;
+}
+.oldie .rich-tree-last-node-marker, .rich-tree-last-node-marker:empty {
+	display: none;
+}
+.inspection .col1 {
+	display: none
+}
+.inspection .col1 {
+	width: 100%;
+}
+/*
+=================================
+LIST, TABPANEL NAVIGATION
+=================================
+*/
+
+nav.listnav, .rich-tab-bottom-line {
+	height: 20px;
+	padding: 5px;
+	color: #ccc;
+	margin-bottom: 5px;
+}
+.rich-tab-bottom-line {
+	border-bottom: none;
+}
+.rich-tab-inactive, .rich-tab-header, .rich-tabhdr-side-cell {
+	margin: 0px;
+	padding: 0px;
+	background: none;
+	border: none;
+}
+nav.listnav:only-of-type, nav.listnav:last-child, .rich-tab-bottom-line:only-of-type, .rich-tab-bottom-line:last-child {
+	margin-bottom: 15px;
+}
+.rich-tab-bottom-line table td:nth-child(2n-1) {
+	display: none;
+}
+.rich-tab-bottom-line table table td:nth-child(2n-1) {
+	display: block;
+}
+nav.listnav li, .rich-tabhdr-side-cell {
+	float: left;
+	padding-right: 5px;
+	margin-right: 5px;
+	border-right: solid 1px #ccc;
+	font-size: 11px;
+}
+.rich-tabpanel, .rich-tab-header, .rich-tabpanel-content {
+	font-family: Verdana, Geneva, sans-serif;
+}
+nav.listnav li:last-child {
+	padding-right: 0px;
+	margin-right: 0px;
+	border-right: none;
+}
+.rich-tab-inactive {
+	color: #406D0C;
+	padding: 0px;
+	marging: 0px;
+	text-decoration: none;
+	border-bottom: dotted 1px #406D0C;
+	-webkit-transition: all 300ms ease-out;
+	-moz-transition: all 300ms ease-out;
+	-o-transition: all 300ms ease-out;
+	transition: all 300ms ease-out;
+	font-size: 12px;
+}
+.rich-tab-inactive:hover {
+	color: #7cab45;
+	border-bottom: solid 1px #7cab45;
+}
+nav.listnav select {
+	min-width: 150px;
+	margin-top: 2px;
+}
+.rich-tabpanel-content {
+	border: none;
+}
+nav.listnav li.selected, .rich-tab-active {
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	background-color: #fff;
+	padding: 10px 10px 5px 10px;
+	border: none;
+	-webkit-box-shadow: 0 -3px 5px rgba(0, 0, 0, .2);
+	-moz-box-shadow: 0 -3px 5px rgba(0, 0, 0, .2);
+	box-shadow: 0 -3px 5px rgba(0, 0, 0, .2);
+	margin: 0px;
+	margin-right: 10px;
+	margin-top: -10px;
+	font-size: 15px;
+}
+.rich-tab-active {
+	font-weight: bold;
+	margin-right: 0px;
+}
+.oldie nav.listnav li.selected {
+	border: solid 1px #ccc;
+	border-bottom: none;
+}
+nav.listnav li.selected a, nav.listnav li.selected a:hover {
+	text-decoration: none;
+	border: none;
+	color: #000;
+	font-weight: bold;
+}
+nav.listnav .title {
+	color: #000;
+	border: none;
+	margin: 0px;
+	padding: 0px;
+	padding-right: 10px;
+	background: none;
+	width: auto;
+	height: auto;
+}
+/*
+=================================
+CURTAIN ELEMENTS
+=================================
+*/
+.curtain, .rich-mpnl-mask-div {
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	background-color: #000;
+	z-index: 1000;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=25)";
+	filter:alpha(opacity=25);
+	-moz-opacity:0.25;
+	-khtml-opacity: 0.25;
+	opacity: 0.25;
+}
+.rich-mpnl-mask-div {
+	background-image:url(../img/loading.gif);
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+.ie6 .curtain {
+	position : absolute;
+	top: 0px;
+	left: 0px;
+	height: 1000px;
+}
+.rich-mp-container {
+	display: none;
+}
+/*
+=================================
+PAGINATION
+=================================
+*/
+.rich-datascr {
+	display: block;
+	padding: 5px;
+	padding-bottom: 0px;
+	border-top: solid 1px #ccc;
+	background: rgb(238,238,238); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(238,238,238,1) 0%, rgba(255,255,255,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(238,238,238,1)), color-stop(100%, rgba(255,255,255,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(238,238,238,1) 0%, rgba(255,255,255,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(238,238,238,1) 0%, rgba(255,255,255,1) 100%); /* Opera11.10+ */
+	background: -ms-linear-gradient(top, rgba(238,238,238,1) 0%, rgba(255,255,255,1) 100%); /* IE10+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#ffffff', GradientType=0 ); /* IE6-9 */
+	background: linear-gradient(top, rgba(238,238,238,1) 0%, rgba(255,255,255,1) 100%); /* W3C */
+	text-align: left;
+}
+.rich-dtascroller-table {
+	background: none;
+}
+.rich-datascr-inact, .rich-datascr-act, .rich-datascr-button {
+	border-top-color: transparent !important;
+	border-left-color: transparent !important;
+	border-bottom-color: transparent !important;
+	padding: 0px 5px;
+	margin-right: 5px;
+	border-right: solid 1px #ccc !important;
+	font-size: 11px;
+	width: auto;
+}
+.rich-datascr-button-dsbld {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+	filter:alpha(opacity=50);
+	-moz-opacity:0.5;
+	-khtml-opacity: 0.5;
+	opacity: 0.5;
+}
+.rich-datascr-button {
+	background: none;
+}
+.rich-datascr-ctrls-separator, .rich-dtascroller-table td:empty {
+	display: none;
+}
+.rich-datascr-act {
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	background-color: #fff;
+	padding: 10px 10px 5px 10px;
+	border: none;
+	-webkit-box-shadow: 0 -3px 5px rgba(0, 0, 0, .2);
+	-moz-box-shadow: 0 -3px 5px rgba(0, 0, 0, .2);
+	box-shadow: 0 -3px 5px rgba(0, 0, 0, .2);
+	margin: 0px;
+	display: inline-block;
+	font-size: 15px;
+	margin-top: -15px;
+	border: none;
+	border-bottom: none;
+}

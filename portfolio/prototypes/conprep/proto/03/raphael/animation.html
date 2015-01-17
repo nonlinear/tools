@@ -1,0 +1,286 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en"><head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Raphaël · Animation</title>
+        <link rel="stylesheet" href="animation_files/demo.css" type="text/css" media="screen">
+        <link rel="stylesheet" href="animation_files/demo-print.css" type="text/css" media="print">
+        <style type="text/css" media="screen">
+            #holder {
+                height: 419px;
+                margin: -205px 0 0 -305px;
+                width: 619px;
+            }
+        </style>
+        <script src="animation_files/raphael.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript" charset="utf-8">
+            Raphael.fn.arrow = function (x, y) {
+                return this.path(["M", x, y] + "m-10-10l20,0 0-6 10,16 -10,16 0-6 -20,0 0,6 -10-16 10-16z").attr({fill: "#fff", stroke: "none", "stroke-dasharray": "-", "fill-opacity": 0.2});
+            };
+            window.onload = function () {
+                // var r = Raphael("holder", 619, 419),
+                var r = Raphael("holder", 619, 419), //Raphael(0, 0, "100%", "100%"),
+                    dashed = {fill: "none", stroke: "#666", "stroke-dasharray": "- "};
+                // Ellipse
+                (function () {
+                    r.circle(40, 40, 20).attr(dashed);
+                    r.circle(140, 40, 20).attr(dashed);
+                    var el = r.circle(40, 40, 20).attr({fill: "#fff", "fill-opacity": 0, stroke: "#fff", "stroke-width": 2}),
+                        elattrs = [{cx: 140, fill: "#f00", "fill-opacity": 1}, {cx: 40, fill: "#fff", "fill-opacity": 0}],
+                        now = 0;
+                    r.arrow(90, 40).node.onclick = function () {
+                        el.animate(elattrs[now++], 1000);
+                        if (now == 2) {
+                            now = 0;
+                        }
+                    };
+                })();
+                // Ellipse
+                (function () {
+                    r.circle(40, 90, 20).attr(dashed);
+                    r.ellipse(140, 90, 20, 10).attr({fill: "none", stroke: "#666", "stroke-dasharray": "- ", rotation: 45});
+                    var el = r.ellipse(40, 90, 20, 20).attr({fill: "none", stroke: "#fff", "stroke-width": 2}),
+                        elattrs = [{ry: 10, cx: 140, rotation: 45}, {ry: 20, cx: 40, rotation: 0}],
+                        now = 0;
+                    r.arrow(90, 90).node.onclick = function () {
+                        el.animate(elattrs[now++], 1000);
+                        if (now == 2) {
+                            now = 0;
+                        }
+                    };
+                })();
+                // Rect
+                (function () {
+                    r.rect(19.5, 119.5, 40, 40).attr(dashed);
+                    r.rect(120, 130, 30, 20).attr({fill: "none", stroke: "#666", "stroke-dasharray": "- ", rotation: 120});
+                    var el = r.rect(20, 120, 39, 39).attr({fill: "none", stroke: "#fff", "stroke-width": 2}),
+                        elattrs = [{x: 120, y: 130, rotation: 120, width: 30, height: 20, stroke: "#f00", opacity: .3, "stroke-width": 10}, {x: 20, y: 120, rotation: 0, width: 39, height: 39, stroke: "#fff", opacity: 1, "stroke-width": 2}],
+                        now = 0;
+                    r.arrow(90, 140).node.onclick = function () {
+                        el.animate(elattrs[now++], 1000);
+                        if (now == 2) {
+                            now = 0;
+                        }
+                    };
+                })();
+                // Path 1
+                (function () {
+                    r.path("M20,189.5c0-20 40,20 40,0").attr(dashed);
+                    r.path("M120,189.5c0-20 40,20 40,0").attr(dashed);
+                    var el = r.path("M20,189.5c0-20 40,20 40,0").attr({fill: "none", stroke: "#fff", "stroke-width": 2}),
+                        elattrs = [{path: "M120,189.5c0-20 40,20 40,0"}, {path: "M20,189.5c0-20 40,20 40,0c"}],
+                        now = 0;
+                    r.arrow(90, 190).node.onclick = function () {
+                        el.animate(elattrs[now++], 1000);
+                        if (now == 2) {
+                            now = 0;
+                        }
+                    };
+                })();
+                // Path 2
+                (function () {
+                    r.path("M20,240c0-20 40,-20 40,0c0,20 -40,20 -40,0z").attr(dashed);
+                    r.path("M120,240c0-20 40,20 40,0c0-20 -40,20 -40,0z").attr(dashed);
+                    var el = r.path("M20,240c0-20 40,-20 40,0c0,20 -40,20 -40,0z").attr({fill: "none", stroke: "#fff", "stroke-width": 2}),
+                        elattrs = [{path: "M120,240c0-20 40,20 40,0c0-20 -40,20 -40,0z"}, {path: "M20,240c0-20 40,-20 40,0c0,20 -40,20 -40,0z"}],
+                        now = 0;
+                    r.arrow(90, 240).node.onclick = function () {
+                        el.animate(elattrs[now++], 1000);
+                        if (now == 2) {
+                            now = 0;
+                        }
+                    };
+                })();
+                // Path 3
+                (function () {
+                    r.path("M20,290c0-20 40,20 40,0").attr(dashed);
+                    r.path("M120,290c0-20 40,20 40,0c0-20 -40,20 -40,0z").attr(dashed);
+                    var el = r.path("M20,290c0-20 40,20 40,0").attr({fill: "none", stroke: "#fff", "stroke-width": 2}),
+                        elattrs = [{path: "M120,290c0-20 40,20 40,0c0-20 -40,20 -40,0z"}, {path: "M20,290c0-20 40,20 40,0c"}],
+                        now = 0;
+                    r.arrow(90, 290).node.onclick = function () {
+                        el.animate(elattrs[now++], 1000);
+                        if (now == 2) {
+                            now = 0;
+                        }
+                    };
+                })();
+                // Path 4
+                (function () {
+                    var path1 = "M20,336c0-20 40,20 40,0m-40,8c0-20 40,20 40,0",
+                        path2 = "M120,340c0-20 40,20 40,0c0-20 -40,20 -40,0z";
+                    r.path(path1).attr(dashed);
+                    r.path(path2).attr(dashed);
+                    var el = r.path(path1).attr({fill: "none", stroke: "#fff", "stroke-width": 2}),
+                        elattrs = [{path: path2}, {path: path1}],
+                        now = 0;
+                    r.arrow(90, 340).node.onclick = function () {
+                        el.animate(elattrs[now++], 1000);
+                        if (now == 2) {
+                            now = 0;
+                        }
+                    };
+                })();
+                // Path 5
+                (function () {
+                    var path1 = "M20,390l0-20 5,0 0,40 5,0 0-40 5,0 0,40 5,0 0-40 5,0 0,40 5,0 0-40 5,0 0,40 5,0 0-20",
+                        path2 = "M120,390c0-20 40,20 40,0c0-20 -40,20 -40,0z";
+                    r.path(path1).attr(dashed);
+                    r.path(path2).attr(dashed);
+                    var el = r.path(path1).attr({fill: "none", stroke: "#fff", "stroke-width": 2}),
+                        elattrs = [{path: path2}, {path: path1}],
+                        now = 0;
+                    r.arrow(90, 390).node.onclick = function () {
+                        el.animate(elattrs[now++], 1000);
+                        if (now == 2) {
+                            now = 0;
+                        }
+                    };
+                })();
+                // Path 6
+                (function () {
+                    var path1 = "M170,40c0-20 40,20 40,0c0-20 -40,20 -40,0z",
+                        path2 = "M270,40c0-20 40,20 40,0c0-20 -40,20 -40,0z";
+                    r.path(path1).attr(dashed);
+                    r.path(path2).attr(dashed);
+                    var el = r.path(path1).attr({fill: "none", stroke: "#fff", "stroke-width": 2}),
+                        elattrs = [{translation: "100 0", rotation: 360}, {translation: "-100 0", rotation: 0}],
+                        now = 0;
+                    r.arrow(240, 40).node.onclick = function () {
+                        el.animate(elattrs[now++], 1000);
+                        if (now == 2) {
+                            now = 0;
+                        }
+                    };
+                })();
+                // Path 7
+                (function () {
+                    var path1 = "M170,90c0-20 40,20 40,0c0-20 -40,20 -40,0z",
+                        path2 = "M270,90c0-20 40,20 40,0c0-20 -40,20 -40,0z";
+                    var t = r.path(path1).attr(dashed);
+                    r.path(path2).attr({fill: "none", stroke: "#666", "stroke-dasharray": "- ", rotation: 90});
+                    var el = r.path(path1).attr({fill: "none", stroke: "#fff", "stroke-width": 2}),
+                        elattrs = [{translation: "100 0", rotation: 90}, {translation: "-100 0", rotation: 0}],
+                        now = 0;
+                    r.arrow(240, 90).node.onclick = function () {
+                        el.animate(elattrs[now++], 1000);
+                        if (now == 2) {
+                            now = 0;
+                        }
+                    };
+                })();
+                // Path 8
+                (function () {
+                    var path1 = "M170,140c0-20 40,20 40,0c0-20 -40,20 -40,0z",
+                        path2 = "M270,140c0-20 40,20 40,0c0-20 -40,20 -40,0z";
+                    r.path(path1).attr(dashed);
+                    var t = r.path(path2).attr({fill: "none", stroke: "#666", "stroke-dasharray": "- ", scale: "2 2", rotation: 45});
+                    var el = r.path(path1).attr({fill: "none", stroke: "#fff", "stroke-width": 2}),
+                        elattrs = [{translation: "100 0", scale: "2 2", rotation: 225}, {translation: "-100 0", scale: "1 1", rotation: 0}],
+                        now = 0;
+                    r.arrow(240, 140).node.onclick = function () {
+                        el.animate(elattrs[now++], 1000);
+                        if (now == 2) {
+                            now = 0;
+                        }
+                    };
+                })();
+                // Text
+                (function () {
+                    try {
+                    r.text(190, 195, "Yay!").attr({font: '10px "Helvetica Neue", Arial', fill: "none", stroke: "#666", "stroke-dasharray": "-"});
+                    r.text(290, 195, "Yay!").attr({font: '30px "Helvetica Neue", Arial', fill: "none", stroke: "#666", "stroke-dasharray": "-"});
+                    var el = r.text(190, 195, "Yay!").attr({font: '10px "Helvetica Neue", Arial', fill: "#fff"}),
+                        elattrs = [{x: 290, "font-size": 30, rotation: 360}, {x: 190, "font-size": 10, rotation: 0}],
+                        now = 0;
+                    r.arrow(240, 190).node.onclick = function () {
+                        el.animate(elattrs[now++], 1000);
+                        if (now == 2) {
+                            now = 0;
+                        }
+                    };
+                    } catch (e) {
+                        alert(e.message);
+                    }
+                    
+                })();
+                // Rect
+                (function () {
+                    var path1 = "M170.5,220.5l40,0 0,40 -40,0z",
+                        path2 = "M290.5,220.5l20,40 -40,0z";
+                    r.path(path1).attr(dashed);
+                    r.path(path2).attr(dashed);
+                    var el = r.path(path1).attr({fill: "none", stroke: "#fff", "stroke-width": 2}),
+                        elattrs = [{path: path2}, {path: path1}],
+                        now = 0;
+                    r.arrow(240, 240).node.onclick = function () {
+                        el.animate(elattrs[now++], 1000);
+                        if (now == 2) {
+                            now = 0;
+                        }
+                    };
+                })();
+                // Rect 2
+                (function () {
+                    var path1 = "M210.5,270.5l0,40 -40,0 0-40z",
+                        path2 = "M290.5,270.5l20,40 -40,0z";
+                    r.path(path1).attr(dashed);
+                    r.path(path2).attr(dashed);
+                    var el = r.path(path1).attr({fill: "none", stroke: "#fff", "stroke-width": 2}),
+                        elattrs = [{path: path2}, {path: path1}],
+                        now = 0;
+                    r.arrow(240, 290).node.onclick = function () {
+                        el.animate(elattrs[now++], 1000);
+                        if (now == 2) {
+                            now = 0;
+                        }
+                    };
+                })();
+                // Rect 3
+                (function () {
+                    var path1 = "M190.5,320.5A20,20,0,1,1,190.1,320.5z",
+                        path2 = "M290.5,320.5l20,40 -40,0z";
+                    r.path(path1).attr(dashed);
+                    r.path(path2).attr(dashed);
+                    var el = r.path(path1).attr({fill: "none", stroke: "#fff", "stroke-width": 2}),
+                        elattrs = [{path: path2}, {path: path1}],
+                        now = 0;
+                    r.arrow(240, 340).node.onclick = function () {
+                        el.animate(elattrs[now++], 1000);
+                        if (now == 2) {
+                            now = 0;
+                        }
+                    };
+                })();
+                // Rect 3
+                (function () {
+                    var path1 = "M190.5,370.5c11,0 20,9 20,20c0,11 -9,20 -20,20c-11,0 -20-9 -20-20c0-11 9-20 20-20z",
+                        path2 = "M290.5,370.5l20,20 -20,20 -20-20z";
+                    r.path(path1).attr(dashed);
+                    r.path(path2).attr(dashed);
+                    var el = r.path(path1).attr({fill: "none", stroke: "#fff", "stroke-width": 2}),
+                        elattrs = [{path: path2}, {path: path1}],
+                        now = 0;
+                    r.arrow(240, 390).node.onclick = function () {
+                        el.animate(elattrs[now++], 1000);
+                        if (now == 2) {
+                            now = 0;
+                        }
+                    };
+                })();
+                // Logo and title
+                var logo = r.set(
+                r.rect(14, 13, 116, 116, 30).attr({stroke: "none", fill: "#fff", rotation: 45}),
+                r.path("M129.657,71.361c0,3.812-1.105,7.451-3.153,10.563c-1.229,1.677-2.509,3.143-3.829,4.408l-0.095,0.095c-6.217,5.912-13.24,7.588-19.2,7.588c-3.28,0-6.24-0.508-8.566-1.096C81.19,89.48,66.382,77.757,59.604,60.66c3.65,1.543,7.662,2.396,11.869,2.396c15.805,0,28.849-12.04,30.446-27.429l22.073,22.072C127.645,61.351,129.657,66.201,129.657,71.361zM18.953,85.018c-3.653-3.649-5.663-8.5-5.663-13.656c0-5.16,2.01-10.011,5.661-13.656l14.934-14.935c-3.896,13.269-5.569,27.23-4.674,40.614c0.322,4.812,0.987,9.427,1.942,13.831L18.953,85.018zM44.482,46.869c3.279,25.662,23.592,50.991,47.552,57.046c3.903,0.986,7.729,1.472,11.432,1.472c0.055,0,0.107-0.005,0.161-0.005l-18.501,18.503c-3.647,3.646-8.498,5.654-13.652,5.654c-3.591,0-7.021-0.993-10.01-2.815l0.007-0.01c-1.177-0.78-2.298-1.66-3.388-2.593c-0.084-0.082-0.176-0.153-0.26-0.236l-3.738-3.738c-7.688-8.825-12.521-21.957-13.561-37.517C39.736,70.853,41.149,58.578,44.482,46.869").attr({fill: "#f89938", stroke: "none"}),
+                r.circle(71, 32, 19).attr({stroke: "none", fill: "#39f"}));
+                logo.translate(390, 70);
+                r.text(460, 250, "Raphaël").attr({font: '30px "Helvetica Neue", Arial', fill: "none", stroke: "#fff", "stroke-width": 8});
+                r.text(460, 250, "Raphaël").attr({font: '30px "Helvetica Neue", Arial', fill: "#000"});
+                r.text(460, 290, "Click on arrows to see an animation").attr({font: '16px "Helvetica Neue", Arial', fill: "#fff"});
+            };
+        </script>
+    </head>
+    <body>
+        <div id="holder"><svg height="419" width="619" version="1.1" xmlns="http://www.w3.org/2000/svg"><desc>Created with Raphaël</desc><defs></defs><circle stroke-dasharray="4,3" stroke="#666666" fill="none" r="20" cy="40" cx="40"></circle><circle stroke-dasharray="4,3" stroke="#666666" fill="none" r="20" cy="40" cx="140"></circle><circle stroke-width="2" fill-opacity="0" style="fill-opacity: 0; stroke-width: 2;" stroke="#ffffff" fill="#ffffff" r="20" cy="40" cx="40"></circle><path fill-opacity="0.2" style="fill-opacity: 0.2;" stroke-dasharray="3,1" d="M90,40M80,30L100,30L100,24L110,40L100,56L100,50L80,50L80,56L70,40L80,24Z" stroke="none" fill="#ffffff"></path><circle stroke-dasharray="4,3" stroke="#666666" fill="none" r="20" cy="90" cx="40"></circle><ellipse stroke-dasharray="4,3" transform="rotate(45, 140, 90)" stroke="#666666" fill="none" ry="10" rx="20" cy="90" cx="140"></ellipse><ellipse stroke-width="2" style="stroke-width: 2;" stroke="#ffffff" fill="none" ry="20" rx="20" cy="90" cx="40"></ellipse><path fill-opacity="0.2" style="fill-opacity: 0.2;" stroke-dasharray="3,1" d="M90,90M80,80L100,80L100,74L110,90L100,106L100,100L80,100L80,106L70,90L80,74Z" stroke="none" fill="#ffffff"></path><rect stroke-dasharray="4,3" stroke="#666666" fill="none" ry="0" rx="0" r="0" height="40" width="40" y="119.5" x="19.5"></rect><rect stroke-dasharray="4,3" transform="rotate(120, 135, 140)" stroke="#666666" fill="none" ry="0" rx="0" r="0" height="20" width="30" y="130" x="120"></rect><rect stroke-width="2" style="stroke-width: 2;" stroke="#ffffff" fill="none" ry="0" rx="0" r="0" height="39" width="39" y="120" x="20"></rect><path fill-opacity="0.2" style="fill-opacity: 0.2;" stroke-dasharray="3,1" d="M90,140M80,130L100,130L100,124L110,140L100,156L100,150L80,150L80,156L70,140L80,124Z" stroke="none" fill="#ffffff"></path><path stroke-dasharray="4,3" d="M20,189.5C20,169.5,60,209.5,60,189.5" stroke="#666666" fill="none"></path><path stroke-dasharray="4,3" d="M120,189.5C120,169.5,160,209.5,160,189.5" stroke="#666666" fill="none"></path><path stroke-width="2" style="stroke-width: 2;" d="M20,189.5C20,169.5,60,209.5,60,189.5" stroke="#ffffff" fill="none"></path><path fill-opacity="0.2" style="fill-opacity: 0.2;" stroke-dasharray="3,1" d="M90,190M80,180L100,180L100,174L110,190L100,206L100,200L80,200L80,206L70,190L80,174Z" stroke="none" fill="#ffffff"></path><path stroke-dasharray="4,3" d="M20,240C20,220,60,220,60,240C60,260,20,260,20,240Z" stroke="#666666" fill="none"></path><path stroke-dasharray="4,3" d="M120,240C120,220,160,260,160,240C160,220,120,260,120,240Z" stroke="#666666" fill="none"></path><path stroke-width="2" style="stroke-width: 2;" d="M20,240C20,220,60,220,60,240C60,260,20,260,20,240Z" stroke="#ffffff" fill="none"></path><path fill-opacity="0.2" style="fill-opacity: 0.2;" stroke-dasharray="3,1" d="M90,240M80,230L100,230L100,224L110,240L100,256L100,250L80,250L80,256L70,240L80,224Z" stroke="none" fill="#ffffff"></path><path stroke-dasharray="4,3" d="M20,290C20,270,60,310,60,290" stroke="#666666" fill="none"></path><path stroke-dasharray="4,3" d="M120,290C120,270,160,310,160,290C160,270,120,310,120,290Z" stroke="#666666" fill="none"></path><path stroke-width="2" style="stroke-width: 2;" d="M20,290C20,270,60,310,60,290" stroke="#ffffff" fill="none"></path><path fill-opacity="0.2" style="fill-opacity: 0.2;" stroke-dasharray="3,1" d="M90,290M80,280L100,280L100,274L110,290L100,306L100,300L80,300L80,306L70,290L80,274Z" stroke="none" fill="#ffffff"></path><path stroke-dasharray="4,3" d="M20,336C20,316,60,356,60,336M20,344C20,324,60,364,60,344" stroke="#666666" fill="none"></path><path stroke-dasharray="4,3" d="M120,340C120,320,160,360,160,340C160,320,120,360,120,340Z" stroke="#666666" fill="none"></path><path stroke-width="2" style="stroke-width: 2;" d="M20,336C20,316,60,356,60,336M20,344C20,324,60,364,60,344" stroke="#ffffff" fill="none"></path><path fill-opacity="0.2" style="fill-opacity: 0.2;" stroke-dasharray="3,1" d="M90,340M80,330L100,330L100,324L110,340L100,356L100,350L80,350L80,356L70,340L80,324Z" stroke="none" fill="#ffffff"></path><path stroke-dasharray="4,3" d="M20,390L20,370L25,370L25,410L30,410L30,370L35,370L35,410L40,410L40,370L45,370L45,410L50,410L50,370L55,370L55,410L60,410L60,390" stroke="#666666" fill="none"></path><path stroke-dasharray="4,3" d="M120,390C120,370,160,410,160,390C160,370,120,410,120,390Z" stroke="#666666" fill="none"></path><path stroke-width="2" style="stroke-width: 2;" d="M20,390L20,370L25,370L25,410L30,410L30,370L35,370L35,410L40,410L40,370L45,370L45,410L50,410L50,370L55,370L55,410L60,410L60,390" stroke="#ffffff" fill="none"></path><path fill-opacity="0.2" style="fill-opacity: 0.2;" stroke-dasharray="3,1" d="M90,390M80,380L100,380L100,374L110,390L100,406L100,400L80,400L80,406L70,390L80,374Z" stroke="none" fill="#ffffff"></path><path stroke-dasharray="4,3" d="M170,40C170,20,210,60,210,40C210,20,170,60,170,40Z" stroke="#666666" fill="none"></path><path stroke-dasharray="4,3" d="M270,40C270,20,310,60,310,40C310,20,270,60,270,40Z" stroke="#666666" fill="none"></path><path stroke-width="2" style="stroke-width: 2;" d="M170,40C170,20,210,60,210,40C210,20,170,60,170,40Z" stroke="#ffffff" fill="none"></path><path fill-opacity="0.2" style="fill-opacity: 0.2;" stroke-dasharray="3,1" d="M240,40M230,30L250,30L250,24L260,40L250,56L250,50L230,50L230,56L220,40L230,24Z" stroke="none" fill="#ffffff"></path><path stroke-dasharray="4,3" d="M170,90C170,70,210,110,210,90C210,70,170,110,170,90Z" stroke="#666666" fill="none"></path><path stroke-dasharray="4,3" transform="rotate(90, 290, 90)" d="M270,90C270,70,310,110,310,90C310,70,270,110,270,90Z" stroke="#666666" fill="none"></path><path stroke-width="2" style="stroke-width: 2;" d="M170,90C170,70,210,110,210,90C210,70,170,110,170,90Z" stroke="#ffffff" fill="none"></path><path fill-opacity="0.2" style="fill-opacity: 0.2;" stroke-dasharray="3,1" d="M240,90M230,80L250,80L250,74L260,90L250,106L250,100L230,100L230,106L220,90L230,74Z" stroke="none" fill="#ffffff"></path><path stroke-dasharray="4,3" d="M170,140C170,120,210,160,210,140C210,120,170,160,170,140Z" stroke="#666666" fill="none"></path><path stroke-dasharray="4,3" transform="rotate(45, 290, 140)" d="M250,140C250,100,330,180,330,140C330,100,250,180,250,140Z" stroke="#666666" fill="none"></path><path stroke-width="2" style="stroke-width: 2;" d="M170,140C170,120,210,160,210,140C210,120,170,160,170,140Z" stroke="#ffffff" fill="none"></path><path fill-opacity="0.2" style="fill-opacity: 0.2;" stroke-dasharray="3,1" d="M240,140M230,130L250,130L250,124L260,140L250,156L250,150L230,150L230,156L220,140L230,124Z" stroke="none" fill="#ffffff"></path><text stroke-dasharray="3,1" fill="none" stroke="#666666" font="10px &quot;Helvetica Neue&quot;, Arial" style="text-anchor: middle; font: 10px &quot;Helvetica Neue&quot;,Arial;" text-anchor="middle" y="198.5" x="190"><tspan>Yay!</tspan></text><text stroke-dasharray="3,1" fill="none" stroke="#666666" font="30px &quot;Helvetica Neue&quot;, Arial" style="text-anchor: middle; font: 30px &quot;Helvetica Neue&quot;,Arial;" text-anchor="middle" y="206" x="290"><tspan>Yay!</tspan></text><text fill="#ffffff" stroke="none" font="10px &quot;Helvetica Neue&quot;, Arial" style="text-anchor: middle; font: 10px &quot;Helvetica Neue&quot;,Arial;" text-anchor="middle" y="198.5" x="190"><tspan>Yay!</tspan></text><path fill-opacity="0.2" style="fill-opacity: 0.2;" stroke-dasharray="3,1" d="M240,190M230,180L250,180L250,174L260,190L250,206L250,200L230,200L230,206L220,190L230,174Z" stroke="none" fill="#ffffff"></path><path stroke-dasharray="4,3" d="M170.5,220.5L210.5,220.5L210.5,260.5L170.5,260.5Z" stroke="#666666" fill="none"></path><path stroke-dasharray="4,3" d="M290.5,220.5L310.5,260.5L270.5,260.5Z" stroke="#666666" fill="none"></path><path stroke-width="2" style="stroke-width: 2;" d="M170.5,220.5L210.5,220.5L210.5,260.5L170.5,260.5Z" stroke="#ffffff" fill="none"></path><path fill-opacity="0.2" style="fill-opacity: 0.2;" stroke-dasharray="3,1" d="M240,240M230,230L250,230L250,224L260,240L250,256L250,250L230,250L230,256L220,240L230,224Z" stroke="none" fill="#ffffff"></path><path stroke-dasharray="4,3" d="M210.5,270.5L210.5,310.5L170.5,310.5L170.5,270.5Z" stroke="#666666" fill="none"></path><path stroke-dasharray="4,3" d="M290.5,270.5L310.5,310.5L270.5,310.5Z" stroke="#666666" fill="none"></path><path stroke-width="2" style="stroke-width: 2;" d="M210.5,270.5L210.5,310.5L170.5,310.5L170.5,270.5Z" stroke="#ffffff" fill="none"></path><path fill-opacity="0.2" style="fill-opacity: 0.2;" stroke-dasharray="3,1" d="M240,290M230,280L250,280L250,274L260,290L250,306L250,300L230,300L230,306L220,290L230,274Z" stroke="none" fill="#ffffff"></path><path stroke-dasharray="4,3" d="M190.5,320.5A20,20,0,1,1,190.1,320.5Z" stroke="#666666" fill="none"></path><path stroke-dasharray="4,3" d="M290.5,320.5L310.5,360.5L270.5,360.5Z" stroke="#666666" fill="none"></path><path stroke-width="2" style="stroke-width: 2;" d="M190.5,320.5A20,20,0,1,1,190.1,320.5Z" stroke="#ffffff" fill="none"></path><path fill-opacity="0.2" style="fill-opacity: 0.2;" stroke-dasharray="3,1" d="M240,340M230,330L250,330L250,324L260,340L250,356L250,350L230,350L230,356L220,340L230,324Z" stroke="none" fill="#ffffff"></path><path stroke-dasharray="4,3" d="M190.5,370.5C201.5,370.5,210.5,379.5,210.5,390.5C210.5,401.5,201.5,410.5,190.5,410.5C179.5,410.5,170.5,401.5,170.5,390.5C170.5,379.5,179.5,370.5,190.5,370.5Z" stroke="#666666" fill="none"></path><path stroke-dasharray="4,3" d="M290.5,370.5L310.5,390.5L290.5,410.5L270.5,390.5Z" stroke="#666666" fill="none"></path><path stroke-width="2" style="stroke-width: 2;" d="M190.5,370.5C201.5,370.5,210.5,379.5,210.5,390.5C210.5,401.5,201.5,410.5,190.5,410.5C179.5,410.5,170.5,401.5,170.5,390.5C170.5,379.5,179.5,370.5,190.5,370.5Z" stroke="#ffffff" fill="none"></path><path fill-opacity="0.2" style="fill-opacity: 0.2;" stroke-dasharray="3,1" d="M240,390M230,380L250,380L250,374L260,390L250,406L250,400L230,400L230,406L220,390L230,374Z" stroke="none" fill="#ffffff"></path><rect transform="rotate(45, 462, 141)" stroke="none" fill="#ffffff" ry="30" rx="30" r="30" height="116" width="116" y="83" x="404"></rect><path d="M519.657,141.361C519.657,145.173,518.552,148.81199999999998,516.504,151.92399999999998C515.275,153.60099999999997,513.995,155.06699999999998,512.6750000000001,156.33199999999997L512.58,156.42699999999996C506.36300000000006,162.33899999999997,499.34000000000003,164.01499999999996,493.38000000000005,164.01499999999996C490.1000000000001,164.01499999999996,487.14000000000004,163.50699999999995,484.8140000000001,162.91899999999995C471.19000000000005,159.47999999999996,456.38200000000006,147.75699999999995,449.6040000000001,130.65999999999997C453.2540000000001,132.20299999999997,457.2660000000001,133.05599999999995,461.47300000000007,133.05599999999995C477.2780000000001,133.05599999999995,490.32200000000006,121.01599999999996,491.9190000000001,105.62699999999995L513.9920000000001,127.69899999999996C517.6450000000001,131.35099999999994,519.657,136.20099999999996,519.657,141.36099999999996ZM408.95300000000003,155.018C405.3,151.369,403.29,146.518,403.29,141.362C403.29,136.202,405.3,131.351,408.951,127.70599999999999L423.88500000000005,112.77099999999999C419.98900000000003,126.03999999999999,418.31600000000003,140.00099999999998,419.21100000000007,153.385C419.5330000000001,158.197,420.1980000000001,162.81199999999998,421.1530000000001,167.21599999999998L408.9530000000001,155.01799999999997ZM434.482,116.869C437.761,142.531,458.074,167.86,482.03400000000005,173.915C485.93700000000007,174.90099999999998,489.76300000000003,175.387,493.46600000000007,175.387C493.5210000000001,175.387,493.5730000000001,175.382,493.62700000000007,175.382L475.1260000000001,193.885C471.4790000000001,197.53099999999998,466.6280000000001,199.539,461.4740000000001,199.539C457.8830000000001,199.539,454.4530000000001,198.546,451.4640000000001,196.724L451.4710000000001,196.714C450.2940000000001,195.934,449.1730000000001,195.054,448.08300000000014,194.121C447.99900000000014,194.03900000000002,447.90700000000015,193.96800000000002,447.82300000000015,193.88500000000002L444.08500000000015,190.14700000000002C436.39700000000016,181.32200000000003,431.56400000000014,168.19000000000003,430.52400000000017,152.63000000000002C429.73600000000016,140.85300000000004,431.14900000000017,128.57800000000003,434.4820000000002,116.86900000000003" stroke="none" fill="#f89938"></path><circle stroke="none" fill="#3399ff" r="19" cy="102" cx="461"></circle><text stroke-width="8" fill="none" stroke="#ffffff" font="30px &quot;Helvetica Neue&quot;, Arial" style="text-anchor: middle; font: 30px &quot;Helvetica Neue&quot;,Arial; stroke-width: 8;" text-anchor="middle" y="261" x="460"><tspan>Raphaël</tspan></text><text fill="#000000" stroke="none" font="30px &quot;Helvetica Neue&quot;, Arial" style="text-anchor: middle; font: 30px &quot;Helvetica Neue&quot;,Arial;" text-anchor="middle" y="261" x="460"><tspan>Raphaël</tspan></text><text fill="#ffffff" stroke="none" font="16px &quot;Helvetica Neue&quot;, Arial" style="text-anchor: middle; font: 16px &quot;Helvetica Neue&quot;,Arial;" text-anchor="middle" y="296" x="460"><tspan>Click on arrows to see an animation</tspan></text></svg></div>
+        <p id="copy">Demo of <a href="http://raphaeljs.com/">Raphaël</a>—JavaScript Vector Library</p>
+    
+</body></html>

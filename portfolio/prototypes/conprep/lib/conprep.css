@@ -1,0 +1,14 @@
+body, html {
+	background-color: #ccc;
+}
+.sidebar {
+	background-color: #dbd8ac;
+}
+.sidebar .field {
+	border-top: solid 1px #b5b28e;}
+#header {
+	background-color: #dbd8ac;
+}
+#logo {
+	background-color: #888b8e;
+}

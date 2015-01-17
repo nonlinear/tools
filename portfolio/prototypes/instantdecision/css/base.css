@@ -1,0 +1,46 @@
+@charset "UTF-8";
+/* CSS Document */
+* {
+	margin: 0;
+	padding: 0;
+}
+*:focus {
+	outline: none;
+}
+.right {
+	text-align: right;
+}
+a:focus {
+	outline:none
+}
+.scroll {
+	overflow-y: auto;
+	overflow-x:hidden;
+}
+.scroll p {
+	padding-right: 5px;
+}
+img {
+	border: 0
+}
+.findit {
+	border: 2px dashed #f00;
+}
+.mini {
+	font-size:9px;
+}
+.hidden {
+	display: none;
+}
+.alpha50 {
+	filter:alpha(opacity=50);
+	-moz-opacity:0.5;
+	-khtml-opacity: 0.5;
+	opacity: 0.5;
+}
+.alpha80 {
+	filter:alpha(opacity=80);
+	-moz-opacity:0.8;
+	-khtml-opacity: 0.8;
+	opacity: 0.8;
+}

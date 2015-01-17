@@ -1,0 +1,39 @@
+#drilldown { background-image: url(../images/bg_drilldown.jpg); background-position: 0px 0px; height: 473px; margin-bottom: 20px; scrollbar-3dlight-color:#eaeaea; scrollbar-arrow-color:#202020; scrollbar-base-color:#eaeaea; scrollbar-darkshadow-color:#b2b2b2; scrollbar-face-color:#eaeaea; scrollbar-highlight-color:#eaeaea; scrollbar-shadow-color:#b2b2b2; }
+	#drilldown ul { margin: 0; padding: 0; }
+		#drilldown ul li a { background-image:url(../images/bg_li.gif); background-position: right bottom; border-top: solid 1px #b2b2b2; color: black; display: block; margin: 0 3px 0 0; padding: 3px 3px 3px 5px; padding: 3px 3px 3px 6px; text-decoration: none; }
+			#drilldown ul li a.selected { background-image:url(../images/bg_li_selected.gif); font-weight: bold; }
+			#drilldown ul li a:hover { background-image:url(../images/bg_li_hover.gif); }
+	#drilldown #s { background:none; border:none; color:#666666; font-size: 11px; padding-left: 55px; padding-top: 19px; width: 150px; }
+	#drilldown #footer { height: 23px; }
+		#drilldown #footer a { background-color:#999999; border: 1px solid #CCCCCC; color:#FFFFFF; font-size:7px; font-weight: bold; margin: 0 3px 0 0; padding: 3px 5px 3px 5px; text-decoration:none; text-transform: uppercase; }
+			#drilldown #footer a:hover { ; background-image:url(../images/bg_menu_li_selected.png); background-position: bottom; border-color:#CCCCCC; }
+		#drilldown #footer .last { background-image: url(../images/bg_drilldown_last.jpg); background-position: right -450px; height: 23px; }
+	#drilldown label { display: block; float: left; padding-right: 5px; width: 80px; }
+	#drilldown #loadArea.last { background-color:e8e8e8; }
+	#drilldown #header h2 { color:#333333; cursor:default; font-weight:bold; line-height:25px; margin-bottom:0; padding-left: 20px; padding-top: 5px; }
+	#drilldown #loadArea h2 { color:#333333; margin: 0px; padding: 0px; }
+	#drilldown #header .last { background-image: url(../images/bg_drilldown_last.jpg); background-position: right top; height: 36px; }
+	#drilldown #header, #drilldown #footer { background:none; height: 37px; margin: 0; padding: 0; }
+	#drilldown #loadArea.loading, #drilldown #mainSection.loading { background-color:e8e8e8; background-image: url(../images/loading.gif); background-position: center center; background-repeat: no-repeat; overflow: hidden; }
+	#drilldown #mainSection, #drilldown #loadArea, #drilldown #groups { height: 413px; overflow: auto; }
+	#drilldown .loading .title, #drilldown .loading p, #drilldown #mainSection.loading ul { border: none; height: 0px; margin: 0px; padding: 0px; visibility: hidden; width: 0px; }
+ 
+#loadArea .disabled { font-size:10px; }
+	#loadArea .disabled select, #loadArea .disabled input, #loadArea .disabled textarea { background: none; border: none; color: #333333; font-size:10px; }
+ 
+#loadArea input, #loadArea select { background-color:#FFFFFF; border: solid 1px #b2b2b2; font-family: "Helvetica Neue", Arial, Helvetica, sans-serif; width:120px; }
+ 
+#loadArea p { border-top: solid 1px #b2b2b2; clear: both; margin: 0 3px 0 0; padding: 5px 0 5px 0; }
+ 
+#loadArea textarea { background-color:#FFFFFF; border: solid 1px #b2b2b2; font-family: "Helvetica Neue", Arial, Helvetica, sans-serif; height: 70px; margin: 0; padding: 0; width:115px; }
+ 
+ .span-2.subtitle {
+	font-weight: bold;
+	font-size: 11px;
+	line-height: 12px;	
+}
+#drilldown hr {
+padding: 0;
+margin:10px 0;}
+
+#drilldown .span-3 a {font-size: 10px;}

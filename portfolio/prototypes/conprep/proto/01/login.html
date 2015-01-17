@@ -1,0 +1,296 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>ITHAKA | CONPREP</title>
+	<script src="junk/framework.js" type="text/javascript"></script><script src="junk/ui.js" type="text/javascript"></script><link class="component" href="junk/eAGTcz60MXT5DGkAD2IDhA__.css" rel="stylesheet" type="text/css"><link class="component" href="junk/eAGTcz60MXT5DGkAD2IDhA___003.css" rel="stylesheet" type="text/css"><link class="component" href="junk/eAGTcz60MXT5DGkAD2IDhA___002.css" rel="stylesheet" type="text/css"><script type="text/javascript">window.RICH_FACES_EXTENDED_SKINNING_ON=true;</script><link rel="shortcut icon" href="http://pr2ptcdev01.ithaka.org:9090/conprepUi2/favicon.ico">
+	<link rel="stylesheet" href="lib/style.css">
+	</head>
+
+
+	<body class="batch recordview"><div id="j_id3">
+<form id="linkToForm" name="linkToForm" method="post" action="/conprepUi2/login.seam" enctype="application/x-www-form-urlencoded">
+<input name="linkToForm" value="linkToForm" type="hidden">
+<script id="linkToForm:j_id4" type="text/javascript">//<![CDATA[
+		linkTo=function(id){A4J.AJAX.Submit('linkToForm',null,{'similarityGroupingId':'linkToForm:j_id4','parameters':{'id':id,'linkToForm:j_id4':'linkToForm:j_id4'} } )};
+		//]]></script><input name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id2" type="hidden">
+</form><script type="text/javascript">//<![CDATA[
+function enableSaveCancel(elm, param) {
+	var selector = ".saveOrCancel.disabled";
+	try {
+		selector = eval(".saveOrCancel.disabled");
+	} catch (e) {}
+	
+	jQuery(elm || selector).removeClass('disabled');
+}
+//]]></script><script type="text/javascript">//<![CDATA[
+function addDisabledToReadonly(elm, param) {
+	var selector = "*[readonly\x5D";
+	try {
+		selector = eval("*[readonly\x5D");
+	} catch (e) {}
+	
+	jQuery(elm || selector).addClass('disabled');
+}
+//]]></script><script type="text/javascript">//<![CDATA[
+  jQuery(document).ready(function() {
+	var selector = "*[readonly\x5D";
+	try {
+		selector = eval("*[readonly\x5D");
+	} catch (e) {}
+	jQuery(selector).addClass('disabled');
+ });
+//]]></script><script type="text/javascript">//<![CDATA[
+function addDisabledToDisabled(elm, param) {
+	var selector = "*[disabled\x5D";
+	try {
+		selector = eval("*[disabled\x5D");
+	} catch (e) {}
+	
+	jQuery(elm || selector).addClass('disabled');
+}
+//]]></script><script type="text/javascript">//<![CDATA[
+  jQuery(document).ready(function() {
+	var selector = "*[disabled\x5D";
+	try {
+		selector = eval("*[disabled\x5D");
+	} catch (e) {}
+	jQuery(selector).addClass('disabled');
+ });
+//]]></script><script type="text/javascript">//<![CDATA[
+function moreMenuChange(elm, param) {
+	var selector = "#moreMenuOptionsSelect";
+	try {
+		selector = eval("#moreMenuOptionsSelect");
+	} catch (e) {}
+	
+	jQuery(elm || selector).each(moreMenu);
+}
+//]]></script><script type="text/javascript">//<![CDATA[
+  jQuery(document).ready(function() {
+	var selector = "#moreMenuOptionsSelect";
+	try {
+		selector = eval("#moreMenuOptionsSelect");
+	} catch (e) {}
+	jQuery(selector).each(moreMenu);
+ });
+//]]></script>
+
+	<script type="text/javascript">
+	var moreMenuMapping = {};
+	moreMenuMapping['disciplines'] = '/lists/Disciplines.seam';
+	moreMenuMapping['invitations'] = '/lists/CatInvitationsList.seam';
+	moreMenuMapping['orderproblems'] = '/lists/CatAcqOrdersProblemsList.seam';
+	moreMenuMapping['movingwallflip'] = '/lists/CatMovingWallFlipsList.seam';
+	moreMenuMapping['contractdetails'] = '/lists/CatContractDtlsList.seam';
+	moreMenuMapping['walldetails'] = '/lists/CatWallDtlsList.seam';
+	moreMenuMapping['walloverrides'] = '/lists/CatWallOverridesList.seam';
+	moreMenuMapping['publishersToCmpts'] = '/lists/CatPublishersToCmptsList.seam';
+	moreMenuMapping['riders'] = '/lists/CatRidersList.seam';
+	moreMenuMapping['digivendor'] = '/lists/CatDigiVendorListList.seam';
+	moreMenuMapping['senttohcl'] = '/lists/CatSourceSentToHclList.seam';
+	moreMenuMapping['relationships'] = '/lists/CatTitleRltnshpsList.seam';
+	
+function moreMenu() {
+		
+		var select = jQuery('#moreMenuOptionsSelect');
+
+			
+			
+			if ( jQuery('#container').hasClass('moremenu') ) {
+				
+				for (var entityType in moreMenuMapping) {
+				    if ( jQuery('#container').hasClass(entityType) ) {
+				        selectOptionOfValue( entityType);
+				        break;
+				    }
+				}
+				
+			} else {
+				select.get(0).options.selectedIndex = 0;
+			}
+			
+			jQuery(this).change(
+				function() {
+					var which = jQuery('#moreMenuOptionsSelect option:selected').val();
+					var dest = moreMenuMapping[which];
+					if ( dest != null ) {
+						window.location = '/conprepUi2' + dest;
+					}
+				}
+			);
+}
+
+
+function upToListMode() {
+	var which = jQuery('#moreMenuOptionsSelect option:selected').val();
+	var dest = moreMenuMapping[which];
+	if ( dest != null ) {
+		window.location = '/conprepUi2' + dest;
+		return true;
+	}
+	return false;
+}
+
+
+	function selectOptionOfValue( val) {
+		jQuery("#moreMenuOptionsSelect option[value='"+val+"']").get(0).selected = true;
+	}
+
+	function checkForSave() {
+			var howMany = jQuery('.saveOrCancel:not(.disabled)').length;
+			if ( howMany != 0 ) {
+				alert("Please save your changes first!");
+				return false;
+			}
+			return true;
+		}
+
+
+	
+			function cancelEventBubbling(evt) {
+				var e = (typeof evt != 'undefined') ? evt : event;
+				e.cancelBubble = true;
+			}
+			function toggleCheckboxes(checked, clazz) {
+			       jQuery('.'+clazz).each(function(){ this.checked = checked; }); 
+			}
+
+
+			function toggleMoreNav() {
+				setVisibilityMoreNav(jQuery('#more').hasClass('hidden'));
+			}
+			function showMoreNav() {
+				setVisibilityMoreNav(true);
+			}
+			function hideMoreNav() {
+				setVisibilityMoreNav(false);
+			}
+			function setVisibilityMoreNav(visible) {
+				if ( visible ) {
+					jQuery('#more').removeClass('hidden');
+				} else {
+					jQuery('#more').addClass('hidden');
+				}
+			}
+
+
+			function checkRadios(styleClass, msg) {
+				var retValue = false;
+				jQuery('.' + styleClass).each(function(){ 
+					if(this.checked) {retValue=true;}
+				}); 
+				if(retValue == false){
+					alert(msg);
+				}
+				return retValue;
+			}
+			function emulateRadios(chkbx, styleClass) {
+				jQuery('.' + styleClass).each(function(){ 
+					this.checked = false; 
+				}); 
+				chkbx.checked = true;
+			}
+
+			function formatURL(url) {
+				var stringToFind = "cid=";
+				var index = url.lastIndexOf(stringToFind);
+				if(index > 0) {
+					url = url.substring(0,index-1);
+				}
+				return url;
+			}
+		
+			
+		</script></div>
+	  
+	  
+	  
+	<div class="container">
+	<!-- Header --><div id="header">
+
+	<div id="logo" class="span-8">
+	<h1><a href="http://pr2ptcdev01.ithaka.org:9090/conprepUi2">Portico ConPrep</a></h1>
+	</div>
+	<div class="span-39 last"><div id="admin"><a href="http://pr2ptcdev01.ithaka.org:9090/conprepUi2/login.seam" id="menuLoginId">Login</a></div>
+
+	</div></div>
+    <!-- End Header -->  
+    <div id="main">
+    <!-- Badge --> 	
+	<div id="badge" class="sidebar span-8"><hr>
+	</div>
+	<!-- End Badge --> 
+	
+	<!-- Cluster --> 
+	<div id="cluster" class="span-31"><div id="wrapper"><dl id="messages" class="rich-messages message"><dt class="warnmsg"><span class="rich-messages-label">Please log in first</span></dt></dl>
+<form id="loginForm" name="loginForm" method="post" action="/conprepUi2/login.seam" enctype="application/x-www-form-urlencoded">
+<input name="loginForm" value="loginForm" type="hidden">
+<div class="rich-panel " id="loginForm:j_id24"><div class="rich-panel-header " id="loginForm:j_id24_header">Login</div><div class="rich-panel-body " id="loginForm:j_id24_body">
+
+            <p>Please login here</p>
+
+            <div class="dialog"><table>
+<tbody>
+<tr class="prop">
+<td class="name"><label for="loginForm:username">
+Username</label></td>
+<td class="value"><input id="loginForm:username" name="loginForm:username" value="nfrota" type="text"></td>
+</tr>
+<tr class="prop">
+<td class="name"><label for="loginForm:password">
+Password</label></td>
+<td class="value"><input id="loginForm:password" name="loginForm:password" value="" type="password"></td>
+</tr>
+<tr class="prop">
+<td class="name"><label for="loginForm:rememberMe">
+Remember me</label></td>
+<td class="value"><input id="loginForm:rememberMe" name="loginForm:rememberMe" checked="checked" type="checkbox"></td>
+</tr>
+</tbody>
+</table>
+
+            </div>
+
+            <p>
+              <i>Note - </i> Windows username (without the 'office\') and password!
+            </p></div></div>
+
+        <div class="actionButtons">
+<script type="text/javascript" language="Javascript">function dpf(f) {var adp = f.adp;if (adp != null) {for (var i = 0;i < adp.length;i++) {f.removeChild(adp[i]);}}};function apf(f, pvp) {var adp = new Array();f.adp = adp;var i = 0;for (k in pvp) {var p = document.createElement("input");p.type = "hidden";p.name = k;p.value = pvp[k];f.appendChild(p);adp[i++] = p;}};function jsfcljs(f, pvp, t) {apf(f, pvp);var ft = f.target;if (t) {f.target = t;}f.submit();f.target = ft;dpf(f);};</script>
+<a id="loginForm:submit" href="#" onclick="if(typeof jsfcljs == 'function'){jsfcljs(document.getElementById('loginForm'),{'loginForm:submit':'loginForm:submit'},'');}return false" class="button save">Login</a>
+        </div><input name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id2" type="hidden">
+</form></div>
+	</div>
+	<!-- End Cluster -->
+	
+	<!-- Notes -->   
+	<div id="notes" class="sidebar span-8 last"><hr>
+	</div>
+	<!-- End Notes --> 
+	</div>
+	<!-- Footer --><div id="j_id39" class="footer"> <span id="appinfo"></span></div>
+	<!-- End Footer --> 
+	
+	</div><script type="text/javascript">//<![CDATA[
+function protectLinks(elm, param) {
+	var selector = "a:not([href=\'#\'\x5D)";
+	try {
+		selector = eval("a:not([href=\'#\'\x5D)");
+	} catch (e) {}
+	
+	jQuery(elm || selector).click( function() {   var howMany = jQuery('.saveOrCancel:not(.disabled)').length;   if ( howMany != 0 ) {    if ( confirm('There appear to be unsaved changes, really leave this record?') ) {     return true;     }    return false;    }   return true;   }  );
+}
+//]]></script><script type="text/javascript">//<![CDATA[
+  jQuery(document).ready(function() {
+	var selector = "a:not([href=\'#\'\x5D)";
+	try {
+		selector = eval("a:not([href=\'#\'\x5D)");
+	} catch (e) {}
+	jQuery(selector).click( function() {   var howMany = jQuery('.saveOrCancel:not(.disabled)').length;   if ( howMany != 0 ) {    if ( confirm('There appear to be unsaved changes, really leave this record?') ) {     return true;     }    return false;    }   return true;   }  );
+ });
+//]]></script>
+	
+	
+	
+	
+	</body></html>

@@ -1,0 +1,21 @@
+body, html {
+	background-color: #ccc;
+}
+.sidebar {
+	background-color: #f7f7db;
+}
+#header {
+	background-color: #dbd8ac;
+}
+#logo {
+	background-color: #888b8e;
+}
+input, textarea, select {
+	border: solid 1px #E5E5E5;
+}
+.button:hover:not(.off), .button:focus, a:hover sup, .rich-tab-header:hover, .rich-menu-item:hover, .rich-menu-item:focus, .titleunit:hover, .propertySorter:hover {
+	color: #F30;
+}
+.rich-tab-active, .rich-tab-active:hover {
+	color: #000;
+}

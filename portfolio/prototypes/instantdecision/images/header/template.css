@@ -1,0 +1,214 @@
+/* CSS Document */
+
+#wrapper {
+	width:902px;
+	margin:0 auto;
+	text-align:left;
+}
+
+#mainfooter td {
+	vertical-align:top;
+	font-size:12px;
+	line-height:1.5em;
+	padding-right:10px;
+}
+
+/*======================================= HEADER =======================================
+=======================================================================================*/
+#header {
+	height:103px;
+}
+#logo {
+	margin:40px 28px 0 0;
+	float:left;
+}
+#header-right {
+	float:right;
+	width:360px;
+	height:53px;
+	text-align:right;
+	margin:11px 4px 0 0;
+}
+#tagline {
+	 position:absolute; top:40px;
+}
+#call-us {
+	float:right;
+	margin:7px 0 0 0;
+}
+#apply-now {
+	margin:0 0 0 17px;
+	float:right;
+}
+#login-c {
+	float:right;
+	margin:11px 0 0 0;
+}
+#login-p {
+	clear:both;
+	float:right;
+	margin:11px 10px 0 0;
+}
+
+
+
+#counter {
+	background: url(counter.gif) no-repeat top left;
+	height: 72px;
+	width: 238px;
+	margin-top:14px;
+
+}
+#counter-inner {
+	padding:10px 10px 0 60px;
+	text-align: right;
+	line-height:24px;
+	font-size:24px;
+	color:#156898;
+}
+#counter-inner table td {
+	vertical-align:bottom;
+	font-size:24px;
+	color:#156898;
+}
+#counter-inner table td img {
+	margin-bottom:7px;
+}
+
+/*======================================= TOP NAV =======================================
+=======================================================================================*/
+#top-navigation-wrapper {
+	background: url(top-navigation-gradient.png) repeat-x bottom;
+	height:31px;
+	width:696px;
+	float:right;
+	clear: right;
+	margin:8px 4px 0 0;
+}
+#top-navigation-wrapper2 {background: url(top-navigation-corner-right.png) right top no-repeat; height:31px; width:696px;}
+#top-navigation-wrapper3 {background: url(top-navigation-corner-left.png) left top no-repeat; height:31px; width:686px; padding-left:10px;}
+#top-navigation-wrapper .menu {margin:0; padding:0;}
+#top-navigation-wrapper .menu  li {list-style:none; float:left; margin:0; padding:0;}
+#top-navigation-wrapper .menu  li a {
+	display:block;
+	height:31px;
+	margin:0 12px;
+	text-indent:-9999px;
+	background:no-repeat top center;
+}
+#top-navigation-wrapper .menu  li a:hover {background-position:center; background-repeat:no-repeat;}
+#top-navigation-wrapper .menu  li#current a, #top-navigation-wrapper .menu  li.active a {background-position:bottom; background-repeat:no-repeat;}
+#top-navigation-wrapper .menu  li a:focus {outline:none;}
+
+#top-navigation-wrapper .menu  li.item1 a {background-image: url(top-nav-1.png); width: 37px; }
+#top-navigation-wrapper .menu  li.item2 a {background-image: url(top-nav-2.png); width: 68px; }
+#top-navigation-wrapper .menu  li.item3 a {background-image: url(top-nav-3.png); width: 98px;}
+#top-navigation-wrapper .menu  li.item12 a {background-image: url(top-nav-4.png); width: 95px;}
+#top-navigation-wrapper .menu  li.item13 a {background-image: url(top-nav-5.png); width: 53px;}
+#top-navigation-wrapper .menu  li.item4 a {background-image: url(top-nav-6.png); width: 80px;}
+#top-navigation-wrapper .menu  li.item14 a {background-image: url(top-nav-7.png); width: 71px;}
+
+/*======================================= SUB NAV =======================================
+=======================================================================================*/
+#sub-navigation {
+	height:39px;
+	background: url(tile.png) repeat-x top;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:normal;
+	clear:both;
+	padding-bottom:9px;
+}
+#sub-navigation-2 {
+	height:39px;
+	background: url(left-corner.png) no-repeat left top;
+}
+#sub-navigation-3 {
+	height:39px;
+	background: url(right-corner.png) no-repeat right top;
+}
+#sub-navigation .menu {
+	margin:0 0 0 10px;
+	padding:0;
+	list-style:none;
+}
+#sub-navigation .menu li {
+	display:block;
+	float:left;
+	margin:0; padding:0;
+}
+#sub-navigation .menu li a {
+	color:#245eaa;
+	text-decoration:none;
+	display:block;
+	float:left;
+	margin:0;
+	padding:7px 8px 0 8px;
+	height:27px;
+}
+#sub-navigation .menu li .separator {
+	display:block;
+	float:left;
+	padding-top:6px;
+	color:#5a85bc;
+}
+#sub-navigation .menu li a:hover {
+	text-decoration:underline;
+}
+#sub-navigation .menu li#current a:hover {
+	text-decoration:none;
+}
+#sub-navigation .menu li#current a {
+	color:#000000;
+}
+/*===================================== mainfooter =========================================
+=======================================================================================*/
+#mainfooter {
+	background: url(top-gradient.png) repeat-x top;
+	padding:0 0 50px 0;
+	margin:14px 4px 0 4px;
+	text-align:center;
+	font-family:Lucida Sans Unicode, Lucida Grande, Tahoma, sans-serif;
+}
+#mainfooter-top {
+	height: 44px;
+	color:#FFFFFF;
+}
+#mainfooter-top a:link, #mainfooter-top a:visited {
+	color:#FFFFFF;
+	text-decoration:none;
+}
+#mainfooter-top a:hover {
+	text-decoration:underline;
+}
+#mainfooter-round-l {
+	background: url(round-corner-left.png) no-repeat left top;
+}
+#mainfooter-round-r {
+	background: url(round-corner-right.png) no-repeat right top;
+}
+#mainfooter-top p {
+	margin:0;
+	padding:13px 0 0 0;
+}
+#mainfooter table {
+	margin:20px auto;
+	text-align:left;
+	border-collapse:collapse;
+	border-spacing:0;
+}
+#mainfooter table td {
+	padding:0 10px 0 11px;
+	font-size:11px;
+}
+#mainfooter table a:link, #mainfooter table a:visited {
+	color:#6699cc;
+	text-decoration:none;
+}
+#mainfooter table a:hover {
+	text-decoration:underline;
+}
+#mainfooter table strong {
+	color:#34669b;
+	font-size:13px;
+}

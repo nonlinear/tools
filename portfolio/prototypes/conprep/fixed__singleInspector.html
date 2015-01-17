@@ -1,0 +1,561 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ITHAKA | CONPREP</title>
+<link class="component" href="junk/eAGTcz60MXT5DGkAD2IDhA__.css" rel="stylesheet" type="text/css">
+<link class="component" href="junk/eAGTcz60MXT5DGkAD2IDhA___002.css" rel="stylesheet" type="text/css">
+<link class="component" href="junk/eAGTcz60MXT5DGkAD2IDhA___003.css" rel="stylesheet" type="text/css">
+<link rel="shortcut icon" href="http://localhost:8080/ConPrepUI/favicon.ico">
+<link rel="stylesheet" href="lib/style.css">
+</head>
+<body class="singleinspection nomenu">
+<div id="batchBulkOperationsControllerPanels">
+  <div id="batchBulkUpdatePanel" style="display: none;">
+    <input autocomplete="off" id="batchBulkUpdatePanelOpenedState" name="batchBulkUpdatePanelOpenedState" type="hidden">
+    <div class="rich-modalpanel modal" id="batchBulkUpdatePanelContainer" style="position: absolute; display: none; z-index: 100; background-color: inherit;">
+      <div class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div" id="batchBulkUpdatePanelDiv" style="z-index: -1;">
+        <button class="rich-mpnl-button" id="batchBulkUpdatePanelFirstHref"></button>
+      </div>
+      <div class="rich-mpnl-panel">
+        <div class="rich-mp-container" id="batchBulkUpdatePanelCDiv" style="position: absolute; left: 0px; top: 0px; z-index: 9;">
+          <div class="rich-mpnl-shadow" id="batchBulkUpdatePanelShadowDiv"></div>
+          <div class="rich-mpnl-ovf-hd rich-mpnl-trim rich-mpnl-content" id="batchBulkUpdatePanelContentDiv">
+            <table class="rich-mp-content-table" id="batchBulkUpdatePanelContentTable" style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+              <tbody>
+                <tr style="height: 99%;">
+                  <td class="rich-mpnl-body" valign="top"><div id="batchmodalDiv"> <span id="batchwizard:j_id254">
+                      <div class="title">
+                        <div class="span-9">
+                          <h1></h1>
+                        </div>
+                        <div class="span-16 last"></div>
+                      </div>
+                      <div class="cluster"> 
+                        
+                        <!-- 	<p>Permissions determined by the following checks:</p>
+		<rich:dataOrderedList value=""
+			var="_check">
+			<h:outputText value="" />
+		</rich:dataOrderedList></div>
+claimBatch
+action=""
+getActionableComponentInstanceName
+
+batchBulkUpdatePanel
+ --> 
+                      </div>
+                      <div class="action">
+                        <div class="span-5">
+                          <hr>
+                        </div>
+                        <div class="span-20 last"><a class="button save" href="#" id="batchwizard:j_id254:j_id347" name="batchwizard:j_id254:j_id347" onClick="A4J.AJAX.Submit('batchwizard',event,{'oncomplete':function(request,event,data){document.getElementById('batchBulkUpdatePanel').component.hide(); javascript:location.href=formatURL(location.href);},'similarityGroupingId':'batchwizard:j_id254:j_id347','parameters':{'batchwizard:j_id254:j_id347':'batchwizard:j_id254:j_id347'} ,'eventsQueue':'batchEditeventsQueue','actionUrl':'/ConPrepUI/batches/ContentTree.seam'} );return false;">Return</a> </div>
+                      </div>
+                      </span>
+                      <input autocomplete="off" name="batchwizard" value="batchwizard" type="hidden">
+                      <input autocomplete="off" name="autoScroll" value="" type="hidden">
+                      <input autocomplete="off" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id44" type="hidden">
+                    </div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="rich-mpnl-mask-div rich-mpnl-mask-div-transparent" id="batchBulkUpdatePanelCursorDiv" style="z-index: -200;">
+        <button class="rich-mpnl-button" id="batchBulkUpdatePanelLastHref"></button>
+      </div>
+    </div>
+  </div>
+  <div id="batchBulkUpdateQuit" style="display: none;">
+    <input autocomplete="off" id="batchBulkUpdateQuitOpenedState" name="batchBulkUpdateQuitOpenedState" type="hidden">
+    <div class="rich-modalpanel modal" id="batchBulkUpdateQuitContainer" style="position: absolute; display: none; z-index: 100; background-color: inherit;">
+      <div class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div" id="batchBulkUpdateQuitDiv" style="z-index: -1;">
+        <button class="rich-mpnl-button" id="batchBulkUpdateQuitFirstHref"></button>
+      </div>
+      <div class="rich-mpnl-panel">
+        <div class="rich-mp-container" id="batchBulkUpdateQuitCDiv" style="position: absolute; left: 0px; top: 0px; z-index: 9;">
+          <div class="rich-mpnl-shadow" id="batchBulkUpdateQuitShadowDiv"></div>
+          <div class="rich-mpnl-ovf-hd rich-mpnl-trim rich-mpnl-content" id="batchBulkUpdateQuitContentDiv">
+            <table class="rich-mp-content-table" id="batchBulkUpdateQuitContentTable" style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+              <tbody>
+                <tr style="height: 99%;">
+                  <td class="rich-mpnl-body" valign="top"><div id="batchmodalQuitDiv"> <span id="batchwizardQuit:j_id349">
+                      <div class="title">
+                        <div class="span-9">
+                          <h1>Quit </h1>
+                        </div>
+                        <div class="span-16 last"> </div>
+                      </div>
+                      <div class="cluster">
+                        <p>Are you sure you want to quit? Changes will <em>not</em> be made.</p>
+                      </div>
+                      <div class="action">
+                        <div class="span-5"><a class="button save" href="#" id="batchwizardQuit:j_id349:j_id356" name="batchwizardQuit:j_id349:j_id356" onClick="A4J.AJAX.Submit('batchwizardQuit',event,{'status':'globalWaitStatus','oncomplete':function(request,event,data){document.getElementById('batchBulkUpdatePanel').component.hide(); document.getElementById('batchBulkUpdateQuit').component.hide(); javascript:location.reload(true);},'similarityGroupingId':'batchwizardQuit:j_id349:j_id356','parameters':{'batchwizardQuit:j_id349:j_id356':'batchwizardQuit:j_id349:j_id356'} ,'eventsQueue':'batchEditeventsQueue','actionUrl':'/ConPrepUI/batches/ContentTree.seam'} );return false;">Yes, Quit</a></div>
+                        <div class="span-20 last"><a class="button cancel" href="#" id="batchwizardQuit:j_id349:j_id358" name="batchwizardQuit:j_id349:j_id358" onClick=" document.getElementById('batchBulkUpdateQuit').component.hide(); ;A4J.AJAX.Submit('batchwizardQuit',event,{'status':'globalWaitStatus','similarityGroupingId':'batchwizardQuit:j_id349:j_id358','parameters':{'batchwizardQuit:j_id349:j_id358':'batchwizardQuit:j_id349:j_id358','ajaxSingle':'batchwizardQuit:j_id349:j_id358'} ,'eventsQueue':'batchEditeventsQueue','actionUrl':'/ConPrepUI/batches/ContentTree.seam'} );return false;">No, Return</a></div>
+                      </div>
+                      </span>
+                      <input autocomplete="off" name="batchwizardQuit" value="batchwizardQuit" type="hidden">
+                      <input autocomplete="off" name="autoScroll" value="" type="hidden">
+                      <input autocomplete="off" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id44" type="hidden">
+                    </div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="rich-mpnl-mask-div rich-mpnl-mask-div-transparent" id="batchBulkUpdateQuitCursorDiv" style="z-index: -200;">
+        <button class="rich-mpnl-button" id="batchBulkUpdateQuitLastHref"></button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="sustateBulkOperationsPanels">
+  <div style="display: none;" id="sustateBulkUpdatePanel">
+    <input name="sustateBulkUpdatePanelOpenedState" id="sustateBulkUpdatePanelOpenedState" autocomplete="off" type="hidden">
+  </div>
+  <div style="display: none;" id="sustateBulkUpdateQuit">
+    <input name="sustateBulkUpdateQuitOpenedState" id="sustateBulkUpdateQuitOpenedState" autocomplete="off" type="hidden">
+    <div style="position: absolute; display: none; z-index: 100; background-color: inherit;" id="sustateBulkUpdateQuitContainer" class="rich-modalpanel modal">
+      <div style="z-index: -1;" id="sustateBulkUpdateQuitDiv" class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div">
+        <button id="sustateBulkUpdateQuitFirstHref" class="rich-mpnl-button"></button>
+      </div>
+      <div class="rich-mpnl-panel">
+        <div style="position: absolute; left: 0px; top: 0px; z-index: 9;" id="sustateBulkUpdateQuitCDiv" class="rich-mp-container">
+          <div id="sustateBulkUpdateQuitShadowDiv" class="rich-mpnl-shadow"></div>
+          <div id="sustateBulkUpdateQuitContentDiv" class="rich-mpnl-ovf-hd rich-mpnl-trim rich-mpnl-content">
+            <table style="height: 100%; width: 100%;" id="sustateBulkUpdateQuitContentTable" class="rich-mp-content-table" border="0" cellpadding="0" cellspacing="0">
+              <tbody>
+                <tr style="height: 99%;">
+                  <td class="rich-mpnl-body" valign="top"><div id="sustatemodalQuitDiv"> <span id="sustatewizardQuit:j_id439">
+                      <div class="title">
+                        <div class="span-9">
+                          <h1>Quit Rename File</h1>
+                        </div>
+                        <div class="span-16 last"></div>
+                      </div>
+                      <div class="cluster">
+                        <p>Are you sure you want to quit? Changes will <em>not</em> be made.</p>
+                      </div>
+                      <div class="action">
+                        <div class="span-5"><a onClick="A4J.AJAX.Submit('sustatewizardQuit',event,{'status':'globalWaitStatus','oncomplete':function(request,event,data){document.getElementById('sustateBulkUpdatePanel').component.hide(); document.getElementById('sustateBulkUpdateQuit').component.hide(); javascript:location.reload(true);},'similarityGroupingId':'sustatewizardQuit:j_id439:j_id446','parameters':{'sustatewizardQuit:j_id439:j_id446':'sustatewizardQuit:j_id439:j_id446'} ,'eventsQueue':'batchEditeventsQueue','actionUrl':'/ConPrepUI/batches/ContentTree.seam'} );return false;" name="sustatewizardQuit:j_id439:j_id446" id="sustatewizardQuit:j_id439:j_id446" href="#" class="button save">Yes, Quit</a></div>
+                        <div class="span-20 last"><a onClick=" document.getElementById('sustateBulkUpdateQuit').component.hide(); ;A4J.AJAX.Submit('sustatewizardQuit',event,{'status':'globalWaitStatus','similarityGroupingId':'sustatewizardQuit:j_id439:j_id448','parameters':{'sustatewizardQuit:j_id439:j_id448':'sustatewizardQuit:j_id439:j_id448'} ,'eventsQueue':'batchEditeventsQueue','actionUrl':'/ConPrepUI/batches/ContentTree.seam'} );return false;" name="sustatewizardQuit:j_id439:j_id448" id="sustatewizardQuit:j_id439:j_id448" href="#" class="button cancel">No, Return</a></div>
+                      </div>
+                      </span>
+                      <input value="sustatewizardQuit" name="sustatewizardQuit" autocomplete="off" type="hidden">
+                      <input value="" name="autoScroll" autocomplete="off" type="hidden">
+                      <input autocomplete="off" value="j_id44" id="javax.faces.ViewState" name="javax.faces.ViewState" type="hidden">
+                    </div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div style="z-index: -200;" id="sustateBulkUpdateQuitCursorDiv" class="rich-mpnl-mask-div rich-mpnl-mask-div-transparent">
+        <button id="sustateBulkUpdateQuitLastHref" class="rich-mpnl-button"></button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="addnewfileBulkOperationsPanels">
+  <div id="addnewfileBulkUpdatePanel" style="display: none;">
+    <input autocomplete="off" id="addnewfileBulkUpdatePanelOpenedState" name="addnewfileBulkUpdatePanelOpenedState" type="hidden">
+    <div class="rich-modalpanel modal" id="addnewfileBulkUpdatePanelContainer" style="position: absolute; display: none; z-index: 100; background-color: inherit;">
+      <div class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div" id="addnewfileBulkUpdatePanelDiv" style="z-index: -1;">
+        <button class="rich-mpnl-button" id="addnewfileBulkUpdatePanelFirstHref"></button>
+      </div>
+      <div class="rich-mpnl-panel">
+        <div class="rich-mp-container" id="addnewfileBulkUpdatePanelCDiv" style="position: absolute; left: 0px; top: 0px; z-index: 9;">
+          <div class="rich-mpnl-shadow" id="addnewfileBulkUpdatePanelShadowDiv"></div>
+          <div class="rich-mpnl-ovf-hd rich-mpnl-trim rich-mpnl-content" id="addnewfileBulkUpdatePanelContentDiv">
+            <table class="rich-mp-content-table" id="addnewfileBulkUpdatePanelContentTable" style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+              <tbody>
+                <tr style="height: 99%;">
+                  <td class="rich-mpnl-body" valign="top"><div id="addnewfilemodalDiv"> <span id="addnewfilewizard:j_id450">
+                      <div class="title">
+                        <div class="span-9">
+                          <h1></h1>
+                        </div>
+                        <div class="span-16 last">
+                          <div id="addnewfilewizard:j_id450:j_id457">
+                            <ul>
+                              <li class="selected">1. Confirm </li>
+                              <li class="">2. Change </li>
+                              <li class="">3. Additional </li>
+                              <li class="">4. Results </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="cluster"> </div>
+                      <div class="action">
+                        <div class="span-5">
+                          <hr>
+                        </div>
+                        <div class="span-20 last"><a class="button save" href="#" id="addnewfilewizard:j_id450:j_id538" name="addnewfilewizard:j_id450:j_id538" onClick="A4J.AJAX.Submit('addnewfilewizard',event,{'oncomplete':function(request,event,data){document.getElementById('addnewfileBulkUpdatePanel').component.hide(); javascript:location.reload(true);},'similarityGroupingId':'addnewfilewizard:j_id450:j_id538','parameters':{'addnewfilewizard:j_id450:j_id538':'addnewfilewizard:j_id450:j_id538'} ,'eventsQueue':'batchEditeventsQueue','actionUrl':'/ConPrepUI/batches/ContentTree.seam'} );return false;">Return</a> </div>
+                      </div>
+                      </span>
+                      <input autocomplete="off" name="addnewfilewizard" value="addnewfilewizard" type="hidden">
+                      <input autocomplete="off" name="autoScroll" value="" type="hidden">
+                      <input autocomplete="off" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id44" type="hidden">
+                    </div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="rich-mpnl-mask-div rich-mpnl-mask-div-transparent" id="addnewfileBulkUpdatePanelCursorDiv" style="z-index: -200;">
+        <button class="rich-mpnl-button" id="addnewfileBulkUpdatePanelLastHref"></button>
+      </div>
+    </div>
+  </div>
+  <div id="addnewfileBulkUpdateQuit" style="display: none;">
+    <input autocomplete="off" id="addnewfileBulkUpdateQuitOpenedState" name="addnewfileBulkUpdateQuitOpenedState" type="hidden">
+    <div class="rich-modalpanel modal" id="addnewfileBulkUpdateQuitContainer" style="position: absolute; display: none; z-index: 100; background-color: inherit;">
+      <div class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div" id="addnewfileBulkUpdateQuitDiv" style="z-index: -1;">
+        <button class="rich-mpnl-button" id="addnewfileBulkUpdateQuitFirstHref"></button>
+      </div>
+      <div class="rich-mpnl-panel">
+        <div class="rich-mp-container" id="addnewfileBulkUpdateQuitCDiv" style="position: absolute; left: 0px; top: 0px; z-index: 9;">
+          <div class="rich-mpnl-shadow" id="addnewfileBulkUpdateQuitShadowDiv"></div>
+          <div class="rich-mpnl-ovf-hd rich-mpnl-trim rich-mpnl-content" id="addnewfileBulkUpdateQuitContentDiv">
+            <table class="rich-mp-content-table" id="addnewfileBulkUpdateQuitContentTable" style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+              <tbody>
+                <tr style="height: 99%;">
+                  <td class="rich-mpnl-body" valign="top"><div id="addnewfilemodalQuitDiv"> <span id="addnewfilewizardQuit:j_id540">
+                      <div class="title">
+                        <div class="span-9">
+                          <h1>Quit </h1>
+                        </div>
+                        <div class="span-16 last"> </div>
+                      </div>
+                      <div class="cluster">
+                        <p>Are you sure you want to quit? Changes will <em>not</em> be made.</p>
+                      </div>
+                      <div class="action">
+                        <div class="span-5"><a class="button save" href="#" id="addnewfilewizardQuit:j_id540:j_id547" name="addnewfilewizardQuit:j_id540:j_id547" onClick="A4J.AJAX.Submit('addnewfilewizardQuit',event,{'status':'globalWaitStatus','oncomplete':function(request,event,data){document.getElementById('addnewfileBulkUpdatePanel').component.hide(); document.getElementById('addnewfileBulkUpdateQuit').component.hide(); javascript:location.reload(true);},'similarityGroupingId':'addnewfilewizardQuit:j_id540:j_id547','parameters':{'addnewfilewizardQuit:j_id540:j_id547':'addnewfilewizardQuit:j_id540:j_id547'} ,'eventsQueue':'batchEditeventsQueue','actionUrl':'/ConPrepUI/batches/ContentTree.seam'} );return false;">Yes, Quit</a> </div>
+                        <div class="span-20 last"><a class="button cancel" href="#" id="addnewfilewizardQuit:j_id540:j_id549" name="addnewfilewizardQuit:j_id540:j_id549" onClick=" document.getElementById('addnewfileBulkUpdateQuit').component.hide(); ;A4J.AJAX.Submit('addnewfilewizardQuit',event,{'status':'globalWaitStatus','similarityGroupingId':'addnewfilewizardQuit:j_id540:j_id549','parameters':{'addnewfilewizardQuit:j_id540:j_id549':'addnewfilewizardQuit:j_id540:j_id549'} ,'eventsQueue':'batchEditeventsQueue','actionUrl':'/ConPrepUI/batches/ContentTree.seam'} );return false;">No, Return</a> </div>
+                      </div>
+                      </span>
+                      <input autocomplete="off" name="addnewfilewizardQuit" value="addnewfilewizardQuit" type="hidden">
+                      <input autocomplete="off" name="autoScroll" value="" type="hidden">
+                      <input autocomplete="off" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id44" type="hidden">
+                    </div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="rich-mpnl-mask-div rich-mpnl-mask-div-transparent" id="addnewfileBulkUpdateQuitCursorDiv" style="z-index: -200;">
+        <button class="rich-mpnl-button" id="addnewfileBulkUpdateQuitLastHref"></button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="replacedmdBulkOperationsPanels">
+  <div id="replacedmdBulkUpdatePanel" style="display: none;">
+    <input autocomplete="off" id="replacedmdBulkUpdatePanelOpenedState" name="replacedmdBulkUpdatePanelOpenedState" type="hidden">
+    <div class="rich-modalpanel modal" id="replacedmdBulkUpdatePanelContainer" style="position: absolute; display: none; z-index: 100; background-color: inherit;">
+      <div class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div" id="replacedmdBulkUpdatePanelDiv" style="z-index: -1;">
+        <button class="rich-mpnl-button" id="replacedmdBulkUpdatePanelFirstHref"></button>
+      </div>
+      <div class="rich-mpnl-panel">
+        <div class="rich-mp-container" id="replacedmdBulkUpdatePanelCDiv" style="position: absolute; left: 0px; top: 0px; z-index: 9;">
+          <div class="rich-mpnl-shadow" id="replacedmdBulkUpdatePanelShadowDiv"></div>
+          <div class="rich-mpnl-ovf-hd rich-mpnl-trim rich-mpnl-content" id="replacedmdBulkUpdatePanelContentDiv">
+            <table class="rich-mp-content-table" id="replacedmdBulkUpdatePanelContentTable" style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+              <tbody>
+                <tr style="height: 99%;">
+                  <td class="rich-mpnl-body" valign="top"><div id="replacedmdmodalDiv"> <span id="replacedmdwizard:j_id551">
+                      <div class="title">
+                        <div class="span-9">
+                          <h1></h1>
+                        </div>
+                        <div class="span-16 last">
+                          <div id="replacedmdwizard:j_id551:j_id558">
+                            <ul>
+                              <li class="selected">1. Confirm </li>
+                              <li class="">2. Change </li>
+                              <li class="">3. Results </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="cluster"> </div>
+                      <div class="action">
+                        <div class="span-5">
+                          <hr>
+                        </div>
+                        <div class="span-20 last"><a class="button save" href="#" id="replacedmdwizard:j_id551:j_id622" name="replacedmdwizard:j_id551:j_id622" onClick="A4J.AJAX.Submit('replacedmdwizard',event,{'oncomplete':function(request,event,data){document.getElementById('replacedmdBulkUpdatePanel').component.hide(); javascript:location.reload(true);},'similarityGroupingId':'replacedmdwizard:j_id551:j_id622','parameters':{'replacedmdwizard:j_id551:j_id622':'replacedmdwizard:j_id551:j_id622'} ,'eventsQueue':'batchEditeventsQueue','actionUrl':'/ConPrepUI/batches/ContentTree.seam'} );return false;">Return</a> </div>
+                      </div>
+                      </span>
+                      <input autocomplete="off" name="replacedmdwizard" value="replacedmdwizard" type="hidden">
+                      <input autocomplete="off" name="autoScroll" value="" type="hidden">
+                      <input autocomplete="off" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id44" type="hidden">
+                    </div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="rich-mpnl-mask-div rich-mpnl-mask-div-transparent" id="replacedmdBulkUpdatePanelCursorDiv" style="z-index: -200;">
+        <button class="rich-mpnl-button" id="replacedmdBulkUpdatePanelLastHref"></button>
+      </div>
+    </div>
+  </div>
+  <div id="replacedmdBulkUpdateQuit" style="display: none;">
+    <input autocomplete="off" id="replacedmdBulkUpdateQuitOpenedState" name="replacedmdBulkUpdateQuitOpenedState" type="hidden">
+    <div class="rich-modalpanel modal" id="replacedmdBulkUpdateQuitContainer" style="position: absolute; display: none; z-index: 100; background-color: inherit;">
+      <div class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div" id="replacedmdBulkUpdateQuitDiv" style="z-index: -1;">
+        <button class="rich-mpnl-button" id="replacedmdBulkUpdateQuitFirstHref"></button>
+      </div>
+      <div class="rich-mpnl-panel">
+        <div class="rich-mp-container" id="replacedmdBulkUpdateQuitCDiv" style="position: absolute; left: 0px; top: 0px; z-index: 9;">
+          <div class="rich-mpnl-shadow" id="replacedmdBulkUpdateQuitShadowDiv"></div>
+          <div class="rich-mpnl-ovf-hd rich-mpnl-trim rich-mpnl-content" id="replacedmdBulkUpdateQuitContentDiv">
+            <table class="rich-mp-content-table" id="replacedmdBulkUpdateQuitContentTable" style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+              <tbody>
+                <tr style="height: 99%;">
+                  <td class="rich-mpnl-body" valign="top"><div id="replacedmdmodalQuitDiv"> <span id="replacedmdwizardQuit:j_id624">
+                      <div class="title">
+                        <div class="span-9">
+                          <h1>Quit </h1>
+                        </div>
+                        <div class="span-16 last"> </div>
+                      </div>
+                      <div class="cluster">
+                        <p>Are you sure you want to quit? Changes will <em>not</em> be made.</p>
+                      </div>
+                      <div class="action">
+                        <div class="span-5"><a class="button save" href="#" id="replacedmdwizardQuit:j_id624:j_id631" name="replacedmdwizardQuit:j_id624:j_id631" onClick="A4J.AJAX.Submit('replacedmdwizardQuit',event,{'status':'globalWaitStatus','oncomplete':function(request,event,data){document.getElementById('replacedmdBulkUpdatePanel').component.hide(); document.getElementById('replacedmdBulkUpdateQuit').component.hide(); javascript:location.reload(true);},'similarityGroupingId':'replacedmdwizardQuit:j_id624:j_id631','parameters':{'replacedmdwizardQuit:j_id624:j_id631':'replacedmdwizardQuit:j_id624:j_id631'} ,'eventsQueue':'batchEditeventsQueue','actionUrl':'/ConPrepUI/batches/ContentTree.seam'} );return false;">Yes, Quit</a> </div>
+                        <div class="span-20 last"><a class="button cancel" href="#" id="replacedmdwizardQuit:j_id624:j_id633" name="replacedmdwizardQuit:j_id624:j_id633" onClick=" document.getElementById('replacedmdBulkUpdateQuit').component.hide(); ;A4J.AJAX.Submit('replacedmdwizardQuit',event,{'status':'globalWaitStatus','similarityGroupingId':'replacedmdwizardQuit:j_id624:j_id633','parameters':{'replacedmdwizardQuit:j_id624:j_id633':'replacedmdwizardQuit:j_id624:j_id633'} ,'eventsQueue':'batchEditeventsQueue','actionUrl':'/ConPrepUI/batches/ContentTree.seam'} );return false;">No, Return</a> </div>
+                      </div>
+                      </span>
+                      <input autocomplete="off" name="replacedmdwizardQuit" value="replacedmdwizardQuit" type="hidden">
+                      <input autocomplete="off" name="autoScroll" value="" type="hidden">
+                      <input autocomplete="off" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id44" type="hidden">
+                    </div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="rich-mpnl-mask-div rich-mpnl-mask-div-transparent" id="replacedmdBulkUpdateQuitCursorDiv" style="z-index: -200;">
+        <button class="rich-mpnl-button" id="replacedmdBulkUpdateQuitLastHref"></button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="excludeFileBulkOperationsPanels">
+  <div id="excludeFileBulkUpdatePanel" style="display: none;">
+    <input autocomplete="off" id="excludeFileBulkUpdatePanelOpenedState" name="excludeFileBulkUpdatePanelOpenedState" type="hidden">
+    <div class="rich-modalpanel modal" id="excludeFileBulkUpdatePanelContainer" style="position: absolute; display: none; z-index: 100; background-color: inherit;">
+      <div class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div" id="excludeFileBulkUpdatePanelDiv" style="z-index: -1;">
+        <button class="rich-mpnl-button" id="excludeFileBulkUpdatePanelFirstHref"></button>
+      </div>
+      <div class="rich-mpnl-panel">
+        <div class="rich-mp-container" id="excludeFileBulkUpdatePanelCDiv" style="position: absolute; left: 0px; top: 0px; z-index: 9;">
+          <div class="rich-mpnl-shadow" id="excludeFileBulkUpdatePanelShadowDiv"></div>
+          <div class="rich-mpnl-ovf-hd rich-mpnl-trim rich-mpnl-content" id="excludeFileBulkUpdatePanelContentDiv">
+            <table class="rich-mp-content-table" id="excludeFileBulkUpdatePanelContentTable" style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+              <tbody>
+                <tr style="height: 99%;">
+                  <td class="rich-mpnl-body" valign="top"><div id="excludeFilemodalDiv"> <span id="excludefilewizard:j_id635">
+                      <div class="title">
+                        <div class="span-9">
+                          <h1></h1>
+                        </div>
+                        <div class="span-16 last">
+                          <div id="excludefilewizard:j_id635:j_id642">
+                            <ul>
+                              <li class="selected">1. Confirm </li>
+                              <li class="">2. Change </li>
+                              <li class="">3. Results </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="cluster"> </div>
+                      <div class="action">
+                        <div class="span-5">
+                          <hr>
+                        </div>
+                        <div class="span-20 last"><a class="button save" href="#" id="excludefilewizard:j_id635:j_id711" name="excludefilewizard:j_id635:j_id711" onClick="A4J.AJAX.Submit('excludefilewizard',event,{'oncomplete':function(request,event,data){document.getElementById('excludeFileBulkUpdatePanel').component.hide(); javascript:location.reload(true);},'similarityGroupingId':'excludefilewizard:j_id635:j_id711','parameters':{'excludefilewizard:j_id635:j_id711':'excludefilewizard:j_id635:j_id711'} ,'eventsQueue':'batchEditeventsQueue','actionUrl':'/ConPrepUI/batches/ContentTree.seam'} );return false;">Return</a> </div>
+                      </div>
+                      </span>
+                      <input autocomplete="off" name="excludefilewizard" value="excludefilewizard" type="hidden">
+                      <input autocomplete="off" name="autoScroll" value="" type="hidden">
+                      <input autocomplete="off" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id44" type="hidden">
+                    </div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="rich-mpnl-mask-div rich-mpnl-mask-div-transparent" id="excludeFileBulkUpdatePanelCursorDiv" style="z-index: -200;">
+        <button class="rich-mpnl-button" id="excludeFileBulkUpdatePanelLastHref"></button>
+      </div>
+    </div>
+  </div>
+  <div id="excludeFileBulkUpdateQuit" style="display: none;">
+    <input autocomplete="off" id="excludeFileBulkUpdateQuitOpenedState" name="excludeFileBulkUpdateQuitOpenedState" type="hidden">
+    <div class="rich-modalpanel modal" id="excludeFileBulkUpdateQuitContainer" style="position: absolute; display: none; z-index: 100; background-color: inherit;">
+      <div class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div" id="excludeFileBulkUpdateQuitDiv" style="z-index: -1;">
+        <button class="rich-mpnl-button" id="excludeFileBulkUpdateQuitFirstHref"></button>
+      </div>
+      <div class="rich-mpnl-panel">
+        <div class="rich-mp-container" id="excludeFileBulkUpdateQuitCDiv" style="position: absolute; left: 0px; top: 0px; z-index: 9;">
+          <div class="rich-mpnl-shadow" id="excludeFileBulkUpdateQuitShadowDiv"></div>
+          <div class="rich-mpnl-ovf-hd rich-mpnl-trim rich-mpnl-content" id="excludeFileBulkUpdateQuitContentDiv">
+            <table class="rich-mp-content-table" id="excludeFileBulkUpdateQuitContentTable" style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+              <tbody>
+                <tr style="height: 99%;">
+                  <td class="rich-mpnl-body" valign="top"><div id="excludeFilemodalQuitDiv"> <span id="excludeFilewizardQuit:j_id713">
+                      <div class="title">
+                        <div class="span-9">
+                          <h1>Quit </h1>
+                        </div>
+                        <div class="span-16 last"> </div>
+                      </div>
+                      <div class="cluster">
+                        <p>Are you sure you want to quit? Changes will <em>not</em> be made.</p>
+                      </div>
+                      <div class="action">
+                        <div class="span-5"><a class="button save" href="#" id="excludeFilewizardQuit:j_id713:j_id720" name="excludeFilewizardQuit:j_id713:j_id720" onClick="A4J.AJAX.Submit('excludeFilewizardQuit',event,{'status':'globalWaitStatus','oncomplete':function(request,event,data){document.getElementById('excludeFileBulkUpdatePanel').component.hide(); document.getElementById('excludeFileBulkUpdateQuit').component.hide(); javascript:location.reload(true);},'similarityGroupingId':'excludeFilewizardQuit:j_id713:j_id720','parameters':{'excludeFilewizardQuit:j_id713:j_id720':'excludeFilewizardQuit:j_id713:j_id720'} ,'eventsQueue':'batchEditeventsQueue','actionUrl':'/ConPrepUI/batches/ContentTree.seam'} );return false;">Yes, Quit</a> </div>
+                        <div class="span-20 last"><a class="button cancel" href="#" id="excludeFilewizardQuit:j_id713:j_id722" name="excludeFilewizardQuit:j_id713:j_id722" onClick=" document.getElementById('excludeFileBulkUpdateQuit').component.hide(); ;A4J.AJAX.Submit('excludeFilewizardQuit',event,{'status':'globalWaitStatus','similarityGroupingId':'excludeFilewizardQuit:j_id713:j_id722','parameters':{'excludeFilewizardQuit:j_id713:j_id722':'excludeFilewizardQuit:j_id713:j_id722'} ,'eventsQueue':'batchEditeventsQueue','actionUrl':'/ConPrepUI/batches/ContentTree.seam'} );return false;">No, Return</a> </div>
+                      </div>
+                      </span>
+                      <input autocomplete="off" name="excludeFilewizardQuit" value="excludeFilewizardQuit" type="hidden">
+                      <input autocomplete="off" name="autoScroll" value="" type="hidden">
+                      <input autocomplete="off" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id44" type="hidden">
+                    </div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="rich-mpnl-mask-div rich-mpnl-mask-div-transparent" id="excludeFileBulkUpdateQuitCursorDiv" style="z-index: -200;">
+        <button class="rich-mpnl-button" id="excludeFileBulkUpdateQuitLastHref"></button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="batchBadgeActivityPanels">
+  <div id="modalPanel" style="display: none;">
+    <input autocomplete="off" id="modalPanelOpenedState" name="modalPanelOpenedState" type="hidden">
+    <div class="rich-modalpanel modal" id="modalPanelContainer" style="position: absolute; display: none; z-index: 100; background-color: inherit;">
+      <div class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div" id="modalPanelDiv" style="z-index: -1;">
+        <button class="rich-mpnl-button" id="modalPanelFirstHref"></button>
+      </div>
+      <div class="rich-mpnl-panel">
+        <div class="rich-mp-container" id="modalPanelCDiv" style="position: absolute; left: 0px; top: 0px; z-index: 9;">
+          <div class="rich-mpnl-shadow" id="modalPanelShadowDiv"></div>
+          <div class="rich-mpnl-ovf-hd rich-mpnl-trim rich-mpnl-content" id="modalPanelContentDiv">
+            <table class="rich-mp-content-table" id="modalPanelContentTable" style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+              <tbody>
+                <tr style="height: 1%;">
+                  <td class="rich-mpnl-header-cell"><div class="rich-mpnl-text rich-mpnl-header " id="modalPanelHeader" style="white-space: nowrap; cursor: move;"> TEST</div></td>
+                </tr>
+                <tr style="height: 99%;">
+                  <td class="rich-mpnl-body" valign="top"><br>
+                    <h1>Hello, Test!</h1>
+                    <br>
+                    <div id="j_id726"> <a href="#" onClick="Richfaces.hideModalPanel('modalPanel')">Hide</a></div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="rich-mpnl-mask-div rich-mpnl-mask-div-transparent" id="modalPanelCursorDiv" style="z-index: -200;">
+        <button class="rich-mpnl-button" id="modalPanelLastHref"></button>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="position: absolute; z-index: 100; background-color: inherit;" id="sustateBulkUpdatePanelContainer" class="rich-modalpanel modal">
+  <div style="z-index: -1;" id="sustateBulkUpdatePanelDiv" class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div">
+    <button id="sustateBulkUpdatePanelFirstHref" class="rich-mpnl-button"></button>
+  </div>
+  <div class="rich-mpnl-panel">
+    <div id="sustateBulkUpdatePanelCDiv" class="rich-mp-container">
+      <div style="width: 1030px; height: 584px;" id="sustateBulkUpdatePanelShadowDiv" class="rich-mpnl-shadow"></div>
+      <div style="width: 900px; height: 600px;" id="sustateBulkUpdatePanelContentDiv" class="rich-mpnl-ovf-hd rich-mpnl-trim rich-mpnl-content">
+        <table style="height: 100%; width: 100%;" id="sustateBulkUpdatePanelContentTable" class="rich-mp-content-table" border="0" cellpadding="0" cellspacing="0">
+          <tbody>
+            <tr style="height: 99%;">
+              <td class="rich-mpnl-body" valign="top"><div id="sustatemodalDiv"> <span id="sustatewizard:j_id360">
+                  <div class="title">
+                    <div class="span-9">
+                      <h1>Rename File</h1>
+                    </div>
+                    <div class="span-16 last">
+                      <div id="sustatewizard:j_id360:j_id367">
+                        <ul>
+                          <li class="selected">1. Confirm</li>
+                          <li class="">2. Change</li>
+                          <li class="">3. Additional</li>
+                          <li class="">4. Results</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cluster">
+                    <div class="tabletitle">
+                      <div class="span-2 save"></div>
+                      <div class="span-9">
+                        <h2>SuStates (1)</h2>
+                      </div>
+                      <div class="span-10 last caption colborderpre append-3">You have permission to take action on 1 of 1 record(s).</div>
+                    </div>
+                    <div class="overflow nosort">
+                      <table id="sustatewizard:j_id360:j_id385" class="rich-table" border="0" cellpadding="0" cellspacing="0">
+                        <colgroup span="4">
+                        </colgroup>
+                        <thead class="rich-table-thead">
+                          <tr class="rich-table-subheader">
+                            <th id="sustatewizard:j_id360:j_id385:j_id386header" scope="col" class="rich-table-subheadercell"><div id="sustatewizard:j_id360:j_id385:j_id386header:sortDiv"><span class="propertySorter">Accession ID</span></div></th>
+                            <th id="sustatewizard:j_id360:j_id385:j_id389header" scope="col" class="rich-table-subheadercell"><div id="sustatewizard:j_id360:j_id385:j_id389header:sortDiv"><span class="propertySorter">SuState Name</span></div></th>
+                            <th id="sustatewizard:j_id360:j_id385:j_id392header" scope="col" class="rich-table-subheadercell"><div id="sustatewizard:j_id360:j_id385:j_id392header:sortDiv"><span class="propertySorter">Working Filename</span></div></th>
+                            <th id="sustatewizard:j_id360:j_id385:j_id395header" scope="col" class="rich-table-subheadercell"><div id="sustatewizard:j_id360:j_id385:j_id395header:sortDiv"><span class="propertySorter">Batch Accession Id</span></div></th>
+                          </tr>
+                        </thead>
+                        <tbody id="sustatewizard:j_id360:j_id385:tb">
+                          <tr class="rich-table-row rich-table-firstrow">
+                            <td id="sustatewizard:j_id360:j_id385:0:j_id386" class="rich-table-cell">ark:/27927/dcc120mcs</td>
+                            <td id="sustatewizard:j_id360:j_id385:0:j_id389" class="rich-table-cell">SU 28</td>
+                            <td id="sustatewizard:j_id360:j_id385:0:j_id392" class="rich-table-cell">/renameFile-compCheck.tar/0008543X/2006/106/12/CNCR21924/21924_ftp.sgm</td>
+                            <td id="sustatewizard:j_id360:j_id385:0:j_id395" class="rich-table-cell">ark:/27927/dcc120463</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="action">
+                    <div class="span-5"><a onClick="A4J.AJAX.Submit('sustatewizard',event,{'oncomplete':function(request,event,data){document.getElementById('sustateBulkUpdatePanel').component.hide(); javascript:location.reload(true);},'similarityGroupingId':'sustatewizard:j_id360:j_id431','parameters':{'sustatewizard:j_id360:j_id431':'sustatewizard:j_id360:j_id431'} ,'eventsQueue':'batchEditeventsQueue','actionUrl':'/ConPrepUI/batches/ContentTree.seam'} );return false;" name="sustatewizard:j_id360:j_id431" id="sustatewizard:j_id360:j_id431" href="#" class="button cancel">Quit</a></div>
+                    <div class="span-20 last"><a onClick="A4J.AJAX.Submit('sustatewizard',event,{'similarityGroupingId':'sustatewizard:j_id360:j_id433','parameters':{'sustatewizard:j_id360:j_id433':'sustatewizard:j_id360:j_id433'} ,'eventsQueue':'batchEditeventsQueue','actionUrl':'/ConPrepUI/batches/ContentTree.seam'} );return false;" name="sustatewizard:j_id360:j_id433" id="sustatewizard:j_id360:j_id433" href="#" class="button save">Continue</a></div>
+                  </div>
+                  </span>
+                  <input value="sustatewizard" name="sustatewizard" autocomplete="off" type="hidden">
+                  <input value="" name="autoScroll" autocomplete="off" type="hidden">
+                  <input autocomplete="off" value="j_id44" id="javax.faces.ViewState" name="javax.faces.ViewState" type="hidden">
+                </div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div style="z-index: -200;" id="sustateBulkUpdatePanelCursorDiv" class="rich-mpnl-mask-div rich-mpnl-mask-div-transparent">
+    <button id="sustateBulkUpdatePanelLastHref" class="rich-mpnl-button"></button>
+  </div>
+</div>
+</body>
+</html>

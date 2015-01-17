@@ -1,0 +1,89 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<script src="junk/NestedRenditionSourceViewer.seam_files/framework.js" type="text/javascript"></script><script src="junk/NestedRenditionSourceViewer.seam_files/ui.js" type="text/javascript"></script>
+<link class="component" href="junk/NestedRenditionSourceViewer.seam_files/eAGTcz60MXT5DGkAD2IDhA___003.css" rel="stylesheet" type="text/css">
+<link class="component" href="junk/NestedRenditionSourceViewer.seam_files/eAGTcz60MXT5DGkAD2IDhA__.css" rel="stylesheet" type="text/css">
+<link class="component" href="junk/NestedRenditionSourceViewer.seam_files/eAGTcz60MXT5DGkAD2IDhA___002.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">window.RICH_FACES_EXTENDED_SKINNING_ON=true;</script>
+<link rel="stylesheet" href="lib/style.css">
+</head>
+<body>
+<div id="NestedRenditionSourceControlDiv1" class="inspectionview">
+  <form id="nestedRenditionSourceControlForm" name="nestedRenditionSourceControlForm" method="post" action="/conprepUi2/nestedrenditionsourceviews/NestedRenditionSourceControlView.seam" enctype="application/x-www-form-urlencoded">
+    <div class="title">
+
+<span class="titleunit">SU 5</span>
+                                                  regTest-missingImages.tar/0008543X_2006_106_12/0008543X/2006/106/12/CNCR21919/image_m/mfig002.jpg(IP2)<br>
+                                                  (has-successor=false)(status=Active)(origin=Provider, Supplied Content)
+
+    </div>
+    <div class="actions"><a href="#" class="button window">View Batch</a></div>
+    <table border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td>
+        <table border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td> <select id="nestedRenditionSourceControlForm:LeftPaneSelectorDecorateId:leftdropdownlistofviewsid" name="nestedRenditionSourceControlForm:LeftPaneSelectorDecorateId:leftdropdownlistofviewsid" class="icon-view" size="1" onChange="openpanel(this.value, 'left', 'leftdivpanellikeclass');">
+            <option value="org.jboss.seam.ui.NoSelectionConverter.noSelectionValue">List of Views</option>
+            <option selected="selected" value="Delivery View">Delivery View</option>
+            <option value="Rendition View">Rendition View</option>
+            <option value="Code View">Code View</option>
+            <option value="pdf">PDF View</option>
+          </select></td>
+        <td><a target="leftframe" class="button off filter">Go!</a></td>
+      </tr>
+    </table>
+    </td>
+        <td>
+          <table border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td> <select id="nestedRenditionSourceControlForm:RightPaneSelectorDecorateId:rightdropdownlistofviewsid" name="nestedRenditionSourceControlForm:RightPaneSelectorDecorateId:rightdropdownlistofviewsid" class="icon-view" size="1" onChange="openpanel(this.value, 'right', 'rightdivpanellikeclass');">
+            <option value="org.jboss.seam.ui.NoSelectionConverter.noSelectionValue">List of Views</option>
+            <option value="Delivery View">Delivery View</option>
+            <option value="Rendition View">Rendition View</option>
+            <option value="Code View">Code View</option>
+            <option value="pdf" selected="selected" >PDF View</option>
+          </select></td>
+        <td><a target="rightframe" class="button off filter">Go!</a></td>
+      </tr>
+    </table>
+    </td>
+      </tr>
+    </table>
+    
+    
+    <input name="nestedRenditionSourceControlForm" value="nestedRenditionSourceControlForm" type="hidden">
+    <input name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id13" type="hidden">
+  </form>
+  <script type="text/javascript">
+function openpanel(selectonemenuvalue, leftorright, classtype){
+	var retValue = false;
+//	alert(selectonemenu.value);
+	var selectedpaneldiv = selectonemenuvalue+leftorright+"divid";
+//	alert(selectedpaneldiv);
+
+	jQuery('.' + classtype).each(function(){ 
+		this.style.display = 'none';
+//		alert(classtype);
+	}); 
+
+	var mydivvar = document.getElementById(selectedpaneldiv);
+	mydivvar.style.display = '';
+	return retValue;
+}
+function myinit(){
+	// alert('ranga');
+	// var mydivvarleft = document.getElementById('nestedRenditionSourceControlForm:LeftPaneSelectorDecorateId:leftdropdownlistofviewsid');
+	// alert(mydivvarleft.value);
+	// mydivvarleft.onchange = openpanel('Delivery View', 'left', 'leftdivpanellikeclass');
+	// var mydivvarright = document.getElementById('nestedRenditionSourceControlForm:RightPaneSelectorDecorateId:rightdropdownlistofviewsid');
+	// alert(mydivvarright.value);
+	// mydivvarright.onchange = openpanel('Delivery View', 'right', 'rightdivpanellikeclass');
+	// 
+	// openpanel('pdf', 'right', 'rightdivpanellikeclass');
+}
+window.onload = myinit;
+</script></div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<title>OnDeck Instant Decision</title>
+
+        <link type="text/css" href="http://jqueryui.com/themes/base/ui.theme.css" rel="stylesheet" />
+        <link type="text/css" href="http://jqueryui.com/themes/base/ui.core.css" rel="stylesheet" />
+        <link type="text/css" href="lib/jquery/ui.datepicker.css" rel="stylesheet" />
+	<script type="text/javascript" src="lib/jquery/jquery.js"></script>
+	<script type="text/javascript" src="lib/jquery/ui.datepicker.js"></script>
+    <script type="text/javascript">
+	$(function() {
+		$('#datepicker').datepicker({
+			changeMonth: true,
+			changeYear: true
+		});
+	});
+	              </script>
+	</head>
+  <!--[if lt IE 7 ]> <body class="ie6"> <![endif]-->
+<!--[if IE 7 ]> <body class="ie7"> <![endif]-->
+<!--[if IE 8 ]> <body class="ie8"> <![endif]-->
+<!--[if !IE]>--> <body class="notIE"> <!--<![endif]-->
+                      <input class="validate[required] input inputDate" id="datepicker" />
+        
+    </body>
+</html>

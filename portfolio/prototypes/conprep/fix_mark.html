@@ -1,0 +1,1492 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ITHAKA | CONPREP</title>
+
+<link class="component" href="junk/eAGTcz60MXT5DGkAD2IDhA__.css" rel="stylesheet" type="text/css">
+<link class="component" href="junk/eAGTcz60MXT5DGkAD2IDhA___002.css" rel="stylesheet" type="text/css">
+<link class="component" href="junk/eAGTcz60MXT5DGkAD2IDhA___003.css" rel="stylesheet" type="text/css">
+
+<link rel="shortcut icon" href="http://localhost:8080/ConPrepUI/favicon.ico">
+<link rel="stylesheet" href="lib/style.css">
+</head>
+
+<body class="batch recordview">
+<div id="j_id3">
+  <form id="linkToForm" name="linkToForm" method="post" action="/ConPrepUI/batches/BatchEdit.seam" enctype="application/x-www-form-urlencoded">
+    
+    
+    
+  </form>
+   
+  </div>
+<div class="container"> 
+  <!-- Header -->
+  <div id="header">
+    <div id="logo" class="span-8">
+      <h1><a href="http://localhost:8080/ConPrepUI">Portico ConPrep</a></h1>
+    </div>
+    <div class="span-39 last">
+      <div id="admin"> <span>Welcome, pkesireddy</span> <a href="http://localhost:8080/ConPrepUI/home.seam?actionMethod=batches%2FBatchEdit.xhtml%3Aidentity.logout" id="menuLogoutId" class="button cancel">Logout</a></div>
+    </div>
+    <ul>
+      <li class="selected"><a href="http://localhost:8080/ConPrepUI/lists/BatchList.seam">Batches</a></li>
+      <!--      
+      <li><a href="#">Tags</a></li>
+      <li><a href="#">Providers</a></li>
+      <li><a href="#">Contracts</a></li>
+      <li><a href="#">Publishers</a></li>
+      <li>
+        <select name="">
+          <option value="">More Options</option>
+          <option value="">Lorem</option>
+          <option value="">Ipsum</option>
+          <option value="">Dolor</option>
+        </select>
+      </li>
+-->
+    </ul>
+  </div>
+  <!-- End Header -->
+  <div id="main"> 
+    <!-- Badge -->
+    <div id="badge" class="sidebar span-8">
+      <div id="j_id23">
+        <form target="" id="batchBadgeForm" name="batchBadgeForm" method="post" action="/ConPrepUI/batches/BatchEdit.seam">
+          <h1>OUP-test-hum2</h1>
+          <!--      <s:decorate id="PAccessionIdFieldBadge" template="../layout/edit.xhtml">
+                <ui:define name="label">P accession id</ui:define>
+                <h:outputText id="PAccessionId"
+                              value="ark:/27927/dcczp28z"/>
+            </s:decorate> -->
+          <div id="batchBadgeForm:Provider">
+            <div class="field  ">
+              <div class="span-3">
+                <label> Provider</label>
+              </div>
+              <div class="span-5 last">OUP</div>
+            </div>
+          </div>
+          <div id="batchBadgeForm:ProfileID">
+            <div class="field  ">
+              <div class="span-3">
+                <label> Profile</label>
+              </div>
+              <div class="span-5 last"><a class="button edit" href="#" id="batchBadgeForm:ProfileID:changeProfileButton" name="batchBadgeForm:ProfileID:changeProfileButton" onclick="A4J.AJAX.Submit('batchBadgeForm',event,{'ignoreDupResponses':true,'status':'globalWaitStatus','oncomplete':function(request,event,data){Richfaces.showModalPanel('batchBulkUpdatePanel');},'similarityGroupingId':'batchBadgeForm:ProfileID:changeProfileButton','parameters':{'ajaxSingle':'batchBadgeForm:ProfileID:changeProfileButton','batchBadgeForm:ProfileID:changeProfileButton':'batchBadgeForm:ProfileID:changeProfileButton'} ,'eventsQueue':'badgeActivityEditQueue'} );return false;"></a><span id="batchBadgeForm:ProfileID:ProfileID">OUP-Profile-DA.xml</span></div>
+            </div>
+          </div>
+          <div id="batchBadgeForm:WorkflowTemplate">
+            <div class="field  ">
+              <div class="span-3">
+                <label> Workflow Template</label>
+              </div>
+              <div class="span-5 last">E-Journal Workflow 2.1</div>
+            </div>
+          </div>
+          <div id="batchBadgeForm:WorkFlowQueue">
+            <div class="field  ">
+              <div class="span-3">
+                <label> Executor Queue</label>
+              </div>
+              <div class="span-5 last"><a class="button edit" href="#" id="batchBadgeForm:WorkFlowQueue:ExecQueueEditButton" name="batchBadgeForm:WorkFlowQueue:ExecQueueEditButton" onclick="A4J.AJAX.Submit('batchBadgeForm',event,{'ignoreDupResponses':true,'status':'globalWaitStatus','oncomplete':function(request,event,data){Richfaces.showModalPanel('batchBulkUpdatePanel');},'similarityGroupingId':'batchBadgeForm:WorkFlowQueue:ExecQueueEditButton','parameters':{'ajaxSingle':'batchBadgeForm:WorkFlowQueue:ExecQueueEditButton','batchBadgeForm:WorkFlowQueue:ExecQueueEditButton':'batchBadgeForm:WorkFlowQueue:ExecQueueEditButton'} ,'eventsQueue':'badgeActivityEditQueue'} );return false;"></a></div>
+            </div>
+          </div>
+          <div id="batchBadgeForm:LifecycleState">
+            <div class="field  ">
+              <div class="span-3">
+                <label> Lifecycle State</label>
+              </div>
+              <div class="span-5 last"><a class="button edit" href="#" id="batchBadgeForm:LifecycleState:lifecycleEditButton" name="batchBadgeForm:LifecycleState:lifecycleEditButton" onclick="A4J.AJAX.Submit('batchBadgeForm',event,{'ignoreDupResponses':true,'status':'globalWaitStatus','oncomplete':function(request,event,data){Richfaces.showModalPanel('batchBulkUpdatePanel');},'similarityGroupingId':'batchBadgeForm:LifecycleState:lifecycleEditButton','parameters':{'batchBadgeForm:LifecycleState:lifecycleEditButton':'batchBadgeForm:LifecycleState:lifecycleEditButton','ajaxSingle':'batchBadgeForm:LifecycleState:lifecycleEditButton'} ,'eventsQueue':'badgeActivityEditQueue'} );return false;"></a>INSPECT</div>
+            </div>
+          </div>
+          <div id="batchBadgeForm:LastActivity">
+            <div class="field  ">
+              <div class="span-3">
+                <label> Last Activity</label>
+              </div>
+              <div class="span-5 last"><span id="batchBadgeForm:LastActivity:LastActivity">Prepare for Inspection</span></div>
+            </div>
+          </div>
+          <div id="batchBadgeForm:priority">
+            <div class="field  ">
+              <div class="span-3">
+                <label> Priority</label>
+              </div>
+              <div class="span-5 last"><a class="button edit" href="#" id="batchBadgeForm:priority:priorityEditButton" name="batchBadgeForm:priority:priorityEditButton" onclick="A4J.AJAX.Submit('batchBadgeForm',event,{'ignoreDupResponses':true,'status':'globalWaitStatus','oncomplete':function(request,event,data){Richfaces.showModalPanel('batchBulkUpdatePanel');},'similarityGroupingId':'batchBadgeForm:priority:priorityEditButton','parameters':{'batchBadgeForm:priority:priorityEditButton':'batchBadgeForm:priority:priorityEditButton'} ,'eventsQueue':'badgeActivityEditQueue'} );return false;"></a>Normal</div>
+            </div>
+          </div>
+          <div id="batchBadgeForm:claimedby">
+            <div class="field  ">
+              <div class="span-3">
+                <label> Claimed by</label>
+              </div>
+              <div class="span-5 last"><a class="button claimed" href="#" id="batchBadgeForm:claimedby:j_id118" name="batchBadgeForm:claimedby:j_id118" onclick="A4J.AJAX.Submit('batchBadgeForm',event,{'ignoreDupResponses':true,'status':'globalWaitStatus','oncomplete':function(request,event,data){Richfaces.showModalPanel('batchBulkUpdatePanel');},'similarityGroupingId':'batchBadgeForm:claimedby:j_id118','parameters':{'ajaxSingle':'batchBadgeForm:claimedby:j_id118','batchBadgeForm:claimedby:j_id118':'batchBadgeForm:claimedby:j_id118'} ,'eventsQueue':'badgeActivityEditQueue'} );return false;"></a>pkesireddy</div>
+            </div>
+          </div>
+          <div id="batchBadgeForm:RUCount">
+            <div class="field  ">
+              <div class="span-3">
+                <label> RU Count</label>
+              </div>
+              <div class="span-5 last">30</div>
+            </div>
+          </div>
+          <div id="batchBadgeForm:SUCount">
+            <div class="field  ">
+              <div class="span-3">
+                <label> SU Count</label>
+              </div>
+              <div class="span-5 last">23</div>
+            </div>
+          </div>
+          <div id="batchBadgeForm:ArticleCount">
+            <div class="field  ">
+              <div class="span-3">
+                <label> Article Count(Est.)</label>
+              </div>
+              <div class="span-5 last">8</div>
+            </div>
+          </div>
+          <div id="batchBadgeForm:FatalErrorCount">
+            <div class="field  ">
+              <div class="span-3">
+                <label> Fatal Error Count</label>
+              </div>
+              <div class="span-5 last">0</div>
+            </div>
+          </div>
+          <div id="batchBadgeForm:Hold">
+            <div class="field  ">
+              <div class="span-3">
+                <label> Hold</label>
+              </div>
+              <div class="span-5 last"><a class="button edit" href="#" id="batchBadgeForm:Hold:badgeActivityHoldWizard" name="batchBadgeForm:Hold:badgeActivityHoldWizard" onclick="A4J.AJAX.Submit('batchBadgeForm',event,{'ignoreDupResponses':true,'status':'globalWaitStatus','oncomplete':function(request,event,data){Richfaces.showModalPanel('batchBulkUpdatePanel');},'similarityGroupingId':'batchBadgeForm:Hold:badgeActivityHoldWizard','parameters':{'ajaxSingle':'batchBadgeForm:Hold:badgeActivityHoldWizard','batchBadgeForm:Hold:badgeActivityHoldWizard':'batchBadgeForm:Hold:badgeActivityHoldWizard'} ,'eventsQueue':'badgeActivityEditQueue'} );return false;"></a>No</div>
+            </div>
+          </div>
+          <div id="batchBadgeForm:Created">
+            <div class="field  ">
+              <div class="span-3">
+                <label> Created</label>
+              </div>
+              <div class="span-5 last">2011/06/01 15:05:36</div>
+            </div>
+          </div>
+          <div id="batchBadgeForm:AutoprocessStart">
+            <div class="field  ">
+              <div class="span-3">
+                <label> Autoprocess Started</label>
+              </div>
+              <div class="span-5 last"><span id="batchBadgeForm:AutoprocessStart:AutoprocessStart">2011/08/29 11:25:46</span></div>
+            </div>
+          </div>
+          <div id="batchBadgeForm:j_id204" class="field actions"><a class="button delete" href="#" id="batchBadgeForm:badgeActivityDeleteButton" name="batchBadgeForm:badgeActivityDeleteButton" onclick="A4J.AJAX.Submit('batchBadgeForm',event,{'ignoreDupResponses':true,'status':'globalWaitStatus','oncomplete':function(request,event,data){Richfaces.showModalPanel('batchBulkUpdatePanel');},'similarityGroupingId':'batchBadgeForm:badgeActivityDeleteButton','parameters':{'ajaxSingle':'batchBadgeForm:badgeActivityDeleteButton','batchBadgeForm:badgeActivityDeleteButton':'batchBadgeForm:badgeActivityDeleteButton'} ,'eventsQueue':'badgeActivityEditQueue'} );return false;">Delete</a><a class="button edit" href="#" id="batchBadgeForm:badgeActivityResumeButton" name="batchBadgeForm:badgeActivityResumeButton" onclick="A4J.AJAX.Submit('batchBadgeForm',event,{'ignoreDupResponses':true,'status':'globalWaitStatus','oncomplete':function(request,event,data){Richfaces.showModalPanel('batchBulkUpdatePanel');},'similarityGroupingId':'batchBadgeForm:badgeActivityResumeButton','parameters':{'ajaxSingle':'batchBadgeForm:badgeActivityResumeButton','batchBadgeForm:badgeActivityResumeButton':'batchBadgeForm:badgeActivityResumeButton'} ,'eventsQueue':'badgeActivityEditQueue'} );return false;">Resume Auto Processing</a><a class="button edit" href="#" id="batchBadgeForm:badgeActivityAddNewFile" name="batchBadgeForm:badgeActivityAddNewFile" onclick="A4J.AJAX.Submit('batchBadgeForm',event,{'ignoreDupResponses':true,'status':'globalWaitStatus','oncomplete':function(request,event,data){Richfaces.showModalPanel('addnewfileBulkUpdatePanel');},'similarityGroupingId':'batchBadgeForm:badgeActivityAddNewFile','parameters':{'batchBadgeForm:badgeActivityAddNewFile':'batchBadgeForm:badgeActivityAddNewFile','ajaxSingle':'batchBadgeForm:badgeActivityAddNewFile'} ,'eventsQueue':'badgeActivityEditQueue'} );return false;">Add New File</a><a class="button edit" href="#" id="batchBadgeForm:badgeActivityRunNowButton" name="batchBadgeForm:badgeActivityRunNowButton" onclick="A4J.AJAX.Submit('batchBadgeForm',event,{'ignoreDupResponses':true,'status':'globalWaitStatus','oncomplete':function(request,event,data){Richfaces.showModalPanel('batchBulkUpdatePanel');},'similarityGroupingId':'batchBadgeForm:badgeActivityRunNowButton','parameters':{'ajaxSingle':'batchBadgeForm:badgeActivityRunNowButton','batchBadgeForm:badgeActivityRunNowButton':'batchBadgeForm:badgeActivityRunNowButton'} ,'eventsQueue':'badgeActivityEditQueue'} );return false;">Run Now</a><a class="button edit" href="#" id="batchBadgeForm:trimpath" name="batchBadgeForm:trimpath" onclick="A4J.AJAX.Submit('batchBadgeForm',event,{'ignoreDupResponses':true,'status':'globalWaitStatus','oncomplete':function(request,event,data){document.getElementById('j_id205:trimPathModal').component.show()},'similarityGroupingId':'batchBadgeForm:trimpath','parameters':{'batchBadgeForm:trimpath':'batchBadgeForm:trimpath','ajaxSingle':'batchBadgeForm:trimpath'} ,'eventsQueue':'badgeActivityEditQueue'} );return false;">Trim Path</a><a class="button edit" href="#" id="batchBadgeForm:badgeActivityResetButton" name="batchBadgeForm:badgeActivityResetButton" onclick="A4J.AJAX.Submit('batchBadgeForm',event,{'ignoreDupResponses':true,'status':'globalWaitStatus','oncomplete':function(request,event,data){Richfaces.showModalPanel('batchBulkUpdatePanel');},'similarityGroupingId':'batchBadgeForm:badgeActivityResetButton','parameters':{'batchBadgeForm:badgeActivityResetButton':'batchBadgeForm:badgeActivityResetButton','ajaxSingle':'batchBadgeForm:badgeActivityResetButton'} ,'eventsQueue':'badgeActivityEditQueue'} );return false;">Reset Batch</a></div>
+          
+          
+          
+          
+        </form>
+        <span id="j_id205">
+        <div id="j_id205:trimPathPanel">
+          
+        </div>
+        </span></div>
+      <hr>
+    </div>
+    <!-- End Badge --> 
+    
+    <!-- Cluster -->
+    <div id="cluster" class="span-31">
+      <div id="wrapper">
+        
+        <form id="batchHomeEdit" name="batchHomeEdit" method="post" action="/ConPrepUI/batches/BatchEdit.seam" enctype="application/x-www-form-urlencoded">
+          
+          
+          <span id="globalWaitStatus"><span style="" id="globalWaitStatus.stop"></span></span>
+          <table style="" id="batchHomeEdit:maintab" class="rich-tabpanel tab" border="0" cellpadding="0" cellspacing="0">
+            <tbody>
+              <tr>
+                <td class="rich-tab-bottom-line" align="left"><!--table  border="0" cellpadding="0" cellspacing="0" style="position:relative;top:1px"-->
+                  <table border="0" cellpadding="0" cellspacing="0">
+                    <tbody>
+                      <tr>
+                        <td><img style="width: 1px; border: 0pt none;" src="junk/spacer.gif" alt="" height="1"></td>
+                        <td class="rich-tabhdr-cell-inactive" style="height: 100%; vertical-align: bottom;" id="batchHomeEdit:tab1_cell"><table style="position: relative; height: 100%;" onclick="if (RichFaces.isTabActive('batchHomeEdit:tab1_lbl')) return false; if (!RichFaces.onTabChange(event, 'batchHomeEdit:maintab','batchHomeEdit:tab1')) return false;A4J.AJAX.Submit('batchHomeEdit',event,{'status':'globalWaitStatus','oncomplete':function(request,event,data){addDisabledToDisabled(); addDisabledToReadonly();},'similarityGroupingId':'batchHomeEdit:tab1','parameters':{'batchHomeEdit:tab1':'batchHomeEdit:tab1'} } ); return false; this.onclick = null;" id="batchHomeEdit:tab1_shifted" border="0" cellpadding="0" cellspacing="0">
+                            <tbody>
+                              <tr>
+                                <td class="rich-tabhdr-side-border"><img style="border: 0pt none;" src="junk/spacer.gif" alt="" height="1" width="1"></td>
+                                <td class="rich-tabhdr-side-cell"><table style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                      <tr>
+                                        <td class="rich-tab-header rich-tab-inactive" onmouseout="RichFaces.outTab(this);" onmouseover="RichFaces.overTab(this);" id="batchHomeEdit:tab1_lbl">Messages<sup>0/0</sup></td>
+                                      </tr>
+                                    </tbody>
+                                  </table></td>
+                                <td class="rich-tabhdr-side-border"><img style="border: 0pt none;" src="junk/spacer.gif" alt="" height="1" width="1"></td>
+                              </tr>
+                            </tbody>
+                          </table></td>
+                        <td><img style="width: 1px; border: 0pt none;" src="junk/spacer.gif" alt="" height="1"></td>
+                        <td class="rich-tabhdr-cell-inactive" style="height: 100%; vertical-align: bottom;" id="batchHomeEdit:subtab1_cell"><table style="position: relative; height: 100%;" onclick="if (RichFaces.isTabActive('batchHomeEdit:subtab1_lbl')) return false; if (!RichFaces.onTabChange(event, 'batchHomeEdit:maintab','batchHomeEdit:subtab1')) return false;A4J.AJAX.Submit('batchHomeEdit',event,{'status':'globalWaitStatus','oncomplete':function(request,event,data){addDisabledToDisabled(); addDisabledToReadonly();},'similarityGroupingId':'batchHomeEdit:subtab1','parameters':{'batchHomeEdit:subtab1':'batchHomeEdit:subtab1'} } ); return false; this.onclick = null;" id="batchHomeEdit:subtab1_shifted" border="0" cellpadding="0" cellspacing="0">
+                            <tbody>
+                              <tr>
+                                <td class="rich-tabhdr-side-border"><img style="border: 0pt none;" src="junk/spacer.gif" alt="" height="1" width="1"></td>
+                                <td class="rich-tabhdr-side-cell"><table style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                      <tr>
+                                        <td class="rich-tab-header rich-tab-inactive" onmouseout="RichFaces.outTab(this);" onmouseover="RichFaces.overTab(this);" id="batchHomeEdit:subtab1_lbl">Messages History</td>
+                                      </tr>
+                                    </tbody>
+                                  </table></td>
+                                <td class="rich-tabhdr-side-border"><img style="border: 0pt none;" src="junk/spacer.gif" alt="" height="1" width="1"></td>
+                              </tr>
+                            </tbody>
+                          </table></td>
+                        <td><img style="width: 1px; border: 0pt none;" src="junk/spacer.gif" alt="" height="1"></td>
+                        <td class="rich-tabhdr-cell-active" style="height: 100%; vertical-align: bottom;" id="batchHomeEdit:tab2_cell"><table style="position: relative; top: 1px; height: 100%;" onclick="if (RichFaces.isTabActive('batchHomeEdit:tab2_lbl')) return false; if (!RichFaces.onTabChange(event, 'batchHomeEdit:maintab','batchHomeEdit:tab2')) return false;A4J.AJAX.Submit('batchHomeEdit',event,{'status':'globalWaitStatus','oncomplete':function(request,event,data){addDisabledToDisabled(); addDisabledToReadonly();},'similarityGroupingId':'batchHomeEdit:tab2','parameters':{'batchHomeEdit:tab2':'batchHomeEdit:tab2'} } ); return false; this.onclick = null;" id="batchHomeEdit:tab2_shifted" border="0" cellpadding="0" cellspacing="0">
+                            <tbody>
+                              <tr>
+                                <td class="rich-tabhdr-side-border"><img style="border: 0pt none;" src="junk/spacer.gif" alt="" height="1" width="1"></td>
+                                <td class="rich-tabhdr-side-cell"><table style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                      <tr>
+                                        <td class="rich-tab-header rich-tab-active" onmouseout="RichFaces.outTab(this);" onmouseover="RichFaces.overTab(this);" id="batchHomeEdit:tab2_lbl">Content Tree</td>
+                                      </tr>
+                                    </tbody>
+                                  </table></td>
+                                <td class="rich-tabhdr-side-border"><img style="border: 0pt none;" src="junk/spacer.gif" alt="" height="1" width="1"></td>
+                              </tr>
+                            </tbody>
+                          </table></td>
+                        <td><img style="width: 1px; border: 0pt none;" src="junk/spacer.gif" alt="" height="1"></td>
+                        <td class="rich-tabhdr-cell-inactive" style="height: 100%; vertical-align: bottom;" id="batchHomeEdit:tab3_cell"><table style="position: relative; height: 100%;" onclick="if (RichFaces.isTabActive('batchHomeEdit:tab3_lbl')) return false; if (!RichFaces.onTabChange(event, 'batchHomeEdit:maintab','batchHomeEdit:tab3')) return false;A4J.AJAX.Submit('batchHomeEdit',event,{'status':'globalWaitStatus','oncomplete':function(request,event,data){addDisabledToDisabled(); addDisabledToReadonly();},'similarityGroupingId':'batchHomeEdit:tab3','parameters':{'batchHomeEdit:tab3':'batchHomeEdit:tab3'} } ); return false; this.onclick = null;" id="batchHomeEdit:tab3_shifted" border="0" cellpadding="0" cellspacing="0">
+                            <tbody>
+                              <tr>
+                                <td class="rich-tabhdr-side-border"><img style="border: 0pt none;" src="junk/spacer.gif" alt="" height="1" width="1"></td>
+                                <td class="rich-tabhdr-side-cell"><table style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                      <tr>
+                                        <td class="rich-tab-header rich-tab-inactive" onmouseout="RichFaces.outTab(this);" onmouseover="RichFaces.overTab(this);" id="batchHomeEdit:tab3_lbl">TOC</td>
+                                      </tr>
+                                    </tbody>
+                                  </table></td>
+                                <td class="rich-tabhdr-side-border"><img style="border: 0pt none;" src="junk/spacer.gif" alt="" height="1" width="1"></td>
+                              </tr>
+                            </tbody>
+                          </table></td>
+                        <td><img style="width: 1px; border: 0pt none;" src="junk/spacer.gif" alt="" height="1"></td>
+                        <td class="rich-tabhdr-cell-inactive" style="height: 100%; vertical-align: bottom;" id="batchHomeEdit:tab4_cell"><table style="position: relative; height: 100%;" onclick="if (RichFaces.isTabActive('batchHomeEdit:tab4_lbl')) return false; if (!RichFaces.onTabChange(event, 'batchHomeEdit:maintab','batchHomeEdit:tab4')) return false;A4J.AJAX.Submit('batchHomeEdit',event,{'status':'globalWaitStatus','oncomplete':function(request,event,data){addDisabledToDisabled(); addDisabledToReadonly();},'similarityGroupingId':'batchHomeEdit:tab4','parameters':{'batchHomeEdit:tab4':'batchHomeEdit:tab4'} } ); return false; this.onclick = null;" id="batchHomeEdit:tab4_shifted" border="0" cellpadding="0" cellspacing="0">
+                            <tbody>
+                              <tr>
+                                <td class="rich-tabhdr-side-border"><img style="border: 0pt none;" src="junk/spacer.gif" alt="" height="1" width="1"></td>
+                                <td class="rich-tabhdr-side-cell"><table style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                      <tr>
+                                        <td class="rich-tab-header rich-tab-inactive" onmouseout="RichFaces.outTab(this);" onmouseover="RichFaces.overTab(this);" id="batchHomeEdit:tab4_lbl">Renamed Files</td>
+                                      </tr>
+                                    </tbody>
+                                  </table></td>
+                                <td class="rich-tabhdr-side-border"><img style="border: 0pt none;" src="junk/spacer.gif" alt="" height="1" width="1"></td>
+                              </tr>
+                            </tbody>
+                          </table></td>
+                        <td><img style="width: 1px; border: 0pt none;" src="junk/spacer.gif" alt="" height="1"></td>
+                        <td class="rich-tabhdr-cell-inactive" style="height: 100%; vertical-align: bottom;" id="batchHomeEdit:tab5_cell"><table style="position: relative; height: 100%;" onclick="if (RichFaces.isTabActive('batchHomeEdit:tab5_lbl')) return false; if (!RichFaces.onTabChange(event, 'batchHomeEdit:maintab','batchHomeEdit:tab5')) return false;A4J.AJAX.Submit('batchHomeEdit',event,{'status':'globalWaitStatus','oncomplete':function(request,event,data){addDisabledToDisabled(); addDisabledToReadonly();},'similarityGroupingId':'batchHomeEdit:tab5','parameters':{'batchHomeEdit:tab5':'batchHomeEdit:tab5'} } ); return false; this.onclick = null;" id="batchHomeEdit:tab5_shifted" border="0" cellpadding="0" cellspacing="0">
+                            <tbody>
+                              <tr>
+                                <td class="rich-tabhdr-side-border"><img style="border: 0pt none;" src="junk/spacer.gif" alt="" height="1" width="1"></td>
+                                <td class="rich-tabhdr-side-cell"><table style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                      <tr>
+                                        <td class="rich-tab-header rich-tab-inactive" onmouseout="RichFaces.outTab(this);" onmouseover="RichFaces.overTab(this);" id="batchHomeEdit:tab5_lbl">Process Log</td>
+                                      </tr>
+                                    </tbody>
+                                  </table></td>
+                                <td class="rich-tabhdr-side-border"><img style="border: 0pt none;" src="junk/spacer.gif" alt="" height="1" width="1"></td>
+                              </tr>
+                            </tbody>
+                          </table></td>
+                        <td><img style="width: 1px; border: 0pt none;" src="junk/spacer.gif" alt="" height="1"></td>
+                        <td class="rich-tabhdr-cell-inactive" style="height: 100%; vertical-align: bottom;" id="batchHomeEdit:tab6_cell"><table style="position: relative; height: 100%;" onclick="if (RichFaces.isTabActive('batchHomeEdit:tab6_lbl')) return false; if (!RichFaces.onTabChange(event, 'batchHomeEdit:maintab','batchHomeEdit:tab6')) return false;A4J.AJAX.Submit('batchHomeEdit',event,{'status':'globalWaitStatus','oncomplete':function(request,event,data){addDisabledToDisabled(); addDisabledToReadonly();},'similarityGroupingId':'batchHomeEdit:tab6','parameters':{'batchHomeEdit:tab6':'batchHomeEdit:tab6'} } ); return false; this.onclick = null;" id="batchHomeEdit:tab6_shifted" border="0" cellpadding="0" cellspacing="0">
+                            <tbody>
+                              <tr>
+                                <td class="rich-tabhdr-side-border"><img style="border: 0pt none;" src="junk/spacer.gif" alt="" height="1" width="1"></td>
+                                <td class="rich-tabhdr-side-cell"><table style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                      <tr>
+                                        <td class="rich-tab-header rich-tab-inactive" onmouseout="RichFaces.outTab(this);" onmouseover="RichFaces.overTab(this);" id="batchHomeEdit:tab6_lbl">Properties</td>
+                                      </tr>
+                                    </tbody>
+                                  </table></td>
+                                <td class="rich-tabhdr-side-border"><img style="border: 0pt none;" src="junk/spacer.gif" alt="" height="1" width="1"></td>
+                              </tr>
+                            </tbody>
+                          </table></td>
+                        <td><img style="width: 1px; border: 0pt none;" src="junk/spacer.gif" alt="" height="1"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  </td>
+              </tr>
+              <tr>
+                <td style="height: 100%;" id="batchHomeEdit:tab2"><table class="rich-tabpanel-content-position" border="0" cellpadding="10" cellspacing="0" width="100%">
+                    <tbody>
+                      <tr>
+                        <td style="" class="rich-tabpanel-content tab_content"><div id="batchHomeEdit:SOMEDiv2">
+                            <style type="text/css">
+/*<![CDATA[*/
+.cur {
+        cursor: pointer;
+}
+
+.top {
+        vertical-align: top;
+}
+/*]]>*/
+</style>
+                            <div class="header">
+                              <div class="span-15">
+                                <select onchange="A4J.AJAX.Submit('batchHomeEdit',event,{'control':this,'similarityGroupingId':'batchHomeEdit:j_id283','parameters':{'ajaxSingle':'batchHomeEdit:Treedropdownviews','batchHomeEdit:j_id283':'batchHomeEdit:j_id283'} } )" size="1" class="icon-view" name="batchHomeEdit:Treedropdownviews" id="batchHomeEdit:Treedropdownviews">
+                                  <option value="Entire_Tree">Entire Tree</option>
+                                  <option value="Process_Tree_Closed">Process Tree Closed</option>
+                                  <option selected="selected" value="Process_Tree_Opened">Process Tree Opened</option>
+                                  <option value="Submission_tree">Submission tree</option>
+                                  <option value="Inspection_tree">Inspection tree</option>
+                                  <option value="Orphan_Files">Orphan Files</option>
+                                </select>
+                              </div>
+                              <div class="span-16 right last"><a class="button inspection" href="#">Expand Tree</a></div>
+                            </div>
+                            <div id="batchHomeEdit:configtree" class="rich-panel">
+                              <div id="batchHomeEdit:configtree_body" class="rich-panel-body">
+                                <div rich="http://richfaces.ajax4jsf.org/rich" id="batchHomeEdit:tree" class="rich-tree">
+                                  <div id="batchHomeEdit:tree:childs">
+                                    <table id="batchHomeEdit:tree:j__id285:0::aunode22" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                      <tbody>
+                                        <tr onclick="" id="batchHomeEdit:tree:j__id285:0::aunode22:mainRow">
+                                          <td id="batchHomeEdit:tree:j__id285:0::aunode22:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-node"><div><a onclick=" return false;" id="batchHomeEdit:tree:j__id285:0::aunode22:handle" href="#" class="rich-tree-node-handle"><img style="display: none; border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo_.gif" id="batchHomeEdit:tree:j__id285:0::aunode22:handle:img:collapsed" class="rich-tree-node-handleicon-collapsed" alt=""><img style="border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo__002.gif" id="batchHomeEdit:tree:j__id285:0::aunode22:handle:img:expanded" class="rich-tree-node-handleicon-expanded" alt=""></a>
+                                              
+                                            </div></td>
+                                          <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:0::aunode22:icon" class="rich-tree-node-icon rich-tree-h-ic-line-exp"><img src="junk/iconFolder.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                          <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:0::aunode22:text" class="rich-tree-node-text column-filter-input unit-AU"><div class="titleunit"><span class="rich-cm-attached" id="batchHomeEdit:tree:j__id285:0::aunameoutId">AU 3</span></div>
+                                            <span id="batchHomeEdit:tree:j__id285:0::autree1">ISSN_00068950</span>
+                                            <div id="batchHomeEdit:tree:j__id285:0::auMenu"></div></td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                    <div class="rich-tree-node-children rich-tree-h-ic-line" id="batchHomeEdit:tree:j__id285:0::aunode22:childs">
+                                      <table id="batchHomeEdit:tree:j__id285:0:j__id292:0::j_id293" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                          <tr onclick="" id="batchHomeEdit:tree:j__id285:0:j__id292:0::j_id293:mainRow">
+                                            <td id="batchHomeEdit:tree:j__id285:0:j__id292:0::j_id293:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-node"><div><img src="junk/spacer.gif" id="batchHomeEdit:tree:j__id285:0:j__id292:0::j_id293:handle:img" class="rich-tree-h-ic-img" alt="">
+                                                
+                                              </div></td>
+                                            <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:0:j__id292:0::j_id293:icon" class="rich-tree-node-icon-leaf rich-tree-h-ic-line-clp"><img src="junk/iconLeaf.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                            <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:0:j__id292:0::j_id293:text" class="rich-tree-node-text unit-MU"><div class="titleunit">dcc11hmtw.pmd</div>
+                                              (status=Active )(origin=NULL, NULL)</td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                      
+                                      <p class="rich-tree-last-node-marker"></p>
+                                      <table id="batchHomeEdit:tree:j__id285:0:j__id304:0::j_id321" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                          <tr onclick="" id="batchHomeEdit:tree:j__id285:0:j__id304:0::j_id321:mainRow">
+                                            <td id="batchHomeEdit:tree:j__id285:0:j__id304:0::j_id321:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-last"><div><a onclick=" return false;" id="batchHomeEdit:tree:j__id285:0:j__id304:0::j_id321:handle" href="#" class="rich-tree-node-handle"><img style="display: none; border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo_.gif" id="batchHomeEdit:tree:j__id285:0:j__id304:0::j_id321:handle:img:collapsed" class="rich-tree-node-handleicon-collapsed" alt=""><img style="border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo__002.gif" id="batchHomeEdit:tree:j__id285:0:j__id304:0::j_id321:handle:img:expanded" class="rich-tree-node-handleicon-expanded" alt=""></a>
+                                                
+                                              </div></td>
+                                            <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:0:j__id304:0::j_id321:icon" class="rich-tree-node-icon rich-tree-h-ic-line-exp"><img src="junk/iconFolder.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                            <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:0:j__id304:0::j_id321:text" class="rich-tree-node-text unit-CUgen"><div class="titleunit"><span id="batchHomeEdit:tree:j__id285:0:j__id304:0::cuTitleId2">CU 3</span> <!--Context Menu for CU start -->
+                                                <div id="batchHomeEdit:tree:j__id285:0:j__id304:0::cuMenu2"></div>
+                                                <!--Context Menu for CU end --> 
+                                              </div>
+                                              v65 n4 p373-408 December 1942</td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                      <div class="rich-tree-node-children" id="batchHomeEdit:tree:j__id285:0:j__id304:0::j_id321:childs">
+                                        <table id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:0::j_id365" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                          <tbody>
+                                            <tr onclick="" id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:0::j_id365:mainRow">
+                                              <td id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:0::j_id365:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-node"><div><a onclick=" return false;" id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:0::j_id365:handle" href="#" class="rich-tree-node-handle"><img style="display: none; border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo_.gif" id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:0::j_id365:handle:img:collapsed" class="rich-tree-node-handleicon-collapsed" alt=""><img style="border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo__002.gif" id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:0::j_id365:handle:img:expanded" class="rich-tree-node-handleicon-expanded" alt=""></a>
+                                                  
+                                                </div></td>
+                                              <td oncontextmenu="false" dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:0::j_id365:icon" class="rich-tree-node-icon rich-tree-h-ic-line-exp"><img src="junk/iconFolder.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                              <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:0::j_id365:text" class="rich-tree-node-text unit-FU"><div class="titleunit">FU 3</div>
+                                                Text: Marked Up Header</td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                        <div class="rich-tree-node-children rich-tree-h-ic-line" id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:0::j_id365:childs">
+                                          <table id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:0:j__id370:0::j_id371" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                              <tr onclick="" id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:0:j__id370:0::j_id371:mainRow">
+                                                <td id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:0:j__id370:0::j_id371:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-node"><div><img src="junk/spacer.gif" id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:0:j__id370:0::j_id371:handle:img" class="rich-tree-h-ic-img" alt="">
+                                                    
+                                                  </div></td>
+                                                <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:0:j__id370:0::j_id371:icon" class="rich-tree-node-icon-leaf rich-tree-h-ic-line-clp"><img src="junk/iconLeaf.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                                <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:0:j__id370:0::j_id371:text" class="rich-tree-node-text unit-SU"><div class="titleunit"><span class="rich-cm-attached" id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:0:j__id370:0::suStateId">SU 16</span></div>
+                                                  brain/65-4-373/65-4-373.xml/conprep_generated/dcc11hbxr<br>
+                                                  (has-successor=false)(status=Active)(origin=Archive, Migration) <!--Context Menu for  SU  start-->
+                                                  <div id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:0:j__id370:0::suMenu"></div>
+                                                  <!--Context Menu for SU end --></td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                          
+                                          <p class="rich-tree-last-node-marker"></p>
+                                          <table id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:0:j__id370:1::j_id371" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                              <tr onclick="" id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:0:j__id370:1::j_id371:mainRow">
+                                                <td id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:0:j__id370:1::j_id371:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-last"><div><img src="junk/spacer.gif" id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:0:j__id370:1::j_id371:handle:img" class="rich-tree-h-ic-img" alt="">
+                                                    
+                                                  </div></td>
+                                                <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:0:j__id370:1::j_id371:icon" class="rich-tree-node-icon-leaf rich-tree-h-ic-line-clp"><img src="junk/iconLeaf.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                                <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:0:j__id370:1::j_id371:text" class="rich-tree-node-text unit-SU"><div class="titleunit"><span class="rich-cm-attached" id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:0:j__id370:1::suStateId">SU 12</span></div>
+                                                  brain_65_4.xml.zip/brain_65_4.xml/65-4-373.xml(IP1)<br>
+                                                  (has-successor=true, Normalized)(status=Inactive, Post-Migration)(origin=Provider, Supplied Content) <!--Context Menu for  SU  start-->
+                                                  <div id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:0:j__id370:1::suMenu"></div>
+                                                  <!--Context Menu for SU end --></td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                          
+                                        </div>
+                                        <p class="rich-tree-last-node-marker"></p>
+                                        <table id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:1::j_id365" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                          <tbody>
+                                            <tr onclick="" id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:1::j_id365:mainRow">
+                                              <td id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:1::j_id365:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-last"><div><a onclick=" return false;" id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:1::j_id365:handle" href="#" class="rich-tree-node-handle"><img style="display: none; border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo_.gif" id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:1::j_id365:handle:img:collapsed" class="rich-tree-node-handleicon-collapsed" alt=""><img style="border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo__002.gif" id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:1::j_id365:handle:img:expanded" class="rich-tree-node-handleicon-expanded" alt=""></a>
+                                                  
+                                                </div></td>
+                                              <td oncontextmenu="false" dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:1::j_id365:icon" class="rich-tree-node-icon rich-tree-h-ic-line-exp"><img src="junk/iconFolder.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                              <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:1::j_id365:text" class="rich-tree-node-text unit-FU"><div class="titleunit">FU 6</div>
+                                                Rendition: Page Images</td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                        <div class="rich-tree-node-children" id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:1::j_id365:childs">
+                                          <p class="rich-tree-last-node-marker"></p>
+                                          <table id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:1:j__id370:0::j_id371" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                              <tr onclick="" id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:1:j__id370:0::j_id371:mainRow">
+                                                <td id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:1:j__id370:0::j_id371:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-last"><div><img src="junk/spacer.gif" id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:1:j__id370:0::j_id371:handle:img" class="rich-tree-h-ic-img" alt="">
+                                                    
+                                                  </div></td>
+                                                <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:1:j__id370:0::j_id371:icon" class="rich-tree-node-icon-leaf rich-tree-h-ic-line-clp"><img src="junk/iconLeaf.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                                <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:1:j__id370:0::j_id371:text" class="rich-tree-node-text unit-SU"><div class="titleunit"><span class="rich-cm-attached" id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:1:j__id370:0::suStateId">SU 5</span></div>
+                                                  brain_65_4.pdf.zip/brain_65_4.pdf/65-4-373.pdf(IP1)<br>
+                                                  (has-successor=false)(status=Active)(origin=Provider, Supplied Content) <!--Context Menu for  SU  start-->
+                                                  <div id="batchHomeEdit:tree:j__id285:0:j__id304:0:j__id364:1:j__id370:0::suMenu"></div>
+                                                  <!--Context Menu for SU end --></td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                          
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <table id="batchHomeEdit:tree:j__id285:1::aunode22" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                      <tbody>
+                                        <tr onclick="" id="batchHomeEdit:tree:j__id285:1::aunode22:mainRow">
+                                          <td id="batchHomeEdit:tree:j__id285:1::aunode22:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-node"><div><a onclick=" return false;" id="batchHomeEdit:tree:j__id285:1::aunode22:handle" href="#" class="rich-tree-node-handle"><img style="display: none; border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo_.gif" id="batchHomeEdit:tree:j__id285:1::aunode22:handle:img:collapsed" class="rich-tree-node-handleicon-collapsed" alt=""><img style="border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo__002.gif" id="batchHomeEdit:tree:j__id285:1::aunode22:handle:img:expanded" class="rich-tree-node-handleicon-expanded" alt=""></a>
+                                              
+                                            </div></td>
+                                          <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:1::aunode22:icon" class="rich-tree-node-icon rich-tree-h-ic-line-exp"><img src="junk/iconFolder.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                          <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:1::aunode22:text" class="rich-tree-node-text column-filter-input unit-AU"><div class="titleunit"><span class="rich-cm-attached" id="batchHomeEdit:tree:j__id285:1::aunameoutId">AU 7</span></div>
+                                            <span id="batchHomeEdit:tree:j__id285:1::autree1">ISSN_00068950</span>
+                                            <div id="batchHomeEdit:tree:j__id285:1::auMenu"></div></td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                    <div class="rich-tree-node-children rich-tree-h-ic-line" id="batchHomeEdit:tree:j__id285:1::aunode22:childs">
+                                      <table id="batchHomeEdit:tree:j__id285:1:j__id292:0::j_id293" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                          <tr onclick="" id="batchHomeEdit:tree:j__id285:1:j__id292:0::j_id293:mainRow">
+                                            <td id="batchHomeEdit:tree:j__id285:1:j__id292:0::j_id293:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-node"><div><img src="junk/spacer.gif" id="batchHomeEdit:tree:j__id285:1:j__id292:0::j_id293:handle:img" class="rich-tree-h-ic-img" alt="">
+                                                
+                                              </div></td>
+                                            <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:1:j__id292:0::j_id293:icon" class="rich-tree-node-icon-leaf rich-tree-h-ic-line-clp"><img src="junk/iconLeaf.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                            <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:1:j__id292:0::j_id293:text" class="rich-tree-node-text unit-MU"><div class="titleunit">dcc11hmwv.pmd</div>
+                                              (status=Active )(origin=NULL, NULL)</td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                      
+                                      <p class="rich-tree-last-node-marker"></p>
+                                      <table id="batchHomeEdit:tree:j__id285:1:j__id304:0::j_id321" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                          <tr onclick="" id="batchHomeEdit:tree:j__id285:1:j__id304:0::j_id321:mainRow">
+                                            <td id="batchHomeEdit:tree:j__id285:1:j__id304:0::j_id321:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-last"><div><a onclick=" return false;" id="batchHomeEdit:tree:j__id285:1:j__id304:0::j_id321:handle" href="#" class="rich-tree-node-handle"><img style="display: none; border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo_.gif" id="batchHomeEdit:tree:j__id285:1:j__id304:0::j_id321:handle:img:collapsed" class="rich-tree-node-handleicon-collapsed" alt=""><img style="border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo__002.gif" id="batchHomeEdit:tree:j__id285:1:j__id304:0::j_id321:handle:img:expanded" class="rich-tree-node-handleicon-expanded" alt=""></a>
+                                                
+                                              </div></td>
+                                            <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:1:j__id304:0::j_id321:icon" class="rich-tree-node-icon rich-tree-h-ic-line-exp"><img src="junk/iconFolder.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                            <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:1:j__id304:0::j_id321:text" class="rich-tree-node-text unit-CUgen"><div class="titleunit"><span id="batchHomeEdit:tree:j__id285:1:j__id304:0::cuTitleId2">CU 7</span> <!--Context Menu for CU start -->
+                                                <div id="batchHomeEdit:tree:j__id285:1:j__id304:0::cuMenu2"></div>
+                                                <!--Context Menu for CU end --> 
+                                              </div>
+                                              v65 n4 p (#[c2]) December 1942</td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                      <div class="rich-tree-node-children" id="batchHomeEdit:tree:j__id285:1:j__id304:0::j_id321:childs">
+                                        <table id="batchHomeEdit:tree:j__id285:1:j__id304:0:j__id364:0::j_id365" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                          <tbody>
+                                            <tr onclick="" id="batchHomeEdit:tree:j__id285:1:j__id304:0:j__id364:0::j_id365:mainRow">
+                                              <td id="batchHomeEdit:tree:j__id285:1:j__id304:0:j__id364:0::j_id365:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-node"><div><a onclick=" return false;" id="batchHomeEdit:tree:j__id285:1:j__id304:0:j__id364:0::j_id365:handle" href="#" class="rich-tree-node-handle"><img style="display: none; border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo_.gif" id="batchHomeEdit:tree:j__id285:1:j__id304:0:j__id364:0::j_id365:handle:img:collapsed" class="rich-tree-node-handleicon-collapsed" alt=""><img style="border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo__002.gif" id="batchHomeEdit:tree:j__id285:1:j__id304:0:j__id364:0::j_id365:handle:img:expanded" class="rich-tree-node-handleicon-expanded" alt=""></a>
+                                                  
+                                                </div></td>
+                                              <td oncontextmenu="false" dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:1:j__id304:0:j__id364:0::j_id365:icon" class="rich-tree-node-icon rich-tree-h-ic-line-exp"><img src="junk/iconFolder.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                              <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:1:j__id304:0:j__id364:0::j_id365:text" class="rich-tree-node-text unit-FU"><div class="titleunit">FU 12</div>
+                                                Rendition: Page Images</td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                        <div class="rich-tree-node-children rich-tree-h-ic-line" id="batchHomeEdit:tree:j__id285:1:j__id304:0:j__id364:0::j_id365:childs">
+                                          <p class="rich-tree-last-node-marker"></p>
+                                          <table id="batchHomeEdit:tree:j__id285:1:j__id304:0:j__id364:0:j__id370:0::j_id371" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                              <tr onclick="" id="batchHomeEdit:tree:j__id285:1:j__id304:0:j__id364:0:j__id370:0::j_id371:mainRow">
+                                                <td id="batchHomeEdit:tree:j__id285:1:j__id304:0:j__id364:0:j__id370:0::j_id371:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-last"><div><img src="junk/spacer.gif" id="batchHomeEdit:tree:j__id285:1:j__id304:0:j__id364:0:j__id370:0::j_id371:handle:img" class="rich-tree-h-ic-img" alt="">
+                                                    
+                                                  </div></td>
+                                                <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:1:j__id304:0:j__id364:0:j__id370:0::j_id371:icon" class="rich-tree-node-icon-leaf rich-tree-h-ic-line-clp"><img src="junk/iconLeaf.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                                <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:1:j__id304:0:j__id364:0:j__id370:0::j_id371:text" class="rich-tree-node-text unit-SU rich-tree-node-highlighted"><div class="titleunit"><span class="rich-cm-attached" id="batchHomeEdit:tree:j__id285:1:j__id304:0:j__id364:0:j__id370:0::suStateId">SU 8</span></div>
+                                                  brain_65_4.pdf.zip/brain_65_4.pdf/back_matter.pdf(IP2)<br>
+                                                  (has-successor=false)(status=Active)(origin=Provider, Supplied Content) <!--Context Menu for  SU  start-->
+                                                  <div id="batchHomeEdit:tree:j__id285:1:j__id304:0:j__id364:0:j__id370:0::suMenu"></div>
+                                                  <!--Context Menu for SU end --></td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                          
+                                        </div>
+                                        <p class="rich-tree-last-node-marker"></p>
+                                        <table id="batchHomeEdit:tree:j__id285:1:j__id304:0:j__id364:1::j_id365" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                          <tbody>
+                                            <tr onclick="" id="batchHomeEdit:tree:j__id285:1:j__id304:0:j__id364:1::j_id365:mainRow">
+                                              <td id="batchHomeEdit:tree:j__id285:1:j__id304:0:j__id364:1::j_id365:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-last"><div><a onclick=" return false;" id="batchHomeEdit:tree:j__id285:1:j__id304:0:j__id364:1::j_id365:handle" href="#" class="rich-tree-node-handle"><img style="display: none; border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo_.gif" id="batchHomeEdit:tree:j__id285:1:j__id304:0:j__id364:1::j_id365:handle:img:collapsed" class="rich-tree-node-handleicon-collapsed" alt=""><img style="border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo__002.gif" id="batchHomeEdit:tree:j__id285:1:j__id304:0:j__id364:1::j_id365:handle:img:expanded" class="rich-tree-node-handleicon-expanded" alt=""></a>
+                                                  
+                                                </div></td>
+                                              <td oncontextmenu="false" dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:1:j__id304:0:j__id364:1::j_id365:icon" class="rich-tree-node-icon rich-tree-h-ic-line-exp"><img src="junk/iconFolder.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                              <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:1:j__id304:0:j__id364:1::j_id365:text" class="rich-tree-node-text unit-FU"><div class="titleunit">FU 14</div>
+                                                Text: Marked Up Header</td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                        <div class="rich-tree-node-children" id="batchHomeEdit:tree:j__id285:1:j__id304:0:j__id364:1::j_id365:childs">
+                                          <p class="rich-tree-last-node-marker"></p>
+                                          <table id="batchHomeEdit:tree:j__id285:1:j__id304:0:j__id364:1:j__id370:0::j_id371" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                              <tr onclick="" id="batchHomeEdit:tree:j__id285:1:j__id304:0:j__id364:1:j__id370:0::j_id371:mainRow">
+                                                <td id="batchHomeEdit:tree:j__id285:1:j__id304:0:j__id364:1:j__id370:0::j_id371:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-last"><div><img src="b/spacer.gif" id="batchHomeEdit:tree:j__id285:1:j__id304:0:j__id364:1:j__id370:0::j_id371:handle:img" class="rich-tree-h-ic-img" alt="">
+                                                    
+                                                  </div></td>
+                                                <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:1:j__id304:0:j__id364:1:j__id370:0::j_id371:icon" class="rich-tree-node-icon-leaf rich-tree-h-ic-line-clp"><img src="junk/iconLeaf.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                                <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:1:j__id304:0:j__id364:1:j__id370:0::j_id371:text" class="rich-tree-node-text unit-SU"><div class="titleunit"><span class="rich-cm-attached" id="batchHomeEdit:tree:j__id285:1:j__id304:0:j__id364:1:j__id370:0::suStateId">SU 21</span></div>
+                                                  brain_65_4.xml.zip/brain_65_4.xml/back_matter.xml<br>
+                                                  (has-successor=false)(status=Active)(origin=Archive, System-Generated) <!--Context Menu for  SU  start-->
+                                                  <div id="batchHomeEdit:tree:j__id285:1:j__id304:0:j__id364:1:j__id370:0::suMenu"></div>
+                                                  <!--Context Menu for SU end --></td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                          
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <table id="batchHomeEdit:tree:j__id285:2::aunode22" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                      <tbody>
+                                        <tr onclick="" id="batchHomeEdit:tree:j__id285:2::aunode22:mainRow">
+                                          <td id="batchHomeEdit:tree:j__id285:2::aunode22:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-node"><div><a onclick=" return false;" id="batchHomeEdit:tree:j__id285:2::aunode22:handle" href="#" class="rich-tree-node-handle"><img style="display: none; border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo_.gif" id="batchHomeEdit:tree:j__id285:2::aunode22:handle:img:collapsed" class="rich-tree-node-handleicon-collapsed" alt=""><img style="border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo__002.gif" id="batchHomeEdit:tree:j__id285:2::aunode22:handle:img:expanded" class="rich-tree-node-handleicon-expanded" alt=""></a>
+                                              
+                                            </div></td>
+                                          <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:2::aunode22:icon" class="rich-tree-node-icon rich-tree-h-ic-line-exp"><img src="junk/iconFolder.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                          <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:2::aunode22:text" class="rich-tree-node-text column-filter-input unit-AU"><div class="titleunit"><span class="rich-cm-attached" id="batchHomeEdit:tree:j__id285:2::aunameoutId">AU 5</span></div>
+                                            <span id="batchHomeEdit:tree:j__id285:2::autree1">ISSN_00068950</span>
+                                            <div id="batchHomeEdit:tree:j__id285:2::auMenu"></div></td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                    <div class="rich-tree-node-children rich-tree-h-ic-line" id="batchHomeEdit:tree:j__id285:2::aunode22:childs">
+                                      <table id="batchHomeEdit:tree:j__id285:2:j__id292:0::j_id293" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                          <tr onclick="" id="batchHomeEdit:tree:j__id285:2:j__id292:0::j_id293:mainRow">
+                                            <td id="batchHomeEdit:tree:j__id285:2:j__id292:0::j_id293:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-node"><div><img src="junk/spacer.gif" id="batchHomeEdit:tree:j__id285:2:j__id292:0::j_id293:handle:img" class="rich-tree-h-ic-img" alt="">
+                                                
+                                              </div></td>
+                                            <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:2:j__id292:0::j_id293:icon" class="rich-tree-node-icon-leaf rich-tree-h-ic-line-clp"><img src="junk/iconLeaf.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                            <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:2:j__id292:0::j_id293:text" class="rich-tree-node-text unit-MU"><div class="titleunit">dcc11hmzt.pmd</div>
+                                              (status=Active )(origin=NULL, NULL)</td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                      
+                                      <p class="rich-tree-last-node-marker"></p>
+                                      <table id="batchHomeEdit:tree:j__id285:2:j__id304:0::j_id305" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                          <tr onclick="" id="batchHomeEdit:tree:j__id285:2:j__id304:0::j_id305:mainRow">
+                                            <td id="batchHomeEdit:tree:j__id285:2:j__id304:0::j_id305:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-last"><div><a onclick=" return false;" id="batchHomeEdit:tree:j__id285:2:j__id304:0::j_id305:handle" href="#" class="rich-tree-node-handle"><img style="display: none; border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo_.gif" id="batchHomeEdit:tree:j__id285:2:j__id304:0::j_id305:handle:img:collapsed" class="rich-tree-node-handleicon-collapsed" alt=""><img style="border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo__002.gif" id="batchHomeEdit:tree:j__id285:2:j__id304:0::j_id305:handle:img:expanded" class="rich-tree-node-handleicon-expanded" alt=""></a>
+                                                
+                                              </div></td>
+                                            <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:2:j__id304:0::j_id305:icon" class="rich-tree-node-icon rich-tree-h-ic-line-exp"><img src="junk/iconFolder.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                            <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:2:j__id304:0::j_id305:text" class="rich-tree-node-text unit-CUgen inspect"><div class="titleunit"><span class="rich-cm-attached" id="batchHomeEdit:tree:j__id285:2:j__id304:0::cuTitleId">CU 5</span> <!--Context Menu for CU start -->
+                                                <div id="batchHomeEdit:tree:j__id285:2:j__id304:0::cuMenu"></div>
+                                                <!--Context Menu for CU end --> 
+                                              </div>
+                                              v65 n4 p409-461 December 1942</td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                      <div class="rich-tree-node-children" id="batchHomeEdit:tree:j__id285:2:j__id304:0::j_id305:childs">
+                                        <table id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:0::j_id365" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                          <tbody>
+                                            <tr onclick="" id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:0::j_id365:mainRow">
+                                              <td id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:0::j_id365:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-node"><div><a onclick=" return false;" id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:0::j_id365:handle" href="#" class="rich-tree-node-handle"><img style="display: none; border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo_.gif" id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:0::j_id365:handle:img:collapsed" class="rich-tree-node-handleicon-collapsed" alt=""><img style="border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo__002.gif" id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:0::j_id365:handle:img:expanded" class="rich-tree-node-handleicon-expanded" alt=""></a>
+                                                  
+                                                </div></td>
+                                              <td oncontextmenu="false" dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:0::j_id365:icon" class="rich-tree-node-icon rich-tree-h-ic-line-exp"><img src="junk/iconFolder.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                              <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:0::j_id365:text" class="rich-tree-node-text unit-FU"><div class="titleunit">FU 9</div>
+                                                Rendition: Page Images</td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                        <div class="rich-tree-node-children rich-tree-h-ic-line" id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:0::j_id365:childs">
+                                          <p class="rich-tree-last-node-marker"></p>
+                                          <table id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:0:j__id370:0::j_id371" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                              <tr onclick="" id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:0:j__id370:0::j_id371:mainRow">
+                                                <td id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:0:j__id370:0::j_id371:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-last"><div><img src="junk/spacer.gif" id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:0:j__id370:0::j_id371:handle:img" class="rich-tree-h-ic-img" alt="">
+                                                    
+                                                  </div></td>
+                                                <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:0:j__id370:0::j_id371:icon" class="rich-tree-node-icon-leaf rich-tree-h-ic-line-clp"><img src="junk/iconLeaf.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                                <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:0:j__id370:0::j_id371:text" class="rich-tree-node-text unit-SU"><div class="titleunit"><span class="rich-cm-attached" id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:0:j__id370:0::suStateId">SU 6</span></div>
+                                                  brain_65_4.pdf.zip/brain_65_4.pdf/65-4-409.pdf(IP1)<br>
+                                                  (has-successor=false)(status=Active)(origin=Provider, Supplied Content) <!--Context Menu for  SU  start-->
+                                                  <div id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:0:j__id370:0::suMenu"></div>
+                                                  <!--Context Menu for SU end --></td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                          
+                                        </div>
+                                        <p class="rich-tree-last-node-marker"></p>
+                                        <table id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:1::j_id365" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                          <tbody>
+                                            <tr onclick="" id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:1::j_id365:mainRow">
+                                              <td id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:1::j_id365:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-last"><div><a onclick=" return false;" id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:1::j_id365:handle" href="#" class="rich-tree-node-handle"><img style="display: none; border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo_.gif" id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:1::j_id365:handle:img:collapsed" class="rich-tree-node-handleicon-collapsed" alt=""><img style="border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo__002.gif" id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:1::j_id365:handle:img:expanded" class="rich-tree-node-handleicon-expanded" alt=""></a>
+                                                  
+                                                </div></td>
+                                              <td oncontextmenu="false" dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:1::j_id365:icon" class="rich-tree-node-icon rich-tree-h-ic-line-exp"><img src="junk/iconFolder.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                              <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:1::j_id365:text" class="rich-tree-node-text unit-FU"><div class="titleunit">FU 7</div>
+                                                Text: Marked Up Header</td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                        <div class="rich-tree-node-children" id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:1::j_id365:childs">
+                                          <table id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:1:j__id370:0::j_id371" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                              <tr onclick="" id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:1:j__id370:0::j_id371:mainRow">
+                                                <td id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:1:j__id370:0::j_id371:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-node"><div><img src="junk/spacer.gif" id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:1:j__id370:0::j_id371:handle:img" class="rich-tree-h-ic-img" alt="">
+                                                    
+                                                  </div></td>
+                                                <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:1:j__id370:0::j_id371:icon" class="rich-tree-node-icon-leaf rich-tree-h-ic-line-clp"><img src="junk/iconLeaf.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                                <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:1:j__id370:0::j_id371:text" class="rich-tree-node-text unit-SU"><div class="titleunit"><span class="rich-cm-attached" id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:1:j__id370:0::suStateId">SU 13</span></div>
+                                                  brain_65_4.xml.zip/brain_65_4.xml/65-4-409.xml(IP1)<br>
+                                                  (has-successor=true, Normalized)(status=Inactive, Post-Migration)(origin=Provider, Supplied Content) <!--Context Menu for  SU  start-->
+                                                  <div id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:1:j__id370:0::suMenu"></div>
+                                                  <!--Context Menu for SU end --></td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                          
+                                          <p class="rich-tree-last-node-marker"></p>
+                                          <table id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:1:j__id370:1::j_id371" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                              <tr onclick="" id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:1:j__id370:1::j_id371:mainRow">
+                                                <td id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:1:j__id370:1::j_id371:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-last"><div><img src="junk/spacer.gif" id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:1:j__id370:1::j_id371:handle:img" class="rich-tree-h-ic-img" alt="">
+                                                    
+                                                  </div></td>
+                                                <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:1:j__id370:1::j_id371:icon" class="rich-tree-node-icon-leaf rich-tree-h-ic-line-clp"><img src="junk/iconLeaf.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                                <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:1:j__id370:1::j_id371:text" class="rich-tree-node-text unit-SU"><div class="titleunit"><span class="rich-cm-attached" id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:1:j__id370:1::suStateId">SU 18</span></div>
+                                                  brain/65-4-409/65-4-409.xml/conprep_generated/dcc11hc62<br>
+                                                  (has-successor=false)(status=Active)(origin=Archive, Migration) <!--Context Menu for  SU  start-->
+                                                  <div id="batchHomeEdit:tree:j__id285:2:j__id304:0:j__id364:1:j__id370:1::suMenu"></div>
+                                                  <!--Context Menu for SU end --></td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                          
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <table id="batchHomeEdit:tree:j__id285:3::aunode22" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                      <tbody>
+                                        <tr onclick="" id="batchHomeEdit:tree:j__id285:3::aunode22:mainRow">
+                                          <td id="batchHomeEdit:tree:j__id285:3::aunode22:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-node"><div><a onclick=" return false;" id="batchHomeEdit:tree:j__id285:3::aunode22:handle" href="#" class="rich-tree-node-handle"><img style="display: none; border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo_.gif" id="batchHomeEdit:tree:j__id285:3::aunode22:handle:img:collapsed" class="rich-tree-node-handleicon-collapsed" alt=""><img style="border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo__002.gif" id="batchHomeEdit:tree:j__id285:3::aunode22:handle:img:expanded" class="rich-tree-node-handleicon-expanded" alt=""></a>
+                                              
+                                            </div></td>
+                                          <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:3::aunode22:icon" class="rich-tree-node-icon rich-tree-h-ic-line-exp"><img src="junk/iconFolder.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                          <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:3::aunode22:text" class="rich-tree-node-text column-filter-input unit-AU"><div class="titleunit"><span class="rich-cm-attached" id="batchHomeEdit:tree:j__id285:3::aunameoutId">AU 1</span></div>
+                                            <span id="batchHomeEdit:tree:j__id285:3::autree1">ISSN_00068950</span>
+                                            <div id="batchHomeEdit:tree:j__id285:3::auMenu"></div></td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                    <div class="rich-tree-node-children rich-tree-h-ic-line" id="batchHomeEdit:tree:j__id285:3::aunode22:childs">
+                                      <table id="batchHomeEdit:tree:j__id285:3:j__id292:0::j_id293" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                          <tr onclick="" id="batchHomeEdit:tree:j__id285:3:j__id292:0::j_id293:mainRow">
+                                            <td id="batchHomeEdit:tree:j__id285:3:j__id292:0::j_id293:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-node"><div><img src="junk/spacer.gif" id="batchHomeEdit:tree:j__id285:3:j__id292:0::j_id293:handle:img" class="rich-tree-h-ic-img" alt="">
+                                                
+                                              </div></td>
+                                            <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:3:j__id292:0::j_id293:icon" class="rich-tree-node-icon-leaf rich-tree-h-ic-line-clp"><img src="junk/iconLeaf.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                            <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:3:j__id292:0::j_id293:text" class="rich-tree-node-text unit-MU"><div class="titleunit">dcc11hmxb.pmd</div>
+                                              (status=Active )(origin=NULL, NULL)</td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                      
+                                      <p class="rich-tree-last-node-marker"></p>
+                                      <table id="batchHomeEdit:tree:j__id285:3:j__id304:0::j_id321" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                          <tr onclick="" id="batchHomeEdit:tree:j__id285:3:j__id304:0::j_id321:mainRow">
+                                            <td id="batchHomeEdit:tree:j__id285:3:j__id304:0::j_id321:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-last"><div><a onclick=" return false;" id="batchHomeEdit:tree:j__id285:3:j__id304:0::j_id321:handle" href="#" class="rich-tree-node-handle"><img style="display: none; border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo_.gif" id="batchHomeEdit:tree:j__id285:3:j__id304:0::j_id321:handle:img:collapsed" class="rich-tree-node-handleicon-collapsed" alt=""><img style="border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo__002.gif" id="batchHomeEdit:tree:j__id285:3:j__id304:0::j_id321:handle:img:expanded" class="rich-tree-node-handleicon-expanded" alt=""></a>
+                                                
+                                              </div></td>
+                                            <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:3:j__id304:0::j_id321:icon" class="rich-tree-node-icon rich-tree-h-ic-line-exp"><img src="junk/iconFolder.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                            <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:3:j__id304:0::j_id321:text" class="rich-tree-node-text unit-CUgen"><div class="titleunit"><span id="batchHomeEdit:tree:j__id285:3:j__id304:0::cuTitleId2">CU 1</span> <!--Context Menu for CU start -->
+                                                <div id="batchHomeEdit:tree:j__id285:3:j__id304:0::cuMenu2"></div>
+                                                <!--Context Menu for CU end --> 
+                                              </div>
+                                              v65 n4 p463-465 December 1942</td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                      <div class="rich-tree-node-children" id="batchHomeEdit:tree:j__id285:3:j__id304:0::j_id321:childs">
+                                        <table id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:0::j_id365" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                          <tbody>
+                                            <tr onclick="" id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:0::j_id365:mainRow">
+                                              <td id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:0::j_id365:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-node"><div><a onclick=" return false;" id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:0::j_id365:handle" href="#" class="rich-tree-node-handle"><img style="display: none; border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo_.gif" id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:0::j_id365:handle:img:collapsed" class="rich-tree-node-handleicon-collapsed" alt=""><img style="border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo__002.gif" id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:0::j_id365:handle:img:expanded" class="rich-tree-node-handleicon-expanded" alt=""></a>
+                                                  
+                                                </div></td>
+                                              <td oncontextmenu="false" dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:0::j_id365:icon" class="rich-tree-node-icon rich-tree-h-ic-line-exp"><img src="junk/iconFolder.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                              <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:0::j_id365:text" class="rich-tree-node-text unit-FU"><div class="titleunit">FU 1</div>
+                                                Text: Marked Up Header</td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                        <div class="rich-tree-node-children rich-tree-h-ic-line" id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:0::j_id365:childs">
+                                          <table id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:0:j__id370:0::j_id371" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                              <tr onclick="" id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:0:j__id370:0::j_id371:mainRow">
+                                                <td id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:0:j__id370:0::j_id371:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-node"><div><img src="junk/spacer.gif" id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:0:j__id370:0::j_id371:handle:img" class="rich-tree-h-ic-img" alt="">
+                                                    
+                                                  </div></td>
+                                                <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:0:j__id370:0::j_id371:icon" class="rich-tree-node-icon-leaf rich-tree-h-ic-line-clp"><img src="junk/iconLeaf.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                                <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:0:j__id370:0::j_id371:text" class="rich-tree-node-text unit-SU"><div class="titleunit"><span class="rich-cm-attached" id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:0:j__id370:0::suStateId">SU 14</span></div>
+                                                  brain_65_4.xml.zip/brain_65_4.xml/65-4-463.xml(IP1)<br>
+                                                  (has-successor=true, Normalized)(status=Inactive, Post-Migration)(origin=Provider, Supplied Content) <!--Context Menu for  SU  start-->
+                                                  <div id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:0:j__id370:0::suMenu"></div>
+                                                  <!--Context Menu for SU end --></td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                          
+                                          <p class="rich-tree-last-node-marker"></p>
+                                          <table id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:0:j__id370:1::j_id371" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                              <tr onclick="" id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:0:j__id370:1::j_id371:mainRow">
+                                                <td id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:0:j__id370:1::j_id371:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-last"><div><img src="junk/spacer.gif" id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:0:j__id370:1::j_id371:handle:img" class="rich-tree-h-ic-img" alt="">
+                                                    
+                                                  </div></td>
+                                                <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:0:j__id370:1::j_id371:icon" class="rich-tree-node-icon-leaf rich-tree-h-ic-line-clp"><img src="junk/iconLeaf.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                                <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:0:j__id370:1::j_id371:text" class="rich-tree-node-text unit-SU"><div class="titleunit"><span class="rich-cm-attached" id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:0:j__id370:1::suStateId">SU 15</span></div>
+                                                  brain/65-4-463/65-4-463.xml/conprep_generated/dcc11hbst<br>
+                                                  (has-successor=false)(status=Active)(origin=Archive, Migration) <!--Context Menu for  SU  start-->
+                                                  <div id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:0:j__id370:1::suMenu"></div>
+                                                  <!--Context Menu for SU end --></td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                          
+                                        </div>
+                                        <p class="rich-tree-last-node-marker"></p>
+                                        <table id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:1::j_id365" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                          <tbody>
+                                            <tr onclick="" id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:1::j_id365:mainRow">
+                                              <td id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:1::j_id365:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-last"><div><a onclick=" return false;" id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:1::j_id365:handle" href="#" class="rich-tree-node-handle"><img style="display: none; border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo_.gif" id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:1::j_id365:handle:img:collapsed" class="rich-tree-node-handleicon-collapsed" alt=""><img style="border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo__002.gif" id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:1::j_id365:handle:img:expanded" class="rich-tree-node-handleicon-expanded" alt=""></a>
+                                                  
+                                                </div></td>
+                                              <td oncontextmenu="false" dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:1::j_id365:icon" class="rich-tree-node-icon rich-tree-h-ic-line-exp"><img src="junk/iconFolder.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                              <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:1::j_id365:text" class="rich-tree-node-text unit-FU"><div class="titleunit">FU 8</div>
+                                                Rendition: Page Images</td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                        <div class="rich-tree-node-children" id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:1::j_id365:childs">
+                                          <p class="rich-tree-last-node-marker"></p>
+                                          <table id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:1:j__id370:0::j_id371" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                              <tr onclick="" id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:1:j__id370:0::j_id371:mainRow">
+                                                <td id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:1:j__id370:0::j_id371:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-last"><div><img src="junk/spacer.gif" id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:1:j__id370:0::j_id371:handle:img" class="rich-tree-h-ic-img" alt="">
+                                                    
+                                                  </div></td>
+                                                <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:1:j__id370:0::j_id371:icon" class="rich-tree-node-icon-leaf rich-tree-h-ic-line-clp"><img src="junk/iconLeaf.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                                <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:1:j__id370:0::j_id371:text" class="rich-tree-node-text unit-SU"><div class="titleunit"><span class="rich-cm-attached" id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:1:j__id370:0::suStateId">SU 7</span></div>
+                                                  brain_65_4.pdf.zip/brain_65_4.pdf/65-4-463.pdf(IP1)<br>
+                                                  (has-successor=false)(status=Active)(origin=Provider, Supplied Content) <!--Context Menu for  SU  start-->
+                                                  <div id="batchHomeEdit:tree:j__id285:3:j__id304:0:j__id364:1:j__id370:0::suMenu"></div>
+                                                  <!--Context Menu for SU end --></td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                          
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <table id="batchHomeEdit:tree:j__id285:4::aunode22" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                      <tbody>
+                                        <tr onclick="" id="batchHomeEdit:tree:j__id285:4::aunode22:mainRow">
+                                          <td id="batchHomeEdit:tree:j__id285:4::aunode22:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-node"><div><a onclick=" return false;" id="batchHomeEdit:tree:j__id285:4::aunode22:handle" href="#" class="rich-tree-node-handle"><img style="display: none; border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo_.gif" id="batchHomeEdit:tree:j__id285:4::aunode22:handle:img:collapsed" class="rich-tree-node-handleicon-collapsed" alt=""><img style="border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo__002.gif" id="batchHomeEdit:tree:j__id285:4::aunode22:handle:img:expanded" class="rich-tree-node-handleicon-expanded" alt=""></a>
+                                              
+                                            </div></td>
+                                          <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:4::aunode22:icon" class="rich-tree-node-icon rich-tree-h-ic-line-exp"><img src="junk/iconFolder.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                          <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:4::aunode22:text" class="rich-tree-node-text column-filter-input unit-AU"><div class="titleunit"><span class="rich-cm-attached" id="batchHomeEdit:tree:j__id285:4::aunameoutId">AU 4</span></div>
+                                            <span id="batchHomeEdit:tree:j__id285:4::autree1">ISSN_00068950</span>
+                                            <div id="batchHomeEdit:tree:j__id285:4::auMenu"></div></td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                    <div class="rich-tree-node-children rich-tree-h-ic-line" id="batchHomeEdit:tree:j__id285:4::aunode22:childs">
+                                      <table id="batchHomeEdit:tree:j__id285:4:j__id292:0::j_id293" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                          <tr onclick="" id="batchHomeEdit:tree:j__id285:4:j__id292:0::j_id293:mainRow">
+                                            <td id="batchHomeEdit:tree:j__id285:4:j__id292:0::j_id293:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-node"><div><img src="junk/spacer.gif" id="batchHomeEdit:tree:j__id285:4:j__id292:0::j_id293:handle:img" class="rich-tree-h-ic-img" alt="">
+                                                
+                                              </div></td>
+                                            <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:4:j__id292:0::j_id293:icon" class="rich-tree-node-icon-leaf rich-tree-h-ic-line-clp"><img src="junk/iconLeaf.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                            <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:4:j__id292:0::j_id293:text" class="rich-tree-node-text unit-MU"><div class="titleunit">dcc11hn0r.pmd</div>
+                                              (status=Active )(origin=NULL, NULL)</td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                      
+                                      <p class="rich-tree-last-node-marker"></p>
+                                      <table id="batchHomeEdit:tree:j__id285:4:j__id304:0::j_id321" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                          <tr onclick="" id="batchHomeEdit:tree:j__id285:4:j__id304:0::j_id321:mainRow">
+                                            <td id="batchHomeEdit:tree:j__id285:4:j__id304:0::j_id321:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-last"><div><a onclick=" return false;" id="batchHomeEdit:tree:j__id285:4:j__id304:0::j_id321:handle" href="#" class="rich-tree-node-handle"><img style="display: none; border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo_.gif" id="batchHomeEdit:tree:j__id285:4:j__id304:0::j_id321:handle:img:collapsed" class="rich-tree-node-handleicon-collapsed" alt=""><img style="border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo__002.gif" id="batchHomeEdit:tree:j__id285:4:j__id304:0::j_id321:handle:img:expanded" class="rich-tree-node-handleicon-expanded" alt=""></a>
+                                                
+                                              </div></td>
+                                            <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:4:j__id304:0::j_id321:icon" class="rich-tree-node-icon rich-tree-h-ic-line-exp"><img src="junk/iconFolder.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                            <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:4:j__id304:0::j_id321:text" class="rich-tree-node-text unit-CUgen"><div class="titleunit"><span id="batchHomeEdit:tree:j__id285:4:j__id304:0::cuTitleId2">CU 4</span> <!--Context Menu for CU start -->
+                                                <div id="batchHomeEdit:tree:j__id285:4:j__id304:0::cuMenu2"></div>
+                                                <!--Context Menu for CU end --> 
+                                              </div>
+                                              v65 n4 p343-351 December 1942</td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                      <div class="rich-tree-node-children" id="batchHomeEdit:tree:j__id285:4:j__id304:0::j_id321:childs">
+                                        <table id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:0::j_id365" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                          <tbody>
+                                            <tr onclick="" id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:0::j_id365:mainRow">
+                                              <td id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:0::j_id365:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-node"><div><a onclick=" return false;" id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:0::j_id365:handle" href="#" class="rich-tree-node-handle"><img style="display: none; border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo_.gif" id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:0::j_id365:handle:img:collapsed" class="rich-tree-node-handleicon-collapsed" alt=""><img style="border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo__002.gif" id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:0::j_id365:handle:img:expanded" class="rich-tree-node-handleicon-expanded" alt=""></a>
+                                                  
+                                                </div></td>
+                                              <td oncontextmenu="false" dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:0::j_id365:icon" class="rich-tree-node-icon rich-tree-h-ic-line-exp"><img src="junk/iconFolder.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                              <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:0::j_id365:text" class="rich-tree-node-text unit-FU"><div class="titleunit">FU 5</div>
+                                                Text: Marked Up Header</td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                        <div class="rich-tree-node-children rich-tree-h-ic-line" id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:0::j_id365:childs">
+                                          <table id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:0:j__id370:0::j_id371" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                              <tr onclick="" id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:0:j__id370:0::j_id371:mainRow">
+                                                <td id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:0:j__id370:0::j_id371:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-node"><div><img src="junk/spacer.gif" id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:0:j__id370:0::j_id371:handle:img" class="rich-tree-h-ic-img" alt="">
+                                                    
+                                                  </div></td>
+                                                <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:0:j__id370:0::j_id371:icon" class="rich-tree-node-icon-leaf rich-tree-h-ic-line-clp"><img src="junk/iconLeaf.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                                <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:0:j__id370:0::j_id371:text" class="rich-tree-node-text unit-SU"><div class="titleunit"><span class="rich-cm-attached" id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:0:j__id370:0::suStateId">SU 19</span></div>
+                                                  brain/65-4-343/65-4-343.xml/conprep_generated/dcc11hcb0<br>
+                                                  (has-successor=false)(status=Active)(origin=Archive, Migration) <!--Context Menu for  SU  start-->
+                                                  <div id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:0:j__id370:0::suMenu"></div>
+                                                  <!--Context Menu for SU end --></td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                          
+                                          <p class="rich-tree-last-node-marker"></p>
+                                          <table id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:0:j__id370:1::j_id371" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                              <tr onclick="" id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:0:j__id370:1::j_id371:mainRow">
+                                                <td id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:0:j__id370:1::j_id371:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-last"><div><img src="junk/spacer.gif" id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:0:j__id370:1::j_id371:handle:img" class="rich-tree-h-ic-img" alt="">
+                                                    
+                                                  </div></td>
+                                                <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:0:j__id370:1::j_id371:icon" class="rich-tree-node-icon-leaf rich-tree-h-ic-line-clp"><img src="junk/iconLeaf.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                                <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:0:j__id370:1::j_id371:text" class="rich-tree-node-text unit-SU"><div class="titleunit"><span class="rich-cm-attached" id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:0:j__id370:1::suStateId">SU 10</span></div>
+                                                  brain_65_4.xml.zip/brain_65_4.xml/65-4-343.xml(IP1)<br>
+                                                  (has-successor=true, Normalized)(status=Inactive, Post-Migration)(origin=Provider, Supplied Content) <!--Context Menu for  SU  start-->
+                                                  <div id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:0:j__id370:1::suMenu"></div>
+                                                  <!--Context Menu for SU end --></td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                          
+                                        </div>
+                                        <p class="rich-tree-last-node-marker"></p>
+                                        <table id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:1::j_id365" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                          <tbody>
+                                            <tr onclick="" id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:1::j_id365:mainRow">
+                                              <td id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:1::j_id365:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-last"><div><a onclick=" return false;" id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:1::j_id365:handle" href="#" class="rich-tree-node-handle"><img style="display: none; border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo_.gif" id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:1::j_id365:handle:img:collapsed" class="rich-tree-node-handleicon-collapsed" alt=""><img style="border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo__002.gif" id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:1::j_id365:handle:img:expanded" class="rich-tree-node-handleicon-expanded" alt=""></a>
+                                                  
+                                                </div></td>
+                                              <td oncontextmenu="false" dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:1::j_id365:icon" class="rich-tree-node-icon rich-tree-h-ic-line-exp"><img src="junk/iconFolder.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                              <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:1::j_id365:text" class="rich-tree-node-text unit-FU"><div class="titleunit">FU 4</div>
+                                                Rendition: Page Images</td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                        <div class="rich-tree-node-children" id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:1::j_id365:childs">
+                                          <p class="rich-tree-last-node-marker"></p>
+                                          <table id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:1:j__id370:0::j_id371" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                              <tr onclick="" id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:1:j__id370:0::j_id371:mainRow">
+                                                <td id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:1:j__id370:0::j_id371:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-last"><div><img src="junk/spacer.gif" id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:1:j__id370:0::j_id371:handle:img" class="rich-tree-h-ic-img" alt="">
+                                                    
+                                                  </div></td>
+                                                <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:1:j__id370:0::j_id371:icon" class="rich-tree-node-icon-leaf rich-tree-h-ic-line-clp"><img src="junk/iconLeaf.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                                <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:1:j__id370:0::j_id371:text" class="rich-tree-node-text unit-SU"><div class="titleunit"><span class="rich-cm-attached" id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:1:j__id370:0::suStateId">SU 3</span></div>
+                                                  brain_65_4.pdf.zip/brain_65_4.pdf/65-4-343.pdf(IP1)<br>
+                                                  (has-successor=false)(status=Active)(origin=Provider, Supplied Content) <!--Context Menu for  SU  start-->
+                                                  <div id="batchHomeEdit:tree:j__id285:4:j__id304:0:j__id364:1:j__id370:0::suMenu"></div>
+                                                  <!--Context Menu for SU end --></td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                          
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <table id="batchHomeEdit:tree:j__id285:5::aunode22" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                      <tbody>
+                                        <tr onclick="" id="batchHomeEdit:tree:j__id285:5::aunode22:mainRow">
+                                          <td id="batchHomeEdit:tree:j__id285:5::aunode22:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-node"><div><a onclick=" return false;" id="batchHomeEdit:tree:j__id285:5::aunode22:handle" href="#" class="rich-tree-node-handle"><img style="display: none; border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo_.gif" id="batchHomeEdit:tree:j__id285:5::aunode22:handle:img:collapsed" class="rich-tree-node-handleicon-collapsed" alt=""><img style="border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo__002.gif" id="batchHomeEdit:tree:j__id285:5::aunode22:handle:img:expanded" class="rich-tree-node-handleicon-expanded" alt=""></a>
+                                              
+                                            </div></td>
+                                          <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:5::aunode22:icon" class="rich-tree-node-icon rich-tree-h-ic-line-exp"><img src="junk/iconFolder.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                          <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:5::aunode22:text" class="rich-tree-node-text column-filter-input unit-AU"><div class="titleunit"><span class="rich-cm-attached" id="batchHomeEdit:tree:j__id285:5::aunameoutId">AU 8</span></div>
+                                            <span id="batchHomeEdit:tree:j__id285:5::autree1">OUP</span>
+                                            <div id="batchHomeEdit:tree:j__id285:5::auMenu"></div></td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                    <div class="rich-tree-node-children rich-tree-h-ic-line" id="batchHomeEdit:tree:j__id285:5::aunode22:childs">
+                                      <table id="batchHomeEdit:tree:j__id285:5:j__id292:0::j_id293" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                          <tr onclick="" id="batchHomeEdit:tree:j__id285:5:j__id292:0::j_id293:mainRow">
+                                            <td id="batchHomeEdit:tree:j__id285:5:j__id292:0::j_id293:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-node"><div><img src="junk/spacer.gif" id="batchHomeEdit:tree:j__id285:5:j__id292:0::j_id293:handle:img" class="rich-tree-h-ic-img" alt="">
+                                                
+                                              </div></td>
+                                            <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:5:j__id292:0::j_id293:icon" class="rich-tree-node-icon-leaf rich-tree-h-ic-line-clp"><img src="junk/iconLeaf.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                            <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:5:j__id292:0::j_id293:text" class="rich-tree-node-text unit-MU"><div class="titleunit">dcs274zht.pmd</div>
+                                              (status=Active )(origin=NULL, NULL)</td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                      
+                                      <p class="rich-tree-last-node-marker"></p>
+                                      <table id="batchHomeEdit:tree:j__id285:5:j__id304:0::j_id321" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                          <tr onclick="" id="batchHomeEdit:tree:j__id285:5:j__id304:0::j_id321:mainRow">
+                                            <td id="batchHomeEdit:tree:j__id285:5:j__id304:0::j_id321:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-last"><div><a onclick=" return false;" id="batchHomeEdit:tree:j__id285:5:j__id304:0::j_id321:handle" href="#" class="rich-tree-node-handle"><img style="display: none; border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo_.gif" id="batchHomeEdit:tree:j__id285:5:j__id304:0::j_id321:handle:img:collapsed" class="rich-tree-node-handleicon-collapsed" alt=""><img style="border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo__002.gif" id="batchHomeEdit:tree:j__id285:5:j__id304:0::j_id321:handle:img:expanded" class="rich-tree-node-handleicon-expanded" alt=""></a>
+                                                
+                                              </div></td>
+                                            <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:5:j__id304:0::j_id321:icon" class="rich-tree-node-icon rich-tree-h-ic-line-exp"><img src="junk/iconFolder.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                            <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:5:j__id304:0::j_id321:text" class="rich-tree-node-text unit-CUgen"><div class="titleunit"><span id="batchHomeEdit:tree:j__id285:5:j__id304:0::cuTitleId2">CU 8</span> <!--Context Menu for CU start -->
+                                                <div id="batchHomeEdit:tree:j__id285:5:j__id304:0::cuMenu2"></div>
+                                                <!--Context Menu for CU end --> 
+                                              </div>
+                                              Display Label</td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                      <div class="rich-tree-node-children" id="batchHomeEdit:tree:j__id285:5:j__id304:0::j_id321:childs">
+                                        <table id="batchHomeEdit:tree:j__id285:5:j__id304:0:j__id364:0::j_id365" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                          <tbody>
+                                            <tr onclick="" id="batchHomeEdit:tree:j__id285:5:j__id304:0:j__id364:0::j_id365:mainRow">
+                                              <td id="batchHomeEdit:tree:j__id285:5:j__id304:0:j__id364:0::j_id365:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-node"><div><a onclick=" return false;" id="batchHomeEdit:tree:j__id285:5:j__id304:0:j__id364:0::j_id365:handle" href="#" class="rich-tree-node-handle"><img style="display: none; border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo_.gif" id="batchHomeEdit:tree:j__id285:5:j__id304:0:j__id364:0::j_id365:handle:img:collapsed" class="rich-tree-node-handleicon-collapsed" alt=""><img style="border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo__002.gif" id="batchHomeEdit:tree:j__id285:5:j__id304:0:j__id364:0::j_id365:handle:img:expanded" class="rich-tree-node-handleicon-expanded" alt=""></a>
+                                                  
+                                                </div></td>
+                                              <td oncontextmenu="false" dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:5:j__id304:0:j__id364:0::j_id365:icon" class="rich-tree-node-icon rich-tree-h-ic-line-exp"><img src="junk/iconFolder.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                              <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:5:j__id304:0:j__id364:0::j_id365:text" class="rich-tree-node-text unit-FU"><div class="titleunit">FU 15</div>
+                                                Bundle: Supplied Files</td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                        <div class="rich-tree-node-children rich-tree-h-ic-line" id="batchHomeEdit:tree:j__id285:5:j__id304:0:j__id364:0::j_id365:childs">
+                                          <p class="rich-tree-last-node-marker"></p>
+                                          <table id="batchHomeEdit:tree:j__id285:5:j__id304:0:j__id364:0:j__id370:0::j_id371" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                              <tr onclick="" id="batchHomeEdit:tree:j__id285:5:j__id304:0:j__id364:0:j__id370:0::j_id371:mainRow">
+                                                <td id="batchHomeEdit:tree:j__id285:5:j__id304:0:j__id364:0:j__id370:0::j_id371:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-last"><div><img src="junk/spacer.gif" id="batchHomeEdit:tree:j__id285:5:j__id304:0:j__id364:0:j__id370:0::j_id371:handle:img" class="rich-tree-h-ic-img" alt="">
+                                                    
+                                                  </div></td>
+                                                <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:5:j__id304:0:j__id364:0:j__id370:0::j_id371:icon" class="rich-tree-node-icon-leaf rich-tree-h-ic-line-clp"><img src="junk/iconLeaf.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                                <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:5:j__id304:0:j__id364:0:j__id370:0::j_id371:text" class="rich-tree-node-text unit-SU"><div class="titleunit"><span class="rich-cm-attached" id="batchHomeEdit:tree:j__id285:5:j__id304:0:j__id364:0:j__id370:0::suStateId">SU 22</span></div>
+                                                  /pdev/workarea/0b00d431801e89d0/output/OUP-test-hum2_rawunit.zip<br>
+                                                  (has-successor=false)(status=Active)(origin=Archive, System-Generated) <!--Context Menu for  SU  start-->
+                                                  <div id="batchHomeEdit:tree:j__id285:5:j__id304:0:j__id364:0:j__id370:0::suMenu"></div>
+                                                  <!--Context Menu for SU end --></td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                          
+                                        </div>
+                                        <p class="rich-tree-last-node-marker"></p>
+                                        <table id="batchHomeEdit:tree:j__id285:5:j__id304:0:j__id364:1::j_id365" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                          <tbody>
+                                            <tr onclick="" id="batchHomeEdit:tree:j__id285:5:j__id304:0:j__id364:1::j_id365:mainRow">
+                                              <td id="batchHomeEdit:tree:j__id285:5:j__id304:0:j__id364:1::j_id365:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-last"><div><a onclick=" return false;" id="batchHomeEdit:tree:j__id285:5:j__id304:0:j__id364:1::j_id365:handle" href="#" class="rich-tree-node-handle"><img style="display: none; border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo_.gif" id="batchHomeEdit:tree:j__id285:5:j__id304:0:j__id364:1::j_id365:handle:img:collapsed" class="rich-tree-node-handleicon-collapsed" alt=""><img style="border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo__002.gif" id="batchHomeEdit:tree:j__id285:5:j__id304:0:j__id364:1::j_id365:handle:img:expanded" class="rich-tree-node-handleicon-expanded" alt=""></a>
+                                                  
+                                                </div></td>
+                                              <td oncontextmenu="false" dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:5:j__id304:0:j__id364:1::j_id365:icon" class="rich-tree-node-icon rich-tree-h-ic-line-exp"><img src="junk/iconFolder.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                              <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:5:j__id304:0:j__id364:1::j_id365:text" class="rich-tree-node-text unit-FU"><div class="titleunit">FU 16</div>
+                                                Text: Metadata Record</td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                        <div class="rich-tree-node-children" id="batchHomeEdit:tree:j__id285:5:j__id304:0:j__id364:1::j_id365:childs">
+                                          <p class="rich-tree-last-node-marker"></p>
+                                          <table id="batchHomeEdit:tree:j__id285:5:j__id304:0:j__id364:1:j__id370:0::j_id371" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                              <tr onclick="" id="batchHomeEdit:tree:j__id285:5:j__id304:0:j__id364:1:j__id370:0::j_id371:mainRow">
+                                                <td id="batchHomeEdit:tree:j__id285:5:j__id304:0:j__id364:1:j__id370:0::j_id371:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-last"><div><img src="junk/spacer.gif" id="batchHomeEdit:tree:j__id285:5:j__id304:0:j__id364:1:j__id370:0::j_id371:handle:img" class="rich-tree-h-ic-img" alt="">
+                                                    
+                                                  </div></td>
+                                                <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:5:j__id304:0:j__id364:1:j__id370:0::j_id371:icon" class="rich-tree-node-icon-leaf rich-tree-h-ic-line-clp"><img src="junk/iconLeaf.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                                <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:5:j__id304:0:j__id364:1:j__id370:0::j_id371:text" class="rich-tree-node-text unit-SU"><div class="titleunit"><span class="rich-cm-attached" id="batchHomeEdit:tree:j__id285:5:j__id304:0:j__id364:1:j__id370:0::suStateId">SU 23</span></div>
+                                                  /pdev/workarea/0b00d431801e89d0/output/OUP-test-hum2_dcmetadata.xml<br>
+                                                  (has-successor=false)(status=Active)(origin=Archive, System-Generated) <!--Context Menu for  SU  start-->
+                                                  <div id="batchHomeEdit:tree:j__id285:5:j__id304:0:j__id364:1:j__id370:0::suMenu"></div>
+                                                  <!--Context Menu for SU end --></td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                          
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <table id="batchHomeEdit:tree:j__id285:6::aunode22" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                      <tbody>
+                                        <tr onclick="" id="batchHomeEdit:tree:j__id285:6::aunode22:mainRow">
+                                          <td id="batchHomeEdit:tree:j__id285:6::aunode22:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-node"><div><a onclick=" return false;" id="batchHomeEdit:tree:j__id285:6::aunode22:handle" href="#" class="rich-tree-node-handle"><img style="display: none; border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo_.gif" id="batchHomeEdit:tree:j__id285:6::aunode22:handle:img:collapsed" class="rich-tree-node-handleicon-collapsed" alt=""><img style="border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo__002.gif" id="batchHomeEdit:tree:j__id285:6::aunode22:handle:img:expanded" class="rich-tree-node-handleicon-expanded" alt=""></a>
+                                              
+                                            </div></td>
+                                          <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:6::aunode22:icon" class="rich-tree-node-icon rich-tree-h-ic-line-exp"><img src="junk/iconFolder.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                          <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:6::aunode22:text" class="rich-tree-node-text column-filter-input unit-AU"><div class="titleunit"><span class="rich-cm-attached" id="batchHomeEdit:tree:j__id285:6::aunameoutId">AU 6</span></div>
+                                            <span id="batchHomeEdit:tree:j__id285:6::autree1">ISSN_00068950</span>
+                                            <div id="batchHomeEdit:tree:j__id285:6::auMenu"></div></td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                    <div class="rich-tree-node-children rich-tree-h-ic-line" id="batchHomeEdit:tree:j__id285:6::aunode22:childs">
+                                      <table id="batchHomeEdit:tree:j__id285:6:j__id292:0::j_id293" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                          <tr onclick="" id="batchHomeEdit:tree:j__id285:6:j__id292:0::j_id293:mainRow">
+                                            <td id="batchHomeEdit:tree:j__id285:6:j__id292:0::j_id293:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-node"><div><img src="junk/spacer.gif" id="batchHomeEdit:tree:j__id285:6:j__id292:0::j_id293:handle:img" class="rich-tree-h-ic-img" alt="">
+                                                
+                                              </div></td>
+                                            <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:6:j__id292:0::j_id293:icon" class="rich-tree-node-icon-leaf rich-tree-h-ic-line-clp"><img src="junk/iconLeaf.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                            <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:6:j__id292:0::j_id293:text" class="rich-tree-node-text unit-MU"><div class="titleunit">dcc11hmvc.pmd</div>
+                                              (status=Active )(origin=NULL, NULL)</td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                      
+                                      <p class="rich-tree-last-node-marker"></p>
+                                      <table id="batchHomeEdit:tree:j__id285:6:j__id304:0::j_id321" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                          <tr onclick="" id="batchHomeEdit:tree:j__id285:6:j__id304:0::j_id321:mainRow">
+                                            <td id="batchHomeEdit:tree:j__id285:6:j__id304:0::j_id321:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-last"><div><a onclick=" return false;" id="batchHomeEdit:tree:j__id285:6:j__id304:0::j_id321:handle" href="#" class="rich-tree-node-handle"><img style="display: none; border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo_.gif" id="batchHomeEdit:tree:j__id285:6:j__id304:0::j_id321:handle:img:collapsed" class="rich-tree-node-handleicon-collapsed" alt=""><img style="border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo__002.gif" id="batchHomeEdit:tree:j__id285:6:j__id304:0::j_id321:handle:img:expanded" class="rich-tree-node-handleicon-expanded" alt=""></a>
+                                                
+                                              </div></td>
+                                            <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:6:j__id304:0::j_id321:icon" class="rich-tree-node-icon rich-tree-h-ic-line-exp"><img src="junk/iconFolder.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                            <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:6:j__id304:0::j_id321:text" class="rich-tree-node-text unit-CUgen"><div class="titleunit"><span id="batchHomeEdit:tree:j__id285:6:j__id304:0::cuTitleId2">CU 6</span> <!--Context Menu for CU start -->
+                                                <div id="batchHomeEdit:tree:j__id285:6:j__id304:0::cuMenu2"></div>
+                                                <!--Context Menu for CU end --> 
+                                              </div>
+                                              v65 n4 p (#[c1]) December 1942</td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                      <div class="rich-tree-node-children" id="batchHomeEdit:tree:j__id285:6:j__id304:0::j_id321:childs">
+                                        <table id="batchHomeEdit:tree:j__id285:6:j__id304:0:j__id364:0::j_id365" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                          <tbody>
+                                            <tr onclick="" id="batchHomeEdit:tree:j__id285:6:j__id304:0:j__id364:0::j_id365:mainRow">
+                                              <td id="batchHomeEdit:tree:j__id285:6:j__id304:0:j__id364:0::j_id365:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-node"><div><a onclick=" return false;" id="batchHomeEdit:tree:j__id285:6:j__id304:0:j__id364:0::j_id365:handle" href="#" class="rich-tree-node-handle"><img style="display: none; border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo_.gif" id="batchHomeEdit:tree:j__id285:6:j__id304:0:j__id364:0::j_id365:handle:img:collapsed" class="rich-tree-node-handleicon-collapsed" alt=""><img style="border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo__002.gif" id="batchHomeEdit:tree:j__id285:6:j__id304:0:j__id364:0::j_id365:handle:img:expanded" class="rich-tree-node-handleicon-expanded" alt=""></a>
+                                                  
+                                                </div></td>
+                                              <td oncontextmenu="false" dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:6:j__id304:0:j__id364:0::j_id365:icon" class="rich-tree-node-icon rich-tree-h-ic-line-exp"><img src="junk/iconFolder.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                              <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:6:j__id304:0:j__id364:0::j_id365:text" class="rich-tree-node-text unit-FU"><div class="titleunit">FU 13</div>
+                                                Text: Marked Up Header</td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                        <div class="rich-tree-node-children rich-tree-h-ic-line" id="batchHomeEdit:tree:j__id285:6:j__id304:0:j__id364:0::j_id365:childs">
+                                          <p class="rich-tree-last-node-marker"></p>
+                                          <table id="batchHomeEdit:tree:j__id285:6:j__id304:0:j__id364:0:j__id370:0::j_id371" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                              <tr onclick="" id="batchHomeEdit:tree:j__id285:6:j__id304:0:j__id364:0:j__id370:0::j_id371:mainRow">
+                                                <td id="batchHomeEdit:tree:j__id285:6:j__id304:0:j__id364:0:j__id370:0::j_id371:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-last"><div><img src="junk/spacer.gif" id="batchHomeEdit:tree:j__id285:6:j__id304:0:j__id364:0:j__id370:0::j_id371:handle:img" class="rich-tree-h-ic-img" alt="">
+                                                    
+                                                  </div></td>
+                                                <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:6:j__id304:0:j__id364:0:j__id370:0::j_id371:icon" class="rich-tree-node-icon-leaf rich-tree-h-ic-line-clp"><img src="junk/iconLeaf.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                                <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:6:j__id304:0:j__id364:0:j__id370:0::j_id371:text" class="rich-tree-node-text unit-SU"><div class="titleunit"><span class="rich-cm-attached" id="batchHomeEdit:tree:j__id285:6:j__id304:0:j__id364:0:j__id370:0::suStateId">SU 20</span></div>
+                                                  brain_65_4.xml.zip/brain_65_4.xml/front_matter.xml<br>
+                                                  (has-successor=false)(status=Active)(origin=Archive, System-Generated) <!--Context Menu for  SU  start-->
+                                                  <div id="batchHomeEdit:tree:j__id285:6:j__id304:0:j__id364:0:j__id370:0::suMenu"></div>
+                                                  <!--Context Menu for SU end --></td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                          
+                                        </div>
+                                        <p class="rich-tree-last-node-marker"></p>
+                                        <table id="batchHomeEdit:tree:j__id285:6:j__id304:0:j__id364:1::j_id365" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                          <tbody>
+                                            <tr onclick="" id="batchHomeEdit:tree:j__id285:6:j__id304:0:j__id364:1::j_id365:mainRow">
+                                              <td id="batchHomeEdit:tree:j__id285:6:j__id304:0:j__id364:1::j_id365:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-last"><div><a onclick=" return false;" id="batchHomeEdit:tree:j__id285:6:j__id304:0:j__id364:1::j_id365:handle" href="#" class="rich-tree-node-handle"><img style="display: none; border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo_.gif" id="batchHomeEdit:tree:j__id285:6:j__id304:0:j__id364:1::j_id365:handle:img:collapsed" class="rich-tree-node-handleicon-collapsed" alt=""><img style="border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo__002.gif" id="batchHomeEdit:tree:j__id285:6:j__id304:0:j__id364:1::j_id365:handle:img:expanded" class="rich-tree-node-handleicon-expanded" alt=""></a>
+                                                  
+                                                </div></td>
+                                              <td oncontextmenu="false" dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:6:j__id304:0:j__id364:1::j_id365:icon" class="rich-tree-node-icon rich-tree-h-ic-line-exp"><img src="junk/iconFolder.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                              <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:6:j__id304:0:j__id364:1::j_id365:text" class="rich-tree-node-text unit-FU"><div class="titleunit">FU 11</div>
+                                                Rendition: Page Images</td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                        <div class="rich-tree-node-children" id="batchHomeEdit:tree:j__id285:6:j__id304:0:j__id364:1::j_id365:childs">
+                                          <p class="rich-tree-last-node-marker"></p>
+                                          <table id="batchHomeEdit:tree:j__id285:6:j__id304:0:j__id364:1:j__id370:0::j_id371" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                              <tr onclick="" id="batchHomeEdit:tree:j__id285:6:j__id304:0:j__id364:1:j__id370:0::j_id371:mainRow">
+                                                <td id="batchHomeEdit:tree:j__id285:6:j__id304:0:j__id364:1:j__id370:0::j_id371:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-last"><div><img src="junk/spacer.gif" id="batchHomeEdit:tree:j__id285:6:j__id304:0:j__id364:1:j__id370:0::j_id371:handle:img" class="rich-tree-h-ic-img" alt="">
+                                                    
+                                                  </div></td>
+                                                <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:6:j__id304:0:j__id364:1:j__id370:0::j_id371:icon" class="rich-tree-node-icon-leaf rich-tree-h-ic-line-clp"><img src="junk/iconLeaf.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                                <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:6:j__id304:0:j__id364:1:j__id370:0::j_id371:text" class="rich-tree-node-text unit-SU"><div class="titleunit"><span class="rich-cm-attached" id="batchHomeEdit:tree:j__id285:6:j__id304:0:j__id364:1:j__id370:0::suStateId">SU 9</span></div>
+                                                  brain_65_4.pdf.zip/brain_65_4.pdf/front_matter.pdf(IP2)<br>
+                                                  (has-successor=false)(status=Active)(origin=Provider, Supplied Content) <!--Context Menu for  SU  start-->
+                                                  <div id="batchHomeEdit:tree:j__id285:6:j__id304:0:j__id364:1:j__id370:0::suMenu"></div>
+                                                  <!--Context Menu for SU end --></td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                          
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <table id="batchHomeEdit:tree:j__id285:7::aunode22" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                      <tbody>
+                                        <tr onclick="" id="batchHomeEdit:tree:j__id285:7::aunode22:mainRow">
+                                          <td id="batchHomeEdit:tree:j__id285:7::aunode22:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-node"><div><a onclick=" return false;" id="batchHomeEdit:tree:j__id285:7::aunode22:handle" href="#" class="rich-tree-node-handle"><img style="display: none; border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo_.gif" id="batchHomeEdit:tree:j__id285:7::aunode22:handle:img:collapsed" class="rich-tree-node-handleicon-collapsed" alt=""><img style="border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo__002.gif" id="batchHomeEdit:tree:j__id285:7::aunode22:handle:img:expanded" class="rich-tree-node-handleicon-expanded" alt=""></a>
+                                              
+                                            </div></td>
+                                          <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:7::aunode22:icon" class="rich-tree-node-icon rich-tree-h-ic-line-exp"><img src="junk/iconFolder.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                          <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:7::aunode22:text" class="rich-tree-node-text column-filter-input unit-AU"><div class="titleunit"><span class="rich-cm-attached" id="batchHomeEdit:tree:j__id285:7::aunameoutId">AU 2</span></div>
+                                            <span id="batchHomeEdit:tree:j__id285:7::autree1">ISSN_00068950</span>
+                                            <div id="batchHomeEdit:tree:j__id285:7::auMenu"></div></td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                    <div class="rich-tree-node-children rich-tree-h-ic-line" id="batchHomeEdit:tree:j__id285:7::aunode22:childs">
+                                      <table id="batchHomeEdit:tree:j__id285:7:j__id292:0::j_id293" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                          <tr onclick="" id="batchHomeEdit:tree:j__id285:7:j__id292:0::j_id293:mainRow">
+                                            <td id="batchHomeEdit:tree:j__id285:7:j__id292:0::j_id293:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-node"><div><img src="junk/spacer.gif" id="batchHomeEdit:tree:j__id285:7:j__id292:0::j_id293:handle:img" class="rich-tree-h-ic-img" alt="">
+                                                
+                                              </div></td>
+                                            <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:7:j__id292:0::j_id293:icon" class="rich-tree-node-icon-leaf rich-tree-h-ic-line-clp"><img src="junk/iconLeaf.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                            <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:7:j__id292:0::j_id293:text" class="rich-tree-node-text unit-MU"><div class="titleunit">dcc11hn17.pmd</div>
+                                              (status=Active )(origin=NULL, NULL)</td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                      
+                                      <p class="rich-tree-last-node-marker"></p>
+                                      <table id="batchHomeEdit:tree:j__id285:7:j__id304:0::j_id321" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                          <tr onclick="" id="batchHomeEdit:tree:j__id285:7:j__id304:0::j_id321:mainRow">
+                                            <td id="batchHomeEdit:tree:j__id285:7:j__id304:0::j_id321:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-last"><div><a onclick=" return false;" id="batchHomeEdit:tree:j__id285:7:j__id304:0::j_id321:handle" href="#" class="rich-tree-node-handle"><img style="display: none; border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo_.gif" id="batchHomeEdit:tree:j__id285:7:j__id304:0::j_id321:handle:img:collapsed" class="rich-tree-node-handleicon-collapsed" alt=""><img style="border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo__002.gif" id="batchHomeEdit:tree:j__id285:7:j__id304:0::j_id321:handle:img:expanded" class="rich-tree-node-handleicon-expanded" alt=""></a>
+                                                
+                                              </div></td>
+                                            <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:7:j__id304:0::j_id321:icon" class="rich-tree-node-icon rich-tree-h-ic-line-exp"><img src="junk/iconFolder.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                            <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:7:j__id304:0::j_id321:text" class="rich-tree-node-text unit-CUgen"><div class="titleunit"><span id="batchHomeEdit:tree:j__id285:7:j__id304:0::cuTitleId2">CU 2</span> <!--Context Menu for CU start -->
+                                                <div id="batchHomeEdit:tree:j__id285:7:j__id304:0::cuMenu2"></div>
+                                                <!--Context Menu for CU end --> 
+                                              </div>
+                                              v65 n4 p352-372 December 1942</td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                      <div class="rich-tree-node-children" id="batchHomeEdit:tree:j__id285:7:j__id304:0::j_id321:childs">
+                                        <table id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:0::j_id365" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                          <tbody>
+                                            <tr onclick="" id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:0::j_id365:mainRow">
+                                              <td id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:0::j_id365:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-node"><div><a onclick=" return false;" id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:0::j_id365:handle" href="#" class="rich-tree-node-handle"><img style="display: none; border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo_.gif" id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:0::j_id365:handle:img:collapsed" class="rich-tree-node-handleicon-collapsed" alt=""><img style="border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo__002.gif" id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:0::j_id365:handle:img:expanded" class="rich-tree-node-handleicon-expanded" alt=""></a>
+                                                  
+                                                </div></td>
+                                              <td oncontextmenu="false" dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:0::j_id365:icon" class="rich-tree-node-icon rich-tree-h-ic-line-exp"><img src="junk/iconFolder.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                              <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:0::j_id365:text" class="rich-tree-node-text unit-FU"><div class="titleunit">FU 2</div>
+                                                Text: Marked Up Header</td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                        <div class="rich-tree-node-children rich-tree-h-ic-line" id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:0::j_id365:childs">
+                                          <table id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:0:j__id370:0::j_id371" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                              <tr onclick="" id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:0:j__id370:0::j_id371:mainRow">
+                                                <td id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:0:j__id370:0::j_id371:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-node"><div><img src="junk/spacer.gif" id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:0:j__id370:0::j_id371:handle:img" class="rich-tree-h-ic-img" alt="">
+                                                    
+                                                  </div></td>
+                                                <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:0:j__id370:0::j_id371:icon" class="rich-tree-node-icon-leaf rich-tree-h-ic-line-clp"><img src="junk/iconLeaf.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                                <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:0:j__id370:0::j_id371:text" class="rich-tree-node-text unit-SU"><div class="titleunit"><span class="rich-cm-attached" id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:0:j__id370:0::suStateId">SU 11</span></div>
+                                                  brain_65_4.xml.zip/brain_65_4.xml/65-4-352.xml(IP1)<br>
+                                                  (has-successor=true, Normalized)(status=Inactive, Post-Migration)(origin=Provider, Supplied Content) <!--Context Menu for  SU  start-->
+                                                  <div id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:0:j__id370:0::suMenu"></div>
+                                                  <!--Context Menu for SU end --></td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                          
+                                          <p class="rich-tree-last-node-marker"></p>
+                                          <table id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:0:j__id370:1::j_id371" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                              <tr onclick="" id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:0:j__id370:1::j_id371:mainRow">
+                                                <td id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:0:j__id370:1::j_id371:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-last"><div><img src="junk/spacer.gif" id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:0:j__id370:1::j_id371:handle:img" class="rich-tree-h-ic-img" alt="">
+                                                    
+                                                  </div></td>
+                                                <td dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:0:j__id370:1::j_id371:icon" class="rich-tree-node-icon-leaf rich-tree-h-ic-line-clp"><img src="junk/iconLeaf.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                                <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:0:j__id370:1::j_id371:text" class="rich-tree-node-text unit-SU"><div class="titleunit"><span class="rich-cm-attached" id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:0:j__id370:1::suStateId">SU 17</span></div>
+                                                  brain/65-4-352/65-4-352.xml/conprep_generated/dcc11hc24<br>
+                                                  (has-successor=false)(status=Active)(origin=Archive, Migration) <!--Context Menu for  SU  start-->
+                                                  <div id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:0:j__id370:1::suMenu"></div>
+                                                  <!--Context Menu for SU end --></td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                          
+                                        </div>
+                                        <p class="rich-tree-last-node-marker"></p>
+                                        <table id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:1::j_id365" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                          <tbody>
+                                            <tr onclick="" id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:1::j_id365:mainRow">
+                                              <td id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:1::j_id365:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-last"><div><a onclick=" return false;" id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:1::j_id365:handle" href="#" class="rich-tree-node-handle"><img style="display: none; border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo_.gif" id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:1::j_id365:handle:img:collapsed" class="rich-tree-node-handleicon-collapsed" alt=""><img style="border: 0pt none;" src="junk/eAH772fX3N3dASdTBoo__002.gif" id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:1::j_id365:handle:img:expanded" class="rich-tree-node-handleicon-expanded" alt=""></a>
+                                                  
+                                                </div></td>
+                                              <td oncontextmenu="false" dropzoneoptions="{}" id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:1::j_id365:icon" class="rich-tree-node-icon rich-tree-h-ic-line-exp"><img src="junk/iconFolder.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                              <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:1::j_id365:text" class="rich-tree-node-text unit-FU"><div class="titleunit">FU 10</div>
+                                                Rendition: Page Images</td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                        <div class="rich-tree-node-children" id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:1::j_id365:childs">
+                                          <p class="rich-tree-last-node-marker"></p>
+                                          <table id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:1:j__id370:0::j_id371" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                              <tr onclick="" id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:1:j__id370:0::j_id371:mainRow">
+                                                <td id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:1:j__id370:0::j_id371:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-last"><div><img src="junk/spacer.gif" id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:1:j__id370:0::j_id371:handle:img" class="rich-tree-h-ic-img" alt="">
+                                                    
+                                                  </div></td>
+                                                <td dropzoneoptions="{}" draggableoptions="{'parameters':{'dragSourceId':'batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:1:j__id370:0::j_id371','batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:1:j__id370:0::j_id371':'batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:1:j__id370:0::j_id371'} }" id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:1:j__id370:0::j_id371:icon" class="rich-tree-node-icon-leaf rich-tree-h-ic-line-clp"><img src="junk/iconLeaf.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                                <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:1:j__id370:0::j_id371:text" class="rich-tree-node-text unit-SU"><div class="titleunit"><span class="rich-cm-attached" id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:1:j__id370:0::suStateId">SU 4</span></div>
+                                                  brain_65_4.pdf.zip/brain_65_4.pdf/65-4-352.pdf(IP1)<br>
+                                                  (has-successor=false)(status=Active)(origin=Provider, Supplied Content) <!--Context Menu for  SU  start-->
+                                                  <div id="batchHomeEdit:tree:j__id285:7:j__id304:0:j__id364:1:j__id370:0::suMenu"></div>
+                                                  <!--Context Menu for SU end --></td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                          
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <table id="batchHomeEdit:tree:j__id426:5::j_id427" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                      <tbody>
+                                        <tr onclick="" id="batchHomeEdit:tree:j__id426:5::j_id427:mainRow">
+                                          <td id="batchHomeEdit:tree:j__id426:5::j_id427:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-node"><div><img src="junk/spacer.gif" id="batchHomeEdit:tree:j__id426:5::j_id427:handle:img" class="rich-tree-h-ic-img" alt="">
+                                              
+                                            </div></td>
+                                          <td dropzoneoptions="{}" draggableoptions="{'parameters':{'dragSourceId':'batchHomeEdit:tree:j__id426:5::j_id427','batchHomeEdit:tree:j__id426:5::j_id427':'batchHomeEdit:tree:j__id426:5::j_id427'} }" id="batchHomeEdit:tree:j__id426:5::j_id427:icon" class="rich-tree-node-icon-leaf rich-tree-h-ic-line-clp"><img src="junk/iconLeaf.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                          <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id426:5::j_id427:text" class="rich-tree-node-text unit-SUgen"><div class="titleunit"><span class="rich-cm-attached" id="batchHomeEdit:tree:j__id426:5::AllSuStateId">SU 2</span></div>
+                                            brain_65_4.pdf.zip<br>
+                                            (Excluded=Y,Delayered)(has-successor=false )(status=Active)(origin=Provider, Supplied Content) <!--Context Menu for orphan SU at batch start-->
+                                            <div id="batchHomeEdit:tree:j__id426:5::OrphsuMenu"></div>
+                                            <!--Context Menu for orphan SU  at batch end --></td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                    
+                                    <p class="rich-tree-last-node-marker"></p>
+                                    <table id="batchHomeEdit:tree:j__id426:19::j_id427" class="rich-tree-node" border="0" cellpadding="0" cellspacing="0">
+                                      <tbody>
+                                        <tr onclick="" id="batchHomeEdit:tree:j__id426:19::j_id427:mainRow">
+                                          <td id="batchHomeEdit:tree:j__id426:19::j_id427:handles" class="rich-tree-node-handleicon rich-tree-h-ic-line-last"><div><img src="junk/spacer.gif" id="batchHomeEdit:tree:j__id426:19::j_id427:handle:img" class="rich-tree-h-ic-img" alt="">
+                                              
+                                            </div></td>
+                                          <td dropzoneoptions="{}" draggableoptions="{'parameters':{'dragSourceId':'batchHomeEdit:tree:j__id426:19::j_id427','batchHomeEdit:tree:j__id426:19::j_id427':'batchHomeEdit:tree:j__id426:19::j_id427'} }" id="batchHomeEdit:tree:j__id426:19::j_id427:icon" class="rich-tree-node-icon-leaf rich-tree-h-ic-line-clp"><img src="junk/iconLeaf.gif" class="rich-tree-h-ic-img" alt=""></td>
+                                          <td selectedclass="rich-tree-node-selected" highlightedclass="rich-tree-node-highlighted" id="batchHomeEdit:tree:j__id426:19::j_id427:text" class="rich-tree-node-text unit-SUgen"><div class="titleunit"><span class="rich-cm-attached" id="batchHomeEdit:tree:j__id426:19::AllSuStateId">SU 1</span></div>
+                                            brain_65_4.xml.zip<br>
+                                            (Excluded=Y,Delayered)(has-successor=false )(status=Active)(origin=Provider, Supplied Content) <!--Context Menu for orphan SU at batch start-->
+                                            <div id="batchHomeEdit:tree:j__id426:19::OrphsuMenu"></div>
+                                            <!--Context Menu for orphan SU  at batch end --></td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                    
+                                  </div>
+                                  
+                                  
+                                  <div class="rich-tree-h" id="batchHomeEdit:tree:script"></div>
+                                </div>
+                                <!--            
+                        <a:outputPanel ajaxRendered="true">
+                                <rich:panel>
+                                        <f:facet name="header">Last Menu Action</f:facet>
+                                        <h:outputText value=""></h:outputText>
+                                </rich:panel>                           
+                        </a:outputPanel>
+                        
+                --></div>
+                            </div>
+                          </div></td>
+                      </tr>
+                    </tbody>
+                  </table></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="actionButtons"> </div>
+          
+        </form>
+        <div id="batchBulkOperationsControllerPanels">
+          
+          
+        </div>
+        <div id="sustateBulkOperationsPanels">
+          
+          
+        </div>
+        <div id="addnewfileBulkOperationsPanels">
+          
+          
+        </div>
+        <div id="replacedmdBulkOperationsPanels">
+          
+          
+        </div>
+        <div id="excludeFileBulkOperationsPanels">
+          
+          
+        </div>
+        <div id="batchBadgeActivityPanels">
+          
+        </div>
+      </div>
+    </div>
+    <!-- End Cluster -->
+    <div class="sidebar span-8 last"> 
+      <!-- Tags -->
+      <div id="j_id1385">
+        <form target="" id="batchTagsForm" name="batchTagsForm" method="post" action="javascript:A4J.AJAX.SubmitForm('batchTagsForm',{'similarityGroupingId':'batchTagsForm','parameters':{'batchTagsForm':'batchTagsForm'} ,'actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} )">
+          <div class="tags">
+            <div class="enhance field">
+              <h2>Tags</h2>
+            </div>
+            <table class="rich-table " id="batchTagsForm:tagsTable" border="0" cellpadding="0" cellspacing="0">
+              <colgroup span="2">
+              </colgroup>
+              <tbody id="batchTagsForm:tagsTable:tb">
+              </tbody>
+            </table>
+            <div class="combobox"><a class="button add" href="#" id="batchTagsForm:j_id1394" name="batchTagsForm:j_id1394" onclick="A4J.AJAX.Submit('batchTagsForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchTagsForm:j_id1394','similarityGroupingId':'batchTagsForm:j_id1394','parameters':{'batchTagsForm:j_id1394':'batchTagsForm:j_id1394'} ,'actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} );return false;"></a>
+              <div id="batchTagsForm:tagsComboBox">
+                <div class="rich-combobox-font rich-combobox " id="batchTagsForm:tagsComboBoxcombobox" style="width:150px;" onkeyup="if (event.keyCode != 13) { return false; };A4J.AJAX.Submit('batchTagsForm',event,{'control':this,'ignoreDupResponses':true,'implicitEventsQueue':'batchTagsForm:j_id1393','similarityGroupingId':'batchTagsForm:j_id1393','parameters':{'ajaxSingle':'batchTagsForm:tagsComboBox','batchTagsForm:j_id1393':'batchTagsForm:j_id1393'} ,'actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} )">
+                  <div class="rich-combobox-list-cord"></div>
+                  <div class="rich-combobox-font rich-combobox-shell" style="width:150px;">
+                    <input value="Please select.." autocomplete="off" class="rich-combobox-font-disabled rich-combobox-input-disabled" id="batchTagsForm:tagsComboBoxcomboboxField" name="batchTagsForm:tagsComboBoxcomboboxField" style="width: 121px;" type="text">
+                    <input autocomplete="off" class="rich-combobox-font-inactive rich-combobox-button-background rich-combobox-button-inactive disabled" id="batchTagsForm:tagsComboBoxcomboBoxButtonBG" readonly="true" tabindex="-1" type="text">
+                    <input autocomplete="off" class="rich-combobox-font-inactive rich-combobox-button-icon-inactive rich-combobox-button-inactive  disabled" id="batchTagsForm:tagsComboBoxcomboboxButton" readonly="true" style="" tabindex="-1" type="text">
+                    <div class="rich-combobox-strut rich-combobox-font" style="width:140px">Strut</div>
+                  </div>
+                  <div class="rich-combobox-list-cord " id="batchTagsForm:tagsComboBoxlistParent" style="position: absolute; z-index: 1000; visibility: visible; display: none;">
+                    <div class="rich-combobox-shadow">
+                      <table id="batchTagsForm:tagsComboBoxshadow" border="0" cellpadding="0" cellspacing="0">
+                        <tbody>
+                          <tr>
+                            <td class="rich-combobox-shadow-tl"><img alt="" src="junk/spacer.gif" style="border: 0pt none;" height="1" width="10"><br></td>
+                            <td class="rich-combobox-shadow-tr"><img alt="" src="junk/spacer.gif" style="border: 0pt none;" height="10" width="1"><br></td>
+                          </tr>
+                          <tr>
+                            <td class="rich-combobox-shadow-bl"><img alt="" src="junk/spacer.gif" style="border: 0pt none;" height="10" width="1"><br></td>
+                            <td class="rich-combobox-shadow-br"><img alt="" src="junk/spacer.gif" style="border: 0pt none;" height="10" width="10"><br></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="rich-combobox-list-position" id="batchTagsForm:tagsComboBoxlistPosition">
+                      <div class="rich-combobox-list-decoration" id="batchTagsForm:tagsComboBoxlistDecoration">
+                        <div class="rich-combobox-list-scroll" id="batchTagsForm:tagsComboBoxlist"></div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                </div>
+                </div>
+            </div>
+          </div>
+          
+          
+          
+          
+        </form>
+      </div>
+      <!-- End Tags --> 
+      <!-- Notes -->
+      <div id="j_id1397">
+        <form target="" id="batchNotesForm" name="batchNotesForm" method="post" action="/ConPrepUI/batches/BatchEdit.seam">
+          <div class="notes">
+            <div class="enhance field">
+              <h2>Notes</h2>
+              <a class="button add" href="#" id="batchNotesForm:addlink" name="batchNotesForm:addlink" onclick="A4J.AJAX.Submit('batchNotesForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchNotesForm:addlink','status':'globalWaitStatus','oncomplete':function(request,event,data){document.getElementById('addPanel').component.show()},'similarityGroupingId':'batchNotesForm:addlink','parameters':{'ajaxSingle':'batchNotesForm:addlink','batchNotesForm:addlink':'batchNotesForm:addlink'} } );return false;"></a> </div>
+            <table class="rich-table " id="batchNotesForm:notesTable" border="0" cellpadding="0" cellspacing="0">
+              <colgroup span="2">
+              </colgroup>
+              <tbody id="batchNotesForm:notesTable:tb">
+              </tbody>
+            </table>
+          </div>
+          
+          
+          
+          
+        </form>
+        
+        
+        
+      </div>
+      <!-- End Notes -->
+      <hr>
+    </div>
+  </div>
+  <!-- Footer -->
+  <div id="j_id1455" class="footer"> <span id="appinfo"></span></div>
+  <!-- End Footer --> 
+  
+</div>
+ 
+
+</body>
+</html>

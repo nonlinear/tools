@@ -1,0 +1,337 @@
+/*
+=================================
+SIMPLE UPLOAD
+=================================
+*/
+.rich-fileupload-button-border, .rich-fileupload-list-decor, .rich-fileupload-toolbar-decor, .rich-fileupload-button-press, .rich-fileupload-button-light, .rich-fileupload-button, .rich-fileupload-button:hover, .rich-fileupload-button-border, .rich-fileupload-button, .rich-fileupload-button:hover, .rich-fileupload-button, .rich-fileupload-del {
+	border: 0 !important;
+	padding: 0px;
+	margin: 0px;
+}
+.rich-fileupload-button {
+	background: transparent !important;
+}
+.rich-fileupload-table-td {
+	vertical-align: baseline;
+	height: 10px;
+	padding: 0;
+	margin: 0;
+}
+.rich-fileupload-ico-add, .rich-fileupload-ico-start, td .rich-fileupload-button-border:nth-child(3) div div, .rich-fileupload-anc {
+	border: solid 1px #ccc;
+	display: inline-block;
+	height: 20px;
+	background: -webkit-gradient(linear, left top, left 25, from(#EEE), color-stop(4%, #FFF), to(#EEE));
+	background: -moz-linear-gradient(top, #EEE, #FFF 1px, #EEE 25px);
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding: 7px 10px 0 10px;
+	font-size: 12px;
+	-webkit-appearance: none;
+	cursor: pointer;
+	font-weight: bold;
+	border: none;
+	text-decoration: none;
+	text-shadow: #fff 0 1px 1px;
+	color: #000;
+	border: solid 1px #E5E5E5;
+	outline: 0;
+	font-family: Arial, Helvetica, sans-serif;
+	box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+	-moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+	-webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+	-webkit-transition: all 300ms ease-out;
+	-moz-transition: all 300ms ease-out;
+	-o-transition: all 300ms ease-out;
+	transition: all 300ms ease-out;
+}
+.rich-fileupload-ico-add:hover, .rich-fileupload-ico-start:hover, td .rich-fileupload-button-border:nth-child(3) div div:hover, .rich-fileupload-anc:hover {
+	box-shadow: rgba(0, 0, 0, .5) 0px 0px 8px;
+	-moz-box-shadow: rgba(0, 0, 0, .5) 0px 0px 8px;
+	-webkit-box-shadow: rgba(0, 0, 0, .5) 0px 0px 8px;
+	color: #F30;
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+.rich-fileupload-ico-add:hover, .rich-fileupload-ico-start:hover, td .rich-fileupload-button-border:nth-child(3) div div:hover, .rich-fileupload-anc:hover {
+	-webkit-animation-name: pulse;
+	-webkit-animation-duration: 2s;
+	-webkit-animation-iteration-count: infinite;
+}
+}
+.rich-fileupload-ico-add:active, .rich-fileupload-ico-start:active, td .rich-fileupload-button-border:nth-child(3) div div:active, .rich-fileupload-anc:active {
+	background: -webkit-gradient(linear, left top, left 25, from(#fff), color-stop(4%, #eee), to(#fff));
+	background: -moz-linear-gradient(top, #fff, #eee 1px, #fff 25px);
+	-webkit-transform: translateY(1px);
+	-moz-transform: translateY(1px);
+	-ms-transform: translateY(1px);
+	-o-transform: translateY(1px);
+	transform: translateY(1px);
+	box-shadow: rgba(0,0,0, .1) 0px 0px 8px;
+	-moz-box-shadow: rgba(0,0,0, .1) 0px 0px 8px;
+	-webkit-box-shadow: rgba(0,0,0, .1) 0px 0px 8px;
+}
+.rich-fileupload-ico-add:before, .rich-fileupload-ico-start:before, td .rich-fileupload-button-border:nth-child(3) div div:before {
+	float: left;
+	padding-right: 7px;
+	margin-right: 7px;
+	border-right: solid 1px #999;
+	font: 15px 'Pictos', sans-serif;
+	font-weight: normal;
+}
+.rich-fileupload-ico-start:before {
+	content: 'c'
+}
+td .rich-fileupload-button-border:nth-child(3) div div:before {
+	content: '*';
+}
+.rich-fileupload-ico-start {
+	margin-left: 5px;
+}
+.rich-fileupload-ico-add:before {
+	content: '&';
+}
+/* .rich-fileupload-anc is the cancel button on the right */
+.rich-fileupload-anc:before {
+	font: 15px 'Pictos', sans-serif;
+	font-weight: normal;
+	color: #000;
+	font-size: 12px;
+	padding: 0;
+	margin: 0;
+	content: '*';
+}
+.rich-fileupload-anc:hover:before {
+	color: #F30;
+}
+.rich-fileupload-anc {
+	font-size: 0px;
+	margin-right: 5px;
+	color: transparent;
+	width: 0px;
+	text-align: center;
+	height: 15px;
+	width: 15px;
+	padding: 5px 3px 0px 3px;
+}
+.rich-fileupload-table-td:first-child, .rich-fileupload-table-td:first-child:hover {
+	padding-left: 5px;
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+.rich-fileupload-anc {
+	padding: 5px 3px 0px 3px;
+}
+}
+.rich-fileupload-anc:hover {
+	color: transparent;
+}
+.rich-fileupload-list-overflow td:last-child {
+	display: none;
+}
+.rich-fileupload-table-td:nth-child(2), .rich-fileupload-del {
+	text-align: right;
+}
+.rich-fileupload-list-overflow {
+	height: auto !important;
+	overflow-x: visible;
+	overflow-y:visible;
+}
+.rich-fileupload-list-overflow td, .rich-fileupload-list-overflow td:hover {
+	border-top: solid 1px #ccc;
+	padding: 5px 0;
+	border-bottom: none;
+}
+.field:hover .rich-fileupload-list-overflow td, .field:hover .rich-fileupload-toolbar-decor td {
+	background-color: #FFC !important;
+}
+.rich-fileupload-toolbar-decor {
+	height: 50px !important;
+	vertical-align: top;
+}
+.rich-fileupload-list-overflow tr td {
+	-webkit-transition: background 300ms ease-out;
+	-moz-transition: background 300ms ease-out;
+	-o-transition: background 300ms ease-out;
+	transition: background 300ms ease-out;
+}
+.rich-fileupload-list-overflow tr:hover td, .rich-fileupload-toolbar-decor tr:hover td {
+	background: #fff;
+}
+.rich-fileupload-list-decor span {
+	padding: 0;
+	height: none;
+}
+.rich-fileupload-list-overflow .delete {
+	text-indent: -3000px;
+	padding-right: 0px;
+}
+.rich-fileupload-button-press {
+	text-align: right;
+}
+.rich-fileupload-table-td:nth-child(2) {
+	vertical-align: baseline;
+	height: 33px;
+}
+.rich-fileupload-toolbar-decor .add {
+	margin-right: 5px;
+}
+/* that's the Clear All button element. it has no classes to begin with... :-P */
+
+td .rich-fileupload-button-border:nth-child(3) div div {
+}
+/*add button, it has no hover, just a placeholder*/
+.rich-fileupload-ico-add {
+}
+.rich-fileupload-button-border, .rich-fileupload-button-light {
+	border: none;
+	background: none;
+}
+.rich-sdt {
+	background: none;
+	width: 100% !important;
+	height: 200px !important;
+	overflow: auto;
+	border: none;
+}
+.rich-sdt-column-cell {
+	border: none;
+	padding: 5px 7px 0px 5px;
+	border-bottom: solid 1px #ccc;
+}
+.rich-std-header-row {
+	background: none;
+	border: none;
+}
+.rich-sdt-header-cell {
+	border: none;
+	border-bottom: solid 1px #ccc;
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+}
+.rich-sdt-header-cell-body {
+	font-weight: bold;
+}
+.mapfile .link {
+	width: 90px;
+	margin-top: 27px;
+}
+.rich-sdt-row:hover {
+	background-color: #fff;
+}
+.rich-sdt-row-selected {
+	color: #fff;
+	font-weight: bold;
+	background: #ffc164;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ffc164), to(#ff9900));
+	background: -moz-linear-gradient(top, #ffc164, #ff9900);
+ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc164', endColorstr='#ff9900');
+}
+.addpath {
+	margin-top: 5px;
+}
+.field .addpath .button:last-child {
+	margin-right: 0px;
+	margin-top: 3px;
+	float:right;
+}
+.field .span-10 .addpath input {
+	width: 350px;
+	margin-right: 5px;
+}
+/*
+=================================
+CALENDAR
+=================================
+*/
+table.rich-calendar-popup {
+	-webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, .2);
+	-moz-box-shadow: 0 1px 10px rgba(0, 0, 0, .2);
+	box-shadow: 0 1px 10px rgba(0, 0, 0, .2);
+	border: none;
+	-webkit-transition: all 300ms ease-out;
+	-moz-transition: all 300ms ease-out;
+	-o-transition: all 300ms ease-out;
+	transition: all 300ms ease-out;
+}
+table.rich-calendar-popup:hover {
+	-webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, .4);
+	-moz-box-shadow: 0 1px 10px rgba(0, 0, 0, .4);
+	box-shadow: 0 1px 10px rgba(0, 0, 0, .4);
+	border: none;
+}
+.rich-mpnl-content .smart table.rich-calendar-popup {
+	width: auto;
+}
+.rich-mpnl-content .smart tbody tr td.rich-calendar-days, .rich-mpnl-content .smart tbody tr td div.rich-calendar-tool-btn, .rich-mpnl-content .smart tbody tr td.rich-calendar-footer {
+	background: #f78d1d;
+	background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
+	background: -moz-linear-gradient(top, #faa51a, #f47a20);
+filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
+	border: none;
+	color: #fff;
+}
+.rich-mpnl-content .smart tbody tr td.rich-calendar-cell, .rich-mpnl-content .smart tbody tr td.rich-calendar-week {
+	background: #fff;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee));
+	background: -moz-linear-gradient(top, #fff, #eee);
+filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff', endColorstr='#eee');
+	border: none;
+}
+.rich-calendar-popup td {
+	font-weight: bold;
+}
+.rich-mpnl-content .smart tbody tr td.rich-calendar-btn:hover {
+	background: #eee;
+	background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#fff));
+	background: -moz-linear-gradient(top, #eee, #fff);
+filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#eee', endColorstr='#fff');
+}
+.rich-mpnl-content .smart tbody tr td div.rich-calendar-tool-btn:hover, .rich-calendar-tool-btn-hover {
+	background: #faa51a;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f47a20), to(#faa51a));
+	background: -moz-linear-gradient(top, #f47a20, #faa51a);
+filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f47a20', endColorstr='#faa51a');
+	border: none;
+}
+.rich-calendar-month, .rich-calendar-tool {
+	height: auto;
+}
+.rich-mpnl-content .smart tbody tr td.rich-calendar-footer div {
+	height: 20px;
+}
+.rich-sdt-nb, .rich-sdt-hsplit {
+	display: none;
+}
+.rich-sdt-inlinebox {
+	overflow-x: hidden !important;
+	overflow-y: auto !important;
+}
+.rich-sdt-fb, .rich-sdt-header-cell {
+	width: 390px !important;
+}
+.rich-sdt-header-cell {
+	background:none !important;
+}
+.rich-sdt-column-cell-body, .rich-sdt-header-cell-body {
+	width: 365px !important;
+}
+/*
+=================================
+INSPECTION TOOLTIP MENU
+=================================
+*/
+.inspectionresults .rich-menu-list-bg {
+	margin-top: 120px;
+}
+.inspectionresults .rich-menu-list-bg:after {
+	top: -15px;
+	background-image: url(../img/balloontip_invert.png);
+}
+/* TODO: remove when list becomes proper select */
+.inspectionresults .rich-tree {
+	margin-bottom: 100px;
+}
+.singleinspection table.pass, .singleinspection table.inspect {
+	height: 30px !important;
+	overflow: hidden;
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en"><head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Raphaël · Animated Chart</title>
+        <link rel="stylesheet" href="chart_files/demo.css" type="text/css" media="screen">
+        <link rel="stylesheet" href="chart_files/demo-print.css" type="text/css" media="print">
+        <style type="text/css" media="screen">
+            #holder {
+                height: 230px;
+                margin: -115px 0 0 -310px;
+                width: 620px;
+            }
+        </style>
+        <script src="chart_files/raphael.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript" charset="utf-8">
+            window.onload = function () {
+                var r = Raphael("holder", 620, 250),
+                    e = [],
+                    clr = [],
+                    months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+                    values = [],
+                    now = 0,
+                    bg = r.rect(243, 14, 134, 26, 13).attr({fill: "#666", stroke: "none"}),
+                    month = r.text(310, 27, months[now]).attr({fill: "#fff", stroke: "none", "font": '100 18px "Helvetica Neue", Helvetica, "Arial Unicode MS", Arial, sans-serif'}),
+                    rightc = r.circle(364, 27, 10).attr({fill: "#fff", stroke: "none"}),
+                    right = r.path("M360,22l10,5 -10,5z").attr({fill: "#000"}),
+                    leftc = r.circle(256, 27, 10).attr({fill: "#fff", stroke: "none"}),
+                    left = r.path("M260,22l-10,5 10,5z").attr({fill: "#000"}),
+                    c = r.path("M0,0").attr({fill: "none", "stroke-width": 3}),
+                    bg = r.path("M0,0").attr({stroke: "none", opacity: .3}),
+                    dotsy = [];
+                function randomPath(length, j) {
+                    var path = "",
+                        x = 10,
+                        y = 0;
+                    dotsy[j] = dotsy[j] || [];
+                    for (var i = 0; i < length; i++) {
+                        dotsy[j][i] = Math.round(Math.random() * 200);
+                        if (i) {
+                            path += "C" + [x + 10, y, (x += 20) - 10, (y = 240 - dotsy[j][i]), x, y];
+                        } else {
+                            path += "M" + [10, (y = 240 - dotsy[j][i])];
+                        }
+                    }
+                    return path;
+                }
+                for (var i = 0; i < 12; i++) {
+                    values[i] = randomPath(30, i);
+                    clr[i] = Raphael.getColor(1);
+                }
+                c.attr({path: values[0], stroke: clr[0]});
+                bg.attr({path: values[0] + "L590,250 10,250z", fill: clr[0]});
+                // month.attr({fill: clr[0]});
+                var animation = function () {
+                    var time = 500;
+                    if (now == 12) {
+                        now = 0;
+                    }
+                    if (now == -1) {
+                        now = 11;
+                    }
+                    c.animate({path: values[now], stroke: clr[now]}, time, "<>");
+                    bg.animate({path: values[now] + "L590,250 10,250z", fill: clr[now]}, time, "<>");
+                    month.attr({text: months[now]});
+                };
+                rightc.node.onclick = right.node.onclick = function () {
+                    now++;
+                    animation();
+                };
+                leftc.node.onclick = left.node.onclick = function () {
+                    now--;
+                    animation();
+                };
+                document.onclicks = function () {
+                    var path = r.parsePathString(values[now]),
+                        x = path[1][5] - 30,
+                        y = path[1][6];
+                    path = r.pathToRelative(path);
+                    path[1][0] = "m";
+                    path[1].splice(1, 5, 0);
+                    var newvalue = Math.round(Math.random() * 200) - 100;
+                    path = path.join(",") + "c10,0 10," + newvalue + " 20," + newvalue;
+                    c.animate({path: path}, 2000);
+                    r.safari();
+                };
+            };
+        </script>
+    </head>
+    <body>
+        <div id="holder"><svg height="250" width="620" version="1.1" xmlns="http://www.w3.org/2000/svg"><desc>Created with Raphaël</desc><defs></defs><rect stroke="none" fill="#666666" ry="13" rx="13" r="13" height="26" width="134" y="14" x="243"></rect><text fill="#ffffff" stroke="none" font="100 18px &quot;Helvetica Neue&quot;, Helvetica, &quot;Arial Unicode MS&quot;, Arial, sans-serif" style="text-anchor: middle; font: 100 18px &quot;Helvetica Neue&quot;,Helvetica,&quot;Arial Unicode MS&quot;,Arial,sans-serif;" text-anchor="middle" y="33.5" x="310"><tspan>January</tspan></text><circle stroke="none" fill="#ffffff" r="10" cy="27" cx="364"></circle><path d="M360,22L370,27L360,32Z" stroke="#000000" fill="#000000"></path><circle stroke="none" fill="#ffffff" r="10" cy="27" cx="256"></circle><path d="M260,22L250,27L260,32Z" stroke="#000000" fill="#000000"></path><path stroke-width="3" style="stroke-width: 3;" d="M10,216C20,216,20,112,30,112C40,112,40,93,50,93C60,93,60,170,70,170C80,170,80,76,90,76C100,76,100,65,110,65C120,65,120,116,130,116C140,116,140,176,150,176C160,176,160,197,170,197C180,197,180,214,190,214C200,214,200,183,210,183C220,183,220,192,230,192C240,192,240,118,250,118C260,118,260,45,270,45C280,45,280,105,290,105C300,105,300,177,310,177C320,177,320,91,330,91C340,91,340,209,350,209C360,209,360,208,370,208C380,208,380,110,390,110C400,110,400,181,410,181C420,181,420,187,430,187C440,187,440,180,450,180C460,180,460,134,470,134C480,134,480,211,490,211C500,211,500,138,510,138C520,138,520,226,530,226C540,226,540,145,550,145C560,145,560,200,570,200C580,200,580,83,590,83" stroke="#ff0000" fill="none"></path><path opacity="0.3" style="opacity: 0.3;" d="M10,216C20,216,20,112,30,112C40,112,40,93,50,93C60,93,60,170,70,170C80,170,80,76,90,76C100,76,100,65,110,65C120,65,120,116,130,116C140,116,140,176,150,176C160,176,160,197,170,197C180,197,180,214,190,214C200,214,200,183,210,183C220,183,220,192,230,192C240,192,240,118,250,118C260,118,260,45,270,45C280,45,280,105,290,105C300,105,300,177,310,177C320,177,320,91,330,91C340,91,340,209,350,209C360,209,360,208,370,208C380,208,380,110,390,110C400,110,400,181,410,181C420,181,420,187,430,187C440,187,440,180,450,180C460,180,460,134,470,134C480,134,480,211,490,211C500,211,500,138,510,138C520,138,520,226,530,226C540,226,540,145,550,145C560,145,560,200,570,200C580,200,580,83,590,83L590,250L10,250Z" stroke="none" fill="#ff0000"></path></svg></div>
+        <p id="copy">Demo of <a href="http://raphaeljs.com/">Raphaël</a>—JavaScript Vector Library</p>
+    
+</body></html>

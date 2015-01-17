@@ -1,0 +1,77 @@
+@import url("parse.css");
+.rich-color-picker-ext, .rich-color-picker-span INPUT, .rich-color-picker-icon, .rich-color-picker-color, .rich-color-picker-new-color, .rich-color-picker-current-color, .rich-color-picker-cancel, .rich-color-picker-submit, .rich-color-picker-colors-input, .rich-tab-inactive, .rich-tab-active, .rich-tabpanel-content, .extdt-cell, .rich-extdt-cell, .rich-tabhdr-side-cell, .rich-tab-bottom-line, .extdt-maindiv, .rich-table, .rich-panel, .rich-panel-header, .rich-table-subheadercell, .rich-panel-body {
+	border: none;
+	background: none;
+	margin: 0px;
+	padding: 0px;
+}
+.sidebar a {
+	color: #333;
+}
+ul {
+	list-style-type: none;
+}
+.deprecated .rich-combobox-list-position, .deprecated .rich-combobox-list-decoration {
+	border: none;
+	background: none;
+	width: 235px;
+	background: #fff;
+	padding: 0px;
+	font-family:Arial, Helvetica, sans-serif;
+}
+.center {
+	text-align: center;
+}
+.deprecated .rich-combobox-list-position {
+	border: solid 1px #ccc;
+	-webkit-box-shadow: 0 3px 2px rgba(0, 0, 0, .4);
+	-moz-box-shadow: 0 3px 2px rgba(0, 0, 0, .4);
+	box-shadow: 0 3px 2px rgba(0, 0, 0, .4);
+}
+.deprecated .rich-combobox-list-scroll {
+	text-align: left;
+}
+.deprecated .rich-combobox-item {
+	background-color: #e9e6d2;
+	padding: 5px;
+	font-size: 12px;
+	font-weight: normal;
+	border: none;
+}
+.deprecated .rich-combobox-item:nth-child(2n) {
+	background-color: #ffffff;
+}
+.deprecated .rich-combobox-item-selected {
+	background: #f78d1d;
+	background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
+	font-weight: bold;
+	border: none;
+	background: -moz-linear-gradient(top, #faa51a, #f47a20);
+ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
+	-webkit-text-shadow: 0px 1px 1px rgba(0, 0, 0, .3);
+	-moz-text-shadow: 0px 1px 1px rgba(0, 0, 0, .3);
+	text-shadow: 0px 1px 1px rgba(0, 0, 0, .3);
+	color: #fff;
+}
+.deprecated .deprecated #badge div:nth-child(2),
+.deprecated #badge h1,
+.deprecated .components #badge div:nth-child(3),
+.deprecated .cmpt #badge div:nth-child(3),
+.deprecated .contracts #badge div:nth-child(3),
+.deprecated .shipments #badge div:nth-child(3),
+.deprecated .disciplines #badge div:nth-child(3),
+.deprecated .invitations #badge div:nth-child(3),
+.deprecated .walldetails #badge div:nth-child(3),
+.deprecated .walloverrides #badge div:nth-child(3),
+.deprecated .orderproblems #badge div:nth-child(3),
+.deprecated .senttohcl #badge div:nth-child(3),
+.deprecated .movingwallflip #badge div:nth-child(3),
+.deprecated .relationships #badge div:nth-child(3),
+.deprecated .contractdetails #badge div:nth-child(3),
+.deprecated .invitations #badge div:nth-child(3),
+.deprecated .prorates #badge div:nth-child(3),
+.deprecated .pubroles #badge div:nth-child(3) {
+	font-family: 'MuseoSlab500', sans-serif;
+	background: url(../img/bg_gradient.png) left bottom repeat-x;
+	margin: 0px;
+}

@@ -1,0 +1,39 @@
+	.formError {
+			position:absolute;
+			top:300px; left:300px;
+			width:100px;
+			padding-bottom:15px;
+			display:block;
+		}
+			.formError .formErrorContent {
+				width:100%; 
+				background:#f60;
+				color:#fff;
+				font-size:11px;
+				font-weight: bold;
+				-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.7);
+				-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.7);
+				box-shadow: 0 1px 3px rgba(0,0,0,0.7);
+				padding:4px 10px 4px 10px;
+				border-radius: 6px;
+				-moz-border-radius: 6px;
+				-webkit-border-radius: 6px;
+			}
+			.formError .formErrorArrow{
+				position:absolute;
+				bottom:0;left:20px;
+				width:15px; height:15px;
+				
+			}
+				.formError .formErrorArrow div{
+					font-size:0px; 
+					
+				}
+				.formError .formErrorArrow .line10{width:15px;height:1px; background:#f60;margin:0 auto; font-size:0px; display:block;} 
+				.formError .formErrorArrow .line9{width:13px;height:1px; background:#f60;margin:0 auto;display:block;} 
+				.formError .formErrorArrow .line8{width:11px;height:1px; background:#f60;margin:0 auto;display:block;} 
+				.formError .formErrorArrow .line7{width:9px;height:1px; background:#f60;margin:0 auto;display:block;} 
+				.formError .formErrorArrow .line6{width:7px;height:1px; background:#f60;margin:0 auto;display:block;} 
+				.formError .formErrorArrow .line5{width:5px;height:1px; background:#f60;margin:0 auto;display:block;} 
+				.formError .formErrorArrow .line4{width:3px;height:1px; background:#f60;margin:0 auto;display:block;} 
+				.formError .formErrorArrow .line3{width:1px;height:1px; background:#f60;margin:0 auto;display:block;} 

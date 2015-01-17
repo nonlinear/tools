@@ -1,0 +1,953 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ITHAKA | CONPREP</title>
+<link class="component" href="junk/eAGTcz60MXT5DGkAD2IDhA___003.css" rel="stylesheet" type="text/css">
+<link class="component" href="junk/eAGTcz60MXT5DGkAD2IDhA__.css" rel="stylesheet" type="text/css">
+<link class="component" href="junk/eAGTcz60MXT5DGkAD2IDhA___002.css" rel="stylesheet" type="text/css">
+<link rel="shortcut icon" href="http://localhost:8080/conprepUi2/favicon.ico">
+<link rel="stylesheet" href="lib/style.css">
+</head>
+
+<body class="batch recordview">
+<div id="j_id3">
+  <form id="linkToForm" name="linkToForm" method="post" action="/conprepUi2/batches/BatchEdit.seam" enctype="application/x-www-form-urlencoded">
+    <input autocomplete="off" name="linkToForm" value="linkToForm" type="hidden">
+    <input autocomplete="off" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id17" type="hidden">
+  </form>
+</div>
+<div class="container"> 
+  <!-- Header -->
+  <div id="header">
+    <div id="logo" class="span-8">
+      <h1><a tabindex="0" href="http://localhost:8080/conprepUi2">Portico ConPrep</a></h1>
+    </div>
+    <div class="span-39 last">
+      <div id="admin"> <span>Welcome, kkurra| </span> <a tabindex="0" href="http://localhost:8080/conprepUi2/home.seam?actionMethod=batches%2FBatchEdit.xhtml%3Aidentity.logout" id="menuLogoutId">Logout</a></div>
+    </div>
+  </div>
+  <!-- End Header -->
+  <div id="main"> 
+    <!-- Badge -->
+    <div id="badge" class="sidebar span-8">
+      <div id="j_id23">
+        <form target="" id="batchBadgeForm" name="batchBadgeForm" method="post" action="/conprepUi2/batches/BatchEdit.seam">
+          <h1>ranga-thro-persistence-00790</h1>
+          <!--      <s:decorate id="PAccessionIdFieldBadge" template="../layout/edit.xhtml">
+                <ui:define name="label">P accession id</ui:define>
+                <h:outputText id="PAccessionId"
+                              value="ark:/27927/dcczhs4z"/>
+            </s:decorate> -->
+          <div id="batchBadgeForm:Provider">
+            <div class="field  ">
+              <div class="span-3">
+                <label> Provider</label>
+              </div>
+              <div class="span-5 last">RANGA-NEW-WILEY-REG</div>
+            </div>
+          </div>
+          <div id="batchBadgeForm:ProfileID">
+            <div class="field  ">
+              <div class="span-3">
+                <label> Profile</label>
+              </div>
+              <div class="span-5 last"><a tabindex="0" class="button edit" href="#" id="batchBadgeForm:ProfileID:j_id47" name="batchBadgeForm:ProfileID:j_id47" onclick="A4J.AJAX.Submit('batchBadgeForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchBadgeForm:ProfileID:j_id47','status':'globalWaitStatus','oncomplete':function(request,event,data){Richfaces.showModalPanel('modalPanel');},'similarityGroupingId':'batchBadgeForm:ProfileID:j_id47','parameters':{'batchBadgeForm:ProfileID:j_id47':'batchBadgeForm:ProfileID:j_id47'} } );return false;"></a><span id="batchBadgeForm:ProfileID:ProfileID">Wiley-8.0.xml</span></div>
+            </div>
+          </div>
+          <div id="batchBadgeForm:WorkflowTemplate">
+            <div class="field  ">
+              <div class="span-3">
+                <label> Workflow Template</label>
+              </div>
+              <div class="span-5 last"></div>
+            </div>
+          </div>
+          <div id="batchBadgeForm:WorkFlowQueue">
+            <div class="field  ">
+              <div class="span-3">
+                <label> Executor Queue</label>
+              </div>
+              <div class="span-5 last"></div>
+            </div>
+          </div>
+          <div id="batchBadgeForm:LifecycleState">
+            <div class="field  ">
+              <div class="span-3">
+                <label> Lifecycle State</label>
+              </div>
+              <div class="span-5 last"><a tabindex="0" class="button edit" href="#" id="batchBadgeForm:LifecycleState:lifecycleEditButton" name="batchBadgeForm:LifecycleState:lifecycleEditButton" onclick="A4J.AJAX.Submit('batchBadgeForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchBadgeForm:LifecycleState:lifecycleEditButton','status':'globalWaitStatus','oncomplete':function(request,event,data){Richfaces.showModalPanel('modalPanel');},'similarityGroupingId':'batchBadgeForm:LifecycleState:lifecycleEditButton','parameters':{'batchBadgeForm:LifecycleState:lifecycleEditButton':'batchBadgeForm:LifecycleState:lifecycleEditButton'} } );return false;"></a>LOADED</div>
+            </div>
+          </div>
+          <div id="batchBadgeForm:LastActivity">
+            <div class="field  ">
+              <div class="span-3">
+                <label> Last Activity</label>
+              </div>
+              <div class="span-5 last"><span id="batchBadgeForm:LastActivity:LastActivity"></span></div>
+            </div>
+          </div>
+          <div id="batchBadgeForm:priority">
+            <div class="field  ">
+              <div class="span-3">
+                <label> Priority</label>
+              </div>
+              <div class="span-5 last"><a tabindex="0" class="button edit" href="#" id="batchBadgeForm:priority:priorityEditButton" name="batchBadgeForm:priority:priorityEditButton" onclick="A4J.AJAX.Submit('batchBadgeForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchBadgeForm:priority:priorityEditButton','status':'globalWaitStatus','oncomplete':function(request,event,data){Richfaces.showModalPanel('modalPanel');},'similarityGroupingId':'batchBadgeForm:priority:priorityEditButton','parameters':{'batchBadgeForm:priority:priorityEditButton':'batchBadgeForm:priority:priorityEditButton'} } );return false;"></a>0</div>
+            </div>
+          </div>
+          <div id="batchBadgeForm:claimedby">
+            <div class="field  ">
+              <div class="span-3">
+                <label> Claimed by</label>
+              </div>
+              <div class="span-5 last"><a tabindex="0" class="button unclaimed" href="#" id="batchBadgeForm:claimedby:j_id118" name="batchBadgeForm:claimedby:j_id118" onclick="A4J.AJAX.Submit('batchBadgeForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchBadgeForm:claimedby:j_id118','status':'globalWaitStatus','oncomplete':function(request,event,data){Richfaces.showModalPanel('modalPanel');},'similarityGroupingId':'batchBadgeForm:claimedby:j_id118','parameters':{'batchBadgeForm:claimedby:j_id118':'batchBadgeForm:claimedby:j_id118'} } );return false;"></a></div>
+            </div>
+          </div>
+          <div id="batchBadgeForm:RUCount">
+            <div class="field  ">
+              <div class="span-3">
+                <label> RU Count</label>
+              </div>
+              <div class="span-5 last">0</div>
+            </div>
+          </div>
+          <div id="batchBadgeForm:SUCount">
+            <div class="field  ">
+              <div class="span-3">
+                <label> SU Count</label>
+              </div>
+              <div class="span-5 last">0</div>
+            </div>
+          </div>
+          <div id="batchBadgeForm:ArticleCount">
+            <div class="field  ">
+              <div class="span-3">
+                <label> Article Count(Est.)</label>
+              </div>
+              <div class="span-5 last">0</div>
+            </div>
+          </div>
+          <div id="batchBadgeForm:FatalErrorCount">
+            <div class="field  ">
+              <div class="span-3">
+                <label> Fatal Error Count</label>
+              </div>
+              <div class="span-5 last">0</div>
+            </div>
+          </div>
+          <div id="batchBadgeForm:Hold">
+            <div class="field  ">
+              <div class="span-3">
+                <label> Hold</label>
+              </div>
+              <div class="span-5 last"><a tabindex="0" class="button edit" href="#" id="batchBadgeForm:Hold:j_id180" name="batchBadgeForm:Hold:j_id180" onclick="A4J.AJAX.Submit('batchBadgeForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchBadgeForm:Hold:j_id180','status':'globalWaitStatus','oncomplete':function(request,event,data){Richfaces.showModalPanel('modalPanel');},'similarityGroupingId':'batchBadgeForm:Hold:j_id180','parameters':{'batchBadgeForm:Hold:j_id180':'batchBadgeForm:Hold:j_id180'} } );return false;"></a>false</div>
+            </div>
+          </div>
+          <div id="batchBadgeForm:Created">
+            <div class="field  ">
+              <div class="span-3">
+                <label> Created</label>
+              </div>
+              <div class="span-5 last">2011/05/09 12:29:39</div>
+            </div>
+          </div>
+          <div id="batchBadgeForm:AutoprocessStart">
+            <div class="field  ">
+              <div class="span-3">
+                <label> Autoprocess Started</label>
+              </div>
+              <div class="span-5 last"><a tabindex="0" class="button edit" href="#" id="batchBadgeForm:AutoprocessStart:j_id205" name="batchBadgeForm:AutoprocessStart:j_id205" onclick="A4J.AJAX.Submit('batchBadgeForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchBadgeForm:AutoprocessStart:j_id205','status':'globalWaitStatus','oncomplete':function(request,event,data){Richfaces.showModalPanel('modalPanel');},'similarityGroupingId':'batchBadgeForm:AutoprocessStart:j_id205','parameters':{'batchBadgeForm:AutoprocessStart:j_id205':'batchBadgeForm:AutoprocessStart:j_id205'} } );return false;"></a><span id="batchBadgeForm:AutoprocessStart:AutoprocessStart"></span></div>
+            </div>
+          </div>
+          <div id="batchBadgeForm:j_id207" class="field actions"> <a tabindex="0" href="#" onclick="if(typeof jsfcljs == 'function'){jsfcljs(document.getElementById('batchBadgeForm'),{'batchBadgeForm:j_id208':'batchBadgeForm:j_id208'},'');}return false" class="button delete">Delete</a><a tabindex="0" class="button edit" href="#" id="batchBadgeForm:badgeActivityResumeButton" name="batchBadgeForm:badgeActivityResumeButton" onclick="A4J.AJAX.Submit('batchBadgeForm',event,{'ignoreDupResponses':true,'status':'globalWaitStatus','oncomplete':function(request,event,data){Richfaces.showModalPanel('batchBulkUpdatePanel');},'similarityGroupingId':'batchBadgeForm:badgeActivityResumeButton','parameters':{'ajaxSingle':'batchBadgeForm:badgeActivityResumeButton','batchBadgeForm:badgeActivityResumeButton':'batchBadgeForm:badgeActivityResumeButton'} ,'eventsQueue':'badgeActivityEditQueue'} );return false;">Resume Auto Processing</a><a tabindex="0" href="#" onclick="if(typeof jsfcljs == 'function'){jsfcljs(document.getElementById('batchBadgeForm'),{'batchBadgeForm:j_id209':'batchBadgeForm:j_id209'},'');}return false" class="button edit">Trim Path</a></div>
+          <input autocomplete="off" name="batchBadgeForm" value="batchBadgeForm" type="hidden">
+          <input autocomplete="off" name="autoScroll" value="" type="hidden">
+          <input autocomplete="off" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id17" type="hidden">
+        </form>
+      </div>
+      <hr>
+    </div>
+    <!-- End Badge --> 
+    
+    <!-- Cluster -->
+    <div id="cluster" class="span-31">
+      <div id="wrapper">
+        <dl style="display: none;" class="rich-messages message" id="messages">
+          <dt></dt>
+        </dl>
+        <form id="batchHomeEdit" name="batchHomeEdit" method="post" action="/conprepUi2/batches/BatchEdit.seam" enctype="application/x-www-form-urlencoded">
+          <input autocomplete="off" name="batchHomeEdit" value="batchHomeEdit" type="hidden">
+          <div id="globalStatusDiv" style="display: none;"><img src="junk/loading.gif"></div>
+          <span id="globalWaitStatus"><span id="globalWaitStatus.start" style="display: none;"></span><span style="" id="globalWaitStatus.stop"></span></span>
+          <table class="rich-tabpanel tab" id="batchHomeEdit:maintab" style="" border="0" cellpadding="0" cellspacing="0">
+            <tbody>
+              <tr>
+                <td class="rich-tab-bottom-line " align="left"><!--table  border="0" cellpadding="0" cellspacing="0" style="position:relative;top:1px"-->
+                  <table border="0" cellpadding="0" cellspacing="0">
+                    <tbody>
+                      <tr>
+                        <td><img alt="" src="junk/spacer.gif" style="width: 1px; border: 0pt none;" height="1"></td>
+                        <td id="batchHomeEdit:tab1_cell" style="height: 100%; vertical-align: bottom;" class="rich-tabhdr-cell-active"><table id="batchHomeEdit:tab1_shifted" onclick="if (RichFaces.isTabActive('batchHomeEdit:tab1_lbl')) return false; if (!RichFaces.onTabChange(event, 'batchHomeEdit:maintab','batchHomeEdit:tab1')) return false;A4J.AJAX.Submit('batchHomeEdit',event,{'status':'globalWaitStatus','oncomplete':function(request,event,data){addDisabledToDisabled(); addDisabledToReadonly();},'similarityGroupingId':'batchHomeEdit:tab1','parameters':{'batchHomeEdit:tab1':'batchHomeEdit:tab1'} } ); return false; this.onclick = null;" style="position: relative; top: 1px; height: 100%;" border="0" cellpadding="0" cellspacing="0">
+                            <tbody>
+                              <tr>
+                                <td class="rich-tabhdr-side-border"><img alt="" src="junk/spacer.gif" style="border: 0pt none;" height="1" width="1"></td>
+                                <td class="rich-tabhdr-side-cell"><table style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                      <tr>
+                                        <td id="batchHomeEdit:tab1_lbl" onmouseover="RichFaces.overTab(this);" onmouseout="RichFaces.outTab(this);" class="rich-tab-header rich-tab-active    ">Messages<sup>0/0</sup></td>
+                                      </tr>
+                                    </tbody>
+                                  </table></td>
+                                <td class="rich-tabhdr-side-border"><img alt="" src="junk/spacer.gif" style="border: 0pt none;" height="1" width="1"></td>
+                              </tr>
+                            </tbody>
+                          </table></td>
+                        <td><img alt="" src="junk/spacer.gif" style="width: 1px; border: 0pt none;" height="1"></td>
+                        <td id="batchHomeEdit:tab2_cell" style="height: 100%; vertical-align: bottom;" class="rich-tabhdr-cell-inactive"><table id="batchHomeEdit:tab2_shifted" onclick="if (RichFaces.isTabActive('batchHomeEdit:tab2_lbl')) return false; if (!RichFaces.onTabChange(event, 'batchHomeEdit:maintab','batchHomeEdit:tab2')) return false;A4J.AJAX.Submit('batchHomeEdit',event,{'status':'globalWaitStatus','oncomplete':function(request,event,data){addDisabledToDisabled(); addDisabledToReadonly();},'similarityGroupingId':'batchHomeEdit:tab2','parameters':{'batchHomeEdit:tab2':'batchHomeEdit:tab2'} } ); return false; this.onclick = null;" style="position: relative; height: 100%;" border="0" cellpadding="0" cellspacing="0">
+                            <tbody>
+                              <tr>
+                                <td class="rich-tabhdr-side-border"><img alt="" src="junk/spacer.gif" style="border: 0pt none;" height="1" width="1"></td>
+                                <td class="rich-tabhdr-side-cell"><table style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                      <tr>
+                                        <td id="batchHomeEdit:tab2_lbl" onmouseover="RichFaces.overTab(this);" onmouseout="RichFaces.outTab(this);" class="rich-tab-header rich-tab-inactive    ">Content Tree</td>
+                                      </tr>
+                                    </tbody>
+                                  </table></td>
+                                <td class="rich-tabhdr-side-border"><img alt="" src="junk/spacer.gif" style="border: 0pt none;" height="1" width="1"></td>
+                              </tr>
+                            </tbody>
+                          </table></td>
+                        <td><img alt="" src="junk/spacer.gif" style="width: 1px; border: 0pt none;" height="1"></td>
+                        <td id="batchHomeEdit:tab3_cell" style="height: 100%; vertical-align: bottom;" class="rich-tabhdr-cell-inactive"><table id="batchHomeEdit:tab3_shifted" onclick="if (RichFaces.isTabActive('batchHomeEdit:tab3_lbl')) return false; if (!RichFaces.onTabChange(event, 'batchHomeEdit:maintab','batchHomeEdit:tab3')) return false;A4J.AJAX.Submit('batchHomeEdit',event,{'status':'globalWaitStatus','oncomplete':function(request,event,data){addDisabledToDisabled(); addDisabledToReadonly();},'similarityGroupingId':'batchHomeEdit:tab3','parameters':{'batchHomeEdit:tab3':'batchHomeEdit:tab3'} } ); return false; this.onclick = null;" style="position: relative; height: 100%;" border="0" cellpadding="0" cellspacing="0">
+                            <tbody>
+                              <tr>
+                                <td class="rich-tabhdr-side-border"><img alt="" src="junk/spacer.gif" style="border: 0pt none;" height="1" width="1"></td>
+                                <td class="rich-tabhdr-side-cell"><table style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                      <tr>
+                                        <td id="batchHomeEdit:tab3_lbl" onmouseover="RichFaces.overTab(this);" onmouseout="RichFaces.outTab(this);" class="rich-tab-header rich-tab-inactive    ">TOC</td>
+                                      </tr>
+                                    </tbody>
+                                  </table></td>
+                                <td class="rich-tabhdr-side-border"><img alt="" src="junk/spacer.gif" style="border: 0pt none;" height="1" width="1"></td>
+                              </tr>
+                            </tbody>
+                          </table></td>
+                        <td><img alt="" src="junk/spacer.gif" style="width: 1px; border: 0pt none;" height="1"></td>
+                        <td id="batchHomeEdit:tab4_cell" style="height: 100%; vertical-align: bottom;" class="rich-tabhdr-cell-inactive"><table id="batchHomeEdit:tab4_shifted" onclick="if (RichFaces.isTabActive('batchHomeEdit:tab4_lbl')) return false; if (!RichFaces.onTabChange(event, 'batchHomeEdit:maintab','batchHomeEdit:tab4')) return false;A4J.AJAX.Submit('batchHomeEdit',event,{'status':'globalWaitStatus','oncomplete':function(request,event,data){addDisabledToDisabled(); addDisabledToReadonly();},'similarityGroupingId':'batchHomeEdit:tab4','parameters':{'batchHomeEdit:tab4':'batchHomeEdit:tab4'} } ); return false; this.onclick = null;" style="position: relative; height: 100%;" border="0" cellpadding="0" cellspacing="0">
+                            <tbody>
+                              <tr>
+                                <td class="rich-tabhdr-side-border"><img alt="" src="junk/spacer.gif" style="border: 0pt none;" height="1" width="1"></td>
+                                <td class="rich-tabhdr-side-cell"><table style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                      <tr>
+                                        <td id="batchHomeEdit:tab4_lbl" onmouseover="RichFaces.overTab(this);" onmouseout="RichFaces.outTab(this);" class="rich-tab-header rich-tab-inactive    ">Renamed Files</td>
+                                      </tr>
+                                    </tbody>
+                                  </table></td>
+                                <td class="rich-tabhdr-side-border"><img alt="" src="junk/spacer.gif" style="border: 0pt none;" height="1" width="1"></td>
+                              </tr>
+                            </tbody>
+                          </table></td>
+                        <td><img alt="" src="junk/spacer.gif" style="width: 1px; border: 0pt none;" height="1"></td>
+                        <td id="batchHomeEdit:tab5_cell" style="height: 100%; vertical-align: bottom;" class="rich-tabhdr-cell-inactive"><table id="batchHomeEdit:tab5_shifted" onclick="if (RichFaces.isTabActive('batchHomeEdit:tab5_lbl')) return false; if (!RichFaces.onTabChange(event, 'batchHomeEdit:maintab','batchHomeEdit:tab5')) return false;A4J.AJAX.Submit('batchHomeEdit',event,{'status':'globalWaitStatus','oncomplete':function(request,event,data){addDisabledToDisabled(); addDisabledToReadonly();},'similarityGroupingId':'batchHomeEdit:tab5','parameters':{'batchHomeEdit:tab5':'batchHomeEdit:tab5'} } ); return false; this.onclick = null;" style="position: relative; height: 100%;" border="0" cellpadding="0" cellspacing="0">
+                            <tbody>
+                              <tr>
+                                <td class="rich-tabhdr-side-border"><img alt="" src="junk/spacer.gif" style="border: 0pt none;" height="1" width="1"></td>
+                                <td class="rich-tabhdr-side-cell"><table style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                      <tr>
+                                        <td id="batchHomeEdit:tab5_lbl" onmouseover="RichFaces.overTab(this);" onmouseout="RichFaces.outTab(this);" class="rich-tab-header rich-tab-inactive    ">Process Log</td>
+                                      </tr>
+                                    </tbody>
+                                  </table></td>
+                                <td class="rich-tabhdr-side-border"><img alt="" src="junk/spacer.gif" style="border: 0pt none;" height="1" width="1"></td>
+                              </tr>
+                            </tbody>
+                          </table></td>
+                        <td><img alt="" src="junk/spacer.gif" style="width: 1px; border: 0pt none;" height="1"></td>
+                        <td id="batchHomeEdit:tab6_cell" style="height: 100%; vertical-align: bottom;" class="rich-tabhdr-cell-inactive"><table id="batchHomeEdit:tab6_shifted" onclick="if (RichFaces.isTabActive('batchHomeEdit:tab6_lbl')) return false; if (!RichFaces.onTabChange(event, 'batchHomeEdit:maintab','batchHomeEdit:tab6')) return false;A4J.AJAX.Submit('batchHomeEdit',event,{'status':'globalWaitStatus','oncomplete':function(request,event,data){addDisabledToDisabled(); addDisabledToReadonly();},'similarityGroupingId':'batchHomeEdit:tab6','parameters':{'batchHomeEdit:tab6':'batchHomeEdit:tab6'} } ); return false; this.onclick = null;" style="position: relative; height: 100%;" border="0" cellpadding="0" cellspacing="0">
+                            <tbody>
+                              <tr>
+                                <td class="rich-tabhdr-side-border"><img alt="" src="junk/spacer.gif" style="border: 0pt none;" height="1" width="1"></td>
+                                <td class="rich-tabhdr-side-cell"><table style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                      <tr>
+                                        <td id="batchHomeEdit:tab6_lbl" onmouseover="RichFaces.overTab(this);" onmouseout="RichFaces.outTab(this);" class="rich-tab-header rich-tab-inactive    ">Properties</td>
+                                      </tr>
+                                    </tbody>
+                                  </table></td>
+                                <td class="rich-tabhdr-side-border"><img alt="" src="junk/spacer.gif" style="border: 0pt none;" height="1" width="1"></td>
+                              </tr>
+                            </tbody>
+                          </table></td>
+                        <td><img alt="" src="junk/spacer.gif" style="width: 1px; border: 0pt none;" height="1"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div style="display: none;"></div></td>
+              </tr>
+              <tr>
+                <td id="batchHomeEdit:tab1" style="height: 100%;"><table class="rich-tabpanel-content-position" border="0" cellpadding="10" cellspacing="0" width="100%">
+                    <tbody>
+                      <tr>
+                        <td class="rich-tabpanel-content tab_content " style=""><div id="batchHomeEdit:SOMEDiv1">
+                            <div class="header">
+                              <div class="span-15">
+                                <select tabindex="0" id="batchHomeEdit:selectMessgtypId" name="batchHomeEdit:selectMessgtypId" class="icon-view" size="1" onchange="A4J.AJAX.Submit('batchHomeEdit',event,{'control':this,'similarityGroupingId':'batchHomeEdit:j_id215','parameters':{'ajaxSingle':'batchHomeEdit:selectMessgtypId','batchHomeEdit:j_id215':'batchHomeEdit:j_id215'} } )">
+                                  <option value="Active_Messages" selected="selected">Active Messages</option>
+                                  <option value="Inactive_Messages">Inactive Messages</option>
+                                </select>
+                              </div>
+                              <div class="span-16 right last">
+                                <select tabindex="0" id="batchHomeEdit:selectIterationId" name="batchHomeEdit:selectIterationId" class="icon-history" size="1" onchange="A4J.AJAX.Submit('batchHomeEdit',event,{'control':this,'similarityGroupingId':'batchHomeEdit:j_id218','parameters':{'batchHomeEdit:j_id218':'batchHomeEdit:j_id218','ajaxSingle':'batchHomeEdit:selectIterationId'} } )">
+                                </select>
+                              </div>
+                            </div>
+                            <table class="rich-table nosort" id="batchHomeEdit:mesgTable" border="0" cellpadding="0" cellspacing="0">
+                              <colgroup span="6">
+                              </colgroup>
+                              <thead class="rich-table-thead">
+                                <tr class="rich-table-subheader ">
+                                  <th class="rich-table-subheadercell  " scope="col" id="batchHomeEdit:mesgTable:j_id220header"><div id="batchHomeEdit:mesgTable:j_id220header:sortDiv"><span class="propertySorter">Type</span></div></th>
+                                  <th class="rich-table-subheadercell  " scope="col" id="batchHomeEdit:mesgTable:j_id223header"><div id="batchHomeEdit:mesgTable:j_id223header:sortDiv"><span class="propertySorter">Code</span></div></th>
+                                  <th class="rich-table-subheadercell  " scope="col" id="batchHomeEdit:mesgTable:j_id226header"><div id="batchHomeEdit:mesgTable:j_id226header:sortDiv"><span class="propertySorter">Message</span></div></th>
+                                  <th class="rich-table-subheadercell  " scope="col" id="batchHomeEdit:mesgTable:j_id229header"><div id="batchHomeEdit:mesgTable:j_id229header:sortDiv"><span class="propertySorter">Context</span></div></th>
+                                  <th class="rich-table-subheadercell  " scope="col" id="batchHomeEdit:mesgTable:j_id232header"><div id="batchHomeEdit:mesgTable:j_id232header:sortDiv"><span class="propertySorter">Batch Iteration</span></div></th>
+                                  <th class="rich-table-subheadercell  " scope="col" id="batchHomeEdit:mesgTable:j_id235header"><div id="batchHomeEdit:mesgTable:j_id235header:sortDiv"><span class="propertySorter"></span></div></th>
+                                </tr>
+                              </thead>
+                              <tbody id="batchHomeEdit:mesgTable:tb">
+                              </tbody>
+                            </table>
+                          </div></td>
+                      </tr>
+                    </tbody>
+                  </table></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="actionButtons"> </div>
+          <input autocomplete="off" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id17" type="hidden">
+        </form>
+        <div id="batchBulkOperationsControllerPanels">
+          <div id="batchBulkUpdatePanel" style="display: none;">
+            <input autocomplete="off" id="batchBulkUpdatePanelOpenedState" name="batchBulkUpdatePanelOpenedState" type="hidden">
+            <div class="rich-modalpanel modal" id="batchBulkUpdatePanelContainer" style="position: absolute; display: none; z-index: 100; background-color: inherit;">
+              <div class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div" id="batchBulkUpdatePanelDiv" style="z-index: -1;">
+                <button class="rich-mpnl-button" id="batchBulkUpdatePanelFirstHref"></button>
+              </div>
+              <div class="rich-mpnl-panel">
+                <div class="rich-mp-container" id="batchBulkUpdatePanelCDiv" style="position: absolute; left: 0px; top: 0px; z-index: 9;">
+                  <div class="rich-mpnl-shadow" id="batchBulkUpdatePanelShadowDiv"></div>
+                  <div class="rich-mpnl-ovf-hd rich-mpnl-trim rich-mpnl-content" id="batchBulkUpdatePanelContentDiv">
+                    <table class="rich-mp-content-table" id="batchBulkUpdatePanelContentTable" style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+                      <tbody>
+                        <tr style="height: 99%;">
+                          <td class="rich-mpnl-body" valign="top"><div id="batchmodalDiv">
+                              <form target="" id="batchwizard" name="batchwizard" method="post" action="javascript:A4J.AJAX.SubmitForm('batchwizard',{'similarityGroupingId':'batchwizard','parameters':{'ajaxSingle':'batchwizard','batchwizard':'batchwizard'} ,'actionUrl':'/conprepUi2/batches/BatchEdit.seam'} )">
+                                <span id="batchwizard:j_id875">
+                                <div class="title">
+                                  <div class="span-9">
+                                    <h1></h1>
+                                  </div>
+                                  <div class="span-16 last"></div>
+                                </div>
+                                <div class="cluster"> 
+                                  
+                                  <!-- 	<p>Permissions determined by the following checks:</p>
+		<rich:dataOrderedList value=""
+			var="_check">
+			<h:outputText value="" />
+		</rich:dataOrderedList></div>
+claimBatch
+action=""
+getActionableComponentInstanceName
+
+batchBulkUpdatePanel
+ --> 
+                                </div>
+                                <div class="action">
+                                  <div class="span-5">
+                                    <hr>
+                                  </div>
+                                  <div class="span-20 last"><a class="button save" href="#" id="batchwizard:j_id875:j_id951" name="batchwizard:j_id875:j_id951" onclick="A4J.AJAX.Submit('batchwizard',event,{'oncomplete':function(request,event,data){document.getElementById('batchBulkUpdatePanel').component.hide(); javascript:location.reload(true);},'similarityGroupingId':'batchwizard:j_id875:j_id951','parameters':{'batchwizard:j_id875:j_id951':'batchwizard:j_id875:j_id951'} ,'eventsQueue':'batchEditeventsQueue','actionUrl':'/conprepUi2/batches/BatchEdit.seam'} );return false;">Return</a> </div>
+                                </div>
+                                </span>
+                                <input autocomplete="off" name="batchwizard" value="batchwizard" type="hidden">
+                                <input autocomplete="off" name="autoScroll" value="" type="hidden">
+                                <input autocomplete="off" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id17" type="hidden">
+                              </form>
+                            </div></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="rich-mpnl-resizer" id="batchBulkUpdatePanelResizerN" style="width: 40px; height: 4px; cursor: n-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="batchBulkUpdatePanelResizerE" style="height: 40px; width: 4px; cursor: e-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="batchBulkUpdatePanelResizerS" style="width: 40px; height: 4px; cursor: s-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="batchBulkUpdatePanelResizerW" style="height: 40px; width: 4px; cursor: w-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="batchBulkUpdatePanelResizerNWU" style="width: 40px; height: 4px; cursor: nw-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="batchBulkUpdatePanelResizerNEU" style="height: 40px; width: 4px; cursor: ne-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="batchBulkUpdatePanelResizerNEL" style="width: 40px; height: 4px; cursor: ne-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="batchBulkUpdatePanelResizerSEU" style="height: 40px; width: 4px; cursor: se-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="batchBulkUpdatePanelResizerSEL" style="width: 40px; height: 4px; cursor: se-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="batchBulkUpdatePanelResizerSWL" style="height: 40px; width: 4px; cursor: sw-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="batchBulkUpdatePanelResizerSWU" style="width: 40px; height: 4px; cursor: sw-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="batchBulkUpdatePanelResizerNWL" style="height: 40px; width: 4px; cursor: nw-resize;"></div>
+                </div>
+              </div>
+              <div class="rich-mpnl-mask-div rich-mpnl-mask-div-transparent" id="batchBulkUpdatePanelCursorDiv" style="z-index: -200;">
+                <button class="rich-mpnl-button" id="batchBulkUpdatePanelLastHref"></button>
+              </div>
+            </div>
+          </div>
+          <div id="batchBulkUpdateQuit" style="display: none;">
+            <input autocomplete="off" id="batchBulkUpdateQuitOpenedState" name="batchBulkUpdateQuitOpenedState" type="hidden">
+            <div class="rich-modalpanel modal" id="batchBulkUpdateQuitContainer" style="position: absolute; display: none; z-index: 100; background-color: inherit;">
+              <div class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div" id="batchBulkUpdateQuitDiv" style="z-index: -1;">
+                <button class="rich-mpnl-button" id="batchBulkUpdateQuitFirstHref"></button>
+              </div>
+              <div class="rich-mpnl-panel">
+                <div class="rich-mp-container" id="batchBulkUpdateQuitCDiv" style="position: absolute; left: 0px; top: 0px; z-index: 9;">
+                  <div class="rich-mpnl-shadow" id="batchBulkUpdateQuitShadowDiv"></div>
+                  <div class="rich-mpnl-ovf-hd rich-mpnl-trim rich-mpnl-content" id="batchBulkUpdateQuitContentDiv">
+                    <table class="rich-mp-content-table" id="batchBulkUpdateQuitContentTable" style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+                      <tbody>
+                        <tr style="height: 99%;">
+                          <td class="rich-mpnl-body" valign="top"><div id="batchmodalQuitDiv">
+                              <form target="" id="batchwizardQuit" name="batchwizardQuit" method="post" action="javascript:A4J.AJAX.SubmitForm('batchwizardQuit',{'similarityGroupingId':'batchwizardQuit','parameters':{'batchwizardQuit':'batchwizardQuit','ajaxSingle':'batchwizardQuit'} ,'actionUrl':'/conprepUi2/batches/BatchEdit.seam'} )">
+                                <span id="batchwizardQuit:j_id953">
+                                <div class="title">
+                                  <div class="span-9">
+                                    <h1>Quit </h1>
+                                  </div>
+                                  <div class="span-16 last"> </div>
+                                </div>
+                                <div class="cluster">
+                                  <p>Are you sure you want to quit? Changes will <em>not</em> be made.</p>
+                                </div>
+                                <div class="action">
+                                  <div class="span-5"><a class="button save" href="#" id="batchwizardQuit:j_id953:j_id960" name="batchwizardQuit:j_id953:j_id960" onclick="A4J.AJAX.Submit('batchwizardQuit',event,{'status':'globalWaitStatus','oncomplete':function(request,event,data){document.getElementById('batchBulkUpdatePanel').component.hide(); document.getElementById('batchBulkUpdateQuit').component.hide(); javascript:location.reload(true);},'similarityGroupingId':'batchwizardQuit:j_id953:j_id960','parameters':{'batchwizardQuit:j_id953:j_id960':'batchwizardQuit:j_id953:j_id960'} ,'eventsQueue':'batchEditeventsQueue','actionUrl':'/conprepUi2/batches/BatchEdit.seam'} );return false;">Yes, Quit</a></div>
+                                  <div class="span-20 last"><a class="button cancel" href="#" id="batchwizardQuit:j_id953:j_id962" name="batchwizardQuit:j_id953:j_id962" onclick=" document.getElementById('batchBulkUpdateQuit').component.hide(); ;A4J.AJAX.Submit('batchwizardQuit',event,{'status':'globalWaitStatus','similarityGroupingId':'batchwizardQuit:j_id953:j_id962','parameters':{'batchwizardQuit:j_id953:j_id962':'batchwizardQuit:j_id953:j_id962'} ,'eventsQueue':'batchEditeventsQueue','actionUrl':'/conprepUi2/batches/BatchEdit.seam'} );return false;">No, Return</a></div>
+                                </div>
+                                </span>
+                                <input autocomplete="off" name="batchwizardQuit" value="batchwizardQuit" type="hidden">
+                                <input autocomplete="off" name="autoScroll" value="" type="hidden">
+                                <input autocomplete="off" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id17" type="hidden">
+                              </form>
+                            </div></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="rich-mpnl-resizer" id="batchBulkUpdateQuitResizerN" style="width: 40px; height: 4px; cursor: n-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="batchBulkUpdateQuitResizerE" style="height: 40px; width: 4px; cursor: e-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="batchBulkUpdateQuitResizerS" style="width: 40px; height: 4px; cursor: s-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="batchBulkUpdateQuitResizerW" style="height: 40px; width: 4px; cursor: w-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="batchBulkUpdateQuitResizerNWU" style="width: 40px; height: 4px; cursor: nw-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="batchBulkUpdateQuitResizerNEU" style="height: 40px; width: 4px; cursor: ne-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="batchBulkUpdateQuitResizerNEL" style="width: 40px; height: 4px; cursor: ne-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="batchBulkUpdateQuitResizerSEU" style="height: 40px; width: 4px; cursor: se-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="batchBulkUpdateQuitResizerSEL" style="width: 40px; height: 4px; cursor: se-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="batchBulkUpdateQuitResizerSWL" style="height: 40px; width: 4px; cursor: sw-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="batchBulkUpdateQuitResizerSWU" style="width: 40px; height: 4px; cursor: sw-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="batchBulkUpdateQuitResizerNWL" style="height: 40px; width: 4px; cursor: nw-resize;"></div>
+                </div>
+              </div>
+              <div class="rich-mpnl-mask-div rich-mpnl-mask-div-transparent" id="batchBulkUpdateQuitCursorDiv" style="z-index: -200;">
+                <button class="rich-mpnl-button" id="batchBulkUpdateQuitLastHref"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="sustateBulkOperationsPanels">
+          <div id="sustateBulkUpdatePanel" style="display: none;">
+            <input autocomplete="off" id="sustateBulkUpdatePanelOpenedState" name="sustateBulkUpdatePanelOpenedState" type="hidden">
+            <div class="rich-modalpanel modal" id="sustateBulkUpdatePanelContainer" style="position: absolute; display: none; z-index: 100; background-color: inherit;">
+              <div class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div" id="sustateBulkUpdatePanelDiv" style="z-index: -1;">
+                <button class="rich-mpnl-button" id="sustateBulkUpdatePanelFirstHref"></button>
+              </div>
+              <div class="rich-mpnl-panel">
+                <div class="rich-mp-container" id="sustateBulkUpdatePanelCDiv" style="position: absolute; left: 0px; top: 0px; z-index: 9;">
+                  <div class="rich-mpnl-shadow" id="sustateBulkUpdatePanelShadowDiv"></div>
+                  <div class="rich-mpnl-ovf-hd rich-mpnl-trim rich-mpnl-content" id="sustateBulkUpdatePanelContentDiv">
+                    <table class="rich-mp-content-table" id="sustateBulkUpdatePanelContentTable" style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+                      <tbody>
+                        <tr style="height: 99%;">
+                          <td class="rich-mpnl-body" valign="top"><div id="sustatemodalDiv">
+                              <form target="" id="sustatewizard" name="sustatewizard" method="post" enctype="multipart/form-data" action="javascript:A4J.AJAX.SubmitForm('sustatewizard',{'similarityGroupingId':'sustatewizard','parameters':{'sustatewizard':'sustatewizard','ajaxSingle':'sustatewizard'} ,'actionUrl':'/conprepUi2/batches/BatchEdit.seam'} )">
+                                <span id="sustatewizard:j_id964">
+                                <div class="title">
+                                  <div class="span-9">
+                                    <h1></h1>
+                                  </div>
+                                  <div class="span-16 last">
+                                    <div id="sustatewizard:j_id964:j_id971">
+                                      <ul>
+                                        <li class="selected">1. Confirm </li>
+                                        <li class="">2. Change </li>
+                                        <li class="">3. Additional </li>
+                                        <li class="">4. Results </li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="cluster"> </div>
+                                <div class="action">
+                                  <div class="span-5">
+                                    <hr>
+                                  </div>
+                                  <div class="span-20 last"><a class="button save" href="#" id="sustatewizard:j_id964:j_id1040" name="sustatewizard:j_id964:j_id1040" onclick="A4J.AJAX.Submit('sustatewizard',event,{'oncomplete':function(request,event,data){document.getElementById('sustateBulkUpdatePanel').component.hide(); javascript:location.reload(true);},'similarityGroupingId':'sustatewizard:j_id964:j_id1040','parameters':{'sustatewizard:j_id964:j_id1040':'sustatewizard:j_id964:j_id1040'} ,'eventsQueue':'batchEditeventsQueue','actionUrl':'/conprepUi2/batches/BatchEdit.seam'} );return false;">Return</a> </div>
+                                </div>
+                                </span>
+                                <input autocomplete="off" name="sustatewizard" value="sustatewizard" type="hidden">
+                                <input autocomplete="off" name="autoScroll" value="" type="hidden">
+                                <input autocomplete="off" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id17" type="hidden">
+                              </form>
+                            </div></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="rich-mpnl-resizer" id="sustateBulkUpdatePanelResizerN" style="width: 40px; height: 4px; cursor: n-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="sustateBulkUpdatePanelResizerE" style="height: 40px; width: 4px; cursor: e-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="sustateBulkUpdatePanelResizerS" style="width: 40px; height: 4px; cursor: s-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="sustateBulkUpdatePanelResizerW" style="height: 40px; width: 4px; cursor: w-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="sustateBulkUpdatePanelResizerNWU" style="width: 40px; height: 4px; cursor: nw-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="sustateBulkUpdatePanelResizerNEU" style="height: 40px; width: 4px; cursor: ne-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="sustateBulkUpdatePanelResizerNEL" style="width: 40px; height: 4px; cursor: ne-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="sustateBulkUpdatePanelResizerSEU" style="height: 40px; width: 4px; cursor: se-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="sustateBulkUpdatePanelResizerSEL" style="width: 40px; height: 4px; cursor: se-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="sustateBulkUpdatePanelResizerSWL" style="height: 40px; width: 4px; cursor: sw-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="sustateBulkUpdatePanelResizerSWU" style="width: 40px; height: 4px; cursor: sw-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="sustateBulkUpdatePanelResizerNWL" style="height: 40px; width: 4px; cursor: nw-resize;"></div>
+                </div>
+              </div>
+              <div class="rich-mpnl-mask-div rich-mpnl-mask-div-transparent" id="sustateBulkUpdatePanelCursorDiv" style="z-index: -200;">
+                <button class="rich-mpnl-button" id="sustateBulkUpdatePanelLastHref"></button>
+              </div>
+            </div>
+          </div>
+          <div id="sustateBulkUpdateQuit" style="display: none;">
+            <input autocomplete="off" id="sustateBulkUpdateQuitOpenedState" name="sustateBulkUpdateQuitOpenedState" type="hidden">
+            <div class="rich-modalpanel modal" id="sustateBulkUpdateQuitContainer" style="position: absolute; display: none; z-index: 100; background-color: inherit;">
+              <div class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div" id="sustateBulkUpdateQuitDiv" style="z-index: -1;">
+                <button class="rich-mpnl-button" id="sustateBulkUpdateQuitFirstHref"></button>
+              </div>
+              <div class="rich-mpnl-panel">
+                <div class="rich-mp-container" id="sustateBulkUpdateQuitCDiv" style="position: absolute; left: 0px; top: 0px; z-index: 9;">
+                  <div class="rich-mpnl-shadow" id="sustateBulkUpdateQuitShadowDiv"></div>
+                  <div class="rich-mpnl-ovf-hd rich-mpnl-trim rich-mpnl-content" id="sustateBulkUpdateQuitContentDiv">
+                    <table class="rich-mp-content-table" id="sustateBulkUpdateQuitContentTable" style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+                      <tbody>
+                        <tr style="height: 99%;">
+                          <td class="rich-mpnl-body" valign="top"><div id="sustatemodalQuitDiv">
+                              <form target="" id="sustatewizardQuit" name="sustatewizardQuit" method="post" action="javascript:A4J.AJAX.SubmitForm('sustatewizardQuit',{'similarityGroupingId':'sustatewizardQuit','parameters':{'sustatewizardQuit':'sustatewizardQuit','ajaxSingle':'sustatewizardQuit'} ,'actionUrl':'/conprepUi2/batches/BatchEdit.seam'} )">
+                                <span id="sustatewizardQuit:j_id1042">
+                                <div class="title">
+                                  <div class="span-9">
+                                    <h1>Quit </h1>
+                                  </div>
+                                  <div class="span-16 last"> </div>
+                                </div>
+                                <div class="cluster">
+                                  <p>Are you sure you want to quit? Changes will <em>not</em> be made.</p>
+                                </div>
+                                <div class="action">
+                                  <div class="span-5"><a class="button save" href="#" id="sustatewizardQuit:j_id1042:j_id1049" name="sustatewizardQuit:j_id1042:j_id1049" onclick="A4J.AJAX.Submit('sustatewizardQuit',event,{'status':'globalWaitStatus','oncomplete':function(request,event,data){document.getElementById('sustateBulkUpdatePanel').component.hide(); document.getElementById('sustateBulkUpdateQuit').component.hide(); javascript:location.reload(true);},'similarityGroupingId':'sustatewizardQuit:j_id1042:j_id1049','parameters':{'sustatewizardQuit:j_id1042:j_id1049':'sustatewizardQuit:j_id1042:j_id1049'} ,'eventsQueue':'batchEditeventsQueue','actionUrl':'/conprepUi2/batches/BatchEdit.seam'} );return false;">Yes, Quit</a> </div>
+                                  <div class="span-20 last"><a class="button cancel" href="#" id="sustatewizardQuit:j_id1042:j_id1051" name="sustatewizardQuit:j_id1042:j_id1051" onclick=" document.getElementById('sustateBulkUpdateQuit').component.hide(); ;A4J.AJAX.Submit('sustatewizardQuit',event,{'status':'globalWaitStatus','similarityGroupingId':'sustatewizardQuit:j_id1042:j_id1051','parameters':{'sustatewizardQuit:j_id1042:j_id1051':'sustatewizardQuit:j_id1042:j_id1051'} ,'eventsQueue':'batchEditeventsQueue','actionUrl':'/conprepUi2/batches/BatchEdit.seam'} );return false;">No, Return</a> </div>
+                                </div>
+                                </span>
+                                <input autocomplete="off" name="sustatewizardQuit" value="sustatewizardQuit" type="hidden">
+                                <input autocomplete="off" name="autoScroll" value="" type="hidden">
+                                <input autocomplete="off" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id17" type="hidden">
+                              </form>
+                            </div></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="rich-mpnl-resizer" id="sustateBulkUpdateQuitResizerN" style="width: 40px; height: 4px; cursor: n-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="sustateBulkUpdateQuitResizerE" style="height: 40px; width: 4px; cursor: e-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="sustateBulkUpdateQuitResizerS" style="width: 40px; height: 4px; cursor: s-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="sustateBulkUpdateQuitResizerW" style="height: 40px; width: 4px; cursor: w-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="sustateBulkUpdateQuitResizerNWU" style="width: 40px; height: 4px; cursor: nw-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="sustateBulkUpdateQuitResizerNEU" style="height: 40px; width: 4px; cursor: ne-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="sustateBulkUpdateQuitResizerNEL" style="width: 40px; height: 4px; cursor: ne-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="sustateBulkUpdateQuitResizerSEU" style="height: 40px; width: 4px; cursor: se-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="sustateBulkUpdateQuitResizerSEL" style="width: 40px; height: 4px; cursor: se-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="sustateBulkUpdateQuitResizerSWL" style="height: 40px; width: 4px; cursor: sw-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="sustateBulkUpdateQuitResizerSWU" style="width: 40px; height: 4px; cursor: sw-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="sustateBulkUpdateQuitResizerNWL" style="height: 40px; width: 4px; cursor: nw-resize;"></div>
+                </div>
+              </div>
+              <div class="rich-mpnl-mask-div rich-mpnl-mask-div-transparent" id="sustateBulkUpdateQuitCursorDiv" style="z-index: -200;">
+                <button class="rich-mpnl-button" id="sustateBulkUpdateQuitLastHref"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="batchBadgeActivityPanels">
+          <div id="modalPanel" style="display: none;">
+            <input autocomplete="off" id="modalPanelOpenedState" name="modalPanelOpenedState" type="hidden">
+            <div class="rich-modalpanel modal" id="modalPanelContainer" style="position: absolute; display: none; z-index: 100; background-color: inherit;">
+              <div class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div" id="modalPanelDiv" style="z-index: -1;">
+                <button class="rich-mpnl-button" id="modalPanelFirstHref"></button>
+              </div>
+              <div class="rich-mpnl-panel">
+                <div class="rich-mp-container" id="modalPanelCDiv" style="position: absolute; left: 0px; top: 0px; z-index: 9;">
+                  <div class="rich-mpnl-shadow" id="modalPanelShadowDiv"></div>
+                  <div class="rich-mpnl-ovf-hd rich-mpnl-trim rich-mpnl-content" id="modalPanelContentDiv">
+                    <table class="rich-mp-content-table" id="modalPanelContentTable" style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+                      <tbody>
+                        <tr style="height: 1%;">
+                          <td class="rich-mpnl-header-cell"><div class="rich-mpnl-text rich-mpnl-header " id="modalPanelHeader" style="white-space: nowrap; cursor: move;"> TEST</div></td>
+                        </tr>
+                        <tr style="height: 99%;">
+                          <td class="rich-mpnl-body" valign="top"><br>
+                            <h1>Hello, Test!</h1>
+                            <br>
+                            <div id="j_id1055"> <a href="#" onclick="Richfaces.hideModalPanel('modalPanel')">Hide</a></div></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="rich-mpnl-resizer" id="modalPanelResizerN" style="width: 40px; height: 4px; cursor: n-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="modalPanelResizerE" style="height: 40px; width: 4px; cursor: e-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="modalPanelResizerS" style="width: 40px; height: 4px; cursor: s-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="modalPanelResizerW" style="height: 40px; width: 4px; cursor: w-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="modalPanelResizerNWU" style="width: 40px; height: 4px; cursor: nw-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="modalPanelResizerNEU" style="height: 40px; width: 4px; cursor: ne-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="modalPanelResizerNEL" style="width: 40px; height: 4px; cursor: ne-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="modalPanelResizerSEU" style="height: 40px; width: 4px; cursor: se-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="modalPanelResizerSEL" style="width: 40px; height: 4px; cursor: se-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="modalPanelResizerSWL" style="height: 40px; width: 4px; cursor: sw-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="modalPanelResizerSWU" style="width: 40px; height: 4px; cursor: sw-resize;"></div>
+                  <div class="rich-mpnl-resizer" id="modalPanelResizerNWL" style="height: 40px; width: 4px; cursor: nw-resize;"></div>
+                </div>
+              </div>
+              <div class="rich-mpnl-mask-div rich-mpnl-mask-div-transparent" id="modalPanelCursorDiv" style="z-index: -200;">
+                <button class="rich-mpnl-button" id="modalPanelLastHref"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Cluster -->
+    <div class="sidebar span-8 last"> 
+      <!-- Tags -->
+      <div id="j_id1058">
+        <form target="" id="batchTagsForm" name="batchTagsForm" method="post" action="/conprepUi2/batches/BatchEdit.seam">
+          <div class="tags">
+            <div class="enhance field">
+              <h2>Tags</h2>
+            </div>
+            <table class="rich-table " id="batchTagsForm:tagsTable" border="0" cellpadding="0" cellspacing="0">
+              <colgroup span="2">
+              </colgroup>
+              <tbody id="batchTagsForm:tagsTable:tb">
+                <tr class="rich-table-row rich-table-firstrow ">
+                  <td class="rich-table-cell " id="batchTagsForm:tagsTable:0:j_id1060">Alpha</td>
+                  <td class="rich-table-cell " id="batchTagsForm:tagsTable:0:j_id1062"><a tabindex="0" class="button cancel" href="#" id="batchTagsForm:tagsTable:0:j_id1063" name="batchTagsForm:tagsTable:0:j_id1063" onclick="A4J.AJAX.Submit('batchTagsForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchTagsForm:tagsTable:0:j_id1063','similarityGroupingId':'batchTagsForm:tagsTable:0:j_id1063','parameters':{'batchTagsForm:tagsTable:0:j_id1063':'batchTagsForm:tagsTable:0:j_id1063'} } );return false;"></a></td>
+                </tr>
+                <tr class="rich-table-row ">
+                  <td class="rich-table-cell " id="batchTagsForm:tagsTable:1:j_id1060">Apple</td>
+                  <td class="rich-table-cell " id="batchTagsForm:tagsTable:1:j_id1062"><a tabindex="0" class="button cancel" href="#" id="batchTagsForm:tagsTable:1:j_id1063" name="batchTagsForm:tagsTable:1:j_id1063" onclick="A4J.AJAX.Submit('batchTagsForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchTagsForm:tagsTable:1:j_id1063','similarityGroupingId':'batchTagsForm:tagsTable:1:j_id1063','parameters':{'batchTagsForm:tagsTable:1:j_id1063':'batchTagsForm:tagsTable:1:j_id1063'} } );return false;"></a></td>
+                </tr>
+                <tr class="rich-table-row ">
+                  <td class="rich-table-cell " id="batchTagsForm:tagsTable:2:j_id1060">Beta</td>
+                  <td class="rich-table-cell " id="batchTagsForm:tagsTable:2:j_id1062"><a tabindex="0" class="button cancel" href="#" id="batchTagsForm:tagsTable:2:j_id1063" name="batchTagsForm:tagsTable:2:j_id1063" onclick="A4J.AJAX.Submit('batchTagsForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchTagsForm:tagsTable:2:j_id1063','similarityGroupingId':'batchTagsForm:tagsTable:2:j_id1063','parameters':{'batchTagsForm:tagsTable:2:j_id1063':'batchTagsForm:tagsTable:2:j_id1063'} } );return false;"></a></td>
+                </tr>
+                <tr class="rich-table-row ">
+                  <td class="rich-table-cell " id="batchTagsForm:tagsTable:3:j_id1060">Delta</td>
+                  <td class="rich-table-cell " id="batchTagsForm:tagsTable:3:j_id1062"><a tabindex="0" class="button cancel" href="#" id="batchTagsForm:tagsTable:3:j_id1063" name="batchTagsForm:tagsTable:3:j_id1063" onclick="A4J.AJAX.Submit('batchTagsForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchTagsForm:tagsTable:3:j_id1063','similarityGroupingId':'batchTagsForm:tagsTable:3:j_id1063','parameters':{'batchTagsForm:tagsTable:3:j_id1063':'batchTagsForm:tagsTable:3:j_id1063'} } );return false;"></a></td>
+                </tr>
+                <tr class="rich-table-row ">
+                  <td class="rich-table-cell " id="batchTagsForm:tagsTable:4:j_id1060">Eta</td>
+                  <td class="rich-table-cell " id="batchTagsForm:tagsTable:4:j_id1062"><a tabindex="0" class="button cancel" href="#" id="batchTagsForm:tagsTable:4:j_id1063" name="batchTagsForm:tagsTable:4:j_id1063" onclick="A4J.AJAX.Submit('batchTagsForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchTagsForm:tagsTable:4:j_id1063','similarityGroupingId':'batchTagsForm:tagsTable:4:j_id1063','parameters':{'batchTagsForm:tagsTable:4:j_id1063':'batchTagsForm:tagsTable:4:j_id1063'} } );return false;"></a></td>
+                </tr>
+                <tr class="rich-table-row ">
+                  <td class="rich-table-cell " id="batchTagsForm:tagsTable:5:j_id1060">Gamma</td>
+                  <td class="rich-table-cell " id="batchTagsForm:tagsTable:5:j_id1062"><a tabindex="0" class="button cancel" href="#" id="batchTagsForm:tagsTable:5:j_id1063" name="batchTagsForm:tagsTable:5:j_id1063" onclick="A4J.AJAX.Submit('batchTagsForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchTagsForm:tagsTable:5:j_id1063','similarityGroupingId':'batchTagsForm:tagsTable:5:j_id1063','parameters':{'batchTagsForm:tagsTable:5:j_id1063':'batchTagsForm:tagsTable:5:j_id1063'} } );return false;"></a></td>
+                </tr>
+                <tr class="rich-table-row ">
+                  <td class="rich-table-cell " id="batchTagsForm:tagsTable:6:j_id1060">Lawrence</td>
+                  <td class="rich-table-cell " id="batchTagsForm:tagsTable:6:j_id1062"><a tabindex="0" class="button cancel" href="#" id="batchTagsForm:tagsTable:6:j_id1063" name="batchTagsForm:tagsTable:6:j_id1063" onclick="A4J.AJAX.Submit('batchTagsForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchTagsForm:tagsTable:6:j_id1063','similarityGroupingId':'batchTagsForm:tagsTable:6:j_id1063','parameters':{'batchTagsForm:tagsTable:6:j_id1063':'batchTagsForm:tagsTable:6:j_id1063'} } );return false;"></a></td>
+                </tr>
+                <tr class="rich-table-row ">
+                  <td class="rich-table-cell " id="batchTagsForm:tagsTable:7:j_id1060">Princeton</td>
+                  <td class="rich-table-cell " id="batchTagsForm:tagsTable:7:j_id1062"><a tabindex="0" class="button cancel" href="#" id="batchTagsForm:tagsTable:7:j_id1063" name="batchTagsForm:tagsTable:7:j_id1063" onclick="A4J.AJAX.Submit('batchTagsForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchTagsForm:tagsTable:7:j_id1063','similarityGroupingId':'batchTagsForm:tagsTable:7:j_id1063','parameters':{'batchTagsForm:tagsTable:7:j_id1063':'batchTagsForm:tagsTable:7:j_id1063'} } );return false;"></a></td>
+                </tr>
+                <tr class="rich-table-row ">
+                  <td class="rich-table-cell " id="batchTagsForm:tagsTable:8:j_id1060">Test the postion</td>
+                  <td class="rich-table-cell " id="batchTagsForm:tagsTable:8:j_id1062"><a tabindex="0" class="button cancel" href="#" id="batchTagsForm:tagsTable:8:j_id1063" name="batchTagsForm:tagsTable:8:j_id1063" onclick="A4J.AJAX.Submit('batchTagsForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchTagsForm:tagsTable:8:j_id1063','similarityGroupingId':'batchTagsForm:tagsTable:8:j_id1063','parameters':{'batchTagsForm:tagsTable:8:j_id1063':'batchTagsForm:tagsTable:8:j_id1063'} } );return false;"></a></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="combobox"><a tabindex="0" class="button add" href="#" id="batchTagsForm:j_id1066" name="batchTagsForm:j_id1066" onclick="A4J.AJAX.Submit('batchTagsForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchTagsForm:j_id1066','similarityGroupingId':'batchTagsForm:j_id1066','parameters':{'batchTagsForm:j_id1066':'batchTagsForm:j_id1066'} } );return false;"></a>
+              <div id="batchTagsForm:tagsComboBox">
+                <div class="rich-combobox-font rich-combobox " id="batchTagsForm:tagsComboBoxcombobox" style="width:150px;">
+                  <div class="rich-combobox-list-cord"></div>
+                  <div class="rich-combobox-font rich-combobox-shell" style="width:150px;">
+                    <input value="Please select.." tabindex="0" autocomplete="off" class="rich-combobox-font-disabled rich-combobox-input-disabled" id="batchTagsForm:tagsComboBoxcomboboxField" name="batchTagsForm:tagsComboBoxcomboboxField" style="width: 121px;" type="text">
+                    <input autocomplete="off" class="rich-combobox-font-inactive rich-combobox-button-background rich-combobox-button-inactive disabled" id="batchTagsForm:tagsComboBoxcomboBoxButtonBG" readonly="true" tabindex="0" type="text">
+                    <input autocomplete="off" class="rich-combobox-font-inactive rich-combobox-button-icon-inactive rich-combobox-button-inactive  disabled" id="batchTagsForm:tagsComboBoxcomboboxButton" readonly="true" style="" tabindex="0" type="text">
+                    <div class="rich-combobox-strut rich-combobox-font" style="width:140px">Strut</div>
+                  </div>
+                  <div class="rich-combobox-list-cord " id="batchTagsForm:tagsComboBoxlistParent" style="position: absolute; z-index: 1000; visibility: visible; display: none;">
+                    <div class="rich-combobox-shadow">
+                      <table id="batchTagsForm:tagsComboBoxshadow" border="0" cellpadding="0" cellspacing="0">
+                        <tbody>
+                          <tr>
+                            <td class="rich-combobox-shadow-tl"><img alt="" src="junk/spacer.gif" style="border: 0pt none;" height="1" width="10"><br></td>
+                            <td class="rich-combobox-shadow-tr"><img alt="" src="junk/spacer.gif" style="border: 0pt none;" height="10" width="1"><br></td>
+                          </tr>
+                          <tr>
+                            <td class="rich-combobox-shadow-bl"><img alt="" src="junk/spacer.gif" style="border: 0pt none;" height="10" width="1"><br></td>
+                            <td class="rich-combobox-shadow-br"><img alt="" src="junk/spacer.gif" style="border: 0pt none;" height="10" width="10"><br></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="rich-combobox-list-position" id="batchTagsForm:tagsComboBoxlistPosition">
+                      <div class="rich-combobox-list-decoration" id="batchTagsForm:tagsComboBoxlistDecoration">
+                        <div class="rich-combobox-list-scroll" id="batchTagsForm:tagsComboBoxlist"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <input value="" autocomplete="off" id="batchTagsForm:tagsComboBoxcomboboxValue" name="batchTagsForm:tagsComboBox" type="hidden">
+                </div>
+              </div>
+            </div>
+          </div>
+          <input autocomplete="off" name="batchTagsForm" value="batchTagsForm" type="hidden">
+          <input autocomplete="off" name="autoScroll" value="" type="hidden">
+          <input autocomplete="off" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id17" type="hidden">
+        </form>
+      </div>
+      <!-- End Tags --> 
+      <!-- Notes -->
+      <div id="j_id1069">
+        <form target="" id="batchNotesForm" name="batchNotesForm" method="post" action="/conprepUi2/batches/BatchEdit.seam">
+          <div class="notes">
+            <div class="enhance field">
+              <h2>Notes</h2>
+              <a tabindex="0" class="button add" href="#" id="batchNotesForm:addlink" name="batchNotesForm:addlink" onclick="A4J.AJAX.Submit('batchNotesForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchNotesForm:addlink','status':'globalWaitStatus','oncomplete':function(request,event,data){document.getElementById('addPanel').component.show()},'similarityGroupingId':'batchNotesForm:addlink','parameters':{'ajaxSingle':'batchNotesForm:addlink','batchNotesForm:addlink':'batchNotesForm:addlink'} } );return false;"></a><span class="rich-tool-tip " id="batchNotesForm:j_id1071" style="z-index: 99; visibility: hidden; display: none; left: 1565.28px; top: 518.217px;"><span id="batchNotesForm:j_id1071content">Add Notes</span><span id="batchNotesForm:j_id1071script" style="display:none"></span></span> </div>
+            <table id="batchNotesForm:notesTable" class="rich-table" border="0" cellpadding="0" cellspacing="0">
+              <colgroup span="2">
+              </colgroup>
+              <tbody id="batchNotesForm:notesTable:tb">
+                <tr class="rich-table-row rich-table-firstrow">
+                  <td id="batchNotesForm:notesTable:0:j_id1073" class="rich-table-cell"><p>efsefsddxvxcvzx</p>
+                    <p class="sig">Needed Source&nbsp;by&nbsp;kkurra&nbsp;at&nbsp;2011/05/24 00:00:00</p></td>
+                  <td id="batchNotesForm:notesTable:0:j_id1087" class="rich-table-cell"><a tabindex="0" onclick="A4J.AJAX.Submit('batchNotesForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchNotesForm:notesTable:0:editlink','status':'globalWaitStatus','oncomplete':function(request,event,data){document.getElementById('editPanel').component.show()},'similarityGroupingId':'batchNotesForm:notesTable:0:editlink','parameters':{'batchNotesForm:notesTable:0:editlink':'batchNotesForm:notesTable:0:editlink','ajaxSingle':'batchNotesForm:notesTable:0:editlink'} } );return false;" name="batchNotesForm:notesTable:0:editlink" id="batchNotesForm:notesTable:0:editlink" href="#" class="button edit"></a><span style="z-index: 99; visibility: visible; display: none;" id="batchNotesForm:notesTable:0:j_id1088" class="rich-tool-tip"><span id="batchNotesForm:notesTable:0:j_id1088content">Edit</span><span style="display:none" id="batchNotesForm:notesTable:0:j_id1088script"></span></span><a tabindex="0" onclick="A4J.AJAX.Submit('batchNotesForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchNotesForm:notesTable:0:deletelink','status':'globalWaitStatus','oncomplete':function(request,event,data){document.getElementById('deletePanel').component.show()},'similarityGroupingId':'batchNotesForm:notesTable:0:deletelink','parameters':{'ajaxSingle':'batchNotesForm:notesTable:0:deletelink','batchNotesForm:notesTable:0:deletelink':'batchNotesForm:notesTable:0:deletelink'} } );return false;" name="batchNotesForm:notesTable:0:deletelink" id="batchNotesForm:notesTable:0:deletelink" href="#" class="button delete"></a><span style="z-index: 99; visibility: visible; display: none;" id="batchNotesForm:notesTable:0:j_id1089" class="rich-tool-tip"><span id="batchNotesForm:notesTable:0:j_id1089content">Delete</span><span style="display:none" id="batchNotesForm:notesTable:0:j_id1089script"></span></span></td>
+                </tr>
+                <tr class="rich-table-row">
+                  <td id="batchNotesForm:notesTable:1:j_id1073" class="rich-table-cell"><p>Testing Needed Source</p>
+                    <p class="sig">Needed Source&nbsp;by&nbsp;kkurra&nbsp;at&nbsp;2011/05/24 00:00:00</p></td>
+                  <td id="batchNotesForm:notesTable:1:j_id1087" class="rich-table-cell"><a tabindex="0" onclick="A4J.AJAX.Submit('batchNotesForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchNotesForm:notesTable:1:editlink','status':'globalWaitStatus','oncomplete':function(request,event,data){document.getElementById('editPanel').component.show()},'similarityGroupingId':'batchNotesForm:notesTable:1:editlink','parameters':{'ajaxSingle':'batchNotesForm:notesTable:1:editlink','batchNotesForm:notesTable:1:editlink':'batchNotesForm:notesTable:1:editlink'} } );return false;" name="batchNotesForm:notesTable:1:editlink" id="batchNotesForm:notesTable:1:editlink" href="#" class="button edit"></a><span style="z-index: 99; visibility: visible; display: none;" id="batchNotesForm:notesTable:1:j_id1088" class="rich-tool-tip"><span id="batchNotesForm:notesTable:1:j_id1088content">Edit</span><span style="display:none" id="batchNotesForm:notesTable:1:j_id1088script"></span></span><a tabindex="0" onclick="A4J.AJAX.Submit('batchNotesForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchNotesForm:notesTable:1:deletelink','status':'globalWaitStatus','oncomplete':function(request,event,data){document.getElementById('deletePanel').component.show()},'similarityGroupingId':'batchNotesForm:notesTable:1:deletelink','parameters':{'ajaxSingle':'batchNotesForm:notesTable:1:deletelink','batchNotesForm:notesTable:1:deletelink':'batchNotesForm:notesTable:1:deletelink'} } );return false;" name="batchNotesForm:notesTable:1:deletelink" id="batchNotesForm:notesTable:1:deletelink" href="#" class="button delete"></a><span style="z-index: 99; visibility: visible; display: none;" id="batchNotesForm:notesTable:1:j_id1089" class="rich-tool-tip"><span id="batchNotesForm:notesTable:1:j_id1089content">Delete</span><span style="display:none" id="batchNotesForm:notesTable:1:j_id1089script"></span></span></td>
+                </tr>
+                <tr class="rich-table-row">
+                  <td id="batchNotesForm:notesTable:2:j_id1073" class="rich-table-cell"><p>Test Note 10 20 20</p>
+                    <p class="sig">Needed Source&nbsp;by&nbsp;kkurra&nbsp;at&nbsp;2011/05/24 00:00:00</p></td>
+                  <td id="batchNotesForm:notesTable:2:j_id1087" class="rich-table-cell"><a tabindex="0" onclick="A4J.AJAX.Submit('batchNotesForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchNotesForm:notesTable:2:editlink','status':'globalWaitStatus','oncomplete':function(request,event,data){document.getElementById('editPanel').component.show()},'similarityGroupingId':'batchNotesForm:notesTable:2:editlink','parameters':{'ajaxSingle':'batchNotesForm:notesTable:2:editlink','batchNotesForm:notesTable:2:editlink':'batchNotesForm:notesTable:2:editlink'} } );return false;" name="batchNotesForm:notesTable:2:editlink" id="batchNotesForm:notesTable:2:editlink" href="#" class="button edit"></a><span style="z-index: 99; visibility: visible; display: none;" id="batchNotesForm:notesTable:2:j_id1088" class="rich-tool-tip"><span id="batchNotesForm:notesTable:2:j_id1088content">Edit</span><span style="display:none" id="batchNotesForm:notesTable:2:j_id1088script"></span></span><a tabindex="0" onclick="A4J.AJAX.Submit('batchNotesForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchNotesForm:notesTable:2:deletelink','status':'globalWaitStatus','oncomplete':function(request,event,data){document.getElementById('deletePanel').component.show()},'similarityGroupingId':'batchNotesForm:notesTable:2:deletelink','parameters':{'batchNotesForm:notesTable:2:deletelink':'batchNotesForm:notesTable:2:deletelink','ajaxSingle':'batchNotesForm:notesTable:2:deletelink'} } );return false;" name="batchNotesForm:notesTable:2:deletelink" id="batchNotesForm:notesTable:2:deletelink" href="#" class="button delete"></a><span style="z-index: 99; visibility: visible; display: none;" id="batchNotesForm:notesTable:2:j_id1089" class="rich-tool-tip"><span id="batchNotesForm:notesTable:2:j_id1089content">Delete</span><span style="display:none" id="batchNotesForm:notesTable:2:j_id1089script"></span></span></td>
+                </tr>
+                <tr class="rich-table-row">
+                  <td id="batchNotesForm:notesTable:3:j_id1073" class="rich-table-cell"><p>Added Selection Recommendation to New Note Changed to Selection</p>
+                    <p class="sig">Selection Recommendation&nbsp;by&nbsp;kkurra&nbsp;at&nbsp;2011/05/24 00:00:00</p></td>
+                  <td id="batchNotesForm:notesTable:3:j_id1087" class="rich-table-cell"><a tabindex="0" onclick="A4J.AJAX.Submit('batchNotesForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchNotesForm:notesTable:3:editlink','status':'globalWaitStatus','oncomplete':function(request,event,data){document.getElementById('editPanel').component.show()},'similarityGroupingId':'batchNotesForm:notesTable:3:editlink','parameters':{'ajaxSingle':'batchNotesForm:notesTable:3:editlink','batchNotesForm:notesTable:3:editlink':'batchNotesForm:notesTable:3:editlink'} } );return false;" name="batchNotesForm:notesTable:3:editlink" id="batchNotesForm:notesTable:3:editlink" href="#" class="button edit"></a><span style="z-index: 99; visibility: visible; display: none;" id="batchNotesForm:notesTable:3:j_id1088" class="rich-tool-tip"><span id="batchNotesForm:notesTable:3:j_id1088content">Edit</span><span style="display:none" id="batchNotesForm:notesTable:3:j_id1088script"></span></span><a tabindex="0" onclick="A4J.AJAX.Submit('batchNotesForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchNotesForm:notesTable:3:deletelink','status':'globalWaitStatus','oncomplete':function(request,event,data){document.getElementById('deletePanel').component.show()},'similarityGroupingId':'batchNotesForm:notesTable:3:deletelink','parameters':{'batchNotesForm:notesTable:3:deletelink':'batchNotesForm:notesTable:3:deletelink','ajaxSingle':'batchNotesForm:notesTable:3:deletelink'} } );return false;" name="batchNotesForm:notesTable:3:deletelink" id="batchNotesForm:notesTable:3:deletelink" href="#" class="button delete"></a><span style="z-index: 99; visibility: visible; display: none;" id="batchNotesForm:notesTable:3:j_id1089" class="rich-tool-tip"><span id="batchNotesForm:notesTable:3:j_id1089content">Delete</span><span style="display:none" id="batchNotesForm:notesTable:3:j_id1089script"></span></span></td>
+                </tr>
+                <tr class="rich-table-row">
+                  <td id="batchNotesForm:notesTable:4:j_id1073" class="rich-table-cell"><p>Testing Note Type</p>
+                    <p class="sig">Needed Source&nbsp;by&nbsp;kkurra&nbsp;at&nbsp;2011/05/24 00:00:00</p></td>
+                  <td id="batchNotesForm:notesTable:4:j_id1087" class="rich-table-cell"><a tabindex="0" onclick="A4J.AJAX.Submit('batchNotesForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchNotesForm:notesTable:4:editlink','status':'globalWaitStatus','oncomplete':function(request,event,data){document.getElementById('editPanel').component.show()},'similarityGroupingId':'batchNotesForm:notesTable:4:editlink','parameters':{'ajaxSingle':'batchNotesForm:notesTable:4:editlink','batchNotesForm:notesTable:4:editlink':'batchNotesForm:notesTable:4:editlink'} } );return false;" name="batchNotesForm:notesTable:4:editlink" id="batchNotesForm:notesTable:4:editlink" href="#" class="button edit"></a><span style="z-index: 99; visibility: visible; display: none;" id="batchNotesForm:notesTable:4:j_id1088" class="rich-tool-tip"><span id="batchNotesForm:notesTable:4:j_id1088content">Edit</span><span style="display:none" id="batchNotesForm:notesTable:4:j_id1088script"></span></span><a tabindex="0" onclick="A4J.AJAX.Submit('batchNotesForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchNotesForm:notesTable:4:deletelink','status':'globalWaitStatus','oncomplete':function(request,event,data){document.getElementById('deletePanel').component.show()},'similarityGroupingId':'batchNotesForm:notesTable:4:deletelink','parameters':{'batchNotesForm:notesTable:4:deletelink':'batchNotesForm:notesTable:4:deletelink','ajaxSingle':'batchNotesForm:notesTable:4:deletelink'} } );return false;" name="batchNotesForm:notesTable:4:deletelink" id="batchNotesForm:notesTable:4:deletelink" href="#" class="button delete"></a><span style="z-index: 99; visibility: visible; display: none;" id="batchNotesForm:notesTable:4:j_id1089" class="rich-tool-tip"><span id="batchNotesForm:notesTable:4:j_id1089content">Delete</span><span style="display:none" id="batchNotesForm:notesTable:4:j_id1089script"></span></span></td>
+                </tr>
+                <tr class="rich-table-row">
+                  <td id="batchNotesForm:notesTable:5:j_id1073" class="rich-table-cell"><p>test</p>
+                    <p class="sig">Needed Source&nbsp;by&nbsp;kkurra&nbsp;at&nbsp;2011/05/24 00:00:00</p></td>
+                  <td id="batchNotesForm:notesTable:5:j_id1087" class="rich-table-cell"><a tabindex="0" onclick="A4J.AJAX.Submit('batchNotesForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchNotesForm:notesTable:5:editlink','status':'globalWaitStatus','oncomplete':function(request,event,data){document.getElementById('editPanel').component.show()},'similarityGroupingId':'batchNotesForm:notesTable:5:editlink','parameters':{'batchNotesForm:notesTable:5:editlink':'batchNotesForm:notesTable:5:editlink','ajaxSingle':'batchNotesForm:notesTable:5:editlink'} } );return false;" name="batchNotesForm:notesTable:5:editlink" id="batchNotesForm:notesTable:5:editlink" href="#" class="button edit"></a><span style="z-index: 99; visibility: visible; display: none;" id="batchNotesForm:notesTable:5:j_id1088" class="rich-tool-tip"><span id="batchNotesForm:notesTable:5:j_id1088content">Edit</span><span style="display:none" id="batchNotesForm:notesTable:5:j_id1088script"></span></span><a tabindex="0" onclick="A4J.AJAX.Submit('batchNotesForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchNotesForm:notesTable:5:deletelink','status':'globalWaitStatus','oncomplete':function(request,event,data){document.getElementById('deletePanel').component.show()},'similarityGroupingId':'batchNotesForm:notesTable:5:deletelink','parameters':{'ajaxSingle':'batchNotesForm:notesTable:5:deletelink','batchNotesForm:notesTable:5:deletelink':'batchNotesForm:notesTable:5:deletelink'} } );return false;" name="batchNotesForm:notesTable:5:deletelink" id="batchNotesForm:notesTable:5:deletelink" href="#" class="button delete"></a><span style="z-index: 99; visibility: visible; display: none;" id="batchNotesForm:notesTable:5:j_id1089" class="rich-tool-tip"><span id="batchNotesForm:notesTable:5:j_id1089content">Delete</span><span style="display:none" id="batchNotesForm:notesTable:5:j_id1089script"></span></span></td>
+                </tr>
+                <tr class="rich-table-row">
+                  <td id="batchNotesForm:notesTable:6:j_id1073" class="rich-table-cell"><p>Test Null values</p>
+                    <p class="sig">Selection Recommendation&nbsp;by&nbsp;kkurra&nbsp;at&nbsp;2011/05/24 00:00:00</p></td>
+                  <td id="batchNotesForm:notesTable:6:j_id1087" class="rich-table-cell"><a tabindex="0" onclick="A4J.AJAX.Submit('batchNotesForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchNotesForm:notesTable:6:editlink','status':'globalWaitStatus','oncomplete':function(request,event,data){document.getElementById('editPanel').component.show()},'similarityGroupingId':'batchNotesForm:notesTable:6:editlink','parameters':{'batchNotesForm:notesTable:6:editlink':'batchNotesForm:notesTable:6:editlink','ajaxSingle':'batchNotesForm:notesTable:6:editlink'} } );return false;" name="batchNotesForm:notesTable:6:editlink" id="batchNotesForm:notesTable:6:editlink" href="#" class="button edit"></a><span style="z-index: 99; visibility: visible; display: none;" id="batchNotesForm:notesTable:6:j_id1088" class="rich-tool-tip"><span id="batchNotesForm:notesTable:6:j_id1088content">Edit</span><span style="display:none" id="batchNotesForm:notesTable:6:j_id1088script"></span></span><a tabindex="0" onclick="A4J.AJAX.Submit('batchNotesForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchNotesForm:notesTable:6:deletelink','status':'globalWaitStatus','oncomplete':function(request,event,data){document.getElementById('deletePanel').component.show()},'similarityGroupingId':'batchNotesForm:notesTable:6:deletelink','parameters':{'ajaxSingle':'batchNotesForm:notesTable:6:deletelink','batchNotesForm:notesTable:6:deletelink':'batchNotesForm:notesTable:6:deletelink'} } );return false;" name="batchNotesForm:notesTable:6:deletelink" id="batchNotesForm:notesTable:6:deletelink" href="#" class="button delete"></a><span style="z-index: 99; visibility: visible; display: none;" id="batchNotesForm:notesTable:6:j_id1089" class="rich-tool-tip"><span id="batchNotesForm:notesTable:6:j_id1089content">Delete</span><span style="display:none" id="batchNotesForm:notesTable:6:j_id1089script"></span></span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <input autocomplete="off" name="batchNotesForm" value="batchNotesForm" type="hidden">
+          <input autocomplete="off" name="autoScroll" value="" type="hidden">
+          <input autocomplete="off" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id17" type="hidden">
+        </form>
+        <div id="editPanel" style="display: none;">
+          <input autocomplete="off" id="editPanelOpenedState" name="editPanelOpenedState" type="hidden">
+          <div class="rich-modalpanel notes" id="editPanelContainer" style="position: absolute; display: none; z-index: 100; background-color: inherit;">
+            <div class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div" id="editPanelDiv" style="z-index: -1;">
+              <button class="rich-mpnl-button" id="editPanelFirstHref"></button>
+            </div>
+            <div class="rich-mpnl-panel">
+              <div class="rich-mp-container" id="editPanelCDiv" style="position: absolute; left: 0px; top: 0px; z-index: 9;">
+                <div class="rich-mpnl-shadow" id="editPanelShadowDiv"></div>
+                <div class=" rich-mpnl-content" id="editPanelContentDiv">
+                  <table class="rich-mp-content-table" id="editPanelContentTable" style="width: 1px; height: 1px;" border="0" cellpadding="0" cellspacing="0">
+                    <tbody>
+                      <tr style="height: 99%;">
+                        <td class="rich-mpnl-body" valign="top"><form id="j_id1091" name="j_id1091" method="post" action="/conprepUi2/batches/BatchEdit.seam" enctype="application/x-www-form-urlencoded">
+                            <input autocomplete="off" name="j_id1091" value="j_id1091" type="hidden">
+                            <div class="title">
+                              <h1>Edit Notes </h1>
+                            </div>
+                            <div class="cluster">
+                              <div class="field required">
+                                <div class="span-5">
+                                  <label>Note Type</label>
+                                </div>
+                                <div class="span-10 last">
+                                  <select name="j_id1091:j_id1093" size="1">
+                                    <option selected="selected" value="Selection Recommendation">Selection Recommendation</option>
+                                    <option value="Needed Source">Needed Source</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="field required">
+                                <div class="span-5">
+                                  <label>Note</label>
+                                </div>
+                                <div class="span-10 last"><span id="j_id1091:j_id1096">
+                                  <p>
+                                    <textarea name="j_id1091:j_id1098">Testing Needed Source</textarea>
+                                  </p>
+                                  </span> </div>
+                              </div>
+                            </div>
+                            <div class="action">
+                              <div class="span-5"><a class="button cancel" href="#" id="j_id1091:j_id1101" name="j_id1091:j_id1101" onclick="document.getElementById('editPanel').component.hide();;A4J.AJAX.Submit('j_id1091',event,{'ignoreDupResponses':true,'implicitEventsQueue':'j_id1091:j_id1101','similarityGroupingId':'j_id1091:j_id1101','parameters':{'j_id1091:j_id1101':'j_id1091:j_id1101'} } );return false;">Quit</a> </div>
+                              <div class="span-10 last"><a class="button save" href="#" id="j_id1091:j_id1103" name="j_id1091:j_id1103" onclick="A4J.AJAX.Submit('j_id1091',event,{'oncomplete':function(request,event,data){if (true) document.getElementById('editPanel').component.hide();},'similarityGroupingId':'j_id1091:j_id1103','parameters':{'j_id1091:j_id1103':'j_id1091:j_id1103'} } );return false;">Confirm</a> </div>
+                            </div>
+                            <input autocomplete="off" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id17" type="hidden">
+                          </form></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="rich-mpnl-mask-div rich-mpnl-mask-div-transparent" id="editPanelCursorDiv" style="z-index: -200;">
+              <button class="rich-mpnl-button" id="editPanelLastHref"></button>
+            </div>
+          </div>
+        </div>
+        <div id="addPanel" style="display: none;">
+          <input autocomplete="off" id="addPanelOpenedState" name="addPanelOpenedState" type="hidden">
+        </div>
+        <div id="deletePanel" style="display: none;">
+          <input autocomplete="off" id="deletePanelOpenedState" name="deletePanelOpenedState" type="hidden">
+          <div class="rich-modalpanel notes" id="deletePanelContainer" style="position: absolute; z-index: 100; background-color: inherit; display: none;">
+            <div class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div" id="deletePanelDiv" style="z-index: -1;">
+              <button class="rich-mpnl-button" id="deletePanelFirstHref"></button>
+            </div>
+            <div class="rich-mpnl-panel">
+              <div class="rich-mp-container" id="deletePanelCDiv" style="position: absolute; left: 414px; top: 209px; z-index: 9;">
+                <div style="width: 1030px; height: 622px;" class="rich-mpnl-shadow" id="deletePanelShadowDiv"></div>
+                <div class=" rich-mpnl-content" id="deletePanelContentDiv">
+                  <table class="rich-mp-content-table" id="deletePanelContentTable" style="width: 1px; height: 1px;" border="0" cellpadding="0" cellspacing="0">
+                    <tbody>
+                      <tr style="height: 99%;">
+                        <td class="rich-mpnl-body" valign="top"><form id="j_id1117" name="j_id1117" method="post" action="/conprepUi2/batches/BatchEdit.seam" enctype="application/x-www-form-urlencoded">
+                            <input autocomplete="off" name="j_id1117" value="j_id1117" type="hidden">
+                            <div class="title">
+                              <h1>Delete Note</h1>
+                            </div>
+                            <div class="cluster">
+                              <div class="alert"><span id="j_id1117:j_id1119">This Note will be permanently deletedTesting Needed Source</span> </div>
+                            </div>
+                            <div class="action">
+                              <div class="span-5"><a class="button cancel" href="#" id="j_id1117:j_id1123" name="j_id1117:j_id1123" onclick="document.getElementById('deletePanel').component.hide();;A4J.AJAX.Submit('j_id1117',event,{'ignoreDupResponses':true,'implicitEventsQueue':'j_id1117:j_id1123','similarityGroupingId':'j_id1117:j_id1123','parameters':{'j_id1117:j_id1123':'j_id1117:j_id1123'} } );return false;">No,Quit</a> </div>
+                              <div class="span-10 last"><a class="button save" href="#" id="j_id1117:j_id1125" name="j_id1117:j_id1125" onclick="A4J.AJAX.Submit('j_id1117',event,{'oncomplete':function(request,event,data){if (true) document.getElementById('deletePanel').component.hide();},'similarityGroupingId':'j_id1117:j_id1125','parameters':{'j_id1117:j_id1125':'j_id1117:j_id1125'} } );return false;">Yes,Confirm</a> </div>
+                            </div>
+                            <input autocomplete="off" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id17" type="hidden">
+                          </form></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="rich-mpnl-mask-div rich-mpnl-mask-div-transparent" id="deletePanelCursorDiv" style="z-index: -200;">
+              <button class="rich-mpnl-button" id="deletePanelLastHref"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Notes -->
+      <hr>
+    </div>
+  </div>
+  <!-- Footer -->
+  <div id="j_id1128" class="footer"> <span id="appinfo"></span>
+    <p style="margin-top: -0.5em;">Conversation: id =
+      19, long running  -  Ajax4jsf Log
+      (Ctrl+Shift+D)  - <a tabindex="0" href="http://localhost:8080/conprepUi2/debug.seam?cid=19" id="debugConsole" target="debugConsole">Debug console</a> - <a tabindex="0" href="http://localhost:8080/conprepUi2/home.seam?actionMethod=batches%2FBatchEdit.xhtml%3Aorg.jboss.seam.web.session.invalidate" id="resetSession">Terminate session</a></p>
+  </div>
+  <!-- End Footer --> 
+  
+</div>
+<div class="rich-modalpanel compact" id="addPanelContainer" style="position: absolute; z-index: 100; background-color: inherit;">
+  <div class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div" id="addPanelDiv" style="z-index: -1;">
+    <button class="rich-mpnl-button" id="addPanelFirstHref"></button>
+  </div>
+  <div class="rich-mpnl-panel">
+    <div class="rich-mp-container" id="addPanelCDiv" style="position: absolute; left: 414px; top: 209px; z-index: 9;">
+      <div style="width: 1030px; height: 622px;" class="rich-mpnl-shadow" id="addPanelShadowDiv"></div>
+      <div class=" rich-mpnl-content" id="addPanelContentDiv">
+        <table class="rich-mp-content-table" id="addPanelContentTable" style="width: 1px; height: 1px;" border="0" cellpadding="0" cellspacing="0">
+          <tbody>
+            <tr style="height: 99%;">
+              <td class="rich-mpnl-body" valign="top"><form id="j_id1105" name="j_id1105" method="post" action="/conprepUi2/batches/BatchEdit.seam" enctype="application/x-www-form-urlencoded">
+                  <input autocomplete="off" name="j_id1105" value="j_id1105" type="hidden">
+                  <div class="title">
+                    <h1>Add Note</h1>
+                  </div>
+                  <div class="cluster">
+                    <div class="field required">
+                      <div class="span-5">
+                        <label>Note Type</label>
+                      </div>
+                      <div class="span-10 last">
+                        <select name="j_id1105:j_id1107" size="1">
+                          <option value="org.jboss.seam.ui.NoSelectionConverter.noSelectionValue" selected="selected">Choose...</option>
+                          <option value="Selection Recommendation">Selection Recommendation</option>
+                          <option value="Needed Source">Needed Source</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="field required">
+                      <div class="span-5">
+                        <label>Note</label>
+                      </div>
+                      <div class="span-10 last"><span id="j_id1105:j_id1110">
+                        <textarea name="j_id1105:j_id1111"></textarea>
+                        </span> </div>
+                    </div>
+                  </div>
+                  <div class="action">
+                    <div class="span-5"><a class="button cancel" href="#" id="j_id1105:j_id1113" name="j_id1105:j_id1113" onclick="document.getElementById('addPanel').component.hide();;A4J.AJAX.Submit('j_id1105',event,{'ignoreDupResponses':true,'implicitEventsQueue':'j_id1105:j_id1113','similarityGroupingId':'j_id1105:j_id1113','parameters':{'j_id1105:j_id1113':'j_id1105:j_id1113'} } );return false;">Quit</a> </div>
+                    <div class="span-10 last"><a class="button save" href="#" id="j_id1105:j_id1115" name="j_id1105:j_id1115" onclick="A4J.AJAX.Submit('j_id1105',event,{'oncomplete':function(request,event,data){if (true) document.getElementById('addPanel').component.hide();},'similarityGroupingId':'j_id1105:j_id1115','parameters':{'j_id1105:j_id1115':'j_id1105:j_id1115'} } );return false;">Confirm</a> </div>
+                  </div>
+                  <input autocomplete="off" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id17" type="hidden">
+                </form></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="rich-mpnl-mask-div rich-mpnl-mask-div-transparent" id="addPanelCursorDiv" style="z-index: -200;">
+    <button class="rich-mpnl-button" id="addPanelLastHref"></button>
+  </div>
+</div>
+</body>
+</html>

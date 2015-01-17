@@ -1,0 +1,2152 @@
+$font-family: Verdana, Geneva, sans-serif;
+$white: #fff;
+$black: #000;
+$gray: #999;
+$light-gray: #ccc;
+$dark-gray: #666;
+$black-gray: #333;
+$white-gray: #eee;
+$green: #7cab45;
+$light-green: #a3d66b;
+$dark-green: #416f0d;
+$white-green: #CFC;
+$border-green: #6b9e32;
+$ochre: #B3AE93;
+$light-ochre: #d6d2be;
+$white-yellow: #FFC;
+@mixin transition {
+	-webkit-transition: all 300ms ease-out;
+	-moz-transition: all 300ms ease-out;
+	-o-transition: all 300ms ease-out;
+	transition: all 300ms ease-out;
+}
+@mixin reset-border {
+	margin: 0px;
+	padding: 0px;
+}
+@mixin pictos {
+	font-family: 'Pictos', sans-serif;
+	font-weight: normal;
+	font-size: 12px;
+}
+@import "reset";
+@import "forms";
+@import "richfaces";
+@import "livefixes";
+/*
+=================================
+BASIC ELEMENTS
+=================================
+*/
+body {
+	margin:0;
+	padding:0;
+	font-family:verdana, arial, helvetica;
+	font-size: 12px;
+	line-height: 18px;
+	background:url('../img/bg_body.gif') 880px 0 repeat;
+	background-attachment: fixed;
+	color:$black;
+}
+a {
+	@include transition;
+}
+a {
+	color: $dark-green;
+	text-decoration: none;
+	border-bottom: dotted 1px $dark-green;
+}
+a:hover, li.selected a {
+	color: $green;
+}
+a:not(.button):hover, li.selected a {
+	border-bottom: solid 1px $green;
+}
+p {
+	padding-bottom: 10px;
+}
+input, select, textarea, a.button {
+	font-family: $font-family;
+	font-size: 10px;
+}
+h1, h2, h3 {
+	color:$dark-gray;
+	font-weight: normal;
+	padding-bottom: 10px;
+}
+h1 {
+	font-size: 23px;
+}
+/*
+=================================
+LAYOUT ELEMENTS
+=================================
+*/
+#container {
+	width:879px;
+	background-color:$white;
+	margin: 0;
+	border-left:solid 8px $light-green;
+	padding: 0;
+}
+.shadow {
+	display: none;
+}
+header {
+	width:879px !important;
+	top: 0px;
+	left: 0px;
+	position: fixed;
+	width: 100%;
+	z-index: 20;
+	background: $white;
+	border-left: solid 8px $light-green;
+}
+.ie6 header {
+	background: none;
+}
+.systemnav {
+	background-color:$gray;
+	text-align:right;
+	width:870px;
+	text-transform: uppercase;
+	font-size: 11px;
+	color: $white;
+	margin: 0;
+	height: 20px;
+	padding-right: 10px;
+}
+article {
+	padding: 15px 0px;
+}
+article:first-child {
+	padding-top: 10px;
+}
+.oldie .systemnav {
+	width: 870px;
+	padding-right: 10px;
+}
+.oldie .login .field {
+	height: 30px;
+}
+.oldie .login .field.password {
+	height: 80px;
+}
+.oldie .login .field span input {
+	border: none;
+	width: 20px;
+	height: 20px;
+	float: left;
+	@include reset-border;
+}
+.systemnav a:hover {
+	color: $black;
+	border: none;
+}
+.systemnav a {
+	color: $white;
+}
+.oldie .systemnav a {
+	background-image:url(../img/oldie_menu.gif);
+	background-repeat: no-repeat;
+	padding-left: 5px;
+	background-position: left center;
+}
+.systemnav a:before {
+	content: " | ";
+}
+.systemnav a:before, .systemnav a:hover:before {
+	color: $white;
+}
+.logo {
+	float: left;
+	height: 85px;
+	vertical-align: middle;
+	text-align: center;
+	width: 192px;
+}
+.logo a, .logo a:hover {
+	font-size: 0px !important;
+	color: transparent;
+	text-decoration: none;
+	background-image:url(../img/bg_logo.gif);
+	background-repeat: no-repeat;
+	height: 75px;
+	width: 75px;
+	border: none;
+	display: block;
+	text-indent: -1000px;
+	margin: 2px 0 0 55px;
+}
+header .title, header .menu {
+	margin-left: 200px;
+}
+.title h1 {
+	height: 25px;
+	line-height: 30px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.menu ul.nav {
+	margin-top: 5px;
+}
+.nav li, .nav li.selected + li {
+	text-decoration: none;
+	color: $dark-gray;
+	margin: 0 3px 0 0;
+	border: none;
+	background: $light-ochre;
+	border: solid 2px $light-ochre;
+	border-bottom: none;
+	-webkit-border-top-left-radius: 3px;
+	-webkit-border-top-right-radius: 3px;
+	-moz-border-radius-topleft: 3px;
+	-moz-border-radius-topright: 3px;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	@include transition;
+}
+.nav a {
+	padding: 2px 10px 5px 10px !important;
+	display: block;
+	text-decoration: none;
+	border: none;
+	color: $dark-gray;
+}
+.nav li:not(.selected):hover {
+	background: $ochre;
+	border: solid 2px $ochre;
+	border-bottom: none;
+}
+.nav li:not(.selected):hover a {
+	color: $white;
+	text-decoration: none;
+	border: none;
+	color: $white;
+}
+.nav .selected, .selected .nav .selected:hover {
+	background: none;
+	background-color: $white;
+	border: solid 2px $ochre;
+	border-bottom: none;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+	z-index: 20;
+}
+.nav li select, .nav li:hover select {
+	@include reset-border;
+	background-color: transparent;
+	border: none;
+	font-size: 12px;
+	color: $dark-gray;
+	height: 23px;
+	width: 70px;
+}
+.nav li:hover select {
+	color: $white;
+}
+.nav li select, .nav li select:hover, .nav li select:active, .nav li select:focus {
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+}
+.nav .selected a, .nav .selected:hover a, .nav .selected select, .nav .selected:hover select {
+	color: $black;
+	border: none;
+	text-decoration: none;
+}
+.nav .selected select, .nav .selected:hover select, .oldie .nav .selected select {
+	margin-bottom: 2px;
+	width: auto;
+}
+header .title {
+	width: 670px;
+	padding-top: 5px;
+	padding-bottom: 10px;
+	background-color: $white;
+	height: 42px;
+	overflow: hidden;
+	border-top: solid 2px $ochre;
+	border-bottom: solid 2px $ochre;
+	position: fixed;
+	top: 50px;
+}
+ @media only screen and (min-width : 1340px) {
+header .title {
+	top: 44px;
+}
+}
+.oldie header .title {
+	left: 8px;
+	top: 50px;
+}
+header .title h1 {
+	width: 670px;
+	padding: 6px 0;
+}
+.nav li {
+	float: left;
+}
+footer section a:hover {
+	color: $white
+}
+footer section a {
+	color: $black
+}
+footer nav li a.brand {
+	color: $dark-green;
+	text-decoration: none;
+	border-bottom: dotted 1px $dark-green;
+}
+footer nav li a.brand:before {
+	color: $dark-green;
+	font-size: 11px;
+	padding-right: 5px;
+}
+.systemnav a, footer section a {
+	text-decoration: none;
+	border-bottom: none;
+}
+#main {
+	padding-top: 120px;
+	padding-bottom: 50px;
+	padding-left: 200px;
+	width: 670px;
+	min-height: 450px;
+}
+#main:after, #content nav:after, section:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+#content {
+	float: right;
+	width: 675px;
+}
+#content p {
+	margin: 0;
+	padding-top: 0;
+	padding-bottom: 15px;
+}
+footer nav {
+	background-color:$white-gray;
+	padding:9px 0 9px 0;
+	padding-left: 188px;
+	height: 20px;
+}
+footer nav ul {
+	margin-left:6px;
+	clear:both;
+	font-size:10px;
+}
+footer nav ul li {
+	float: left;
+	border-right:solid 1px $light-gray;
+	padding:0 6px 1px 6px;
+}
+footer nav ul li.longform, .title2 {
+	border-right:none !important;
+	width: 400px;
+	padding-right: 0px;
+}
+.title2 {
+	width: 220px;
+	font-size:9px !important;
+	line-height: 11px;
+	color: $gray !important;
+}
+footer nav ul li span sup {
+	height:0;
+	line-height:1;
+	vertical-align:baseline;
+	_vertical-align:bottom;
+	position:relative;
+	bottom: .5ex;
+}
+footer section {
+	background-color:$gray;
+	width:100%;
+	padding:9px 0 9px 0px;
+	font-size:9px
+}
+footer section p {
+	color:$black;
+	margin-left:12px;
+	line-height:1.5em;
+	padding-left: 185px;
+}
+footer section p a:hover {
+	color:$dark-gray;
+}
+.chevronOverlay {
+	display: none;
+	background: url(../img/ChevronOverlay.png) no-repeat 100% 0;
+	width: 13px;
+	height: 20px;
+}
+#content .alltabs p {
+	padding-bottom: 10px;
+}
+ul.tabs {
+	float:left;
+	clear:both;
+	margin:0;
+	padding:0;
+	list-style-type: none;
+}
+ul.tabs li {
+	margin:0;
+	padding:0;
+	float:left;
+	border-bottom:solid 2px $white;
+	border-left:solid 2px $white
+}
+ul.tabs li.first {
+	border-left:none
+}
+ul.tabs li.first a {
+	border-left:solid 2px $gray
+}
+ul.tabs li a {
+	display:block;
+	padding:5px 13px 5px 10px;
+	border:none;
+	background-color:$white-gray;
+	text-transform:uppercase;
+	text-shadow: $white 0 1px 1px;
+	font-weight:bold;
+	border-bottom:solid 1px $white-gray;
+	border-left:solid 2px $light-green;
+}
+ul.tabs li a:hover, ul.tabs li.selected a:hover {
+	border-bottom:solid 1px $white-gray
+}
+ul.tabs li.selected, ul.tabs li.ui-tabs-selected {
+	border-bottom:solid 2px $white-gray
+}
+ul.tabs li.selected a, ul.tabs li.selected a:hover, ul.tabs li.ui-tabs-selected a, ul.tabs li.ui-tabs-selected a:hover {
+	background-color:$white-gray;
+	color:$dark-gray;
+	border-bottom:solid 1px $white-gray;
+	border-left:solid 2px $light-green;
+}
+.tab {
+	background-color:$white-gray;
+	clear:both;
+	width: 95%;
+	padding:13px;
+}
+.tab h2 {
+	display:none
+}
+.tab h3 {
+	display:none
+}
+.tab div div {
+	background-color:$white;
+	border:none;
+	padding:6px 6px 6px 15px;
+	margin-top: 2px;
+}
+.enhance {
+	font-weight: bold;
+	font-size: +2;
+}
+/*
+=================================
+TOOLTIP
+=================================
+*/
+.qtip {
+	padding: 10px;
+	-webkit-border-radius: 3px !important;
+	-moz-border-radius: 3px !important;
+	border-radius: 3px !important;
+	font-size: 11px;
+	line-height: 15px;
+	text-align: left;
+	background: $green;
+	-webkit-box-shadow: 3px 3px 10px rgba(0, 0, 0, .4);
+	-moz-box-shadow: 3px 3px 10px rgba(0, 0, 0, .4);
+	box-shadow: 3px 3px 10px rgba(0, 0, 0, .4);
+	@include transition;
+	max-width: 150px;
+	margin-right: 10px;
+}
+.qtip:not(.headtip) {
+	-webkit-border-bottom-left-radius: 0 !important;
+	-moz-border-radius-bottomleft: 0 !important;
+	border-bottom-left-radius: 0 !important;
+}
+.qtip:after {
+	content:"";
+	position: absolute;
+	height: 0px;
+	width: 0px;
+	font-size: 0px;
+	@include reset-border;
+	bottom: -12px;
+	margin-left: -10px;
+	border: solid 6px transparent;
+	border-top: solid 6px $green;
+	border-left: solid 6px $green;
+}
+.qtip.headtip {
+	-webkit-border-top-left-radius: 0 !important;
+	-moz-border-radius-topleft: 0 !important;
+	border-top-left-radius: 0 !important;
+	margin-top: 80px;
+}
+.qtip.headtip:after {
+	border-top: solid 6px transparent;
+	border-bottom: solid 6px $green;
+	border-left: solid 6px $green;
+	top: -12px;
+}
+/*
+=================================
+STATUS ICONS
+=================================
+*/
+a.status, a.status:hover {
+	border: none;
+}
+.status {
+	display: inline-block;
+	vertical-align: text-top;
+	margin-left: 5px;
+	@include pictos;
+}
+.status:after {
+	font-size: 14px;
+}
+.inprogress:after {
+	content: "p";
+}
+.completed:after {
+	content: "3";
+}
+.none:after {
+	content: ".";
+}
+.scoreboard .none:after {
+	content: "";
+}
+.qtip .brand.date {
+	font-size: 10px;
+	padding-top: 5px;
+}
+.qtip .brand.date, .qtip .brand.date:before {
+	color: $white;
+}
+/*
+=================================
+BLURB ELEMENTS
+=================================
+*/
+article nav, aside h3, .rich-tab-bottom-line {
+	display: block;
+	padding-bottom: 0px;
+}
+article nav {
+	border-bottom: solid 2px $ochre;
+}
+article nav h1, article nav h2, article nav h3 {
+	padding-bottom: 0px;
+}
+aside h3, .rich-tab-bottom-line {
+	padding: 5px
+}
+.blurb {
+	padding: 20px 0;
+}
+article nav {
+	margin-top: 10px;
+	padding: 10px 0;
+}
+#main article:first-child nav:first-child {
+	margin-top: 0px;
+}
+article nav h1 {
+	font-size: 18px;
+	display: inline-block;
+}
+article nav h2 {
+	font-size: 15px;
+}
+aside h3 {
+	font-size: 13px;
+}
+article nav:not(.header) .button {
+	float: right;
+}
+article nav .pagenav {
+	float: right;
+}
+article .button, article .button:empty {
+	margin: 0px;
+}
+article nav .pagenav .button.up, article nav .pagenav .button.previous {
+	margin-right: 3px;
+}
+.oldie article section {
+	font-size: 12px;
+}
+.issuetitle, .fields {
+	padding-bottom: 5px;
+}
+.nofocus, .comments {
+	color: $gray;
+}
+section {
+	@include transition;
+}
+section:hover .comments {
+	color: $black;
+}
+/*
+=================================
+FIELD ELEMENTS
+=================================
+*/
+article section {
+	padding: 0;
+}
+section .col {
+	float: left;
+	width: 327px;
+	margin-right: 15px;
+	margin-bottom: 30px;
+}
+.oldie section .col {
+	width: 320px;
+}
+section .col:last-of-type {
+	margin-right: 0;
+}
+.field label, .field .value {
+	float: left;
+}
+.oldie .field label, .oldie .field .value {
+	padding-top: 5px;
+	font-size: 12px;
+}
+.field label {
+	font-weight: bold;
+	width: 150px;
+	padding-right: 10px;
+}
+.field .value {
+	width: 510px;
+}
+.field .value .button.window {
+	float: right;
+	margin: 0px;
+}
+.actions {
+	text-align: right;
+}
+.login .actions {
+	padding-top: 10px;
+	border-top: solid 1px $ochre;
+}
+.login .value span {
+	display: block;
+	font-size: 10px;
+}
+.login .message.error {
+	display: block;
+	margin-top: 0px;
+	font-size: 12px;
+}
+.actions .button {
+	margin-right: 0px !important;
+	margin-left: 5px;
+}
+.login .actions p {
+	float: left;
+	color: $dark-gray;
+	width: 200px;
+	text-align: left;
+	font-size: 10px;
+	line-height: 13px;
+}
+.clearfix:after, .field:after, .drawer:after, .preview p:before, .preview:after, .mainnav:after, .dashboard .growth ul:after {
+	content: "\0020";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+	overflow:hidden;
+}
+.field {
+	padding: 5px 0;
+	border-bottom: solid 1px $ochre;
+	font-size: 12px;
+}
+.field .value .button:empty {
+	margin-right: 5px;
+	padding: 5px;
+	width: 15px;
+	height: 15px;
+}
+.field .value .button:empty:before {
+	font-size: 15px;
+	padding: 0px;
+}
+/*
+=================================
+ASIDE MENU
+=================================
+*/
+aside {
+	position: fixed;
+	width: 170px;
+	top: 109px;
+	left: 18px;
+	z-index: -1;
+	background-color: $white;
+	padding: 0px;
+	border-top: solid 2px $ochre;
+	z-index: 50;
+}
+aside svg {
+	width: 200px !important;
+	height: 300px;
+}
+.sidemenu {
+	margin-bottom: 20px;
+}
+aside .date {
+	padding-left: 5px;
+}
+.sidemenu a, .sidemenu a:hover {
+	text-decoration: none;
+	border: none;
+	padding-left: 5px;
+	height: 18px;
+	display: block;
+	vertica-align: middle;
+	padding-top: 2px;
+	border-bottom: solid 1px $ochre;
+	font-size: 11px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.sidemenu a:after {
+	width: 0px;
+	height: 0px;
+	border: solid 11px transparent;
+	content: "\0020";
+	position: absolute;
+	right: -21px;
+	margin-top: -2px;
+}
+.sidemenu a:hover, .sidemenu .selected a {
+	background-color: $white-gray;
+	color: $black;
+	-webkit-text-shadow: 0px 1px 0px $white;
+	-moz-text-shadow:0px 1px 0px $white;
+	text-shadow: 0px 1px 0px $white;
+	border-bottom: solid 1px $ochre;
+}
+.sidemenu .selected a {
+	background-color: $light-gray;
+}
+.sidemenu .empty a, .sidemenu .empty a:hover {
+	color: $gray;
+	background-color: $white;
+}
+.sidemenu a:hover:after {
+	border-left: solid 11px $white-gray;
+}
+.sidemenu .selected a:after, .sidemenu .selected a:hover:after {
+	border-left: solid 11px $light-gray;
+}
+/*
+=================================
+BRAND ELEMENTS
+=================================
+*/
+.brand:before, h1 .brand:after {
+	@include pictos;
+	font-size: 15px;
+	padding-right: 7px;
+}
+h1 .brand:before {
+	display: none;
+}
+h1 .brand:after {
+	padding-left: 0;
+	margin-top: -5px;
+	position: absolute;
+}
+h1 .brand {
+	padding-right: 10px;
+}
+.brand.date:before, li.brand.provider:before {
+	content: "t";
+	font-size: 12px;
+}
+.brand.identifier:before {
+	content: "z";
+}
+.brand.size:before {
+	content: "a";
+}
+.brand.type:before {
+	content: "b";
+}
+.brand.provider:before, h1 .brand.provider:after {
+	content: "S";
+}
+li .brand, .brand:before, .graph .brand, .field .brand, .field .brand:before {
+	color: $black;
+}
+.brand.date, .brand.date:before, .brand.provider, .brand.provider:before {
+	color: $gray;
+}
+.brand.date, li .brand.provider {
+	font-size: 9px;
+}
+.value .date, li .provider {
+	border-left: solid 1px $ochre;
+	padding-left: 5px;
+	margin-left: 5px;
+}
+.brand.PCA {
+	margin-left: 5px;
+}
+li .identifier {
+	border-right: solid 1px $ochre;
+	padding-right: 5px;
+	margin-right: 5px;
+}
+.page {
+	font-size: 10px;
+}
+.brand.supplied:before, .brand.dcollection:before, .brand.PCA:before {
+	font-family: $font-family;
+	color: $dark-gray;
+	font-size: 9px;
+	padding:2px 5px;
+	margin-right: 3px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	background: $light-gray;
+}
+.brand.supplied:before {
+	content: 'Supplied';
+}
+.brand.PCA:before {
+	content: 'PCA';
+}
+.brand.dcollection:before {
+	content: 'D-Collection';
+}
+.empty .brand.dcollection:before, .empty .brand.supplied:before {
+	border: solid 1px $white-gray;
+	background: none;
+	color: $light-gray;
+}
+/*
+=================================
+FORM ELEMENTS
+=================================
+*/
+
+header .mainnav {
+	width: 879px;
+	background-color: $white;
+}
+.oldie header .mainnav {
+	width: 870px;
+}
+/*
+=================================
+LOGIN ELEMENTS
+=================================
+*/
+.login {
+	margin: 20px 300px 0 0px;
+	padding: 10px 0px;
+	margin-bottom: none;
+	border-bottom: solid 2px $ochre;
+	border-top: solid 2px $ochre;
+}
+.login .field {
+	border: none;
+}
+.login .field label {
+	width: 100px;
+	padding-top: 10px;
+}
+.login .field .value {
+	width: 220px;
+}
+.login .field .value input {
+	width: 210px;
+	margin-bottom: 5px;
+}
+.login .field.actions {
+	border-top: solid 1px $ochre !important;
+	margin-top: 10px;
+	padding-top: 10px;
+	height: auto;
+}
+/*
+=================================
+LIST PREVIEWS
+=================================
+*/
+.preview {
+	@include reset-border;
+	border-bottom: solid 1px $ochre;
+}
+.preview.AU {
+	padding: 20px 0;
+}
+.preview.report {
+	padding: 10px 0;
+}
+.preview.report:first-child {
+	padding-top: 0px;
+}
+.preview.report .button {
+	margin-top: 10px;
+}
+.preview .title, .preview .creator, .preview .description {
+	display: inline-block;
+	padding: 0px;
+	background-color: none;
+	height: auto;
+	margin: 0px;
+	overflow: auto;
+}
+.preview .title, .preview .description, .preview p {
+	font-size: 12px;
+}
+.preview .title, .preview h1, .preview .description {
+	display: inline-block;
+	width: 450px;
+	padding: 0px;
+	background-color: none;
+	height: auto;
+	margin: 0px;
+	overflow: auto;
+}
+.preview h1 {
+	font-size: 20px;
+	padding-bottom: 10px;
+}
+.preview .brand, .preview .brand:before, .preview li {
+	color: $dark-gray;
+}
+.preview p {
+	padding: 0px;
+}
+article section.message {
+	height: 25px;
+	margin-top: 10px;
+}
+.preview ul {
+	float: right;
+	border-left: solid 1px $ochre;
+	width: 200px;
+	padding-left: 5px;
+	color: $gray;
+	font-size: 9px;
+}
+.preview ul .brand {
+	border-right: solid 1px $ochre;
+	padding-right: 5px;
+	margin-right: 5px;
+}
+.preview .creator, .preview ul {
+	margin-bottom: 5px;
+}
+.preview .creator, .preview .description {
+	font-size: 10px;
+	line-height: 13px;
+}
+/*
+=================================
+SCOREBOARD
+=================================
+*/
+.scoreboard {
+	width: 100%;
+	text-align: center;
+	margin: 10px 0;
+}
+.scoreboard .title {
+	margin: 0px;
+	color: $black;
+	line-height: 13px;
+	font-weight: bold;
+	height: 30px;
+	background: rgb(205,235,142);
+	border-top: solid 1px $ochre;
+	border-left: solid 1px $ochre;
+	-webkit-border-top-right-radius: 3px;
+	-webkit-border-top-left-radius: 3px;
+	-moz-border-radius-topright: 3px;
+	-moz-border-radius-topleft: 3px;
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
+}
+.scoreboard td div:nth-child(2), .scoreboard .title {
+	width: 147px;
+	padding: 10px;
+}
+.yes, .scoreboard .no, .scoreboard .none {
+	border-bottom: solid 1px $ochre;
+	border-left: solid 1px $ochre;
+	color: $black;
+	-webkit-border-bottom-right-radius: 3px;
+	-webkit-border-bottom-left-radius: 3px;
+	-moz-border-radius-bottomright: 3px;
+	-moz-border-radius-bottomleft: 3px;
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+}
+.scoreboard td {
+	@include transition;
+}
+:not(.oldie) .scoreboard .yes:before, :not(.oldie) .scoreboard .no:before, :not(.oldie) .scoreboard .none:before {
+	@include pictos;
+	content: 'x';
+	margin-right: 5px;
+	font-size: 20px;
+}
+.scoreboard tr:hover td {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=25)";
+	filter:alpha(opacity=25);
+	-moz-opacity:0.25;
+	-khtml-opacity: 0.25;
+	opacity: 0.25;
+}
+.scoreboard tr:hover td:hover {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	filter:alpha(opacity=100);
+	-moz-opacity:1;
+	-khtml-opacity: 1;
+	opacity: 1;
+}
+.scoreboard td div:nth-child(2) {
+	-webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, .3);
+	-moz-box-shadow:  0px 3px 3px rgba(0, 0, 0, .3);
+	box-shadow:  0px 3px 3px rgba(0, 0, 0, .2);
+	@include transition;
+}
+.scoreboard tr:hover td:hover div:nth-child(2) {
+	-webkit-box-shadow: 0 5px 5px rgba(0, 0, 0, .2);
+	-moz-box-shadow: 0 5px 5px rgba(0, 0, 0, .2);
+	box-shadow: 0 5px 5px rgba(0, 0, 0, .2);
+}
+:not(.oldie) .scoreboard .yes:before {
+	content: '3';
+}
+:not(.oldie) .scoreboard .no:before {
+	content: '*';
+}
+:not(.oldie) .scoreboard .none:before {
+	content: '.';
+}
+/*
+=================================
+GRAPH ELEMENTS
+=================================
+*/
+aside #holder {
+	height: 275px;
+	margin-left: -10px;
+	margin-top: -20px;
+}
+aside div .button {
+	display: block;
+}
+#main #holder {
+	height: 260px;
+}
+.dashboard .growth li {
+	float: left;
+	width:68px;
+	text-align: center;
+	padding-top: 5px;
+}
+.dashboard .growth ul {
+	margin: 0;
+	padding: 0;
+	margin-left: 0px;
+	margin-top:-20px;
+	border-top: solid 1px $ochre;
+	width: 480px;
+}
+#main #holder, #main .graph .date {
+	margin: 0 100px;
+}
+#main .growth .date {
+	margin: 0;
+}
+aside h3 {
+	text-align: center;
+	height: 40px;
+}
+.dashboard #pie, .dashboard .growth {
+	margin: 0 100px;
+}
+.dashboard #pie {
+	height: 260px;
+}
+.dashboard .growth {
+	height: 240px;
+}
+/*
+=================================
+INSPECTION TOOL
+=================================
+*/
+.inspection {
+	background: none;
+	background: $white;
+}
+.inspection article {
+	padding: 0px;
+}
+.inspection .title {
+	padding: 5px 10px;
+}
+.inspection .title .title {
+	padding: 0px;
+}
+.inspection.line {
+	background: none;
+	background: $light-green;
+}
+.inspection nav.listnav {
+	position: absolute;
+	top: 100px;
+	width: 100%;
+	margin: 0px;
+}
+.inspection .preview p {
+	position: absolute;
+	top: 65px;
+	width: 80%;
+}
+.inspection .preview.AU {
+	@include reset-border;
+	width: 670px;
+	border: none;
+}
+.inspection .actions {
+	width: 400px;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+.inspection .preview ul, .inspection .brand:before, .inspection .brand {
+	color: $black;
+}
+.inspection .listnav ul {
+	displaY: inline-block;
+	@include reset-border;
+}
+.inspection .listnav ul:first-child {
+	width: 50%;
+}
+/*
+=================================
+FIXES
+=================================
+*/
+.value.brand {
+	border: none;
+	font-size: 12px;
+	color: $black;
+}
+.col li {
+	border-bottom: solid 1px $ochre;
+	padding: 3px 0;
+	color: $gray;
+	font-size: 12px;
+}
+/*
+=================================
+ADVANCED SEARCH ELEMENTS
+=================================
+*/
+.advanced nav, .advanced .col {
+	margin-bottom: 0;
+}
+.advanced li {
+	height: 25px;
+}
+.advanced input {
+	width: 315px
+}
+/*
+=================================
+FILTER SEARCH
+=================================
+*/
+aside .field label {
+	font-weight: normal;
+	font-size: 10px;
+	border-bottom: solid 1px $ochre;
+	margin: 0px;
+	display: block;
+	padding: 2px;
+	width: 165px;
+	@include transition;
+}
+aside .field label:hover {
+	background-color: $white-gray;
+}
+aside .field label:last-child {
+	border: none;
+}
+aside .actions {
+	margin-top: 5px;
+}
+aside .field input {
+	width: 162px;
+}
+/*
+=================================
+PRESO ELEMENTS
+=================================
+*/
+.preso {
+	margin-left: 30px;
+	margin-top: 20px;
+}
+.preso ul {
+	vertical-align: top;
+	float: left;
+}
+.preso .trigger {
+	width: 250px;
+	margin-right: 20px;
+}
+.preso .content {
+	width: 320px;
+	font-size: 14px;
+	line-height: 22px;
+	color: $black-gray;
+}
+.preso .content li {
+	display: none;
+	height: 150px;
+}
+.preso .content .button {
+	margin-top: 10px;
+}
+.preso .content li:first-child {
+	display: block;
+}
+.preso .trigger a, .preso .trigger a:hover {
+	text-decoration: none;
+	border: none;
+	padding: 7px;
+	display: block;
+	vertica-align: middle;
+	border-bottom: solid 1px $ochre;
+	font-size: 14px;
+}
+.preso .trigger a:after {
+	width: 0px;
+	height: 0px;
+	border: solid 16px transparent;
+	content: "\0020";
+	position: absolute;
+	left: 488px;
+	margin-top: -7px;
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+.preso .trigger a:after {
+	left: 280px;
+}
+}
+.preso .trigger a:hover, .preso .trigger .selected a {
+	background-color: $white-gray;
+	color: $black;
+	-webkit-text-shadow: 0px 1px 0px $white;
+	-moz-text-shadow:0px 1px 0px $white;
+	text-shadow: 0px 1px 0px $white;
+	border-bottom: solid 1px $ochre;
+}
+.preso .trigger .selected a {
+	background-color: $light-gray;
+}
+.preso .trigger a:hover:after {
+	border-left: solid 11px $white-gray;
+}
+.preso .trigger .selected a:after, .preso .trigger .selected a:hover:after {
+	border-left: solid 11px $light-gray;
+}
+.journalpreso {
+	margin-top: 10px;
+}
+.journalpreso ul {
+	vertical-align: top;
+}
+.journalpreso .sidemenu {
+	margin-bottom: 20px;
+}
+.journalpreso .sidemenu a, .journalpreso .sidemenu a:hover {
+	text-decoration: none;
+	border: none;
+	padding-left: 5px;
+	height: 18px;
+	display: block;
+	vertica-align: middle;
+	padding-top: 2px;
+	border-bottom: solid 1px $ochre;
+	font-size: 11px;
+}
+.journalpreso .sidemenu a:after {
+	width: 0px;
+	height: 0px;
+	border: solid 11px transparent;
+	content: "\0020";
+	position: absolute;
+	right: -21px;
+	margin-top: -2px;
+}
+.journalpreso .sidemenu a:hover, .journalpreso .sidemenu .selected a {
+	background-color: $white-gray;
+	color: $black;
+	-webkit-text-shadow: 0px 1px 0px $white;
+	-moz-text-shadow:0px 1px 0px $white;
+	text-shadow: 0px 1px 0px $white;
+	border-bottom: solid 1px $ochre;
+}
+.journalpreso .sidemenu .selected a {
+	background-color: $light-gray;
+}
+.journalpreso .sidemenu .empty a, .journalpreso .sidemenu .empty a:hover {
+	color: $gray;
+	background-color: $white;
+}
+.journalpreso .sidemenu a:hover:after {
+	border-left: solid 11px $white-gray;
+}
+.journalpreso .sidemenu .selected a:after, .journalpreso .sidemenu .selected a:hover:after {
+	border-left: solid 11px $light-gray;
+}
+/*
+=================================
+LARGER SCREENS
+=================================
+*/
+
+@media only screen and (min-width : 1340px) {
+:not(.oldie) aside .field input {
+	width: 222px;
+}
+:not(.oldie) aside .field label {
+	width: 226px;
+}
+:not(.oldie) #container {
+	width: 1260px;
+}
+:not(.oldie) header .title, :not(.oldie) header .menu {
+	margin-left: 263px;
+}
+:not(.oldie) header .title {
+	width: 988px;
+	margin-top: 6px;
+}
+:not(.oldie) header .title h1 {
+	width: 995px;
+}
+:not(.oldie) .systemnav {
+	width: 1250px;
+}
+:not(.oldie) .logo {
+	width: 260px;
+}
+:not(.oldie) .logo a {
+	margin-left: 80px;
+	margin-top: 6px;
+}
+:not(.oldie) .menu {
+	width: 990px;
+}
+:not(.oldie) #main {
+	padding-left: 263px;
+	width: 988px;
+}
+:not(.oldie) aside {
+	width: 230px;
+}
+:not(.oldie) aside svg {
+	margin-left: 25px;
+}
+:not(.oldie) .field label {
+	width: 234px;
+}
+:not(.oldie) nav.listnav select {
+	width: 200px;
+}
+:not(.oldie) .login .field label {
+	width: 180px
+}
+:not(.oldie) .login {
+	margin: 20px 515px 0 0px;
+}
+:not(.oldie) .login span {
+	display: block;
+	font-size: 10px;
+	padding-top: 10px;
+}
+:not(.oldie) footer nav, :not(.oldie) footer section p {
+	padding-left: 250px;
+}
+:not(.oldie) .login .actions p {
+	width:300px;
+	line-height: 15px;
+	padding-bottom: 0px;
+	padding-top: 7px;
+}
+:not(.oldie) section .col {
+	width: 486px;
+}
+:not(.oldie) .scoreboard td div:nth-child(2), :not(.oldie) .scoreboard .title {
+	width: 226px;
+}
+:not(.oldie) .preview .title, :not(.oldie) .preview h1, :not(.oldie) .preview .description {
+	width: 710px;
+}
+:not(.oldie) .inspection .preview .title, :not(.oldie) .inspection :not(.oldie) .preview h1, :not(.oldie) .inspection .preview .description {
+	width: 450px;
+}
+:not(.oldie) .preview ul {
+	width: 250px;
+}
+:not(.oldie) .inspection .preview ul {
+	width: 200px;
+}
+:not(.oldie) .menu ul.nav {
+	font-size: 14px;
+	margin-top:5px;
+	width: 550px;
+	display: inline-block;
+	min-height: 50px;
+}
+.oldie .nav a {
+	margin: none;
+}
+:not(.oldie) header .mainnav {
+	width: 1260px;
+	background-color: $white;
+}
+:not(.oldie) input, :not(.oldie) select, :not(.oldie) textarea, :not(.oldie) a.button {
+	font-size: 11px;
+}
+:not(.oldie) .logo {
+	height: 85px;
+}
+:not(.oldie) .drawer .info {
+	width: 232px;
+}
+:not(.oldie) .drawer {
+	width: auto;
+}
+:not(.oldie) .drawer .content {
+	width: 987px;
+}
+:not(.oldie) .drawer section .col {
+	width:486px;
+}
+:not(.oldie) .drawer .col textarea {
+	width: 476px;
+}
+:not(.oldie) #main #holder, :not(.oldie) #main .graph .date {
+	margin-left: 250px;
+}
+:not(.oldie) aside h3 {
+	font-size: 15px;
+}
+:not(.oldie) .field .value {
+	width: 744px;
+}
+:not(.oldie) .login .field .value {
+	width: auto;
+}
+:not(.oldie) .preso {
+	margin-left: 80px;
+	margin-top: 20px;
+}
+:not(.oldie) .preso .trigger {
+	width: 300px;
+}
+:not(.oldie) .preso .content {
+	width: 400px;
+}
+:not(.oldie) .preso .trigger a:after {
+	left: 651px;
+}
+:not(.oldie) #main #holder, :not(.oldie) #main .graph .date, :not(.oldie) .dashboard #pie, :not(.oldie) .dashboard .growth {
+	margin: 0 170px;
+}
+:not(.oldie) #main .growth .date {
+	margin: 0;
+}
+}
+#main .graph.field .date {
+	margin-left: 0px;
+}
+@media only screen and (min-width : 1340px) and (-webkit-min-device-pixel-ratio:0) {
+:not(.oldie) .preso .trigger a:after {
+	left: 380px;
+}
+}
+@media only screen and (max-height : 630px) {
+aside .secondary {
+	display: none;
+}
+}
+aside .secondary {
+	display: visible;
+}
+/*
+=================================
+DASHBOARD ARCHIVED
+=================================
+*/
+#preserved table {
+	width: 100%;
+	margin-bottom: 10px;
+	@include transition;
+}
+#preserved tr {
+	@include transition;
+}
+#preserved td {
+	border-bottom: solid 1px $ochre;
+	padding: 10px;
+}
+#preserved thead td {
+	margin: 0px;
+	color: black;
+	line-height: 13px;
+	font-weight: bold;
+	background: $white-green;
+}
+#preserved td:first-child {
+	background: none;
+	width: 150px;
+	font-weight: bold;
+	color: $black-gray;
+}
+#preserved td:first-child:before {
+	@include pictos;
+	content: '3';
+	font-size: 15px;
+	padding-right: 5px;
+}
+#preserved thead td:first-child:before {
+	content: none;
+}
+#preserved table:hover tr {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=25)";
+	filter:alpha(opacity=25);
+	-moz-opacity:0.25;
+	-khtml-opacity: 0.25;
+	opacity: 0.25;
+}
+#preserved table:hover tr:hover, #preserved table:hover thead tr {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	filter:alpha(opacity=100);
+	-moz-opacity:1;
+	-khtml-opacity: 1;
+	opacity: 1;
+}
+#preserved .date {
+	margin-top: 20px !important;
+}
+.oldie .drawers, .oldie #mainnav {
+	background:url(../img/oldie_bg.gif) $white top left repeat-y;
+}
+/*
+=================================
+IE ELEMENTS
+=================================
+*/
+.oldie .button:before, .oldie .message:before, .oldie .brand:before {
+	content: "";
+	border: none;
+	@include reset-border;
+}
+/*
+=================================
+SEARCHNAV AND ASIDE
+=================================
+*/
+.searchnav, aside div {
+	border-bottom: solid 2px $ochre;
+	padding: 20px 0px;
+	margin: 0px;
+}
+.ie6 .searchnav {
+	border-bottom: none;
+	height: 35px;
+}
+.ie6 aside div {
+	border-top: solid 2px $ochre;
+}
+aside div p {
+	@include reset-border;
+	color: $dark-gray;
+	font-size: 12px;
+}
+aside div .button {
+	margin-top: 10px;
+}
+.searchnav input {
+	-webkit-border-top-left-radius: 3px;
+	-webkit-border-bottom-left-radius: 3px;
+	-moz-border-radius-topleft: 3px;
+	-moz-border-radius-bottomleft: 3px;
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+	width: 136px;
+	height: 21px;
+}
+ @media screen and (-webkit-min-device-pixel-ratio:0) {
+.searchnav input {
+	height: 25px;
+}
+}
+.oldie .searchnav input {
+	height: 21px;
+}
+.ie6 .searchnav input {
+	width: 120px;
+	height: 27px;
+}
+@media only screen and (min-width : 1340px) {
+:not(.oldie) .searchnav input {
+	width: 196px;
+}
+}
+.searchnav .button.find {
+	border: solid 2px $ochre !important;
+	background-image: url(../img/find.gif);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-color: $ochre;
+	-webkit-border-top-left-radius: 0px;
+	-webkit-border-bottom-left-radius: 0px;
+	-moz-border-radius-topleft: 0px;
+	-moz-border-radius-bottomleft: 0px;
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+	height: 21px;
+	width: 16px;
+	@include reset-border;
+}
+.searchnav .button.find:before {
+	displaY: none;
+}
+.searchnav .button.find img {
+	display: none;
+}
+.searchnav .button.find:before {
+	border: none;
+	font-size: 12px;
+}
+/*
+=================================
+OLDIE
+=================================
+*/
+.oldie .logo a, .oldie .logo a:hover {
+	margin: 3px 0px 0px 0px;
+}
+.ie6 .logo a, .ie6 .logo a:hover {
+	margin: 20px 0px 0px 0px;
+}
+.oldie .button.save, .oldie .button.cancel {
+	background-repeat: no-repeat;
+	padding-left: 32px;
+	background-position: 5px center;
+}
+.oldie .button.save {
+	background-image:url(../img/oldie_save.gif);
+}
+.oldie .button.cancel {
+	background-image:url(../img/oldie_cancel.gif);
+}
+.oldie .success .button.cancel, .oldie .cancelled .button.cancel {
+	padding-left: 15px;
+	padding-top:2px;
+	float: right;
+}
+.ie8 .success .button.cancel, .ie8 .cancelled .button.cancel {
+	height: 20px;
+}
+.oldie .button.find:before {
+	display: none;
+}
+.oldie .searchnav input, .oldie .button.find {
+	float: left;
+}
+.oldie .brand {
+	color: $gray;
+	font-size: 9px;
+}
+/*
+=================================
+IE6 ELEMENTS
+=================================
+*/
+
+.ie6 #container {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	z-index: -10;
+}
+.ie6 .button {
+	padding: 3px 5px;
+}
+.ie6 .ajaxlist .button.find {
+	float: right;
+	margin-top: -25px;
+}
+.ie6 .nav, .ie6 .nav li {
+	overflow: visible;
+	height: 30px;
+}
+.ie6 .nav a {
+	padding-bottom: 10px;
+}
+.ie6 header .menu, .ie6 header .title {
+	margin-left: 0px;
+	position: absolute;
+	left: 200px;
+}
+.ie6 header .menu {
+	top: 20px;
+}
+.ie6 header .title {
+	top: 50px;
+}
+.ie6 aside {
+	position: absolute;
+	top: 135px;
+	left: 15px;
+}
+.ie6 section .field {
+	display: block;
+}
+.ie6 section .value, .ie6 section label {
+	display: inline-block;
+	background: none !important;
+}
+.ie6 section .value {
+	width: 500px;
+}
+/*
+=================================
+IE8 ELEMENTS
+=================================
+*/
+
+.ie8 .searchnav input, .ie8 .searchnav .button {
+	float: left;
+}
+.oldie .systemnav a:before {
+	display: none;
+}
+.oldie .systemnav a {
+	margin-left: 5px;
+}
+.ie8 .preso .trigger a:after {
+	display: none;
+}
+.oldie .scoreboard td div {
+	padding: 7px;
+}
+.ie8 .logo a, .ie8 .logo a:hover {
+	background-position: 55px 0px;
+	display: block;
+	width: 180px;
+}
+/*
+=================================
+PROMPT ELEMENTS
+=================================
+*/
+.prompt {
+	background: rgb(204,204,204); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(204,204,204,1) 0%, rgba(255,255,255,1) 10%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(204,204,204,1)), color-stop(10%, rgba(255,255,255,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(204,204,204,1) 0%, rgba(255,255,255,1) 10%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(204,204,204,1) 0%, rgba(255,255,255,1) 10%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(204,204,204,1) 0%, rgba(255,255,255,1) 10%); /* IE10+ */
+	background: linear-gradient(top, rgba(204,204,204,1) 0%, rgba(255,255,255,1) 10%); /* W3C */
+	filter: none; /* IE6-9 */
+	-webkit-border-bottom-right-radius: 20px;
+	-webkit-border-bottom-left-radius: 20px;
+	-moz-border-radius-bottomright: 20px;
+	-moz-border-radius-bottomleft: 20px;
+	border-bottom-right-radius: 20px;
+	border-bottom-left-radius: 20px;
+	-webkit-box-shadow: 0 0px 10px rgba(0, 0, 0, .8);
+	-moz-box-shadow: 0 0px 10px rgba(0, 0, 0, .8);
+	box-shadow: 0 0px 10px rgba(0, 0, 0, .8);
+	position: absolute;
+	padding: 15px;
+	top:0px;
+	left: 12%;
+	padding-top: 50px;
+	z-index: 1200;
+	width: 70%;
+}
+.oldie .prompt {
+	background-color: $white;
+	border-top: solid 1px $ochre;
+}
+.prompt .cancel {
+	float:left;
+	margin: 0px;
+}
+.prompt .content.loading {
+	background-image:url(../img/loading_w.gif);
+	padding-left: 40px;
+	background-repeat: no-repeat;
+	background-size: 30px 30px;
+}
+/*
+=================================
+HELP ELEMENTS
+=================================
+*/
+.help section ol {
+	list-style: decimal;
+	padding-left: 30px;
+	margin-bottom: 10px;
+}
+.help table {
+	margin-bottom: 20px;
+}
+.help table.scoreboard .yes, .help table.scoreboard .no, .help table.scoreboard .none {
+	border-top: none;
+	border-left: none;
+	border-right: none;
+}
+.help table td {
+	border-bottom: solid 1px $ochre;
+	padding: 7px;
+}
+.help table .brand:before {
+	font-size: 20px;
+}
+.help table .PCA:before {
+	font-size: 10px;
+	background-color: $white;
+}
+.help table .brand.date:before, .help table .brand.provider:before {
+	color: $black;
+}
+.help table:hover td {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=25)";
+	filter:alpha(opacity=25);
+	-moz-opacity:0.25;
+	-khtml-opacity: 0.25;
+	opacity: 0.25;
+	@include transition;
+}
+.help table:hover tr:hover td {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	filter:alpha(opacity=100);
+	-moz-opacity:1;
+	-khtml-opacity: 1;
+	opacity: 1;
+}
+.help table td:first-child {
+	background: $white-green;
+	border-bottom: solid 1px $white;
+}
+.help table.scoreboard:hover tr:first-child td, .help table.scoreboard:hover tr:nth-child(2) td {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	filter:alpha(opacity=100);
+	-moz-opacity:1;
+	-khtml-opacity: 1;
+	opacity: 1;
+}
+.help .scoreboard td {
+	width: auto;
+}
+.help .scoreboard tr:first-child td, .help .scoreboard tr:nth-child(2) td {
+	background: $white-green;
+	border-bottom: solid 1px $white;
+	font-weight: bold;
+}
+.help table.scoreboard td:first-child, .help table.scoreboard td:nth-child(2), .help table.scoreboard tr:first-child td {
+	text-align: left;
+}
+.help table.scoreboard tr:nth-child(2) td {
+	text-align: center;
+	width: 100px;
+}
+/*
+=================================
+SEARCH RESULTS
+=================================
+*/
+.title .searchnav input {
+	width: 242px;
+}
+.title .searchnav a.button {
+	margin: 0px;
+	height: 19px;
+}
+ @media only screen and (min-width : 1340px) {
+:not(.oldie) .title .searchnav input {
+	width: 240px;
+}
+}
+.oldie .login .field .value {
+	width: 210px;
+}
+/*
+=================================
+OTHERMENU
+=================================
+*/
+
+:not(.oldie) .upgrade {
+	display: none;
+}
+/*
+=================================
+STEPS
+=================================
+*/
+.header sup {
+	font-size: 12px;
+}
+.header {
+	border-bottom: solid 2px $ochre;
+	border-top: none;
+	height: 30px;
+	padding: 0px;
+}
+.header h1, .header h2, .header ul, .header .button {
+	display: inline-block;
+	vertical-align: middle;
+	
+}
+.oldie .header h1, .oldie .header h2 {
+	float: left;
+	
+}
+.header .button {
+	margin-bottom: 5px;
+	margin-left: 5px;
+}
+.header ul {
+	float: right;
+}
+.header li {
+	float: left;
+	@include reset-border;
+	padding-left: 6px;
+	margin-left: 6px;
+	border-left: solid 1px $light-gray;
+	font-size: 11px;
+	color: $dark-gray;
+}
+
+.header li:first-child {
+	padding-left: 0px;
+	border-left: none;
+}
+.header li.selected {
+	background-color: $white;
+	padding: 3px 7px 11px 7px;
+	border: solid 2px $ochre;
+	border-right: solid 2px $ochre !important;
+	border-bottom: solid 2px $white;
+	margin-right: 10px;
+	font-size: 15px;
+	margin-top: -4px;
+	font-weight: bold;
+	margin-right: 0px;
+}
+.header li.selected a, .header li.selected a:hover {
+	text-decoration: none;
+	color: $black;
+	@include reset-border;
+	border: none;
+}
+.oldie .rich-mpnl-body section .col {
+	width: 320px;
+}
+.ie8 .rich-mpnl-body section .col {
+	width: 315px;
+}
+.rich-mpnl-body section {
+	border-top: solid 1px $ochre;
+	padding-top: 10px;
+}
+.rich-mpnl-body section:first-of-type {
+	border-top: none !important;
+}
+.rich-mpnl-body .actions .col:first-child {
+	text-align: left;
+}
+.rich-mpnl-body .actions .col:first-child .button {
+	margin-left: 0px;
+	margin-right: 5px !important;
+}
+.rich-mpnl-body .col {
+	margin-bottom: 0px;
+}
+.rich-mpnl-body .field {
+	border: none;
+	padding: 0px;
+	padding-bottom: 10px;
+}
+.rich-mpnl-body h1 {
+	font-size: 20px;
+	line-height: 22px;
+}
+.rich-mpnl-body h1:before {
+	@include pictos;
+	float: left;
+	padding-right: 5px;
+	font-size: 25px;
+}
+.oldie .rich-mpnl-body h1:before {
+	display: none;
+}
+.rich-mpnl-body .success h1:before {
+	content: "3";
+}
+.rich-mpnl-body .cancelled h1:before {
+	content: "*";
+}
+.rich-mpnl-body .button:empty {
+	float: right;
+	margin-right: 0px;
+}
+.rich-mpnl-body input[type="file"] {
+	background:none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	border: none;
+	@include reset-border;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter:alpha(opacity=0);
+	-moz-opacity:0;
+	-khtml-opacity: 0;
+	opacity: 0;
+}
+.rich-mpnl-body .col textarea {
+	width: 318px;
+}
+.rich-fileupload-name-padding {
+	width: auto !important;
+}
+@media only screen and (min-width : 1340px) {
+:not(.oldie) .rich-mpnl-body .col textarea {
+	width: 476px;
+}
+}
+.rich-mpnl-body section.content p {
+	padding-top: 10px;
+}
+.rich-mpnl-body section.scroll {
+	max-height: 250px;
+	overflow: auto;
+}
+/*
+=================================
+2 COLUMNS
+=================================
+*/
+.oldie .field:first-child {
+	border: none;
+}
+.oldie .field label, .oldie .field .value {
+	padding-top: 10px;
+}
+.oldie .field:first-child label, .oldie .field:first-child .value {
+	padding-top: 5px;
+}
+.drilldown section {
+	display: inline-block;
+	width: 425px;
+	margin-top: 10px;
+	vertical-align: top;
+}
+.drilldown section.menu {
+	margin-right: 10px;
+	width: 230px;
+}
+.drilldown .preview.AU:first-of-type {
+	padding-top: 0px;
+}
+.drilldown .preview .title, .drilldown .preview h1, .drilldown .preview .description, .drilldown .preview .creator {
+	width: 220px;
+}
+.oldie .drilldown .preview .title {
+	float: left;
+}
+.drilldown .preview ul {
+	width: 180px;
+}
+ @media only screen and (min-width : 1340px) {
+:not(.oldie) .drilldown section {
+	width: 744px;
+}
+:not(.oldie) .drilldown section.menu {
+	width: 230px;
+}
+:not(.oldie) .drilldown .preview .title, :not(.oldie) .drilldown .preview h1, :not(.oldie) .drilldown .preview .description {
+	widtH: 530px;
+}
+:not(.oldie) .drilldown .preview ul {
+	width: 200px;
+}
+}
+.drilldown .rich-tree {
+	height: auto;
+}
+.drilldown .rich-tree-node-text {
+	line-height: 12px;
+}
+.drilldown .rich-tree-node-text a {
+	display: block;
+	border: none;
+}
+.drilldown .rich-tree-node-text a:hover {
+	text-decoration: underline;
+}
+.drilldown .selected .rich-tree-node-text a {
+	color: $black;
+	font-weight: bold;
+}
+.drilldown .selected .rich-tree-node-text a:hover {
+	text-decoration: none;
+}
+.drilldown .selected {
+	background: $light-gray;
+}
+.listnav select {
+	border: none;
+}

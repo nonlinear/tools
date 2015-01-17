@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<title>OnDeck Instant Decision</title>
+<script type="text/javascript" src="lib/jquery/jquery-plus-jquery-ui.js"></script><script type="text/javascript" src="lib/jquery/jquery.js"></script>
+	<script type="text/javascript" src="lib/jquery/ui.datepicker.js"></script>
+<script type="text/javascript" src="lib/jquery/jquery.tooltip.js"></script>
+<!-- Load IxEdit ( You can delete these two lines after deploying. )
+<script type="text/javascript" src="lib/ixedit/ixedit.js"></script>
+<link type="text/css" href="lib/ixedit/ixedit.css" rel="stylesheet" /> -->
+<link rel="stylesheet" href="lib/jquery/jquery.validationEngine.css" type="text/css" />
+<link type="text/css" href="lib/sample-style/ui-sui.css" rel="stylesheet" />
+<link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection" />
+<link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print" />
+<!--[if IE]><link rel="stylesheet" href="code/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
+<!--[if IE]><link rel="stylesheet" href="code/styleIE.css" type="text/css" media="screen, projection"><![endif]-->
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link href="css/base.css" rel="stylesheet" type="text/css" />
+<script src="lib/jquery/jquery.validationEngine.js" type="text/javascript"></script>
+</head>
+<!--[if lt IE 7 ]> <body class="ie6"> <![endif]-->
+<!--[if IE 7 ]> <body class="ie7"> <![endif]-->
+<!--[if IE 8 ]> <body class="ie8"> <![endif]-->
+<!--[if !IE]>--> <body class="notIE"> <!--<![endif]-->
+
+<div class="container">
+  <div id="header">
+    <div id="header-right"><a href="http://www.ondeckcapital.com/apply-now"><img src="images/header/apply-now.gif" alt="Apply Now" id="apply-now" /></a><img src="images/header/call-us-now.gif" alt="Call us now 888.269.4246" id="call-us"  /><br />
+      <a href="https://partners.ondeckcapital.com/partnerportal/" target="_blank"><img src="images/header/partner-login.gif" alt="Partner Login" border="0" id="login-p" /></a><a href="https://loans.ondeckcapital.com/ODC/startAction.do" target="_blank"><img src="images/header/customer-login.gif" alt="Customer Login" border="0" id="login-c" /></a></div>
+    <a href="http://67.227.209.200images/header/"><img src="images/header/logo.png" alt="On Deck Capital" width="174" height="38" border="0" id="logo" /></a><img src="images/header/tagline.gif" alt="Providing Small Businesses With Fast, Smart Loans" id="tagline" />
+    <div id="top-navigation-wrapper">
+      <div id="top-navigation-wrapper2">
+        <div id="top-navigation-wrapper3">
+          <ul class="menu">
+            <li class="item1"><a href="http://67.227.209.200images/header/"><span>Home</span></a></li>
+            <li class="parent item2"><a href="http://www.ondeckcapital.com/our-loans/overview"><span>Our Loans</span></a></li>
+            <li class="parent item3"><a href="http://www.ondeckcapital.com/our-customers/overview"><span>Our Customers</span></a></li>
+            <li class="parent item12"><a href="http://www.ondeckcapital.com/our-company/overview"><span>Our Company</span></a></li>
+            <li class="parent item13"><a href="http://www.ondeckcapital.com/partners/overview"><span>Partners</span></a></li>
+            <li class="parent item4"><a href="http://www.ondeckcapital.com/in-the-news/overview"><span>In The News</span></a></li>
+            <li class="parent item14"><a href="http://www.ondeckcapital.com/contact-us/overview"><span>Contact Us</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="box">
+    <div class="content_header">
+      <div class="span-14 navmenu">&nbsp;</div>
+      <div class="span-9 logo last">
+        &nbsp;
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="span-16 prepend-3 append-1 faq scroll content">
+      <h3>Q: How does On Deck Capital's Instant Decision Application work?</h3>
+      <p>A: On Deck Capital uses information related to your bank account and merchant processing account to make a lending decision based on the strength of the cash flow of your business. </p>
+      <p>Traditionally this information is collected via faxing in bank statements.  By using an online interaction to collect this information, we can reduce the burden on you.  This allows us to reduce the time it takes us to approve a loan, resulting in faster access to capital than ever before.</p>
+      <p>This information is also used to monitor your business on an on-going basis after your loan is funded, so that we can potentially offer more credit to you after getting to know your business better, and it allows us to better assist you if any problems associated with your business should arise.</p>
+      <h3>Q: Why does On Deck Capital need my bank login information (username, password, security questions)?</h3>
+      <p>A: On Deck Capital has identified online banking access as the quickest and easiest method to get access to your banking information.  In order to access this information, it is required that we use your username, password, and any security questions associated with your online banking account.</p>
+      <h3>Q: How does On Deck Capital use my bank login information?</h3>
+      <p>A: When we collect your username and password, we establish a secure connection with your banking institution. This enables us to download, store, and analyze your transaction information securely and automatically.  During the life of your loan we continue to download your most recent transactions so that we can monitor the health of your business.  Your bank login information is stored in a secure server environment with our partner, Yodlee, where it is encrypted and cannot be accessed by human eyes.</p>
+      <h3>Q: What does On Deck look for in my transaction information? </h3>
+      <p>A: When we analyze your transaction information, we're trying to get a sense of how your business is performing from the perspective of revenues and expenses.  As such, we make calculations related to cash flow patterns, monthly volumes, and recurring expenses. These are the same things we calculated using your paper bank statements in the past, but now it is a much faster and easier process.</p>
+      <h3>Q: Can On Deck Capital employees view my online banking username and passwords? Do you store my bank login information on your servers?</h3>
+      <p>A: No, On Deck Capital employees cannot view your banking username and passwords. We do not store this information in our systems or on any computer that an On Deck Capital employee has access to. Your banking login credentials are securely stored and encrypted by our online financial services provider, Yodlee.</p>
+      <h3>Q: Can On Deck Capital use my log in information to access my bank accounts to make any transactions?</h3>
+      <p>A: No - On Deck Capital has a strictly &quot;read-only&quot; view of your transaction information that does not allow us to move your money or touch it in any way. While your username and password are initially used to log into your account and download your transactions, they are not saved in our database.  We can only download and store your data; we cannot attempt to initiate a transaction.</p>
+      <h3>Q: Am I at greater risk to identity theft if I participate in this program?</h3>
+      <p>A: No, as your online banking information can not be connected to your personally identifying information using our system.  We store any personally identifiable information, including name, email address, Social Security Number, and address, in a separate database than where your online banking information is stored.</p>
+      <h3>Q: Who is Yodlee, the partner with whom On Deck Capital is working to access my banking institution?</h3>
+      <p>A: Leading financial institutions trust Yodlee to power critical online banking applications.  Yodlee's proven personal financial management, payments, and customer acquisition solutions unify all personal financial account information to deliver a simple, centralized and secure way for consumers to manage all of their financial tasks - any time, anywhere.  Over 100 leading financial institutions and portals today offer Yodlee-powered solutions to millions of customers worldwide. Yodlee operates in the United States and Europe and is headquartered in Redwood City, California.</p>
+      <p>Yodlee's servers are securely housed in an Internet server hosting space that provides enhanced physical security, fire protection and electronic shielding. Security personnel monitor the system 24 hours a day, 7 days a week. Access to servers requires multiple levels of authentication, including biometric (hand print scan) procedures.  For more information, please go to <a href="http://yodlee.com/security_se.shtml" target="_blank">http://yodlee.com/security_se.shtml</a>.</p>
+      <h3>Q: What kind of technology do you use to ensure a secure connection that can't be hacked?</h3>
+      <p>A: On Deck Capital protects your information using bank-level data security: 128 bit-encryption and a Secure Sockets Layer (SSL) protocol.  This creates an encrypted connection between your browser and our servers.  All information is kept encrypted at all times.</p>
+      <h3>Q: What happens if I change my password with my bank? </h3>
+      <p>A: If you change your password with your bank, our connection to your online banking account will be broken.  You will need to provide us with the updated password for the account in order for us to maintain our connection so that we can analyze your business' performance during the life of your loan.</p>
+      <h3>Q: How do I leave the program? </h3>
+      <p>A: After your loan is paid off, and you do not wish to apply for a renewal loan, you will be automatically removed from the program after 1 month, or when you notify On Deck, whichever is earlier. Note: Enrollment in the program may be a condition of some loans.</p>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="disclaimer mini">
+    <div class="span-3 prepend-2"><a href="javascript:;" onclick="var url='https://seal.verisign.com/splash?form_file=fdf\/splash.fdf&dn=WWW.ONDECKCAPITAL.COM&lang=en';window.open(url,'DataReport','menubar=1,resizable=1,width=560,height=500')"></a><a href="javascript:;" onclick="var url='https://seal.verisign.com/splash?form_file=fdf\/splash.fdf&dn=WWW.ONDECKCAPITAL.COM&lang=en';window.open(url,'DataReport','menubar=1,resizable=1,width=560,height=500')"><img src="images/verisignSecuredSeal.gif" class="verisign"/></a></div>
+    <div class="span-17 last">
+      <p> * All business loans are subject to credit approval, verification, and collateral evaluation. Loan approvals are subject to your meeting lender’s specific underwriting requirements, and approval will be based on the validation of these requirements. Instant Decision relies on information about your company, including business banking data, and the lender may need to collect additional data about your company in order to provide an approval. Information not supplied during Instant Decision, such as the presence of outstanding personal or business debt, judgments, or liens, can also cause the approved loan amount to be adjusted or may cause your application to be declined. Maximum loan amount is $100,000.00. Actual terms (including actual loan amounts) may vary by applicant. Complete disclosure of interest rate, fees, and payment terms are provided by the lender in the Loan Agreement.  On Deck Capital lends in most states. In certain states and for certain loan sizes and amounts, On Deck loans are issued through our lending partner, MetaBank, a federally chartered savings bank.</p>
+    </div>
+    <div class="clear"> </div>
+  </div>
+  <div id="footer">
+    <div id="footer-top">
+      <div id="footer-round-l">
+        <div id="footer-round-r">
+          <p><a href="http://www.ondeckcapital.com/privacy-and-security">Privacy &amp; Security</a> |   <a href="http://www.ondeckcapital.com/frequently-asked-questions">Frequently Asked Questions</a> |   <a href="http://www.ondeckcapital.com/contact-us/overview">Contact Us</a> |   888.269.4246   |   info@ondeckcapital.com</p>
+        </div>
+      </div>
+    </div>
+    <table border="0">
+      <tbody>
+        <tr>
+          <td><a href="http://www.ondeckcapital.com/our-loans/overview"><strong>Our Loans</strong></a><br />
+            <a href="http://www.ondeckcapital.com/our-loans/how-we-lend">How We Lend</a><br />
+            <a href="http://www.ondeckcapital.com/our-loans/features">Features</a><br />
+            <a href="http://www.ondeckcapital.com/our-loans/compare-us">Compare Us</a><br />
+            <a href="http://www.ondeckcapital.com/our-loans/types-of-loans">Types of Loans</a><br />
+            <a href="http://www.ondeckcapital.com/our-loans/faqs">FAQs</a></td>
+          <td><a href="http://www.ondeckcapital.com/our-customers/overview"><strong>Our Customers</strong></a><br />
+            <a href="http://www.ondeckcapital.com/our-customers/customer-profile">Customer Profile</a><br />
+            <a href="http://www.ondeckcapital.com/our-customers/customer-testimonials">Customer Testimonials</a><br />
+            <a href="http://www.ondeckcapital.com/our-customers/customer-bill-of-rights">Customer Bill of Rights</a></td>
+          <td><a href="http://www.ondeckcapital.com/our-company/overview"><strong>Our Company</strong></a><br />
+            <a href="http://www.ondeckcapital.com/our-company/management">Management</a><br />
+            <a href="http://www.ondeckcapital.com/our-company/board-of-directors">Board of Directors</a><br />
+            <a href="http://www.ondeckcapital.com/our-company/key-partnerships">Key Partnerships</a><br />
+            <a href="http://www.ondeckcapital.com/our-company/investors">Investors</a></td>
+          <td><a href="http://www.ondeckcapital.com/partners/overview"><strong>Partners</strong></a><br />
+            <a href="http://www.ondeckcapital.com/partners/become-an-authorized-distributor">Become an Authorized Distributor</a><br />
+            <a href="http://www.ondeckcapital.com/partners/become-a-partner">Become a Partner</a><br />
+            <a href="http://www.ondeckcapital.com/partners/who-we-want">Who We Want</a><br />
+            <a href="http://www.ondeckcapital.com/partners/odc-advantage">ODC Advantage</a><br />
+            <a href="http://www.ondeckcapital.com/partners/faqs">FAQs</a><br />
+            <a href="http://www.ondeckcapital.com/partners/how-we-support-you">How We Support You</a></td>
+          <td><a href="http://www.ondeckcapital.com/in-the-news/overview"><strong>In The News</strong></a><br />
+            <a href="http://www.ondeckcapital.com/in-the-news/press-releases">Press Releases</a><br />
+            <a href="http://www.ondeckcapital.com/in-the-news/media-kit">Media Kit</a><br />
+            <a href="http://www.ondeckcapital.com/in-the-news/blog">Blog</a></td>
+          <td><a href="http://www.ondeckcapital.com/contact-us/overview"><strong>Contact Us</strong></a></td>
+          <td><a href="http://www.ondeckcapital.com/apply-now"><strong>Apply Now</strong></a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body></html>

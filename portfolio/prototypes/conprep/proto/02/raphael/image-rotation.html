@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>Raphaël · Image Rotation</title>
+        <link rel="stylesheet" href="image-rotation_files/demo.css" media="screen">
+        <link rel="stylesheet" href="image-rotation_files/demo-print.css" media="print">
+        <script src="image-rotation_files/raphael.js"></script>
+        <script>
+            window.onload = function () {
+                var src = document.getElementById("bee").src,
+                    angle = 0;
+                document.getElementById("holder").innerHTML = "";
+                var R = Raphael("holder", 640, 480);
+                R.circle(320, 240, 200).attr({fill: "#000", "fill-opacity": .5, "stroke-width": 5});
+                var img = R.image(src, 160, 120, 320, 240);
+                var butt1 = R.set(),
+                    butt2 = R.set();
+                butt1.push(R.circle(24.833, 26.917, 26.667).attr({stroke: "#ccc", fill: "#fff", "fill-opacity": .4, "stroke-width": 2}),
+                           R.path("M12.582,9.551C3.251,16.237,0.921,29.021,7.08,38.564l-2.36,1.689l4.893,2.262l4.893,2.262l-0.568-5.36l-0.567-5.359l-2.365,1.694c-4.657-7.375-2.83-17.185,4.352-22.33c7.451-5.338,17.817-3.625,23.156,3.824c5.337,7.449,3.625,17.813-3.821,23.152l2.857,3.988c9.617-6.893,11.827-20.277,4.935-29.896C35.591,4.87,22.204,2.658,12.582,9.551z").attr({stroke: "none", fill: "#000"}),
+                           R.circle(24.833, 26.917, 26.667).attr({fill: "#fff", opacity: 0}));
+                butt2.push(R.circle(24.833, 26.917, 26.667).attr({stroke: "#ccc", fill: "#fff", "fill-opacity": .4, "stroke-width": 2}),
+                           R.path("M37.566,9.551c9.331,6.686,11.661,19.471,5.502,29.014l2.36,1.689l-4.893,2.262l-4.893,2.262l0.568-5.36l0.567-5.359l2.365,1.694c4.657-7.375,2.83-17.185-4.352-22.33c-7.451-5.338-17.817-3.625-23.156,3.824C6.3,24.695,8.012,35.06,15.458,40.398l-2.857,3.988C2.983,37.494,0.773,24.109,7.666,14.49C14.558,4.87,27.944,2.658,37.566,9.551z").attr({stroke: "none", fill: "#000"}),
+                           R.circle(24.833, 26.917, 26.667).attr({fill: "#fff", opacity: 0}));
+                butt1.translate(10, 181);
+                butt2.translate(10, 245);
+                butt1[2].click(function () {
+                    angle -= 90;
+                    img.animate({rotation: angle}, 1000, "<>");
+                }).mouseover(function () {
+                    butt1[1].animate({fill: "#fc0"}, 300);
+                }).mouseout(function () {
+                    butt1[1].stop().attr({fill: "#000"});
+                });
+                butt2[2].click(function () {
+                    angle += 90;
+                    img.animate({rotation: angle}, 1000, "<>");
+                }).mouseover(function () {
+                    butt2[1].animate({fill: "#fc0"}, 300);
+                }).mouseout(function () {
+                    butt2[1].stop().attr({fill: "#000"});
+                });
+                setTimeout(function () {R.safari();});
+            };
+        </script>
+    </head>
+    <body>
+        <div id="holder"><svg height="480" width="640" version="1.1" xmlns="http://www.w3.org/2000/svg"><desc>Created with Raphaël</desc><defs></defs><circle stroke-width="5" fill-opacity="0.5" style="fill-opacity: 0.5; stroke-width: 5;" stroke="#000" fill="#000000" r="200" cy="240" cx="320"></circle><image transform="" href="image-rotation_files/bd.jpg" preserveAspectRatio="none" height="240" width="320" y="120" x="160"><circle stroke-width="2" fill-opacity="0.4" style="fill-opacity: 0.4; stroke-width: 2;" stroke="#cccccc" fill="#ffffff" r="26.667" cy="207.917" cx="34.833"></circle><path d="M22.582,190.551C13.251000000000001,197.237,10.921000000000001,210.021,17.080000000000002,219.564L14.720000000000002,221.253L19.613000000000003,223.515L24.506000000000004,225.777L23.938000000000002,220.41699999999997L23.371000000000002,215.05799999999996L21.006,216.75199999999995C16.349,209.37699999999995,18.176000000000002,199.56699999999995,25.358,194.42199999999997C32.809,189.08399999999997,43.175,190.79699999999997,48.513999999999996,198.24599999999998C53.851,205.695,52.138999999999996,216.05899999999997,44.693,221.39799999999997L47.55,225.38599999999997C57.167,218.49299999999997,59.376999999999995,205.10899999999998,52.485,195.48999999999995C45.591,185.86999999999995,32.204,183.65799999999996,22.582,190.55099999999996Z" stroke="none" fill="#000000"></path><circle opacity="0" style="opacity: 0;" stroke="#000" fill="#ffffff" r="26.667" cy="207.917" cx="34.833"></circle><circle stroke-width="2" fill-opacity="0.4" style="fill-opacity: 0.4; stroke-width: 2;" stroke="#cccccc" fill="#ffffff" r="26.667" cy="271.91700000000003" cx="34.833"></circle><path d="M47.566,254.551C56.897000000000006,261.23699999999997,59.227000000000004,274.022,53.068000000000005,283.565L55.428000000000004,285.254L50.535000000000004,287.516L45.642,289.778L46.21,284.418L46.777,279.059L49.142,280.75300000000004C53.79900000000001,273.37800000000004,51.972,263.56800000000004,44.790000000000006,258.42300000000006C37.339000000000006,253.08500000000006,26.973000000000006,254.79800000000006,21.634000000000007,262.24700000000007C16.300000000000008,269.69500000000005,18.012000000000008,280.06000000000006,25.458000000000006,285.3980000000001L22.601000000000006,289.3860000000001C12.983000000000006,282.4940000000001,10.773000000000007,269.1090000000001,17.666000000000007,259.49000000000007C24.558000000000007,249.87000000000006,37.944,247.65800000000007,47.566,254.55100000000007Z" stroke="none" fill="#000000"></path><circle opacity="0" style="opacity: 0;" stroke="#000" fill="#ffffff" r="26.667" cy="271.91700000000003" cx="34.833"></circle></svg></div>
+        <p id="copy">Demo of <a href="http://raphaeljs.com/">Raphaël</a>—JavaScript Vector Library</p>
+    
+
+</body></html>

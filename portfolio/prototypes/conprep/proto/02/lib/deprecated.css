@@ -1,0 +1,170 @@
+.sidebar .field span {
+	width: 190px;
+}
+.sidebar .field a.button {
+	position: relative;
+	right: -35px;
+	top: 2px;
+}
+.sidebar .field a.button:hover {
+	top: 4px;
+}
+.container {
+	width:1590px;
+}
+.rich-table {
+	margin: 0
+}
+.rich-table th table td {
+	padding: 7px;
+	white-space:nowrap;
+}
+.rich-table th:first-child table tr:last-child .propertySorter {
+	background-position: right 8px;
+	background-repeat: no-repeat;
+	padding-right: 17px;
+	background-image: url(../img/bg_sortdown.png);
+}
+.rich-table th table tr:last-child td.sortup, .rich-table th table tr:last-child td.sortdown {
+	border: solid 1px #000;
+	border-bottom: solid 1px #fff;
+	background-position: right center;
+	background-repeat: no-repeat;
+}
+.rich-table th table tr:last-child td.sortup {
+	background-image: url(../img/bg_sortup.png);
+}
+.rich-table th table tr:last-child td.sortdown {
+	background-image: url(../img/bg_sortup.png);
+}
+thead tr:first-child input, thead tr:first-child textarea, thead tr:first-child select {
+	width: 120px;
+}
+sidebar {
+	padding: 10px 0;
+}
+.sidebar {
+	width: 350px;
+	float: left;
+	background-color: #dedcbe;
+}
+#cluster {
+	width: 860px;
+}
+a.wizard, a.download {
+	float: right;
+}
+#cluster ul li a.download {
+	color: #fff;
+	background-image: url(../img/cats/bg_download.png);
+	background-position: left center;
+	position: relative;
+	margin: 0;
+}
+#cluster ul li a.download:hover {
+	background-image: url(../img/cats/bg_download_hover.png);
+}
+#cluster ul li a.download2:active {
+	background-image: url(../img/cats/bg_download_active.png);
+}
+a.filter, a.find {
+	padding: 6px 10px 6px 24px;
+	left: 5px;
+	position: relative;
+}
+a.wizard2, .field a.wizard, h1 a.wizard, a.filter2 {
+	margin: 5px 0 0 5px;
+	padding: 3px 3px 3px 18px;
+	color: #fff;
+	float: right;
+	height: 14px;
+	text-indent: -1000px;
+	font-size: 0px;
+}
+a.wizard, a.wizard2, a.wizardleft {
+	background-image: url(../img/cats/bg_wizard.png);
+}
+a.wizard:hover, a.wizard2:hover, a.wizardleft:hover {
+	background-image: url(../img/cats/bg_wizard_hover.png);
+}
+a.wizard:active, a.wizard2:active, a.wizardleft:active {
+	background-image: url(../img/cats/bg_wizard_active.png);
+}
+a.filter, a.filter2 {
+	background-image: url(../img/cats/bg_filter.png);
+}
+a.filter:hover, a.filter2:hover {
+	background-image: url(../img/cats/bg_filter_hover.png);
+}
+a.filter:active, a.filter2:active {
+	background-image: url(../img/cats/bg_filter_active.png);
+}
+a.find, a.find2 {
+	background-image: url(../img/cats/bg_find.png);
+}
+a.find:hover, a.find2:hover {
+	background-image: url(../img/cats/bg_find_hover.png);
+}
+a.find:active, a.find2:active {
+	background-image: url(../img/cats/bg_find_active.png);
+}
+a.delete, a.delete2 {
+	background-image: url(../img/cats/bg_delete.png);
+	background-position: left center;
+}
+a.delete:hover, a.delete2:hover {
+	background-image: url(../img/cats/bg_delete_hover.png);
+	background-position: left center;
+}
+a.delete:active, a.delete2:active {
+	background-image: url(../img/cats/bg_delete_active.png);
+	background-position: left center;
+}
+.smart tbody tr a.link, a.link {
+	background-image: url(../img/cats/bg_link.png);
+	background-position: left center;
+	color: #fff;
+	margin-top: 2px;
+}
+.smart tbody tr:hover a.link {
+	text-decoration: none;
+}
+a.link:hover {
+	background-image: url(../img/cats/bg_link_hover.png);
+	background-position: left center;
+	text-decoration: none;
+}
+a.link:active {
+	background-image: url(../img/cats/bg_link_active.png);
+	background-position: left center;
+}
+.message {
+	font-size: 10px;
+	background: #FFC;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#eee));
+	background: -moz-linear-gradient(top, #ccc, #eee);
+ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ccc', endColorstr='#eee');
+	color: #333;
+	padding: 12px;
+	margin-bottom: 10px;
+}
+.sidebar a.wizard {
+	margin: 0px 0 0 5px;
+	color: #fff;
+}
+.field input, .field select, .field .read-only, .field textarea {
+	font-size: 14px;
+}
+#badge h1, .enhance {
+	background: url(../img/bg_gradient.png) left bottom repeat-x;
+	border: 0;
+}
+.field {
+	padding: 10px;
+}
+#badge label {
+	padding-left: 0
+}
+.rich-table-subheadercell {
+	border-bottom: solid 1px #000;
+}

@@ -1,0 +1,21 @@
+#tooltip {
+	position: absolute;
+	z-index: 3000;
+	width: 200px;
+	font-size:10px;
+	color:#222;
+	font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	background-image: url(../../jquery/tooltip.gif);
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	padding-top: 20px;
+	padding-right: 10px;
+	padding-bottom: 15px;
+	padding-left: 10px;
+	line-height: 100%;
+}
+#tooltip h3, #tooltip div { margin: 0; 
+	font-size:10px;
+	font-weight:normal;
+	color: #000;}

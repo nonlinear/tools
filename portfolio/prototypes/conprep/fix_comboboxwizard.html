@@ -1,0 +1,1156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>ITHAKA | CONPREP</title>
+	<script src="fix_comboboxwizard_files/framework.js" type="text/javascript"></script><script src="fix_comboboxwizard_files/ui.js" type="text/javascript"></script><link class="component" href="fix_comboboxwizard_files/eAGTcz60MXT5DGkAD2IDhA__.css" rel="stylesheet" type="text/css"><link class="component" href="fix_comboboxwizard_files/eAGTcz60MXT5DGkAD2IDhA___002.css" rel="stylesheet" type="text/css"><link class="component" href="fix_comboboxwizard_files/eAGTcz60MXT5DGkAD2IDhA___003.css" rel="stylesheet" type="text/css"><script type="text/javascript">window.RICH_FACES_EXTENDED_SKINNING_ON=true;</script><link rel="shortcut icon" href="http://localhost:8080/ConPrepUI/favicon.ico">
+	<link rel="stylesheet" href="fix_comboboxwizard_files/style.css">
+	</head>
+
+
+	<body class="batch recordview"><div id="j_id3">
+<form id="linkToForm" name="linkToForm" method="post" action="/ConPrepUI/batches/BatchEdit.seam" enctype="application/x-www-form-urlencoded">
+<input autocomplete="off" name="linkToForm" value="linkToForm" type="hidden">
+<script id="linkToForm:j_id4" type="text/javascript">//<![CDATA[
+		linkTo=function(id){A4J.AJAX.Submit('linkToForm',null,{'similarityGroupingId':'linkToForm:j_id4','parameters':{'id':id,'linkToForm:j_id4':'linkToForm:j_id4'} } )};
+		//]]></script><input autocomplete="off" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id5" type="hidden">
+</form><script type="text/javascript">//<![CDATA[
+function enableSaveCancel(elm, param) {
+	var selector = ".saveOrCancel.disabled";
+	try {
+		selector = eval(".saveOrCancel.disabled");
+	} catch (e) {}
+	
+	jQuery(elm || selector).removeClass('disabled');
+}
+//]]></script><script type="text/javascript">//<![CDATA[
+function addDisabledToReadonly(elm, param) {
+	var selector = "*[readonly\x5D";
+	try {
+		selector = eval("*[readonly\x5D");
+	} catch (e) {}
+	
+	jQuery(elm || selector).addClass('disabled');
+}
+//]]></script><script type="text/javascript">//<![CDATA[
+  jQuery(document).ready(function() {
+	var selector = "*[readonly\x5D";
+	try {
+		selector = eval("*[readonly\x5D");
+	} catch (e) {}
+	jQuery(selector).addClass('disabled');
+ });
+//]]></script><script type="text/javascript">//<![CDATA[
+function addDisabledToDisabled(elm, param) {
+	var selector = "*[disabled\x5D";
+	try {
+		selector = eval("*[disabled\x5D");
+	} catch (e) {}
+	
+	jQuery(elm || selector).addClass('disabled');
+}
+//]]></script><script type="text/javascript">//<![CDATA[
+  jQuery(document).ready(function() {
+	var selector = "*[disabled\x5D";
+	try {
+		selector = eval("*[disabled\x5D");
+	} catch (e) {}
+	jQuery(selector).addClass('disabled');
+ });
+//]]></script><script type="text/javascript">//<![CDATA[
+function moreMenuChange(elm, param) {
+	var selector = "#moreMenuOptionsSelect";
+	try {
+		selector = eval("#moreMenuOptionsSelect");
+	} catch (e) {}
+	
+	jQuery(elm || selector).each(moreMenu);
+}
+//]]></script><script type="text/javascript">//<![CDATA[
+  jQuery(document).ready(function() {
+	var selector = "#moreMenuOptionsSelect";
+	try {
+		selector = eval("#moreMenuOptionsSelect");
+	} catch (e) {}
+	jQuery(selector).each(moreMenu);
+ });
+//]]></script>
+
+	<script type="text/javascript">
+	var moreMenuMapping = {};
+	moreMenuMapping['disciplines'] = '/lists/Disciplines.seam';
+	moreMenuMapping['invitations'] = '/lists/CatInvitationsList.seam';
+	moreMenuMapping['orderproblems'] = '/lists/CatAcqOrdersProblemsList.seam';
+	moreMenuMapping['movingwallflip'] = '/lists/CatMovingWallFlipsList.seam';
+	moreMenuMapping['contractdetails'] = '/lists/CatContractDtlsList.seam';
+	moreMenuMapping['walldetails'] = '/lists/CatWallDtlsList.seam';
+	moreMenuMapping['walloverrides'] = '/lists/CatWallOverridesList.seam';
+	moreMenuMapping['publishersToCmpts'] = '/lists/CatPublishersToCmptsList.seam';
+	moreMenuMapping['riders'] = '/lists/CatRidersList.seam';
+	moreMenuMapping['digivendor'] = '/lists/CatDigiVendorListList.seam';
+	moreMenuMapping['senttohcl'] = '/lists/CatSourceSentToHclList.seam';
+	moreMenuMapping['relationships'] = '/lists/CatTitleRltnshpsList.seam';
+	
+function moreMenu() {
+		
+		var select = jQuery('#moreMenuOptionsSelect');
+
+			
+			
+			if ( jQuery('#container').hasClass('moremenu') ) {
+				
+				for (var entityType in moreMenuMapping) {
+				    if ( jQuery('#container').hasClass(entityType) ) {
+				        selectOptionOfValue( entityType);
+				        break;
+				    }
+				}
+				
+			} else {
+				select.get(0).options.selectedIndex = 0;
+			}
+			
+			jQuery(this).change(
+				function() {
+					var which = jQuery('#moreMenuOptionsSelect option:selected').val();
+					var dest = moreMenuMapping[which];
+					if ( dest != null ) {
+						window.location = '/ConPrepUI' + dest;
+					}
+				}
+			);
+}
+
+
+function upToListMode() {
+	var which = jQuery('#moreMenuOptionsSelect option:selected').val();
+	var dest = moreMenuMapping[which];
+	if ( dest != null ) {
+		window.location = '/ConPrepUI' + dest;
+		return true;
+	}
+	return false;
+}
+
+
+	function selectOptionOfValue( val) {
+		jQuery("#moreMenuOptionsSelect option[value='"+val+"']").get(0).selected = true;
+	}
+
+	function checkForSave() {
+			var howMany = jQuery('.saveOrCancel:not(.disabled)').length;
+			if ( howMany != 0 ) {
+				alert("Please save your changes first!");
+				return false;
+			}
+			return true;
+		}
+
+
+	
+			function cancelEventBubbling(evt) {
+				var e = (typeof evt != 'undefined') ? evt : event;
+				e.cancelBubble = true;
+			}
+			function toggleCheckboxes(checked, clazz) {
+			       jQuery('.'+clazz).each(function(){ this.checked = checked; }); 
+			}
+
+
+			function toggleMoreNav() {
+				setVisibilityMoreNav(jQuery('#more').hasClass('hidden'));
+			}
+			function showMoreNav() {
+				setVisibilityMoreNav(true);
+			}
+			function hideMoreNav() {
+				setVisibilityMoreNav(false);
+			}
+			function setVisibilityMoreNav(visible) {
+				if ( visible ) {
+					jQuery('#more').removeClass('hidden');
+				} else {
+					jQuery('#more').addClass('hidden');
+				}
+			}
+
+
+			function checkRadios(styleClass, msg) {
+				var retValue = false;
+				jQuery('.' + styleClass).each(function(){ 
+					if(this.checked) {retValue=true;}
+				}); 
+				if(retValue == false){
+					alert(msg);
+				}
+				return retValue;
+			}
+			function emulateRadios(chkbx, styleClass) {
+				jQuery('.' + styleClass).each(function(){ 
+					this.checked = false; 
+				}); 
+				chkbx.checked = true;
+			}
+
+			function formatURL(url) {
+				var stringToFind = "cid=";
+				var index = url.lastIndexOf(stringToFind);
+				if(index > 0) {
+					url = url.substring(0,index-1);
+				}
+				return url;
+			}
+		
+			
+		</script></div>
+	  
+	  
+	  
+	<div class="container">
+	<!-- Header --><div id="header">
+
+	<div id="logo" class="span-8">
+	<h1><a tabindex="0" href="http://localhost:8080/ConPrepUI">Portico ConPrep</a></h1>
+	</div>
+	<div class="span-39 last"><div id="admin">
+			<span>Welcome, pkesireddy</span>   <a tabindex="0" href="http://localhost:8080/ConPrepUI/home.seam?actionMethod=batches%2FBatchEdit.xhtml%3Aidentity.logout" id="menuLogoutId" class="button cancel">Logout</a></div>
+
+
+	</div>
+	<ul>
+      <li class="selected"><a tabindex="0" href="http://localhost:8080/ConPrepUI/lists/BatchList.seam">Batches</a></li>
+<!--      
+      <li><a href="#">Tags</a></li>
+      <li><a href="#">Providers</a></li>
+      <li><a href="#">Contracts</a></li>
+      <li><a href="#">Publishers</a></li>
+      <li>
+        <select name="">
+          <option value="">More Options</option>
+          <option value="">Lorem</option>
+          <option value="">Ipsum</option>
+          <option value="">Dolor</option>
+        </select>
+      </li>
+-->      
+    </ul></div>
+    <!-- End Header -->  
+    <div id="main">
+    <!-- Badge --> 	
+	<div id="badge" class="sidebar span-8"><div id="j_id23"><form target="" id="batchBadgeForm" name="batchBadgeForm" method="post" action="/ConPrepUI/batches/BatchEdit.seam">
+   <h1>test-wiley-prathibha</h1>  
+      <!--      <s:decorate id="PAccessionIdFieldBadge" template="../layout/edit.xhtml">
+                <ui:define name="label">P accession id</ui:define>
+                <h:outputText id="PAccessionId"
+                              value="ark:/27927/dcc120463"/>
+            </s:decorate> --><div id="batchBadgeForm:Provider">
+
+    <div class="field  ">
+		<div class="span-3"><label>
+Provider</label>
+</div><div class="span-5 last">WILEY</div>
+       
+    </div></div><div id="batchBadgeForm:ProfileID">
+
+    <div class="field  ">
+		<div class="span-3"><label>
+Profile</label>
+</div><div class="span-5 last"><a tabindex="0" class="button edit" href="#" id="batchBadgeForm:ProfileID:changeProfileButton" name="batchBadgeForm:ProfileID:changeProfileButton" onclick="A4J.AJAX.Submit('batchBadgeForm',event,{'ignoreDupResponses':true,'status':'globalWaitStatus','oncomplete':function(request,event,data){Richfaces.showModalPanel('batchBulkUpdatePanel');},'similarityGroupingId':'batchBadgeForm:ProfileID:changeProfileButton','parameters':{'ajaxSingle':'batchBadgeForm:ProfileID:changeProfileButton','batchBadgeForm:ProfileID:changeProfileButton':'batchBadgeForm:ProfileID:changeProfileButton'} ,'eventsQueue':'badgeActivityEditQueue'} );return false;"></a><span id="batchBadgeForm:ProfileID:ProfileID">Wiley-8.0.xml</span></div>
+       
+    </div></div><div id="batchBadgeForm:WorkflowTemplate">
+
+    <div class="field  ">
+		<div class="span-3"><label>
+Workflow Template</label>
+</div><div class="span-5 last">E-Journal Workflow 2.1</div>
+       
+    </div></div><div id="batchBadgeForm:WorkFlowQueue">
+
+    <div class="field  ">
+		<div class="span-3"><label>
+Executor Queue</label>
+</div><div class="span-5 last"><a tabindex="0" class="button edit" href="#" id="batchBadgeForm:WorkFlowQueue:ExecQueueEditButton" name="batchBadgeForm:WorkFlowQueue:ExecQueueEditButton" onclick="A4J.AJAX.Submit('batchBadgeForm',event,{'ignoreDupResponses':true,'status':'globalWaitStatus','oncomplete':function(request,event,data){Richfaces.showModalPanel('batchBulkUpdatePanel');},'similarityGroupingId':'batchBadgeForm:WorkFlowQueue:ExecQueueEditButton','parameters':{'ajaxSingle':'batchBadgeForm:WorkFlowQueue:ExecQueueEditButton','batchBadgeForm:WorkFlowQueue:ExecQueueEditButton':'batchBadgeForm:WorkFlowQueue:ExecQueueEditButton'} ,'eventsQueue':'badgeActivityEditQueue'} );return false;"></a></div>
+       
+    </div></div><div id="batchBadgeForm:LifecycleState">
+
+    <div class="field  ">
+		<div class="span-3"><label>
+Lifecycle State</label>
+</div><div class="span-5 last"><a tabindex="0" class="button edit" href="#" id="batchBadgeForm:LifecycleState:lifecycleEditButton" name="batchBadgeForm:LifecycleState:lifecycleEditButton" onclick="A4J.AJAX.Submit('batchBadgeForm',event,{'ignoreDupResponses':true,'status':'globalWaitStatus','oncomplete':function(request,event,data){Richfaces.showModalPanel('batchBulkUpdatePanel');},'similarityGroupingId':'batchBadgeForm:LifecycleState:lifecycleEditButton','parameters':{'batchBadgeForm:LifecycleState:lifecycleEditButton':'batchBadgeForm:LifecycleState:lifecycleEditButton','ajaxSingle':'batchBadgeForm:LifecycleState:lifecycleEditButton'} ,'eventsQueue':'badgeActivityEditQueue'} );return false;"></a>RESOLVING_PROBLEM</div>
+       
+    </div></div><div id="batchBadgeForm:LastActivity">
+
+    <div class="field  ">
+		<div class="span-3"><label>
+Last Activity</label>
+</div><div class="span-5 last"><span id="batchBadgeForm:LastActivity:LastActivity">Check for Completeness</span></div>
+       
+    </div></div><div id="batchBadgeForm:priority">
+
+    <div class="field  ">
+		<div class="span-3"><label>
+Priority</label>
+</div><div class="span-5 last"><a tabindex="0" class="button edit" href="#" id="batchBadgeForm:priority:priorityEditButton" name="batchBadgeForm:priority:priorityEditButton" onclick="A4J.AJAX.Submit('batchBadgeForm',event,{'ignoreDupResponses':true,'status':'globalWaitStatus','oncomplete':function(request,event,data){Richfaces.showModalPanel('batchBulkUpdatePanel');},'similarityGroupingId':'batchBadgeForm:priority:priorityEditButton','parameters':{'batchBadgeForm:priority:priorityEditButton':'batchBadgeForm:priority:priorityEditButton'} ,'eventsQueue':'badgeActivityEditQueue'} );return false;"></a>Normal</div>
+       
+    </div></div><div id="batchBadgeForm:claimedby">
+
+    <div class="field  ">
+		<div class="span-3"><label>
+Claimed by</label>
+</div><div class="span-5 last"><a tabindex="0" class="button claimed" href="#" id="batchBadgeForm:claimedby:j_id118" name="batchBadgeForm:claimedby:j_id118" onclick="A4J.AJAX.Submit('batchBadgeForm',event,{'ignoreDupResponses':true,'status':'globalWaitStatus','oncomplete':function(request,event,data){Richfaces.showModalPanel('batchBulkUpdatePanel');},'similarityGroupingId':'batchBadgeForm:claimedby:j_id118','parameters':{'ajaxSingle':'batchBadgeForm:claimedby:j_id118','batchBadgeForm:claimedby:j_id118':'batchBadgeForm:claimedby:j_id118'} ,'eventsQueue':'badgeActivityEditQueue'} );return false;"></a>pkesireddy</div>
+       
+    </div></div><div id="batchBadgeForm:RUCount">
+
+    <div class="field  ">
+		<div class="span-3"><label>
+RU Count</label>
+</div><div class="span-5 last">0</div>
+       
+    </div></div><div id="batchBadgeForm:SUCount">
+
+    <div class="field  ">
+		<div class="span-3"><label>
+SU Count</label>
+</div><div class="span-5 last">70</div>
+       
+    </div></div><div id="batchBadgeForm:ArticleCount">
+
+    <div class="field  ">
+		<div class="span-3"><label>
+Article Count(Est.)</label>
+</div><div class="span-5 last">6</div>
+       
+    </div></div><div id="batchBadgeForm:FatalErrorCount">
+
+    <div class="field  ">
+		<div class="span-3"><label>
+Fatal Error Count</label>
+</div><div class="span-5 last">0</div>
+       
+    </div></div><div id="batchBadgeForm:Hold">
+
+    <div class="field  ">
+		<div class="span-3"><label>
+Hold</label>
+</div><div class="span-5 last"><a tabindex="0" class="button edit" href="#" id="batchBadgeForm:Hold:badgeActivityHoldWizard" name="batchBadgeForm:Hold:badgeActivityHoldWizard" onclick="A4J.AJAX.Submit('batchBadgeForm',event,{'ignoreDupResponses':true,'status':'globalWaitStatus','oncomplete':function(request,event,data){Richfaces.showModalPanel('batchBulkUpdatePanel');},'similarityGroupingId':'batchBadgeForm:Hold:badgeActivityHoldWizard','parameters':{'ajaxSingle':'batchBadgeForm:Hold:badgeActivityHoldWizard','batchBadgeForm:Hold:badgeActivityHoldWizard':'batchBadgeForm:Hold:badgeActivityHoldWizard'} ,'eventsQueue':'badgeActivityEditQueue'} );return false;"></a>No</div>
+       
+    </div></div><div id="batchBadgeForm:Created">
+
+    <div class="field  ">
+		<div class="span-3"><label>
+Created</label>
+</div><div class="span-5 last">2011/09/14 11:15:53</div>
+       
+    </div></div><div id="batchBadgeForm:AutoprocessStart">
+
+    <div class="field  ">
+		<div class="span-3"><label>
+Autoprocess Started</label>
+</div><div class="span-5 last"><span id="batchBadgeForm:AutoprocessStart:AutoprocessStart">2011/09/14 11:17:16</span></div>
+       
+    </div></div><div id="batchBadgeForm:j_id204" class="field actions"><a tabindex="0" class="button edit" href="#" id="batchBadgeForm:badgeActivityResumeButton" name="batchBadgeForm:badgeActivityResumeButton" onclick="A4J.AJAX.Submit('batchBadgeForm',event,{'ignoreDupResponses':true,'status':'globalWaitStatus','oncomplete':function(request,event,data){Richfaces.showModalPanel('batchBulkUpdatePanel');},'similarityGroupingId':'batchBadgeForm:badgeActivityResumeButton','parameters':{'ajaxSingle':'batchBadgeForm:badgeActivityResumeButton','batchBadgeForm:badgeActivityResumeButton':'batchBadgeForm:badgeActivityResumeButton'} ,'eventsQueue':'badgeActivityEditQueue'} );return false;">Resume Auto Processing</a><a tabindex="0" class="button edit" href="#" id="batchBadgeForm:badgeActivityResetButton" name="batchBadgeForm:badgeActivityResetButton" onclick="A4J.AJAX.Submit('batchBadgeForm',event,{'ignoreDupResponses':true,'status':'globalWaitStatus','oncomplete':function(request,event,data){Richfaces.showModalPanel('batchBulkUpdatePanel');},'similarityGroupingId':'batchBadgeForm:badgeActivityResetButton','parameters':{'batchBadgeForm:badgeActivityResetButton':'batchBadgeForm:badgeActivityResetButton','ajaxSingle':'batchBadgeForm:badgeActivityResetButton'} ,'eventsQueue':'badgeActivityEditQueue'} );return false;">Reset Batch</a><a tabindex="0" class="button edit" href="#" id="batchBadgeForm:badgeActivityRunNowButton" name="batchBadgeForm:badgeActivityRunNowButton" onclick="A4J.AJAX.Submit('batchBadgeForm',event,{'ignoreDupResponses':true,'status':'globalWaitStatus','oncomplete':function(request,event,data){Richfaces.showModalPanel('batchBulkUpdatePanel');},'similarityGroupingId':'batchBadgeForm:badgeActivityRunNowButton','parameters':{'ajaxSingle':'batchBadgeForm:badgeActivityRunNowButton','batchBadgeForm:badgeActivityRunNowButton':'batchBadgeForm:badgeActivityRunNowButton'} ,'eventsQueue':'badgeActivityEditQueue'} );return false;">Run Now</a><a tabindex="0" class="button edit" href="#" id="batchBadgeForm:badgeActivityAddNewFile" name="batchBadgeForm:badgeActivityAddNewFile" onclick="A4J.AJAX.Submit('batchBadgeForm',event,{'ignoreDupResponses':true,'status':'globalWaitStatus','oncomplete':function(request,event,data){Richfaces.showModalPanel('addnewfileBulkUpdatePanel');},'similarityGroupingId':'batchBadgeForm:badgeActivityAddNewFile','parameters':{'batchBadgeForm:badgeActivityAddNewFile':'batchBadgeForm:badgeActivityAddNewFile','ajaxSingle':'batchBadgeForm:badgeActivityAddNewFile'} ,'eventsQueue':'badgeActivityEditQueue'} );return false;">Add New File</a><a tabindex="0" class="button edit" href="#" id="batchBadgeForm:trimpath" name="batchBadgeForm:trimpath" onclick="A4J.AJAX.Submit('batchBadgeForm',event,{'ignoreDupResponses':true,'status':'globalWaitStatus','oncomplete':function(request,event,data){document.getElementById('j_id205:trimPathModal').component.show()},'similarityGroupingId':'batchBadgeForm:trimpath','parameters':{'batchBadgeForm:trimpath':'batchBadgeForm:trimpath','ajaxSingle':'batchBadgeForm:trimpath'} ,'eventsQueue':'badgeActivityEditQueue'} );return false;">Trim Path</a><a tabindex="0" class="button delete" href="#" id="batchBadgeForm:badgeActivityDeleteButton" name="batchBadgeForm:badgeActivityDeleteButton" onclick="A4J.AJAX.Submit('batchBadgeForm',event,{'ignoreDupResponses':true,'status':'globalWaitStatus','oncomplete':function(request,event,data){Richfaces.showModalPanel('batchBulkUpdatePanel');},'similarityGroupingId':'batchBadgeForm:badgeActivityDeleteButton','parameters':{'ajaxSingle':'batchBadgeForm:badgeActivityDeleteButton','batchBadgeForm:badgeActivityDeleteButton':'batchBadgeForm:badgeActivityDeleteButton'} ,'eventsQueue':'badgeActivityEditQueue'} );return false;">Delete Batch</a></div><input autocomplete="off" name="batchBadgeForm" value="batchBadgeForm" type="hidden"><input autocomplete="off" name="autoScroll" value="" type="hidden"><script type="text/javascript">function clear_batchBadgeForm() {
+_clearJSFFormParameters('batchBadgeForm','',['batchBadgeForm:_link_hidden_','batchBadgeForm:j_idcl']);
+}
+function clearFormHiddenParams_batchBadgeForm(){clear_batchBadgeForm();}
+function clearFormHiddenParams_batchBadgeForm(){clear_batchBadgeForm();}
+clear_batchBadgeForm();</script><input autocomplete="off" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id5" type="hidden"></form><span id="j_id205"><div id="j_id205:trimPathPanel"><div id="j_id205:trimPathModal" style="display: none;"><input autocomplete="off" id="j_id205:trimPathModalOpenedState" name="j_id205:trimPathModalOpenedState" type="hidden"><div class="rich-modalpanel modal" id="j_id205:trimPathModalContainer" style="position: absolute; display: none; z-index: 100; background-color: inherit;"><div class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div" id="j_id205:trimPathModalDiv" style="z-index: -1;"><button class="rich-mpnl-button" id="j_id205:trimPathModalFirstHref"></button></div><div class="rich-mpnl-panel"><div class="rich-mp-container" id="j_id205:trimPathModalCDiv" style="position: absolute; left: 0px; top: 0px; z-index: 9;"><div class="rich-mpnl-shadow" id="j_id205:trimPathModalShadowDiv"></div><div class="rich-mpnl-ovf-hd rich-mpnl-trim rich-mpnl-content" id="j_id205:trimPathModalContentDiv"><table class="rich-mp-content-table" id="j_id205:trimPathModalContentTable" style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0"><tbody><tr style="height: 99%;"><td class="rich-mpnl-body" valign="top"><div id="j_id205:trimPathModalDiv"><form target="" id="j_id205:trimPathWizardForm" name="j_id205:trimPathWizardForm" method="post" action="javascript:A4J.AJAX.SubmitForm('j_id205:trimPathWizardForm',{'similarityGroupingId':'j_id205:trimPathWizardForm','parameters':{'j_id205:trimPathWizardForm':'j_id205:trimPathWizardForm','ajaxSingle':'j_id205:trimPathWizardForm'} ,'actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} )"><span id="j_id205:trimPathWizardForm:j_id206">
+	<style type="text/css">
+            .rich-message-marker img {
+                padding-right:7px;
+            }
+            .rich-message-label {
+                color:red;
+            }
+      </style>
+			<div class="title">
+	            <div class="span-9">
+	              	<h1>Trim Path</h1>
+	            </div>
+	            <div class="span-16 last">
+		              <ul>
+		                 <li class="selected">1. Edit</li>
+		                 <li>2. Results</li>
+		              </ul>
+	            </div>
+	          </div>
+	          
+	          <div class="cluster">
+		            <div class="tabletitle">
+		              	<div class="span-2 edit"></div>
+		             	 <div class="span-9">
+		               		 <p>Remove part of the path name from all files in your batch.</p>
+		              	 </div>
+		              	 <div class="span-14 last"></div>
+		            </div>
+		            <div class="field required">
+						<div class="span-8"><label>Path Names</label></div>
+						<div class="span-8"><select id="j_id205:trimPathWizardForm:j_id206:paths" name="j_id205:trimPathWizardForm:j_id206:paths" size="1">	<option value="org.jboss.seam.ui.NoSelectionConverter.noSelectionValue" selected="selected">Please Select...</option>
+</select></div>
+						<div class="span-8 info last">Select the new path.</div>
+					</div>
+	          </div>
+	          
+	          <div class="action">
+					<div class="span-5"><a class="button cancel" href="#" id="j_id205:trimPathWizardForm:j_id206:j_id210" name="j_id205:trimPathWizardForm:j_id206:j_id210" onclick="document.getElementById('j_id205:trimPathModal').component.hide();;A4J.AJAX.Submit('j_id205:trimPathWizardForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'j_id205:trimPathWizardForm:j_id206:j_id210','similarityGroupingId':'j_id205:trimPathWizardForm:j_id206:j_id210','parameters':{'j_id205:trimPathWizardForm:j_id206:j_id210':'j_id205:trimPathWizardForm:j_id206:j_id210'} ,'actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} );return false;">Quit</a></div>
+					<div class="span-20 last"><a class="button save" href="#" id="j_id205:trimPathWizardForm:j_id206:j_id212" name="j_id205:trimPathWizardForm:j_id206:j_id212" onclick="A4J.AJAX.Submit('j_id205:trimPathWizardForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'j_id205:trimPathWizardForm:j_id206:j_id212','status':'globalWaitStatus','oncomplete':function(request,event,data){document.getElementById('j_id205:trimPathModal').component.show(); return false;},'similarityGroupingId':'j_id205:trimPathWizardForm:j_id206:j_id212','parameters':{'j_id205:trimPathWizardForm:j_id206:j_id212':'j_id205:trimPathWizardForm:j_id206:j_id212'} ,'actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} );return false;">Continue</a></div>
+			 </div></span><input autocomplete="off" name="j_id205:trimPathWizardForm" value="j_id205:trimPathWizardForm" type="hidden"><input autocomplete="off" name="autoScroll" value="" type="hidden"><script type="text/javascript">function clear_j_id205_3AtrimPathWizardForm() {
+_clearJSFFormParameters('j_id205:trimPathWizardForm','',['j_id205:trimPathWizardForm:j_idcl','j_id205:trimPathWizardForm:_link_hidden_']);
+}
+function clearFormHiddenParams_j_id205_3AtrimPathWizardForm(){clear_j_id205_3AtrimPathWizardForm();}
+function clearFormHiddenParams_j_id205_trimPathWizardForm(){clear_j_id205_3AtrimPathWizardForm();}
+clear_j_id205_3AtrimPathWizardForm();</script><script type="text/javascript">A4J.setupForm('j_id205:trimPathWizardForm');</script><input autocomplete="off" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id5" type="hidden"></form></div></td></tr></tbody></table></div><div class="rich-mpnl-resizer" id="j_id205:trimPathModalResizerN" style="width: 40px; height: 4px; cursor: n-resize;"></div><div class="rich-mpnl-resizer" id="j_id205:trimPathModalResizerE" style="height: 40px; width: 4px; cursor: e-resize;"></div><div class="rich-mpnl-resizer" id="j_id205:trimPathModalResizerS" style="width: 40px; height: 4px; cursor: s-resize;"></div><div class="rich-mpnl-resizer" id="j_id205:trimPathModalResizerW" style="height: 40px; width: 4px; cursor: w-resize;"></div><div class="rich-mpnl-resizer" id="j_id205:trimPathModalResizerNWU" style="width: 40px; height: 4px; cursor: nw-resize;"></div><div class="rich-mpnl-resizer" id="j_id205:trimPathModalResizerNEU" style="height: 40px; width: 4px; cursor: ne-resize;"></div><div class="rich-mpnl-resizer" id="j_id205:trimPathModalResizerNEL" style="width: 40px; height: 4px; cursor: ne-resize;"></div><div class="rich-mpnl-resizer" id="j_id205:trimPathModalResizerSEU" style="height: 40px; width: 4px; cursor: se-resize;"></div><div class="rich-mpnl-resizer" id="j_id205:trimPathModalResizerSEL" style="width: 40px; height: 4px; cursor: se-resize;"></div><div class="rich-mpnl-resizer" id="j_id205:trimPathModalResizerSWL" style="height: 40px; width: 4px; cursor: sw-resize;"></div><div class="rich-mpnl-resizer" id="j_id205:trimPathModalResizerSWU" style="width: 40px; height: 4px; cursor: sw-resize;"></div><div class="rich-mpnl-resizer" id="j_id205:trimPathModalResizerNWL" style="height: 40px; width: 4px; cursor: nw-resize;"></div></div></div><div class="rich-mpnl-mask-div rich-mpnl-mask-div-transparent" id="j_id205:trimPathModalCursorDiv" style="z-index: -200;"><button class="rich-mpnl-button" id="j_id205:trimPathModalLastHref"></button></div><script type="text/javascript">new ModalPanel('j_id205:trimPathModal',
+				{
+					width: 990,
+					height: 600,
+
+					minWidth: -1,
+					minHeight: -1,
+
+					resizeable: true,
+					moveable: true,
+
+					left: "auto",
+					top: "auto",
+
+					zindex: 100,onresize: '',onmove: '',onshow: '',onhide: '',onbeforeshow: '',onbeforehide: '',
+					domElementAttachment: "",				
+					keepVisualState: false,
+					showWhenRendered: false,
+					selectBehavior: "disable",
+
+					autosized: false,
+					overlapEmbedObjects: false});</script></div><script type="text/javascript"></script></div></div></span></div><hr>
+	</div>
+	<!-- End Badge --> 
+	
+	<!-- Cluster --> 
+	<div id="cluster" class="span-31"><div id="wrapper"><dl style="display: none;" class="rich-messages message" id="messages"><dt></dt></dl>
+<form id="batchHomeEdit" name="batchHomeEdit" method="post" action="/ConPrepUI/batches/BatchEdit.seam" enctype="application/x-www-form-urlencoded">
+<input autocomplete="off" name="batchHomeEdit" value="batchHomeEdit" type="hidden">
+
+			<div id="globalStatusDiv" style="display: none;"><img src="fix_comboboxwizard_files/loading.gif"></div><span id="globalWaitStatus"><span id="globalWaitStatus.start" style="display: none;"></span><script type="text/javascript">
+window.document.getElementById('globalWaitStatus.start').onstart=function(){jQuery('#globalStatusDiv').fadeIn('fast');};
+</script><span style="" id="globalWaitStatus.stop"></span><script type="text/javascript">
+window.document.getElementById('globalWaitStatus.stop').onstop=function(){jQuery('#globalStatusDiv').fadeOut('slow');};
+</script></span><script type="text/javascript">RichFaces.tabPanel['batchHomeEdit:maintab']={'ontabchange':'','id':'batchHomeEdit:maintab'} ;</script><table style="" id="batchHomeEdit:maintab" class="rich-tabpanel tab" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="rich-tab-bottom-line" align="left"><!--table  border="0" cellpadding="0" cellspacing="0" style="position:relative;top:1px"--><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><img style="width: 1px; border: 0pt none;" src="fix_comboboxwizard_files/spacer.gif" alt="" height="1"></td><td class="rich-tabhdr-cell-active" style="height: 100%; vertical-align: bottom;" id="batchHomeEdit:tab1_cell"><table style="position: relative; top: 1px; height: 100%;" onclick="if (RichFaces.isTabActive('batchHomeEdit:tab1_lbl')) return false; if (!RichFaces.onTabChange(event, 'batchHomeEdit:maintab','batchHomeEdit:tab1')) return false;A4J.AJAX.Submit('batchHomeEdit',event,{'status':'globalWaitStatus','oncomplete':function(request,event,data){addDisabledToDisabled(); addDisabledToReadonly();},'similarityGroupingId':'batchHomeEdit:tab1','parameters':{'batchHomeEdit:tab1':'batchHomeEdit:tab1'} } ); return false; this.onclick = null;" id="batchHomeEdit:tab1_shifted" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="rich-tabhdr-side-border"><img style="border: 0pt none;" src="fix_comboboxwizard_files/spacer.gif" alt="" height="1" width="1"></td><td class="rich-tabhdr-side-cell"><table style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="rich-tab-header rich-tab-active" onmouseout="RichFaces.outTab(this);" onmouseover="RichFaces.overTab(this);" id="batchHomeEdit:tab1_lbl">Messages<sup>0/1</sup></td></tr></tbody></table></td><td class="rich-tabhdr-side-border"><img style="border: 0pt none;" src="fix_comboboxwizard_files/spacer.gif" alt="" height="1" width="1"></td></tr></tbody></table></td><td><img style="width: 1px; border: 0pt none;" src="fix_comboboxwizard_files/spacer.gif" alt="" height="1"></td><td class="rich-tabhdr-cell-inactive" style="height: 100%; vertical-align: bottom;" id="batchHomeEdit:subtab1_cell"><table style="position: relative; height: 100%;" onclick="if (RichFaces.isTabActive('batchHomeEdit:subtab1_lbl')) return false; if (!RichFaces.onTabChange(event, 'batchHomeEdit:maintab','batchHomeEdit:subtab1')) return false;A4J.AJAX.Submit('batchHomeEdit',event,{'status':'globalWaitStatus','oncomplete':function(request,event,data){addDisabledToDisabled(); addDisabledToReadonly();},'similarityGroupingId':'batchHomeEdit:subtab1','parameters':{'batchHomeEdit:subtab1':'batchHomeEdit:subtab1'} } ); return false; this.onclick = null;" id="batchHomeEdit:subtab1_shifted" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="rich-tabhdr-side-border"><img style="border: 0pt none;" src="fix_comboboxwizard_files/spacer.gif" alt="" height="1" width="1"></td><td class="rich-tabhdr-side-cell"><table style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="rich-tab-header rich-tab-inactive" onmouseout="RichFaces.outTab(this);" onmouseover="RichFaces.overTab(this);" id="batchHomeEdit:subtab1_lbl">Messages History</td></tr></tbody></table></td><td class="rich-tabhdr-side-border"><img style="border: 0pt none;" src="fix_comboboxwizard_files/spacer.gif" alt="" height="1" width="1"></td></tr></tbody></table></td><td><img style="width: 1px; border: 0pt none;" src="fix_comboboxwizard_files/spacer.gif" alt="" height="1"></td><td class="rich-tabhdr-cell-inactive" style="height: 100%; vertical-align: bottom;" id="batchHomeEdit:tab2_cell"><table style="position: relative; height: 100%;" onclick="if (RichFaces.isTabActive('batchHomeEdit:tab2_lbl')) return false; if (!RichFaces.onTabChange(event, 'batchHomeEdit:maintab','batchHomeEdit:tab2')) return false;A4J.AJAX.Submit('batchHomeEdit',event,{'status':'globalWaitStatus','oncomplete':function(request,event,data){addDisabledToDisabled(); addDisabledToReadonly();},'similarityGroupingId':'batchHomeEdit:tab2','parameters':{'batchHomeEdit:tab2':'batchHomeEdit:tab2'} } ); return false; this.onclick = null;" id="batchHomeEdit:tab2_shifted" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="rich-tabhdr-side-border"><img style="border: 0pt none;" src="fix_comboboxwizard_files/spacer.gif" alt="" height="1" width="1"></td><td class="rich-tabhdr-side-cell"><table style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="rich-tab-header rich-tab-inactive" onmouseout="RichFaces.outTab(this);" onmouseover="RichFaces.overTab(this);" id="batchHomeEdit:tab2_lbl">Content Tree</td></tr></tbody></table></td><td class="rich-tabhdr-side-border"><img style="border: 0pt none;" src="fix_comboboxwizard_files/spacer.gif" alt="" height="1" width="1"></td></tr></tbody></table></td><td><img style="width: 1px; border: 0pt none;" src="fix_comboboxwizard_files/spacer.gif" alt="" height="1"></td><td class="rich-tabhdr-cell-inactive" style="height: 100%; vertical-align: bottom;" id="batchHomeEdit:tab3_cell"><table style="position: relative; height: 100%;" onclick="if (RichFaces.isTabActive('batchHomeEdit:tab3_lbl')) return false; if (!RichFaces.onTabChange(event, 'batchHomeEdit:maintab','batchHomeEdit:tab3')) return false;A4J.AJAX.Submit('batchHomeEdit',event,{'status':'globalWaitStatus','oncomplete':function(request,event,data){addDisabledToDisabled(); addDisabledToReadonly();},'similarityGroupingId':'batchHomeEdit:tab3','parameters':{'batchHomeEdit:tab3':'batchHomeEdit:tab3'} } ); return false; this.onclick = null;" id="batchHomeEdit:tab3_shifted" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="rich-tabhdr-side-border"><img style="border: 0pt none;" src="fix_comboboxwizard_files/spacer.gif" alt="" height="1" width="1"></td><td class="rich-tabhdr-side-cell"><table style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="rich-tab-header rich-tab-inactive" onmouseout="RichFaces.outTab(this);" onmouseover="RichFaces.overTab(this);" id="batchHomeEdit:tab3_lbl">TOC</td></tr></tbody></table></td><td class="rich-tabhdr-side-border"><img style="border: 0pt none;" src="fix_comboboxwizard_files/spacer.gif" alt="" height="1" width="1"></td></tr></tbody></table></td><td><img style="width: 1px; border: 0pt none;" src="fix_comboboxwizard_files/spacer.gif" alt="" height="1"></td><td class="rich-tabhdr-cell-inactive" style="height: 100%; vertical-align: bottom;" id="batchHomeEdit:tab4_cell"><table style="position: relative; height: 100%;" onclick="if (RichFaces.isTabActive('batchHomeEdit:tab4_lbl')) return false; if (!RichFaces.onTabChange(event, 'batchHomeEdit:maintab','batchHomeEdit:tab4')) return false;A4J.AJAX.Submit('batchHomeEdit',event,{'status':'globalWaitStatus','oncomplete':function(request,event,data){addDisabledToDisabled(); addDisabledToReadonly();},'similarityGroupingId':'batchHomeEdit:tab4','parameters':{'batchHomeEdit:tab4':'batchHomeEdit:tab4'} } ); return false; this.onclick = null;" id="batchHomeEdit:tab4_shifted" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="rich-tabhdr-side-border"><img style="border: 0pt none;" src="fix_comboboxwizard_files/spacer.gif" alt="" height="1" width="1"></td><td class="rich-tabhdr-side-cell"><table style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="rich-tab-header rich-tab-inactive" onmouseout="RichFaces.outTab(this);" onmouseover="RichFaces.overTab(this);" id="batchHomeEdit:tab4_lbl">Renamed Files</td></tr></tbody></table></td><td class="rich-tabhdr-side-border"><img style="border: 0pt none;" src="fix_comboboxwizard_files/spacer.gif" alt="" height="1" width="1"></td></tr></tbody></table></td><td><img style="width: 1px; border: 0pt none;" src="fix_comboboxwizard_files/spacer.gif" alt="" height="1"></td><td class="rich-tabhdr-cell-inactive" style="height: 100%; vertical-align: bottom;" id="batchHomeEdit:tab5_cell"><table style="position: relative; height: 100%;" onclick="if (RichFaces.isTabActive('batchHomeEdit:tab5_lbl')) return false; if (!RichFaces.onTabChange(event, 'batchHomeEdit:maintab','batchHomeEdit:tab5')) return false;A4J.AJAX.Submit('batchHomeEdit',event,{'status':'globalWaitStatus','oncomplete':function(request,event,data){addDisabledToDisabled(); addDisabledToReadonly();},'similarityGroupingId':'batchHomeEdit:tab5','parameters':{'batchHomeEdit:tab5':'batchHomeEdit:tab5'} } ); return false; this.onclick = null;" id="batchHomeEdit:tab5_shifted" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="rich-tabhdr-side-border"><img style="border: 0pt none;" src="fix_comboboxwizard_files/spacer.gif" alt="" height="1" width="1"></td><td class="rich-tabhdr-side-cell"><table style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="rich-tab-header rich-tab-inactive" onmouseout="RichFaces.outTab(this);" onmouseover="RichFaces.overTab(this);" id="batchHomeEdit:tab5_lbl">Process Log</td></tr></tbody></table></td><td class="rich-tabhdr-side-border"><img style="border: 0pt none;" src="fix_comboboxwizard_files/spacer.gif" alt="" height="1" width="1"></td></tr></tbody></table></td><td><img style="width: 1px; border: 0pt none;" src="fix_comboboxwizard_files/spacer.gif" alt="" height="1"></td><td class="rich-tabhdr-cell-inactive" style="height: 100%; vertical-align: bottom;" id="batchHomeEdit:tab6_cell"><table style="position: relative; height: 100%;" onclick="if (RichFaces.isTabActive('batchHomeEdit:tab6_lbl')) return false; if (!RichFaces.onTabChange(event, 'batchHomeEdit:maintab','batchHomeEdit:tab6')) return false;A4J.AJAX.Submit('batchHomeEdit',event,{'status':'globalWaitStatus','oncomplete':function(request,event,data){addDisabledToDisabled(); addDisabledToReadonly();},'similarityGroupingId':'batchHomeEdit:tab6','parameters':{'batchHomeEdit:tab6':'batchHomeEdit:tab6'} } ); return false; this.onclick = null;" id="batchHomeEdit:tab6_shifted" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="rich-tabhdr-side-border"><img style="border: 0pt none;" src="fix_comboboxwizard_files/spacer.gif" alt="" height="1" width="1"></td><td class="rich-tabhdr-side-cell"><table style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="rich-tab-header rich-tab-inactive" onmouseout="RichFaces.outTab(this);" onmouseover="RichFaces.overTab(this);" id="batchHomeEdit:tab6_lbl">Properties</td></tr></tbody></table></td><td class="rich-tabhdr-side-border"><img style="border: 0pt none;" src="fix_comboboxwizard_files/spacer.gif" alt="" height="1" width="1"></td></tr></tbody></table></td><td><img style="width: 1px; border: 0pt none;" src="fix_comboboxwizard_files/spacer.gif" alt="" height="1"></td></tr></tbody></table><div style="display: none;"><script type="text/javascript">//<![CDATA[
+RichFaces.panelTabs['batchHomeEdit:maintab']=[{'activeClass':'rich\x2Dtab\x2Dheader rich\x2Dtab\x2Dactive    ','name':'tab1','cellActiveClass':'rich\x2Dtabhdr\x2Dcell\x2Dactive','ontableave':'','cellInactiveClass':'rich\x2Dtabhdr\x2Dcell\x2Dinactive','ontabenter':'','id':'batchHomeEdit:tab1','inactiveClass':'rich\x2Dtab\x2Dheader rich\x2Dtab\x2Dinactive    '} ,{'activeClass':'rich\x2Dtab\x2Dheader rich\x2Dtab\x2Dactive    ','name':'subtab1','cellActiveClass':'rich\x2Dtabhdr\x2Dcell\x2Dactive','ontableave':'','cellInactiveClass':'rich\x2Dtabhdr\x2Dcell\x2Dinactive','ontabenter':'','id':'batchHomeEdit:subtab1','inactiveClass':'rich\x2Dtab\x2Dheader rich\x2Dtab\x2Dinactive    '} ,{'activeClass':'rich\x2Dtab\x2Dheader rich\x2Dtab\x2Dactive    ','name':'tab2','cellActiveClass':'rich\x2Dtabhdr\x2Dcell\x2Dactive','ontableave':'','cellInactiveClass':'rich\x2Dtabhdr\x2Dcell\x2Dinactive','ontabenter':'','id':'batchHomeEdit:tab2','inactiveClass':'rich\x2Dtab\x2Dheader rich\x2Dtab\x2Dinactive    '} ,{'activeClass':'rich\x2Dtab\x2Dheader rich\x2Dtab\x2Dactive    ','name':'tab3','cellActiveClass':'rich\x2Dtabhdr\x2Dcell\x2Dactive','ontableave':'','cellInactiveClass':'rich\x2Dtabhdr\x2Dcell\x2Dinactive','ontabenter':'','id':'batchHomeEdit:tab3','inactiveClass':'rich\x2Dtab\x2Dheader rich\x2Dtab\x2Dinactive    '} ,{'activeClass':'rich\x2Dtab\x2Dheader rich\x2Dtab\x2Dactive    ','name':'tab4','cellActiveClass':'rich\x2Dtabhdr\x2Dcell\x2Dactive','ontableave':'','cellInactiveClass':'rich\x2Dtabhdr\x2Dcell\x2Dinactive','ontabenter':'','id':'batchHomeEdit:tab4','inactiveClass':'rich\x2Dtab\x2Dheader rich\x2Dtab\x2Dinactive    '} ,{'activeClass':'rich\x2Dtab\x2Dheader rich\x2Dtab\x2Dactive    ','name':'tab5','cellActiveClass':'rich\x2Dtabhdr\x2Dcell\x2Dactive','ontableave':'','cellInactiveClass':'rich\x2Dtabhdr\x2Dcell\x2Dinactive','ontabenter':'','id':'batchHomeEdit:tab5','inactiveClass':'rich\x2Dtab\x2Dheader rich\x2Dtab\x2Dinactive    '} ,{'activeClass':'rich\x2Dtab\x2Dheader rich\x2Dtab\x2Dactive    ','name':'tab6','cellActiveClass':'rich\x2Dtabhdr\x2Dcell\x2Dactive','ontableave':'','cellInactiveClass':'rich\x2Dtabhdr\x2Dcell\x2Dinactive','ontabenter':'','id':'batchHomeEdit:tab6','inactiveClass':'rich\x2Dtab\x2Dheader rich\x2Dtab\x2Dinactive    '} ] ;
+//]]>
+</script></div></td></tr><tr><td style="height: 100%;" id="batchHomeEdit:tab1"><table class="rich-tabpanel-content-position" border="0" cellpadding="10" cellspacing="0" width="100%"><tbody><tr><td style="" class="rich-tabpanel-content tab_content"><div id="batchHomeEdit:SOMEDiv1"><div class="header"><div class="span-15"><select tabindex="0" onchange="A4J.AJAX.Submit('batchHomeEdit',event,{'control':this,'similarityGroupingId':'batchHomeEdit:j_id219','parameters':{'batchHomeEdit:j_id219':'batchHomeEdit:j_id219','ajaxSingle':'batchHomeEdit:selectMessgtypId'} } )" size="1" class="icon-view" name="batchHomeEdit:selectMessgtypId" id="batchHomeEdit:selectMessgtypId"><option value="Active_Messages">Active Messages</option><option selected="selected" value="Inactive_Messages">Inactive Messages</option></select></div></div><span id="batchHomeEdit:messagesPanel"><table id="batchHomeEdit:mesgTable" class="rich-table nosort" border="0" cellpadding="0" cellspacing="0"><colgroup span="6"></colgroup><thead class="rich-table-thead"><tr class="rich-table-subheader"><th id="batchHomeEdit:mesgTable:j_id222header" scope="col" class="rich-table-subheadercell"><div id="batchHomeEdit:mesgTable:j_id222header:sortDiv"><span class="propertySorter">Type</span></div></th><th id="batchHomeEdit:mesgTable:j_id225header" scope="col" class="rich-table-subheadercell"><div id="batchHomeEdit:mesgTable:j_id225header:sortDiv"><span class="propertySorter">Code</span></div></th><th id="batchHomeEdit:mesgTable:j_id228header" scope="col" class="rich-table-subheadercell"><div id="batchHomeEdit:mesgTable:j_id228header:sortDiv"><span class="propertySorter">Message</span></div></th><th id="batchHomeEdit:mesgTable:j_id231header" scope="col" class="rich-table-subheadercell"><div id="batchHomeEdit:mesgTable:j_id231header:sortDiv"><span class="propertySorter">Context</span></div></th><th id="batchHomeEdit:mesgTable:j_id234header" scope="col" class="rich-table-subheadercell"><div id="batchHomeEdit:mesgTable:j_id234header:sortDiv"><span class="propertySorter">Batch Iteration</span></div></th><th id="batchHomeEdit:mesgTable:j_id237header" scope="col" class="rich-table-subheadercell"><div id="batchHomeEdit:mesgTable:j_id237header:sortDiv"><span class="propertySorter"></span></div></th></tr></thead><tbody id="batchHomeEdit:mesgTable:tb"><tr class="rich-table-row rich-table-firstrow odd"><td id="batchHomeEdit:mesgTable:0:j_id222" class="rich-table-cell">Warning</td><td id="batchHomeEdit:mesgTable:0:j_id225" class="rich-table-cell">C510</td><td id="batchHomeEdit:mesgTable:0:j_id228" class="rich-table-cell">File
+ 
+/renameFile-compCheck.tar/0008543X/2006/106/12/CNCR21920/image_m/harish-mfig001.jpg
+ not referenced in the generated(target) lead MD file 
+0008543X/2006/106/12/CNCR21920/21920_ftp.sgm/conprep_generated/dcc120z0z</td><td id="batchHomeEdit:mesgTable:0:j_id231" class="rich-table-cell">SU 4[harish-mfig001.jpg]</td><td id="batchHomeEdit:mesgTable:0:j_id234" class="rich-table-cell">1</td><td id="batchHomeEdit:mesgTable:0:j_id237" class="rich-table-cell action"><a tabindex="0" class="button inspection" target="_blank" id="batchHomeEdit:mesgTable:0:j_id239" href="http://localhost:8080/ConPrepUI/batches/auLevelContentTree.seam?auStateAccessionId=ark%3A%2F27927%2Fdcc120r9m&amp;actionMethod=batches%2FBatchEdit.xhtml%3AauLevelContentTree.viewAuLevelContentTree%28%29&amp;cid=6&amp;conversationPropagation=join"></a> <a tabindex="0" onclick="A4J.AJAX.Submit('batchHomeEdit',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchHomeEdit:mesgTable:0:j_id241:3:j_id242','status':'globalWaitStatus','oncomplete':function(request,event,data){Richfaces.showModalPanel('');},'similarityGroupingId':'batchHomeEdit:mesgTable:0:j_id241:3:j_id242','parameters':{'ajaxSingle':'batchHomeEdit:mesgTable:0:j_id241:3:j_id242','batchHomeEdit:mesgTable:0:j_id241:3:j_id242':'batchHomeEdit:mesgTable:0:j_id241:3:j_id242'} } );return false;" name="batchHomeEdit:mesgTable:0:j_id241:3:j_id242" id="batchHomeEdit:mesgTable:0:j_id241:3:j_id242" href="#" class="button edit">Exclude File</a> <a tabindex="0" onclick="A4J.AJAX.Submit('batchHomeEdit',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchHomeEdit:mesgTable:0:j_id241:5:j_id242','status':'globalWaitStatus','oncomplete':function(request,event,data){Richfaces.showModalPanel('');},'similarityGroupingId':'batchHomeEdit:mesgTable:0:j_id241:5:j_id242','parameters':{'batchHomeEdit:mesgTable:0:j_id241:5:j_id242':'batchHomeEdit:mesgTable:0:j_id241:5:j_id242','ajaxSingle':'batchHomeEdit:mesgTable:0:j_id241:5:j_id242'} } );return false;" name="batchHomeEdit:mesgTable:0:j_id241:5:j_id242" id="batchHomeEdit:mesgTable:0:j_id241:5:j_id242" href="#" class="button edit">Rename File</a></td></tr><tr class="rich-table-row even"><td></td></tr></tbody></table></span></div></td></tr></tbody></table></td></tr></tbody></table>
+
+        <div class="actionButtons">
+
+        </div><input autocomplete="off" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id5" type="hidden">
+</form><div id="batchBulkOperationsControllerPanels"><div style="display: none;" id="batchBulkUpdatePanel"><input name="batchBulkUpdatePanelOpenedState" id="batchBulkUpdatePanelOpenedState" autocomplete="off" type="hidden"><script type="text/javascript">
+</script></div><div style="display: none;" id="batchBulkUpdateQuit"><input name="batchBulkUpdateQuitOpenedState" id="batchBulkUpdateQuitOpenedState" autocomplete="off" type="hidden"><div style="position: absolute; display: none; z-index: 100; background-color: inherit;" id="batchBulkUpdateQuitContainer" class="rich-modalpanel modal"><div style="z-index: -1;" id="batchBulkUpdateQuitDiv" class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div"><button id="batchBulkUpdateQuitFirstHref" class="rich-mpnl-button"></button></div><div class="rich-mpnl-panel"><div style="position: absolute; left: 0px; top: 0px; z-index: 9;" id="batchBulkUpdateQuitCDiv" class="rich-mp-container"><div id="batchBulkUpdateQuitShadowDiv" class="rich-mpnl-shadow"></div><div id="batchBulkUpdateQuitContentDiv" class="rich-mpnl-ovf-hd rich-mpnl-trim rich-mpnl-content"><table style="height: 100%; width: 100%;" id="batchBulkUpdateQuitContentTable" class="rich-mp-content-table" border="0" cellpadding="0" cellspacing="0"><tbody><tr style="height: 99%;"><td class="rich-mpnl-body" valign="top"><div id="batchmodalQuitDiv"><form target="" action="javascript:A4J.AJAX.SubmitForm('batchwizardQuit',{'similarityGroupingId':'batchwizardQuit','parameters':{'batchwizardQuit':'batchwizardQuit','ajaxSingle':'batchwizardQuit'}%20,'actionUrl':'/ConPrepUI/batches/BatchEdit.seam'}%20)" method="post" name="batchwizardQuit" id="batchwizardQuit"><span id="batchwizardQuit:j_id1092"><div class="title"><div class="span-9"><h1>Quit Hold Auto Processing</h1></div><div class="span-16 last"></div></div> <div class="cluster"><p>Are you sure you want to quit? Changes will <em>not</em> be made.</p></div> <div class="action"><div class="span-5"><a onclick="A4J.AJAX.Submit('batchwizardQuit',event,{'status':'globalWaitStatus','oncomplete':function(request,event,data){document.getElementById('batchBulkUpdatePanel').component.hide(); document.getElementById('batchBulkUpdateQuit').component.hide(); javascript:location.reload(true);},'similarityGroupingId':'batchwizardQuit:j_id1092:j_id1099','parameters':{'batchwizardQuit:j_id1092:j_id1099':'batchwizardQuit:j_id1092:j_id1099'} ,'eventsQueue':'batchEditeventsQueue','actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} );return false;" name="batchwizardQuit:j_id1092:j_id1099" id="batchwizardQuit:j_id1092:j_id1099" href="#" class="button save">Yes, Quit</a></div><div class="span-20 last"><a onclick=" document.getElementById('batchBulkUpdateQuit').component.hide(); ;A4J.AJAX.Submit('batchwizardQuit',event,{'status':'globalWaitStatus','similarityGroupingId':'batchwizardQuit:j_id1092:j_id1101','parameters':{'batchwizardQuit:j_id1092:j_id1101':'batchwizardQuit:j_id1092:j_id1101','ajaxSingle':'batchwizardQuit:j_id1092:j_id1101'} ,'eventsQueue':'batchEditeventsQueue','actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} );return false;" name="batchwizardQuit:j_id1092:j_id1101" id="batchwizardQuit:j_id1092:j_id1101" href="#" class="button cancel">No, Return</a></div></div></span><input value="batchwizardQuit" name="batchwizardQuit" autocomplete="off" type="hidden"><input value="" name="autoScroll" autocomplete="off" type="hidden"><script type="text/javascript">//<![CDATA[
+function clear_batchwizardQuit() {
+_clearJSFFormParameters('batchwizardQuit','',['batchwizardQuit:j_idcl','batchwizardQuit:_link_hidden_']);
+}
+function clearFormHiddenParams_batchwizardQuit(){clear_batchwizardQuit();}
+function clearFormHiddenParams_batchwizardQuit(){clear_batchwizardQuit();}
+clear_batchwizardQuit();
+//]]>
+</script><script type="text/javascript">//<![CDATA[
+A4J.setupForm('batchwizardQuit');
+//]]>
+</script><input autocomplete="off" value="j_id5" id="javax.faces.ViewState" name="javax.faces.ViewState" type="hidden"></form></div></td></tr></tbody></table></div><div style="width: 40px; height: 4px; cursor: n-resize;" id="batchBulkUpdateQuitResizerN" class="rich-mpnl-resizer"></div><div style="height: 40px; width: 4px; cursor: e-resize;" id="batchBulkUpdateQuitResizerE" class="rich-mpnl-resizer"></div><div style="width: 40px; height: 4px; cursor: s-resize;" id="batchBulkUpdateQuitResizerS" class="rich-mpnl-resizer"></div><div style="height: 40px; width: 4px; cursor: w-resize;" id="batchBulkUpdateQuitResizerW" class="rich-mpnl-resizer"></div><div style="width: 40px; height: 4px; cursor: nw-resize;" id="batchBulkUpdateQuitResizerNWU" class="rich-mpnl-resizer"></div><div style="height: 40px; width: 4px; cursor: ne-resize;" id="batchBulkUpdateQuitResizerNEU" class="rich-mpnl-resizer"></div><div style="width: 40px; height: 4px; cursor: ne-resize;" id="batchBulkUpdateQuitResizerNEL" class="rich-mpnl-resizer"></div><div style="height: 40px; width: 4px; cursor: se-resize;" id="batchBulkUpdateQuitResizerSEU" class="rich-mpnl-resizer"></div><div style="width: 40px; height: 4px; cursor: se-resize;" id="batchBulkUpdateQuitResizerSEL" class="rich-mpnl-resizer"></div><div style="height: 40px; width: 4px; cursor: sw-resize;" id="batchBulkUpdateQuitResizerSWL" class="rich-mpnl-resizer"></div><div style="width: 40px; height: 4px; cursor: sw-resize;" id="batchBulkUpdateQuitResizerSWU" class="rich-mpnl-resizer"></div><div style="height: 40px; width: 4px; cursor: nw-resize;" id="batchBulkUpdateQuitResizerNWL" class="rich-mpnl-resizer"></div></div></div><div style="z-index: -200;" id="batchBulkUpdateQuitCursorDiv" class="rich-mpnl-mask-div rich-mpnl-mask-div-transparent"><button id="batchBulkUpdateQuitLastHref" class="rich-mpnl-button"></button></div><script type="text/javascript">//<![CDATA[
+new ModalPanel('batchBulkUpdateQuit',
+                                {
+                                        width: 900,
+                                        height: 550,
+
+                                        minWidth: -1,
+                                        minHeight: -1,
+
+                                        resizeable: true,
+                                        moveable: true,
+
+                                        left: "auto",
+                                        top: "auto",
+
+                                        zindex: 100,onresize: '',onmove: '',onshow: '',onhide: '',onbeforeshow: '',onbeforehide: '',
+                                        domElementAttachment: "",                               
+                                        keepVisualState: false,
+                                        showWhenRendered: false,
+                                        selectBehavior: "disable",
+
+                                        autosized: false,
+                                        overlapEmbedObjects: false});
+//]]>
+</script></div><script type="text/javascript">
+</script></div></div><div id="sustateBulkOperationsPanels"><div id="sustateBulkUpdatePanel" style="display: none;"><input autocomplete="off" id="sustateBulkUpdatePanelOpenedState" name="sustateBulkUpdatePanelOpenedState" type="hidden"><div class="rich-modalpanel modal" id="sustateBulkUpdatePanelContainer" style="position: absolute; display: none; z-index: 100; background-color: inherit;"><div class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div" id="sustateBulkUpdatePanelDiv" style="z-index: -1;"><button class="rich-mpnl-button" id="sustateBulkUpdatePanelFirstHref"></button></div><div class="rich-mpnl-panel"><div class="rich-mp-container" id="sustateBulkUpdatePanelCDiv" style="position: absolute; left: 0px; top: 0px; z-index: 9;"><div class="rich-mpnl-shadow" id="sustateBulkUpdatePanelShadowDiv"></div><div class="rich-mpnl-ovf-hd rich-mpnl-trim rich-mpnl-content" id="sustateBulkUpdatePanelContentDiv"><table class="rich-mp-content-table" id="sustateBulkUpdatePanelContentTable" style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0"><tbody><tr style="height: 99%;"><td class="rich-mpnl-body" valign="top"><div id="sustatemodalDiv"><form target="" id="sustatewizard" name="sustatewizard" method="post" enctype="multipart/form-data" action="javascript:A4J.AJAX.SubmitForm('sustatewizard',{'similarityGroupingId':'sustatewizard','parameters':{'sustatewizard':'sustatewizard','ajaxSingle':'sustatewizard'} ,'actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} )"><span id="sustatewizard:j_id1103">
+
+<div class="title">
+	<div class="span-9"><h1></h1></div>
+	<div class="span-16 last"><div id="sustatewizard:j_id1103:j_id1110">
+  		<ul>
+				<li class="selected">1. Confirm
+				</li>
+				<li class="">2. Change
+				</li>
+				<li class="">3. Additional
+				</li>
+				<li class="">4. Results
+				</li>
+		</ul></div></div>
+	</div>
+
+
+		<div class="cluster"> 
+
+</div>
+		<div class="action">
+            <div class="span-5"><hr></div>
+
+            <div class="span-20 last"><a class="button save" href="#" id="sustatewizard:j_id1103:j_id1180" name="sustatewizard:j_id1103:j_id1180" onclick="A4J.AJAX.Submit('sustatewizard',event,{'oncomplete':function(request,event,data){document.getElementById('sustateBulkUpdatePanel').component.hide(); javascript:location.reload(true);},'similarityGroupingId':'sustatewizard:j_id1103:j_id1180','parameters':{'sustatewizard:j_id1103:j_id1180':'sustatewizard:j_id1103:j_id1180'} ,'eventsQueue':'batchEditeventsQueue','actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} );return false;">Return</a> </div>
+          </div></span><input autocomplete="off" name="sustatewizard" value="sustatewizard" type="hidden"><input autocomplete="off" name="autoScroll" value="" type="hidden"><script type="text/javascript">function clear_sustatewizard() {
+_clearJSFFormParameters('sustatewizard','',['sustatewizard:_link_hidden_','sustatewizard:j_idcl']);
+}
+function clearFormHiddenParams_sustatewizard(){clear_sustatewizard();}
+function clearFormHiddenParams_sustatewizard(){clear_sustatewizard();}
+clear_sustatewizard();</script><script type="text/javascript">A4J.setupForm('sustatewizard');</script><input autocomplete="off" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id5" type="hidden"></form></div></td></tr></tbody></table></div><div class="rich-mpnl-resizer" id="sustateBulkUpdatePanelResizerN" style="width: 40px; height: 4px; cursor: n-resize;"></div><div class="rich-mpnl-resizer" id="sustateBulkUpdatePanelResizerE" style="height: 40px; width: 4px; cursor: e-resize;"></div><div class="rich-mpnl-resizer" id="sustateBulkUpdatePanelResizerS" style="width: 40px; height: 4px; cursor: s-resize;"></div><div class="rich-mpnl-resizer" id="sustateBulkUpdatePanelResizerW" style="height: 40px; width: 4px; cursor: w-resize;"></div><div class="rich-mpnl-resizer" id="sustateBulkUpdatePanelResizerNWU" style="width: 40px; height: 4px; cursor: nw-resize;"></div><div class="rich-mpnl-resizer" id="sustateBulkUpdatePanelResizerNEU" style="height: 40px; width: 4px; cursor: ne-resize;"></div><div class="rich-mpnl-resizer" id="sustateBulkUpdatePanelResizerNEL" style="width: 40px; height: 4px; cursor: ne-resize;"></div><div class="rich-mpnl-resizer" id="sustateBulkUpdatePanelResizerSEU" style="height: 40px; width: 4px; cursor: se-resize;"></div><div class="rich-mpnl-resizer" id="sustateBulkUpdatePanelResizerSEL" style="width: 40px; height: 4px; cursor: se-resize;"></div><div class="rich-mpnl-resizer" id="sustateBulkUpdatePanelResizerSWL" style="height: 40px; width: 4px; cursor: sw-resize;"></div><div class="rich-mpnl-resizer" id="sustateBulkUpdatePanelResizerSWU" style="width: 40px; height: 4px; cursor: sw-resize;"></div><div class="rich-mpnl-resizer" id="sustateBulkUpdatePanelResizerNWL" style="height: 40px; width: 4px; cursor: nw-resize;"></div></div></div><div class="rich-mpnl-mask-div rich-mpnl-mask-div-transparent" id="sustateBulkUpdatePanelCursorDiv" style="z-index: -200;"><button class="rich-mpnl-button" id="sustateBulkUpdatePanelLastHref"></button></div><script type="text/javascript">new ModalPanel('sustateBulkUpdatePanel',
+				{
+					width: 900,
+					height: 600,
+
+					minWidth: -1,
+					minHeight: -1,
+
+					resizeable: true,
+					moveable: true,
+
+					left: "auto",
+					top: "auto",
+
+					zindex: 100,onresize: '',onmove: '',onshow: '',onhide: '',onbeforeshow: '',onbeforehide: '',
+					domElementAttachment: "",				
+					keepVisualState: false,
+					showWhenRendered: false,
+					selectBehavior: "disable",
+
+					autosized: false,
+					overlapEmbedObjects: false});</script></div><script type="text/javascript"></script></div><div id="sustateBulkUpdateQuit" style="display: none;"><input autocomplete="off" id="sustateBulkUpdateQuitOpenedState" name="sustateBulkUpdateQuitOpenedState" type="hidden"><div class="rich-modalpanel modal" id="sustateBulkUpdateQuitContainer" style="position: absolute; display: none; z-index: 100; background-color: inherit;"><div class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div" id="sustateBulkUpdateQuitDiv" style="z-index: -1;"><button class="rich-mpnl-button" id="sustateBulkUpdateQuitFirstHref"></button></div><div class="rich-mpnl-panel"><div class="rich-mp-container" id="sustateBulkUpdateQuitCDiv" style="position: absolute; left: 0px; top: 0px; z-index: 9;"><div class="rich-mpnl-shadow" id="sustateBulkUpdateQuitShadowDiv"></div><div class="rich-mpnl-ovf-hd rich-mpnl-trim rich-mpnl-content" id="sustateBulkUpdateQuitContentDiv"><table class="rich-mp-content-table" id="sustateBulkUpdateQuitContentTable" style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0"><tbody><tr style="height: 99%;"><td class="rich-mpnl-body" valign="top"><div id="sustatemodalQuitDiv"><form target="" id="sustatewizardQuit" name="sustatewizardQuit" method="post" action="javascript:A4J.AJAX.SubmitForm('sustatewizardQuit',{'similarityGroupingId':'sustatewizardQuit','parameters':{'sustatewizardQuit':'sustatewizardQuit','ajaxSingle':'sustatewizardQuit'} ,'actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} )"><span id="sustatewizardQuit:j_id1182">
+
+<div class="title">
+            <div class="span-9">
+              <h1>Quit </h1>
+            </div>
+            <div class="span-16 last">
+              
+            </div>
+          </div>
+
+
+
+		<div class="cluster">
+
+		  <p>Are you sure you want to quit? Changes will <em>not</em> be made.</p>
+
+		</div>
+			
+    	<div class="action">
+            <div class="span-5"><a class="button save" href="#" id="sustatewizardQuit:j_id1182:j_id1189" name="sustatewizardQuit:j_id1182:j_id1189" onclick="A4J.AJAX.Submit('sustatewizardQuit',event,{'status':'globalWaitStatus','oncomplete':function(request,event,data){document.getElementById('sustateBulkUpdatePanel').component.hide(); document.getElementById('sustateBulkUpdateQuit').component.hide(); javascript:location.reload(true);},'similarityGroupingId':'sustatewizardQuit:j_id1182:j_id1189','parameters':{'sustatewizardQuit:j_id1182:j_id1189':'sustatewizardQuit:j_id1182:j_id1189'} ,'eventsQueue':'batchEditeventsQueue','actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} );return false;">Yes, Quit</a>
+			</div>
+            <div class="span-20 last"><a class="button cancel" href="#" id="sustatewizardQuit:j_id1182:j_id1191" name="sustatewizardQuit:j_id1182:j_id1191" onclick=" document.getElementById('sustateBulkUpdateQuit').component.hide(); ;A4J.AJAX.Submit('sustatewizardQuit',event,{'status':'globalWaitStatus','similarityGroupingId':'sustatewizardQuit:j_id1182:j_id1191','parameters':{'sustatewizardQuit:j_id1182:j_id1191':'sustatewizardQuit:j_id1182:j_id1191'} ,'eventsQueue':'batchEditeventsQueue','actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} );return false;">No, Return</a>
+			</div>
+        </div></span><input autocomplete="off" name="sustatewizardQuit" value="sustatewizardQuit" type="hidden"><input autocomplete="off" name="autoScroll" value="" type="hidden"><script type="text/javascript">function clear_sustatewizardQuit() {
+_clearJSFFormParameters('sustatewizardQuit','',['sustatewizardQuit:_link_hidden_','sustatewizardQuit:j_idcl']);
+}
+function clearFormHiddenParams_sustatewizardQuit(){clear_sustatewizardQuit();}
+function clearFormHiddenParams_sustatewizardQuit(){clear_sustatewizardQuit();}
+clear_sustatewizardQuit();</script><script type="text/javascript">A4J.setupForm('sustatewizardQuit');</script><input autocomplete="off" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id5" type="hidden"></form></div></td></tr></tbody></table></div><div class="rich-mpnl-resizer" id="sustateBulkUpdateQuitResizerN" style="width: 40px; height: 4px; cursor: n-resize;"></div><div class="rich-mpnl-resizer" id="sustateBulkUpdateQuitResizerE" style="height: 40px; width: 4px; cursor: e-resize;"></div><div class="rich-mpnl-resizer" id="sustateBulkUpdateQuitResizerS" style="width: 40px; height: 4px; cursor: s-resize;"></div><div class="rich-mpnl-resizer" id="sustateBulkUpdateQuitResizerW" style="height: 40px; width: 4px; cursor: w-resize;"></div><div class="rich-mpnl-resizer" id="sustateBulkUpdateQuitResizerNWU" style="width: 40px; height: 4px; cursor: nw-resize;"></div><div class="rich-mpnl-resizer" id="sustateBulkUpdateQuitResizerNEU" style="height: 40px; width: 4px; cursor: ne-resize;"></div><div class="rich-mpnl-resizer" id="sustateBulkUpdateQuitResizerNEL" style="width: 40px; height: 4px; cursor: ne-resize;"></div><div class="rich-mpnl-resizer" id="sustateBulkUpdateQuitResizerSEU" style="height: 40px; width: 4px; cursor: se-resize;"></div><div class="rich-mpnl-resizer" id="sustateBulkUpdateQuitResizerSEL" style="width: 40px; height: 4px; cursor: se-resize;"></div><div class="rich-mpnl-resizer" id="sustateBulkUpdateQuitResizerSWL" style="height: 40px; width: 4px; cursor: sw-resize;"></div><div class="rich-mpnl-resizer" id="sustateBulkUpdateQuitResizerSWU" style="width: 40px; height: 4px; cursor: sw-resize;"></div><div class="rich-mpnl-resizer" id="sustateBulkUpdateQuitResizerNWL" style="height: 40px; width: 4px; cursor: nw-resize;"></div></div></div><div class="rich-mpnl-mask-div rich-mpnl-mask-div-transparent" id="sustateBulkUpdateQuitCursorDiv" style="z-index: -200;"><button class="rich-mpnl-button" id="sustateBulkUpdateQuitLastHref"></button></div><script type="text/javascript">new ModalPanel('sustateBulkUpdateQuit',
+				{
+					width: 900,
+					height: 550,
+
+					minWidth: -1,
+					minHeight: -1,
+
+					resizeable: true,
+					moveable: true,
+
+					left: "auto",
+					top: "auto",
+
+					zindex: 100,onresize: '',onmove: '',onshow: '',onhide: '',onbeforeshow: '',onbeforehide: '',
+					domElementAttachment: "",				
+					keepVisualState: false,
+					showWhenRendered: false,
+					selectBehavior: "disable",
+
+					autosized: false,
+					overlapEmbedObjects: false});</script></div><script type="text/javascript"></script></div></div><div id="addnewfileBulkOperationsPanels"><div id="addnewfileBulkUpdatePanel" style="display: none;"><input autocomplete="off" id="addnewfileBulkUpdatePanelOpenedState" name="addnewfileBulkUpdatePanelOpenedState" type="hidden"><div class="rich-modalpanel modal" id="addnewfileBulkUpdatePanelContainer" style="position: absolute; display: none; z-index: 100; background-color: inherit;"><div class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div" id="addnewfileBulkUpdatePanelDiv" style="z-index: -1;"><button class="rich-mpnl-button" id="addnewfileBulkUpdatePanelFirstHref"></button></div><div class="rich-mpnl-panel"><div class="rich-mp-container" id="addnewfileBulkUpdatePanelCDiv" style="position: absolute; left: 0px; top: 0px; z-index: 9;"><div class="rich-mpnl-shadow" id="addnewfileBulkUpdatePanelShadowDiv"></div><div class="rich-mpnl-ovf-hd rich-mpnl-trim rich-mpnl-content" id="addnewfileBulkUpdatePanelContentDiv"><table class="rich-mp-content-table" id="addnewfileBulkUpdatePanelContentTable" style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0"><tbody><tr style="height: 99%;"><td class="rich-mpnl-body" valign="top"><div id="addnewfilemodalDiv"><form target="" id="addnewfilewizard" name="addnewfilewizard" method="post" enctype="multipart/form-data" action="javascript:A4J.AJAX.SubmitForm('addnewfilewizard',{'similarityGroupingId':'addnewfilewizard','parameters':{'ajaxSingle':'addnewfilewizard','addnewfilewizard':'addnewfilewizard'} ,'actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} )"><span id="addnewfilewizard:j_id1193">
+
+<div class="title">
+	<div class="span-9"><h1></h1></div>
+	<div class="span-16 last"><div id="addnewfilewizard:j_id1193:j_id1200">
+  		<ul>
+				<li class="selected">1. Confirm
+				</li>
+				<li class="">2. Change
+				</li>
+				<li class="">3. Additional
+				</li>
+				<li class="">4. Results
+				</li>
+		</ul></div></div>
+	</div>
+
+
+		<div class="cluster"> 
+
+</div>
+		<div class="action">
+            <div class="span-5"><hr></div>
+
+            <div class="span-20 last"><a class="button save" href="#" id="addnewfilewizard:j_id1193:j_id1281" name="addnewfilewizard:j_id1193:j_id1281" onclick="A4J.AJAX.Submit('addnewfilewizard',event,{'oncomplete':function(request,event,data){document.getElementById('addnewfileBulkUpdatePanel').component.hide(); javascript:location.reload(true);},'similarityGroupingId':'addnewfilewizard:j_id1193:j_id1281','parameters':{'addnewfilewizard:j_id1193:j_id1281':'addnewfilewizard:j_id1193:j_id1281'} ,'eventsQueue':'batchEditeventsQueue','actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} );return false;">Return</a> </div>
+          </div></span><input autocomplete="off" name="addnewfilewizard" value="addnewfilewizard" type="hidden"><input autocomplete="off" name="autoScroll" value="" type="hidden"><script type="text/javascript">function clear_addnewfilewizard() {
+_clearJSFFormParameters('addnewfilewizard','',['addnewfilewizard:j_idcl','addnewfilewizard:_link_hidden_']);
+}
+function clearFormHiddenParams_addnewfilewizard(){clear_addnewfilewizard();}
+function clearFormHiddenParams_addnewfilewizard(){clear_addnewfilewizard();}
+clear_addnewfilewizard();</script><script type="text/javascript">A4J.setupForm('addnewfilewizard');</script><input autocomplete="off" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id5" type="hidden"></form></div></td></tr></tbody></table></div><div class="rich-mpnl-resizer" id="addnewfileBulkUpdatePanelResizerN" style="width: 40px; height: 4px; cursor: n-resize;"></div><div class="rich-mpnl-resizer" id="addnewfileBulkUpdatePanelResizerE" style="height: 40px; width: 4px; cursor: e-resize;"></div><div class="rich-mpnl-resizer" id="addnewfileBulkUpdatePanelResizerS" style="width: 40px; height: 4px; cursor: s-resize;"></div><div class="rich-mpnl-resizer" id="addnewfileBulkUpdatePanelResizerW" style="height: 40px; width: 4px; cursor: w-resize;"></div><div class="rich-mpnl-resizer" id="addnewfileBulkUpdatePanelResizerNWU" style="width: 40px; height: 4px; cursor: nw-resize;"></div><div class="rich-mpnl-resizer" id="addnewfileBulkUpdatePanelResizerNEU" style="height: 40px; width: 4px; cursor: ne-resize;"></div><div class="rich-mpnl-resizer" id="addnewfileBulkUpdatePanelResizerNEL" style="width: 40px; height: 4px; cursor: ne-resize;"></div><div class="rich-mpnl-resizer" id="addnewfileBulkUpdatePanelResizerSEU" style="height: 40px; width: 4px; cursor: se-resize;"></div><div class="rich-mpnl-resizer" id="addnewfileBulkUpdatePanelResizerSEL" style="width: 40px; height: 4px; cursor: se-resize;"></div><div class="rich-mpnl-resizer" id="addnewfileBulkUpdatePanelResizerSWL" style="height: 40px; width: 4px; cursor: sw-resize;"></div><div class="rich-mpnl-resizer" id="addnewfileBulkUpdatePanelResizerSWU" style="width: 40px; height: 4px; cursor: sw-resize;"></div><div class="rich-mpnl-resizer" id="addnewfileBulkUpdatePanelResizerNWL" style="height: 40px; width: 4px; cursor: nw-resize;"></div></div></div><div class="rich-mpnl-mask-div rich-mpnl-mask-div-transparent" id="addnewfileBulkUpdatePanelCursorDiv" style="z-index: -200;"><button class="rich-mpnl-button" id="addnewfileBulkUpdatePanelLastHref"></button></div><script type="text/javascript">new ModalPanel('addnewfileBulkUpdatePanel',
+				{
+					width: 900,
+					height: 600,
+
+					minWidth: -1,
+					minHeight: -1,
+
+					resizeable: true,
+					moveable: true,
+
+					left: "auto",
+					top: "auto",
+
+					zindex: 100,onresize: '',onmove: '',onshow: '',onhide: '',onbeforeshow: '',onbeforehide: '',
+					domElementAttachment: "",				
+					keepVisualState: false,
+					showWhenRendered: false,
+					selectBehavior: "disable",
+
+					autosized: false,
+					overlapEmbedObjects: false});</script></div><script type="text/javascript"></script></div><div id="addnewfileBulkUpdateQuit" style="display: none;"><input autocomplete="off" id="addnewfileBulkUpdateQuitOpenedState" name="addnewfileBulkUpdateQuitOpenedState" type="hidden"><div class="rich-modalpanel modal" id="addnewfileBulkUpdateQuitContainer" style="position: absolute; display: none; z-index: 100; background-color: inherit;"><div class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div" id="addnewfileBulkUpdateQuitDiv" style="z-index: -1;"><button class="rich-mpnl-button" id="addnewfileBulkUpdateQuitFirstHref"></button></div><div class="rich-mpnl-panel"><div class="rich-mp-container" id="addnewfileBulkUpdateQuitCDiv" style="position: absolute; left: 0px; top: 0px; z-index: 9;"><div class="rich-mpnl-shadow" id="addnewfileBulkUpdateQuitShadowDiv"></div><div class="rich-mpnl-ovf-hd rich-mpnl-trim rich-mpnl-content" id="addnewfileBulkUpdateQuitContentDiv"><table class="rich-mp-content-table" id="addnewfileBulkUpdateQuitContentTable" style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0"><tbody><tr style="height: 99%;"><td class="rich-mpnl-body" valign="top"><div id="addnewfilemodalQuitDiv"><form target="" id="addnewfilewizardQuit" name="addnewfilewizardQuit" method="post" action="javascript:A4J.AJAX.SubmitForm('addnewfilewizardQuit',{'similarityGroupingId':'addnewfilewizardQuit','parameters':{'addnewfilewizardQuit':'addnewfilewizardQuit','ajaxSingle':'addnewfilewizardQuit'} ,'actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} )"><span id="addnewfilewizardQuit:j_id1283">
+
+<div class="title">
+            <div class="span-9">
+              <h1>Quit </h1>
+            </div>
+            <div class="span-16 last">
+              
+            </div>
+          </div>
+
+
+
+		<div class="cluster">
+
+		  <p>Are you sure you want to quit? Changes will <em>not</em> be made.</p>
+
+		</div>
+			
+    	<div class="action">
+            <div class="span-5"><a class="button save" href="#" id="addnewfilewizardQuit:j_id1283:j_id1290" name="addnewfilewizardQuit:j_id1283:j_id1290" onclick="A4J.AJAX.Submit('addnewfilewizardQuit',event,{'status':'globalWaitStatus','oncomplete':function(request,event,data){document.getElementById('addnewfileBulkUpdatePanel').component.hide(); document.getElementById('addnewfileBulkUpdateQuit').component.hide(); javascript:location.reload(true);},'similarityGroupingId':'addnewfilewizardQuit:j_id1283:j_id1290','parameters':{'addnewfilewizardQuit:j_id1283:j_id1290':'addnewfilewizardQuit:j_id1283:j_id1290'} ,'eventsQueue':'batchEditeventsQueue','actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} );return false;">Yes, Quit</a>
+			</div>
+            <div class="span-20 last"><a class="button cancel" href="#" id="addnewfilewizardQuit:j_id1283:j_id1292" name="addnewfilewizardQuit:j_id1283:j_id1292" onclick=" document.getElementById('addnewfileBulkUpdateQuit').component.hide(); ;A4J.AJAX.Submit('addnewfilewizardQuit',event,{'status':'globalWaitStatus','similarityGroupingId':'addnewfilewizardQuit:j_id1283:j_id1292','parameters':{'addnewfilewizardQuit:j_id1283:j_id1292':'addnewfilewizardQuit:j_id1283:j_id1292'} ,'eventsQueue':'batchEditeventsQueue','actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} );return false;">No, Return</a>
+			</div>
+        </div></span><input autocomplete="off" name="addnewfilewizardQuit" value="addnewfilewizardQuit" type="hidden"><input autocomplete="off" name="autoScroll" value="" type="hidden"><script type="text/javascript">function clear_addnewfilewizardQuit() {
+_clearJSFFormParameters('addnewfilewizardQuit','',['addnewfilewizardQuit:_link_hidden_','addnewfilewizardQuit:j_idcl']);
+}
+function clearFormHiddenParams_addnewfilewizardQuit(){clear_addnewfilewizardQuit();}
+function clearFormHiddenParams_addnewfilewizardQuit(){clear_addnewfilewizardQuit();}
+clear_addnewfilewizardQuit();</script><script type="text/javascript">A4J.setupForm('addnewfilewizardQuit');</script><input autocomplete="off" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id5" type="hidden"></form></div></td></tr></tbody></table></div><div class="rich-mpnl-resizer" id="addnewfileBulkUpdateQuitResizerN" style="width: 40px; height: 4px; cursor: n-resize;"></div><div class="rich-mpnl-resizer" id="addnewfileBulkUpdateQuitResizerE" style="height: 40px; width: 4px; cursor: e-resize;"></div><div class="rich-mpnl-resizer" id="addnewfileBulkUpdateQuitResizerS" style="width: 40px; height: 4px; cursor: s-resize;"></div><div class="rich-mpnl-resizer" id="addnewfileBulkUpdateQuitResizerW" style="height: 40px; width: 4px; cursor: w-resize;"></div><div class="rich-mpnl-resizer" id="addnewfileBulkUpdateQuitResizerNWU" style="width: 40px; height: 4px; cursor: nw-resize;"></div><div class="rich-mpnl-resizer" id="addnewfileBulkUpdateQuitResizerNEU" style="height: 40px; width: 4px; cursor: ne-resize;"></div><div class="rich-mpnl-resizer" id="addnewfileBulkUpdateQuitResizerNEL" style="width: 40px; height: 4px; cursor: ne-resize;"></div><div class="rich-mpnl-resizer" id="addnewfileBulkUpdateQuitResizerSEU" style="height: 40px; width: 4px; cursor: se-resize;"></div><div class="rich-mpnl-resizer" id="addnewfileBulkUpdateQuitResizerSEL" style="width: 40px; height: 4px; cursor: se-resize;"></div><div class="rich-mpnl-resizer" id="addnewfileBulkUpdateQuitResizerSWL" style="height: 40px; width: 4px; cursor: sw-resize;"></div><div class="rich-mpnl-resizer" id="addnewfileBulkUpdateQuitResizerSWU" style="width: 40px; height: 4px; cursor: sw-resize;"></div><div class="rich-mpnl-resizer" id="addnewfileBulkUpdateQuitResizerNWL" style="height: 40px; width: 4px; cursor: nw-resize;"></div></div></div><div class="rich-mpnl-mask-div rich-mpnl-mask-div-transparent" id="addnewfileBulkUpdateQuitCursorDiv" style="z-index: -200;"><button class="rich-mpnl-button" id="addnewfileBulkUpdateQuitLastHref"></button></div><script type="text/javascript">new ModalPanel('addnewfileBulkUpdateQuit',
+				{
+					width: 900,
+					height: 550,
+
+					minWidth: -1,
+					minHeight: -1,
+
+					resizeable: true,
+					moveable: true,
+
+					left: "auto",
+					top: "auto",
+
+					zindex: 100,onresize: '',onmove: '',onshow: '',onhide: '',onbeforeshow: '',onbeforehide: '',
+					domElementAttachment: "",				
+					keepVisualState: false,
+					showWhenRendered: false,
+					selectBehavior: "disable",
+
+					autosized: false,
+					overlapEmbedObjects: false});</script></div><script type="text/javascript"></script></div></div><div id="replacedmdBulkOperationsPanels"><div id="replacedmdBulkUpdatePanel" style="display: none;"><input autocomplete="off" id="replacedmdBulkUpdatePanelOpenedState" name="replacedmdBulkUpdatePanelOpenedState" type="hidden"><div class="rich-modalpanel modal" id="replacedmdBulkUpdatePanelContainer" style="position: absolute; display: none; z-index: 100; background-color: inherit;"><div class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div" id="replacedmdBulkUpdatePanelDiv" style="z-index: -1;"><button class="rich-mpnl-button" id="replacedmdBulkUpdatePanelFirstHref"></button></div><div class="rich-mpnl-panel"><div class="rich-mp-container" id="replacedmdBulkUpdatePanelCDiv" style="position: absolute; left: 0px; top: 0px; z-index: 9;"><div class="rich-mpnl-shadow" id="replacedmdBulkUpdatePanelShadowDiv"></div><div class="rich-mpnl-ovf-hd rich-mpnl-trim rich-mpnl-content" id="replacedmdBulkUpdatePanelContentDiv"><table class="rich-mp-content-table" id="replacedmdBulkUpdatePanelContentTable" style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0"><tbody><tr style="height: 99%;"><td class="rich-mpnl-body" valign="top"><div id="replacedmdmodalDiv"><form target="" id="replacedmdwizard" name="replacedmdwizard" method="post" enctype="multipart/form-data" action="javascript:A4J.AJAX.SubmitForm('replacedmdwizard',{'similarityGroupingId':'replacedmdwizard','parameters':{'replacedmdwizard':'replacedmdwizard','ajaxSingle':'replacedmdwizard'} ,'actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} )"><span id="replacedmdwizard:j_id1294">
+
+<div class="title">
+	<div class="span-9"><h1></h1></div>
+	<div class="span-16 last"><div id="replacedmdwizard:j_id1294:j_id1301">
+  		<ul>
+				<li class="selected">1. Confirm
+				</li>
+				<li class="">2. Change
+				</li>
+				<li class="">3. Results
+				</li>
+		</ul></div></div>
+	</div>
+
+
+		<div class="cluster"> 
+
+</div>
+		<div class="action">
+            <div class="span-5"><hr></div>
+
+            <div class="span-20 last"><a class="button save" href="#" id="replacedmdwizard:j_id1294:j_id1365" name="replacedmdwizard:j_id1294:j_id1365" onclick="A4J.AJAX.Submit('replacedmdwizard',event,{'oncomplete':function(request,event,data){document.getElementById('replacedmdBulkUpdatePanel').component.hide(); javascript:location.reload(true);},'similarityGroupingId':'replacedmdwizard:j_id1294:j_id1365','parameters':{'replacedmdwizard:j_id1294:j_id1365':'replacedmdwizard:j_id1294:j_id1365'} ,'eventsQueue':'batchEditeventsQueue','actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} );return false;">Return</a> </div>
+          </div></span><input autocomplete="off" name="replacedmdwizard" value="replacedmdwizard" type="hidden"><input autocomplete="off" name="autoScroll" value="" type="hidden"><script type="text/javascript">function clear_replacedmdwizard() {
+_clearJSFFormParameters('replacedmdwizard','',['replacedmdwizard:j_idcl','replacedmdwizard:_link_hidden_']);
+}
+function clearFormHiddenParams_replacedmdwizard(){clear_replacedmdwizard();}
+function clearFormHiddenParams_replacedmdwizard(){clear_replacedmdwizard();}
+clear_replacedmdwizard();</script><script type="text/javascript">A4J.setupForm('replacedmdwizard');</script><input autocomplete="off" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id5" type="hidden"></form></div></td></tr></tbody></table></div><div class="rich-mpnl-resizer" id="replacedmdBulkUpdatePanelResizerN" style="width: 40px; height: 4px; cursor: n-resize;"></div><div class="rich-mpnl-resizer" id="replacedmdBulkUpdatePanelResizerE" style="height: 40px; width: 4px; cursor: e-resize;"></div><div class="rich-mpnl-resizer" id="replacedmdBulkUpdatePanelResizerS" style="width: 40px; height: 4px; cursor: s-resize;"></div><div class="rich-mpnl-resizer" id="replacedmdBulkUpdatePanelResizerW" style="height: 40px; width: 4px; cursor: w-resize;"></div><div class="rich-mpnl-resizer" id="replacedmdBulkUpdatePanelResizerNWU" style="width: 40px; height: 4px; cursor: nw-resize;"></div><div class="rich-mpnl-resizer" id="replacedmdBulkUpdatePanelResizerNEU" style="height: 40px; width: 4px; cursor: ne-resize;"></div><div class="rich-mpnl-resizer" id="replacedmdBulkUpdatePanelResizerNEL" style="width: 40px; height: 4px; cursor: ne-resize;"></div><div class="rich-mpnl-resizer" id="replacedmdBulkUpdatePanelResizerSEU" style="height: 40px; width: 4px; cursor: se-resize;"></div><div class="rich-mpnl-resizer" id="replacedmdBulkUpdatePanelResizerSEL" style="width: 40px; height: 4px; cursor: se-resize;"></div><div class="rich-mpnl-resizer" id="replacedmdBulkUpdatePanelResizerSWL" style="height: 40px; width: 4px; cursor: sw-resize;"></div><div class="rich-mpnl-resizer" id="replacedmdBulkUpdatePanelResizerSWU" style="width: 40px; height: 4px; cursor: sw-resize;"></div><div class="rich-mpnl-resizer" id="replacedmdBulkUpdatePanelResizerNWL" style="height: 40px; width: 4px; cursor: nw-resize;"></div></div></div><div class="rich-mpnl-mask-div rich-mpnl-mask-div-transparent" id="replacedmdBulkUpdatePanelCursorDiv" style="z-index: -200;"><button class="rich-mpnl-button" id="replacedmdBulkUpdatePanelLastHref"></button></div><script type="text/javascript">new ModalPanel('replacedmdBulkUpdatePanel',
+				{
+					width: 900,
+					height: 600,
+
+					minWidth: -1,
+					minHeight: -1,
+
+					resizeable: true,
+					moveable: true,
+
+					left: "auto",
+					top: "auto",
+
+					zindex: 100,onresize: '',onmove: '',onshow: '',onhide: '',onbeforeshow: '',onbeforehide: '',
+					domElementAttachment: "",				
+					keepVisualState: false,
+					showWhenRendered: false,
+					selectBehavior: "disable",
+
+					autosized: false,
+					overlapEmbedObjects: false});</script></div><script type="text/javascript"></script></div><div id="replacedmdBulkUpdateQuit" style="display: none;"><input autocomplete="off" id="replacedmdBulkUpdateQuitOpenedState" name="replacedmdBulkUpdateQuitOpenedState" type="hidden"><div class="rich-modalpanel modal" id="replacedmdBulkUpdateQuitContainer" style="position: absolute; display: none; z-index: 100; background-color: inherit;"><div class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div" id="replacedmdBulkUpdateQuitDiv" style="z-index: -1;"><button class="rich-mpnl-button" id="replacedmdBulkUpdateQuitFirstHref"></button></div><div class="rich-mpnl-panel"><div class="rich-mp-container" id="replacedmdBulkUpdateQuitCDiv" style="position: absolute; left: 0px; top: 0px; z-index: 9;"><div class="rich-mpnl-shadow" id="replacedmdBulkUpdateQuitShadowDiv"></div><div class="rich-mpnl-ovf-hd rich-mpnl-trim rich-mpnl-content" id="replacedmdBulkUpdateQuitContentDiv"><table class="rich-mp-content-table" id="replacedmdBulkUpdateQuitContentTable" style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0"><tbody><tr style="height: 99%;"><td class="rich-mpnl-body" valign="top"><div id="replacedmdmodalQuitDiv"><form target="" id="replacedmdwizardQuit" name="replacedmdwizardQuit" method="post" action="javascript:A4J.AJAX.SubmitForm('replacedmdwizardQuit',{'similarityGroupingId':'replacedmdwizardQuit','parameters':{'replacedmdwizardQuit':'replacedmdwizardQuit','ajaxSingle':'replacedmdwizardQuit'} ,'actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} )"><span id="replacedmdwizardQuit:j_id1367">
+
+<div class="title">
+            <div class="span-9">
+              <h1>Quit </h1>
+            </div>
+            <div class="span-16 last">
+              
+            </div>
+          </div>
+
+
+
+		<div class="cluster">
+
+		  <p>Are you sure you want to quit? Changes will <em>not</em> be made.</p>
+
+		</div>
+			
+    	<div class="action">
+            <div class="span-5"><a class="button save" href="#" id="replacedmdwizardQuit:j_id1367:j_id1374" name="replacedmdwizardQuit:j_id1367:j_id1374" onclick="A4J.AJAX.Submit('replacedmdwizardQuit',event,{'status':'globalWaitStatus','oncomplete':function(request,event,data){document.getElementById('replacedmdBulkUpdatePanel').component.hide(); document.getElementById('replacedmdBulkUpdateQuit').component.hide(); javascript:location.reload(true);},'similarityGroupingId':'replacedmdwizardQuit:j_id1367:j_id1374','parameters':{'replacedmdwizardQuit:j_id1367:j_id1374':'replacedmdwizardQuit:j_id1367:j_id1374'} ,'eventsQueue':'batchEditeventsQueue','actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} );return false;">Yes, Quit</a>
+			</div>
+            <div class="span-20 last"><a class="button cancel" href="#" id="replacedmdwizardQuit:j_id1367:j_id1376" name="replacedmdwizardQuit:j_id1367:j_id1376" onclick=" document.getElementById('replacedmdBulkUpdateQuit').component.hide(); ;A4J.AJAX.Submit('replacedmdwizardQuit',event,{'status':'globalWaitStatus','similarityGroupingId':'replacedmdwizardQuit:j_id1367:j_id1376','parameters':{'replacedmdwizardQuit:j_id1367:j_id1376':'replacedmdwizardQuit:j_id1367:j_id1376'} ,'eventsQueue':'batchEditeventsQueue','actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} );return false;">No, Return</a>
+			</div>
+        </div></span><input autocomplete="off" name="replacedmdwizardQuit" value="replacedmdwizardQuit" type="hidden"><input autocomplete="off" name="autoScroll" value="" type="hidden"><script type="text/javascript">function clear_replacedmdwizardQuit() {
+_clearJSFFormParameters('replacedmdwizardQuit','',['replacedmdwizardQuit:j_idcl','replacedmdwizardQuit:_link_hidden_']);
+}
+function clearFormHiddenParams_replacedmdwizardQuit(){clear_replacedmdwizardQuit();}
+function clearFormHiddenParams_replacedmdwizardQuit(){clear_replacedmdwizardQuit();}
+clear_replacedmdwizardQuit();</script><script type="text/javascript">A4J.setupForm('replacedmdwizardQuit');</script><input autocomplete="off" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id5" type="hidden"></form></div></td></tr></tbody></table></div><div class="rich-mpnl-resizer" id="replacedmdBulkUpdateQuitResizerN" style="width: 40px; height: 4px; cursor: n-resize;"></div><div class="rich-mpnl-resizer" id="replacedmdBulkUpdateQuitResizerE" style="height: 40px; width: 4px; cursor: e-resize;"></div><div class="rich-mpnl-resizer" id="replacedmdBulkUpdateQuitResizerS" style="width: 40px; height: 4px; cursor: s-resize;"></div><div class="rich-mpnl-resizer" id="replacedmdBulkUpdateQuitResizerW" style="height: 40px; width: 4px; cursor: w-resize;"></div><div class="rich-mpnl-resizer" id="replacedmdBulkUpdateQuitResizerNWU" style="width: 40px; height: 4px; cursor: nw-resize;"></div><div class="rich-mpnl-resizer" id="replacedmdBulkUpdateQuitResizerNEU" style="height: 40px; width: 4px; cursor: ne-resize;"></div><div class="rich-mpnl-resizer" id="replacedmdBulkUpdateQuitResizerNEL" style="width: 40px; height: 4px; cursor: ne-resize;"></div><div class="rich-mpnl-resizer" id="replacedmdBulkUpdateQuitResizerSEU" style="height: 40px; width: 4px; cursor: se-resize;"></div><div class="rich-mpnl-resizer" id="replacedmdBulkUpdateQuitResizerSEL" style="width: 40px; height: 4px; cursor: se-resize;"></div><div class="rich-mpnl-resizer" id="replacedmdBulkUpdateQuitResizerSWL" style="height: 40px; width: 4px; cursor: sw-resize;"></div><div class="rich-mpnl-resizer" id="replacedmdBulkUpdateQuitResizerSWU" style="width: 40px; height: 4px; cursor: sw-resize;"></div><div class="rich-mpnl-resizer" id="replacedmdBulkUpdateQuitResizerNWL" style="height: 40px; width: 4px; cursor: nw-resize;"></div></div></div><div class="rich-mpnl-mask-div rich-mpnl-mask-div-transparent" id="replacedmdBulkUpdateQuitCursorDiv" style="z-index: -200;"><button class="rich-mpnl-button" id="replacedmdBulkUpdateQuitLastHref"></button></div><script type="text/javascript">new ModalPanel('replacedmdBulkUpdateQuit',
+				{
+					width: 900,
+					height: 550,
+
+					minWidth: -1,
+					minHeight: -1,
+
+					resizeable: true,
+					moveable: true,
+
+					left: "auto",
+					top: "auto",
+
+					zindex: 100,onresize: '',onmove: '',onshow: '',onhide: '',onbeforeshow: '',onbeforehide: '',
+					domElementAttachment: "",				
+					keepVisualState: false,
+					showWhenRendered: false,
+					selectBehavior: "disable",
+
+					autosized: false,
+					overlapEmbedObjects: false});</script></div><script type="text/javascript"></script></div></div><div id="excludeFileBulkOperationsPanels"><div id="excludeFileBulkUpdatePanel" style="display: none;"><input autocomplete="off" id="excludeFileBulkUpdatePanelOpenedState" name="excludeFileBulkUpdatePanelOpenedState" type="hidden"><div class="rich-modalpanel modal" id="excludeFileBulkUpdatePanelContainer" style="position: absolute; display: none; z-index: 100; background-color: inherit;"><div class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div" id="excludeFileBulkUpdatePanelDiv" style="z-index: -1;"><button class="rich-mpnl-button" id="excludeFileBulkUpdatePanelFirstHref"></button></div><div class="rich-mpnl-panel"><div class="rich-mp-container" id="excludeFileBulkUpdatePanelCDiv" style="position: absolute; left: 0px; top: 0px; z-index: 9;"><div class="rich-mpnl-shadow" id="excludeFileBulkUpdatePanelShadowDiv"></div><div class="rich-mpnl-ovf-hd rich-mpnl-trim rich-mpnl-content" id="excludeFileBulkUpdatePanelContentDiv"><table class="rich-mp-content-table" id="excludeFileBulkUpdatePanelContentTable" style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0"><tbody><tr style="height: 99%;"><td class="rich-mpnl-body" valign="top"><div id="excludeFilemodalDiv"><form target="" id="excludefilewizard" name="excludefilewizard" method="post" enctype="multipart/form-data" action="javascript:A4J.AJAX.SubmitForm('excludefilewizard',{'similarityGroupingId':'excludefilewizard','parameters':{'excludefilewizard':'excludefilewizard','ajaxSingle':'excludefilewizard'} ,'actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} )"><span id="excludefilewizard:j_id1378">
+
+<div class="title">
+	<div class="span-9"><h1></h1></div>
+	<div class="span-16 last"><div id="excludefilewizard:j_id1378:j_id1385">
+  		<ul>
+				<li class="selected">1. Confirm
+				</li>
+				<li class="">2. Change
+				</li>
+				<li class="">3. Results
+				</li>
+		</ul></div></div>
+	</div>
+
+
+		<div class="cluster"> 
+
+</div>
+		<div class="action">
+            <div class="span-5"><hr></div>
+
+            <div class="span-20 last"><a class="button save" href="#" id="excludefilewizard:j_id1378:j_id1454" name="excludefilewizard:j_id1378:j_id1454" onclick="A4J.AJAX.Submit('excludefilewizard',event,{'oncomplete':function(request,event,data){document.getElementById('excludeFileBulkUpdatePanel').component.hide(); javascript:location.reload(true);},'similarityGroupingId':'excludefilewizard:j_id1378:j_id1454','parameters':{'excludefilewizard:j_id1378:j_id1454':'excludefilewizard:j_id1378:j_id1454'} ,'eventsQueue':'batchEditeventsQueue','actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} );return false;">Return</a> </div>
+          </div></span><input autocomplete="off" name="excludefilewizard" value="excludefilewizard" type="hidden"><input autocomplete="off" name="autoScroll" value="" type="hidden"><script type="text/javascript">function clear_excludefilewizard() {
+_clearJSFFormParameters('excludefilewizard','',['excludefilewizard:_link_hidden_','excludefilewizard:j_idcl']);
+}
+function clearFormHiddenParams_excludefilewizard(){clear_excludefilewizard();}
+function clearFormHiddenParams_excludefilewizard(){clear_excludefilewizard();}
+clear_excludefilewizard();</script><script type="text/javascript">A4J.setupForm('excludefilewizard');</script><input autocomplete="off" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id5" type="hidden"></form></div></td></tr></tbody></table></div><div class="rich-mpnl-resizer" id="excludeFileBulkUpdatePanelResizerN" style="width: 40px; height: 4px; cursor: n-resize;"></div><div class="rich-mpnl-resizer" id="excludeFileBulkUpdatePanelResizerE" style="height: 40px; width: 4px; cursor: e-resize;"></div><div class="rich-mpnl-resizer" id="excludeFileBulkUpdatePanelResizerS" style="width: 40px; height: 4px; cursor: s-resize;"></div><div class="rich-mpnl-resizer" id="excludeFileBulkUpdatePanelResizerW" style="height: 40px; width: 4px; cursor: w-resize;"></div><div class="rich-mpnl-resizer" id="excludeFileBulkUpdatePanelResizerNWU" style="width: 40px; height: 4px; cursor: nw-resize;"></div><div class="rich-mpnl-resizer" id="excludeFileBulkUpdatePanelResizerNEU" style="height: 40px; width: 4px; cursor: ne-resize;"></div><div class="rich-mpnl-resizer" id="excludeFileBulkUpdatePanelResizerNEL" style="width: 40px; height: 4px; cursor: ne-resize;"></div><div class="rich-mpnl-resizer" id="excludeFileBulkUpdatePanelResizerSEU" style="height: 40px; width: 4px; cursor: se-resize;"></div><div class="rich-mpnl-resizer" id="excludeFileBulkUpdatePanelResizerSEL" style="width: 40px; height: 4px; cursor: se-resize;"></div><div class="rich-mpnl-resizer" id="excludeFileBulkUpdatePanelResizerSWL" style="height: 40px; width: 4px; cursor: sw-resize;"></div><div class="rich-mpnl-resizer" id="excludeFileBulkUpdatePanelResizerSWU" style="width: 40px; height: 4px; cursor: sw-resize;"></div><div class="rich-mpnl-resizer" id="excludeFileBulkUpdatePanelResizerNWL" style="height: 40px; width: 4px; cursor: nw-resize;"></div></div></div><div class="rich-mpnl-mask-div rich-mpnl-mask-div-transparent" id="excludeFileBulkUpdatePanelCursorDiv" style="z-index: -200;"><button class="rich-mpnl-button" id="excludeFileBulkUpdatePanelLastHref"></button></div><script type="text/javascript">new ModalPanel('excludeFileBulkUpdatePanel',
+				{
+					width: 900,
+					height: 600,
+
+					minWidth: -1,
+					minHeight: -1,
+
+					resizeable: true,
+					moveable: true,
+
+					left: "auto",
+					top: "auto",
+
+					zindex: 100,onresize: '',onmove: '',onshow: '',onhide: '',onbeforeshow: '',onbeforehide: '',
+					domElementAttachment: "",				
+					keepVisualState: false,
+					showWhenRendered: false,
+					selectBehavior: "disable",
+
+					autosized: false,
+					overlapEmbedObjects: false});</script></div><script type="text/javascript"></script></div><div id="excludeFileBulkUpdateQuit" style="display: none;"><input autocomplete="off" id="excludeFileBulkUpdateQuitOpenedState" name="excludeFileBulkUpdateQuitOpenedState" type="hidden"><div class="rich-modalpanel modal" id="excludeFileBulkUpdateQuitContainer" style="position: absolute; display: none; z-index: 100; background-color: inherit;"><div class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div" id="excludeFileBulkUpdateQuitDiv" style="z-index: -1;"><button class="rich-mpnl-button" id="excludeFileBulkUpdateQuitFirstHref"></button></div><div class="rich-mpnl-panel"><div class="rich-mp-container" id="excludeFileBulkUpdateQuitCDiv" style="position: absolute; left: 0px; top: 0px; z-index: 9;"><div class="rich-mpnl-shadow" id="excludeFileBulkUpdateQuitShadowDiv"></div><div class="rich-mpnl-ovf-hd rich-mpnl-trim rich-mpnl-content" id="excludeFileBulkUpdateQuitContentDiv"><table class="rich-mp-content-table" id="excludeFileBulkUpdateQuitContentTable" style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0"><tbody><tr style="height: 99%;"><td class="rich-mpnl-body" valign="top"><div id="excludeFilemodalQuitDiv"><form target="" id="excludeFilewizardQuit" name="excludeFilewizardQuit" method="post" action="javascript:A4J.AJAX.SubmitForm('excludeFilewizardQuit',{'similarityGroupingId':'excludeFilewizardQuit','parameters':{'ajaxSingle':'excludeFilewizardQuit','excludeFilewizardQuit':'excludeFilewizardQuit'} ,'actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} )"><span id="excludeFilewizardQuit:j_id1456">
+
+<div class="title">
+            <div class="span-9">
+              <h1>Quit </h1>
+            </div>
+            <div class="span-16 last">
+              
+            </div>
+          </div>
+
+
+
+		<div class="cluster">
+
+		  <p>Are you sure you want to quit? Changes will <em>not</em> be made.</p>
+
+		</div>
+			
+    	<div class="action">
+            <div class="span-5"><a class="button save" href="#" id="excludeFilewizardQuit:j_id1456:j_id1463" name="excludeFilewizardQuit:j_id1456:j_id1463" onclick="A4J.AJAX.Submit('excludeFilewizardQuit',event,{'status':'globalWaitStatus','oncomplete':function(request,event,data){document.getElementById('excludeFileBulkUpdatePanel').component.hide(); document.getElementById('excludeFileBulkUpdateQuit').component.hide(); javascript:location.reload(true);},'similarityGroupingId':'excludeFilewizardQuit:j_id1456:j_id1463','parameters':{'excludeFilewizardQuit:j_id1456:j_id1463':'excludeFilewizardQuit:j_id1456:j_id1463'} ,'eventsQueue':'batchEditeventsQueue','actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} );return false;">Yes, Quit</a>
+			</div>
+            <div class="span-20 last"><a class="button cancel" href="#" id="excludeFilewizardQuit:j_id1456:j_id1465" name="excludeFilewizardQuit:j_id1456:j_id1465" onclick=" document.getElementById('excludeFileBulkUpdateQuit').component.hide(); ;A4J.AJAX.Submit('excludeFilewizardQuit',event,{'status':'globalWaitStatus','similarityGroupingId':'excludeFilewizardQuit:j_id1456:j_id1465','parameters':{'excludeFilewizardQuit:j_id1456:j_id1465':'excludeFilewizardQuit:j_id1456:j_id1465'} ,'eventsQueue':'batchEditeventsQueue','actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} );return false;">No, Return</a>
+			</div>
+        </div></span><input autocomplete="off" name="excludeFilewizardQuit" value="excludeFilewizardQuit" type="hidden"><input autocomplete="off" name="autoScroll" value="" type="hidden"><script type="text/javascript">function clear_excludeFilewizardQuit() {
+_clearJSFFormParameters('excludeFilewizardQuit','',['excludeFilewizardQuit:j_idcl','excludeFilewizardQuit:_link_hidden_']);
+}
+function clearFormHiddenParams_excludeFilewizardQuit(){clear_excludeFilewizardQuit();}
+function clearFormHiddenParams_excludeFilewizardQuit(){clear_excludeFilewizardQuit();}
+clear_excludeFilewizardQuit();</script><script type="text/javascript">A4J.setupForm('excludeFilewizardQuit');</script><input autocomplete="off" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id5" type="hidden"></form></div></td></tr></tbody></table></div><div class="rich-mpnl-resizer" id="excludeFileBulkUpdateQuitResizerN" style="width: 40px; height: 4px; cursor: n-resize;"></div><div class="rich-mpnl-resizer" id="excludeFileBulkUpdateQuitResizerE" style="height: 40px; width: 4px; cursor: e-resize;"></div><div class="rich-mpnl-resizer" id="excludeFileBulkUpdateQuitResizerS" style="width: 40px; height: 4px; cursor: s-resize;"></div><div class="rich-mpnl-resizer" id="excludeFileBulkUpdateQuitResizerW" style="height: 40px; width: 4px; cursor: w-resize;"></div><div class="rich-mpnl-resizer" id="excludeFileBulkUpdateQuitResizerNWU" style="width: 40px; height: 4px; cursor: nw-resize;"></div><div class="rich-mpnl-resizer" id="excludeFileBulkUpdateQuitResizerNEU" style="height: 40px; width: 4px; cursor: ne-resize;"></div><div class="rich-mpnl-resizer" id="excludeFileBulkUpdateQuitResizerNEL" style="width: 40px; height: 4px; cursor: ne-resize;"></div><div class="rich-mpnl-resizer" id="excludeFileBulkUpdateQuitResizerSEU" style="height: 40px; width: 4px; cursor: se-resize;"></div><div class="rich-mpnl-resizer" id="excludeFileBulkUpdateQuitResizerSEL" style="width: 40px; height: 4px; cursor: se-resize;"></div><div class="rich-mpnl-resizer" id="excludeFileBulkUpdateQuitResizerSWL" style="height: 40px; width: 4px; cursor: sw-resize;"></div><div class="rich-mpnl-resizer" id="excludeFileBulkUpdateQuitResizerSWU" style="width: 40px; height: 4px; cursor: sw-resize;"></div><div class="rich-mpnl-resizer" id="excludeFileBulkUpdateQuitResizerNWL" style="height: 40px; width: 4px; cursor: nw-resize;"></div></div></div><div class="rich-mpnl-mask-div rich-mpnl-mask-div-transparent" id="excludeFileBulkUpdateQuitCursorDiv" style="z-index: -200;"><button class="rich-mpnl-button" id="excludeFileBulkUpdateQuitLastHref"></button></div><script type="text/javascript">new ModalPanel('excludeFileBulkUpdateQuit',
+				{
+					width: 900,
+					height: 550,
+
+					minWidth: -1,
+					minHeight: -1,
+
+					resizeable: true,
+					moveable: true,
+
+					left: "auto",
+					top: "auto",
+
+					zindex: 100,onresize: '',onmove: '',onshow: '',onhide: '',onbeforeshow: '',onbeforehide: '',
+					domElementAttachment: "",				
+					keepVisualState: false,
+					showWhenRendered: false,
+					selectBehavior: "disable",
+
+					autosized: false,
+					overlapEmbedObjects: false});</script></div><script type="text/javascript"></script></div></div><div id="batchBadgeActivityPanels"><div id="modalPanel" style="display: none;"><input autocomplete="off" id="modalPanelOpenedState" name="modalPanelOpenedState" type="hidden"><div class="rich-modalpanel modal" id="modalPanelContainer" style="position: absolute; display: none; z-index: 100; background-color: inherit;"><div class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div" id="modalPanelDiv" style="z-index: -1;"><button class="rich-mpnl-button" id="modalPanelFirstHref"></button></div><div class="rich-mpnl-panel"><div class="rich-mp-container" id="modalPanelCDiv" style="position: absolute; left: 0px; top: 0px; z-index: 9;"><div class="rich-mpnl-shadow" id="modalPanelShadowDiv"></div><div class="rich-mpnl-ovf-hd rich-mpnl-trim rich-mpnl-content" id="modalPanelContentDiv"><table class="rich-mp-content-table" id="modalPanelContentTable" style="height: 100%; width: 100%;" border="0" cellpadding="0" cellspacing="0"><tbody><tr style="height: 1%;"><td class="rich-mpnl-header-cell"><div class="rich-mpnl-text rich-mpnl-header " id="modalPanelHeader" style="white-space: nowrap; cursor: move;">
+			TEST</div></td></tr><tr style="height: 99%;"><td class="rich-mpnl-body" valign="top">
+		<br>
+	<h1>Hello, Test!</h1>
+	<br><div id="j_id1469">
+<a href="#" onclick="Richfaces.hideModalPanel('modalPanel')">Hide</a></div></td></tr></tbody></table></div><div class="rich-mpnl-resizer" id="modalPanelResizerN" style="width: 40px; height: 4px; cursor: n-resize;"></div><div class="rich-mpnl-resizer" id="modalPanelResizerE" style="height: 40px; width: 4px; cursor: e-resize;"></div><div class="rich-mpnl-resizer" id="modalPanelResizerS" style="width: 40px; height: 4px; cursor: s-resize;"></div><div class="rich-mpnl-resizer" id="modalPanelResizerW" style="height: 40px; width: 4px; cursor: w-resize;"></div><div class="rich-mpnl-resizer" id="modalPanelResizerNWU" style="width: 40px; height: 4px; cursor: nw-resize;"></div><div class="rich-mpnl-resizer" id="modalPanelResizerNEU" style="height: 40px; width: 4px; cursor: ne-resize;"></div><div class="rich-mpnl-resizer" id="modalPanelResizerNEL" style="width: 40px; height: 4px; cursor: ne-resize;"></div><div class="rich-mpnl-resizer" id="modalPanelResizerSEU" style="height: 40px; width: 4px; cursor: se-resize;"></div><div class="rich-mpnl-resizer" id="modalPanelResizerSEL" style="width: 40px; height: 4px; cursor: se-resize;"></div><div class="rich-mpnl-resizer" id="modalPanelResizerSWL" style="height: 40px; width: 4px; cursor: sw-resize;"></div><div class="rich-mpnl-resizer" id="modalPanelResizerSWU" style="width: 40px; height: 4px; cursor: sw-resize;"></div><div class="rich-mpnl-resizer" id="modalPanelResizerNWL" style="height: 40px; width: 4px; cursor: nw-resize;"></div></div></div><div class="rich-mpnl-mask-div rich-mpnl-mask-div-transparent" id="modalPanelCursorDiv" style="z-index: -200;"><button class="rich-mpnl-button" id="modalPanelLastHref"></button></div><script type="text/javascript">new ModalPanel('modalPanel',
+				{
+					width: 880,
+					height: 550,
+
+					minWidth: -1,
+					minHeight: -1,
+
+					resizeable: true,
+					moveable: true,
+
+					left: "auto",
+					top: "auto",
+
+					zindex: 100,onresize: '',onmove: '',onshow: '',onhide: '',onbeforeshow: '',onbeforehide: '',
+					domElementAttachment: "",				
+					keepVisualState: false,
+					showWhenRendered: false,
+					selectBehavior: "disable",
+
+					autosized: false,
+					overlapEmbedObjects: false});</script></div><script type="text/javascript"></script></div></div></div>
+	</div>
+	<!-- End Cluster -->
+	<div class="sidebar span-8 last">
+	<!-- Tags --><div id="j_id1472"><form target="" id="batchTagsForm" name="batchTagsForm" method="post" action="javascript:A4J.AJAX.SubmitForm('batchTagsForm',{'similarityGroupingId':'batchTagsForm','parameters':{'batchTagsForm':'batchTagsForm'} ,'actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} )">
+            
+		<div class="tags">
+			<div class="enhance field">
+				<h2>Tags</h2>
+			</div><table class="rich-table " id="batchTagsForm:tagsTable" border="0" cellpadding="0" cellspacing="0"><colgroup span="2"></colgroup><tbody id="batchTagsForm:tagsTable:tb"><tr class="rich-table-row rich-table-firstrow "><td class="rich-table-cell " id="batchTagsForm:tagsTable:0:j_id1474">Hold Auto Processing</td><td class="rich-table-cell " id="batchTagsForm:tagsTable:0:j_id1476"><a tabindex="0" class="button cancel" href="#" id="batchTagsForm:tagsTable:0:j_id1477" name="batchTagsForm:tagsTable:0:j_id1477" onclick="A4J.AJAX.Submit('batchTagsForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchTagsForm:tagsTable:0:j_id1477','similarityGroupingId':'batchTagsForm:tagsTable:0:j_id1477','parameters':{'batchTagsForm:tagsTable:0:j_id1477':'batchTagsForm:tagsTable:0:j_id1477'} ,'actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} );return false;"></a></td></tr><tr class="rich-table-row "><td class="rich-table-cell " id="batchTagsForm:tagsTable:1:j_id1474">TestSequence</td><td class="rich-table-cell " id="batchTagsForm:tagsTable:1:j_id1476"><a tabindex="0" class="button cancel" href="#" id="batchTagsForm:tagsTable:1:j_id1477" name="batchTagsForm:tagsTable:1:j_id1477" onclick="A4J.AJAX.Submit('batchTagsForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchTagsForm:tagsTable:1:j_id1477','similarityGroupingId':'batchTagsForm:tagsTable:1:j_id1477','parameters':{'batchTagsForm:tagsTable:1:j_id1477':'batchTagsForm:tagsTable:1:j_id1477'} ,'actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} );return false;"></a></td></tr><tr class="rich-table-row "><td class="rich-table-cell " id="batchTagsForm:tagsTable:2:j_id1474">Trying to hold the batch not to remove tags</td><td class="rich-table-cell " id="batchTagsForm:tagsTable:2:j_id1476"><a tabindex="0" class="button cancel" href="#" id="batchTagsForm:tagsTable:2:j_id1477" name="batchTagsForm:tagsTable:2:j_id1477" onclick="A4J.AJAX.Submit('batchTagsForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchTagsForm:tagsTable:2:j_id1477','similarityGroupingId':'batchTagsForm:tagsTable:2:j_id1477','parameters':{'batchTagsForm:tagsTable:2:j_id1477':'batchTagsForm:tagsTable:2:j_id1477'} ,'actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} );return false;"></a></td></tr><tr class="rich-table-row "><td class="rich-table-cell " id="batchTagsForm:tagsTable:3:j_id1474">test</td><td class="rich-table-cell " id="batchTagsForm:tagsTable:3:j_id1476"><a tabindex="0" class="button cancel" href="#" id="batchTagsForm:tagsTable:3:j_id1477" name="batchTagsForm:tagsTable:3:j_id1477" onclick="A4J.AJAX.Submit('batchTagsForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchTagsForm:tagsTable:3:j_id1477','similarityGroupingId':'batchTagsForm:tagsTable:3:j_id1477','parameters':{'batchTagsForm:tagsTable:3:j_id1477':'batchTagsForm:tagsTable:3:j_id1477'} ,'actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} );return false;"></a></td></tr><tr class="rich-table-row "><td class="rich-table-cell " id="batchTagsForm:tagsTable:4:j_id1474">test Hold Auto Processing</td><td class="rich-table-cell " id="batchTagsForm:tagsTable:4:j_id1476"><a tabindex="0" class="button cancel" href="#" id="batchTagsForm:tagsTable:4:j_id1477" name="batchTagsForm:tagsTable:4:j_id1477" onclick="A4J.AJAX.Submit('batchTagsForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchTagsForm:tagsTable:4:j_id1477','similarityGroupingId':'batchTagsForm:tagsTable:4:j_id1477','parameters':{'batchTagsForm:tagsTable:4:j_id1477':'batchTagsForm:tagsTable:4:j_id1477'} ,'actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} );return false;"></a></td></tr></tbody></table>
+			
+				<div class="combobox"><a tabindex="0" class="button add" href="#" id="batchTagsForm:j_id1481" name="batchTagsForm:j_id1481" onclick="A4J.AJAX.Submit('batchTagsForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchTagsForm:j_id1481','similarityGroupingId':'batchTagsForm:j_id1481','parameters':{'batchTagsForm:j_id1481':'batchTagsForm:j_id1481'} ,'actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} );return false;"></a><div id="batchTagsForm:tagsComboBox"><div class="rich-combobox-font rich-combobox " id="batchTagsForm:tagsComboBoxcombobox" style="width:150px;" onkeyup="if (event.keyCode != 13) { return false; };A4J.AJAX.Submit('batchTagsForm',event,{'control':this,'ignoreDupResponses':true,'implicitEventsQueue':'batchTagsForm:j_id1480','similarityGroupingId':'batchTagsForm:j_id1480','parameters':{'batchTagsForm:j_id1480':'batchTagsForm:j_id1480','ajaxSingle':'batchTagsForm:tagsComboBox'} ,'actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} )"><div class="rich-combobox-list-cord"></div><div class="rich-combobox-font rich-combobox-shell" style="width:150px;"><input value="Please select.." tabindex="0" autocomplete="off" class="rich-combobox-font-disabled rich-combobox-input-disabled" id="batchTagsForm:tagsComboBoxcomboboxField" name="batchTagsForm:tagsComboBoxcomboboxField" style="width: 121px;" type="text"><input autocomplete="off" class="rich-combobox-font-inactive rich-combobox-button-background rich-combobox-button-inactive disabled" id="batchTagsForm:tagsComboBoxcomboBoxButtonBG" readonly="true" tabindex="0" type="text"><input autocomplete="off" class="rich-combobox-font-inactive rich-combobox-button-icon-inactive rich-combobox-button-inactive  disabled" id="batchTagsForm:tagsComboBoxcomboboxButton" readonly="true" style="" tabindex="0" type="text"><div class="rich-combobox-strut rich-combobox-font" style="width:140px">Strut</div></div><div class="rich-combobox-list-cord " id="batchTagsForm:tagsComboBoxlistParent" style="position: absolute; z-index: 1000; visibility: visible; display: none;"><div class="rich-combobox-shadow"><table id="batchTagsForm:tagsComboBoxshadow" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="rich-combobox-shadow-tl"><img alt="" src="fix_comboboxwizard_files/spacer.gif" style="border: 0pt none;" height="1" width="10"><br></td><td class="rich-combobox-shadow-tr"><img alt="" src="fix_comboboxwizard_files/spacer.gif" style="border: 0pt none;" height="10" width="1"><br></td></tr><tr><td class="rich-combobox-shadow-bl"><img alt="" src="fix_comboboxwizard_files/spacer.gif" style="border: 0pt none;" height="10" width="1"><br></td><td class="rich-combobox-shadow-br"><img alt="" src="fix_comboboxwizard_files/spacer.gif" style="border: 0pt none;" height="10" width="10"><br></td></tr></tbody></table></div><div class="rich-combobox-list-position" id="batchTagsForm:tagsComboBoxlistPosition"><div class="rich-combobox-list-decoration" id="batchTagsForm:tagsComboBoxlistDecoration"><div class="rich-combobox-list-scroll" id="batchTagsForm:tagsComboBoxlist"></div></div></div></div><input value="" autocomplete="off" id="batchTagsForm:tagsComboBoxcomboboxValue" name="batchTagsForm:tagsComboBox" type="hidden"></div><script type="text/javascript">new Richfaces.ComboBox("batchTagsForm:tagsComboBox",{'listOptions':{'itemsText':['Beta','Gamma','Delta','Eta','Alpha','Phi','Princeton','Epsilon','Theta','NYC test','Ithaka\x2DTest','Test the postion','Apple','Vinay test1','Test Trimpath','StartTest06/08/2011','Kranthi1','Kranthi2','Kranthi3','bil\x2D0301','bil\x2D0302','bill\x2D401','ranga4','ranga5','ranga6','Tag1','Tag 1','Tag 3','3414512345','                           ','5555555555555             55555555555555           55555555555','5                           5                        5','                            ',' ','#$!%@#$%@#$','#$!%@#$','      ','```````````````','test Hold Auto Processing','test Hold Auto Processing','test Hold Auto Processing','test unhold the batches','test  \x2D Lifecycle State \x2D wizard','kranthi clear','bill\x2D007','bill\x2D008','bill\x2D012','bill\x2D019','ConPrep\x2D2614','ConPrep\x2D2614 \x2D FT \x2D rel\x2D1_1 \x2D ResolveIdentityConflict','Wiley','TestSequence','CONPREP\x2D2614 \x2D Post\x2DProcessing','GeneratePMD','CONPREP\x2D2614 GeneratePMD','Trying to hold the batch not to remove tags','test\x2D CONPREP\x2D2618','test HAWORH \x2D Post processing from list view \x2D onhold','Post\x2DProcessing \x2D list view \x2D onhold = true','123412','test reset ','Newyork','Lawrence','Enter tag','Jersey','ranga','Michigan','Beta\x2Dtest','test reset on HOld','Test999','bill\x2D03','bill\x2D024','test tags harish','Test Add Tag \x2D Harish \x2D1 ','Tag 2','test','test12','testing reset','Hold Auto Processing','wjh','Test tag','Kranthi4','wjh','ranga2','ranga3','kranthi'] ,'listWidth':'150px','selectFirstOnUpdate':false} ,'fields':{'defaultLabel':'Please select..','directInputSuggestions':true} } );</script></div>
+				</div>
+			</div><input autocomplete="off" name="batchTagsForm" value="batchTagsForm" type="hidden"><input autocomplete="off" name="autoScroll" value="" type="hidden"><script type="text/javascript">function clear_batchTagsForm() {
+_clearJSFFormParameters('batchTagsForm','',['batchTagsForm:j_idcl','batchTagsForm:_link_hidden_']);
+}
+function clearFormHiddenParams_batchTagsForm(){clear_batchTagsForm();}
+function clearFormHiddenParams_batchTagsForm(){clear_batchTagsForm();}
+clear_batchTagsForm();</script><script type="text/javascript">A4J.setupForm('batchTagsForm');</script><input autocomplete="off" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id5" type="hidden"></form></div>
+	<!-- End Tags --> 
+	<!-- Notes --><div id="j_id1484"><form target="" id="batchNotesForm" name="batchNotesForm" method="post" action="/ConPrepUI/batches/BatchEdit.seam">
+            
+		<div class="notes">
+			<div class="enhance field">
+				<h2>Notes</h2><a tabindex="0" class="button add" href="#" id="batchNotesForm:addlink" name="batchNotesForm:addlink" onclick="A4J.AJAX.Submit('batchNotesForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchNotesForm:addlink','status':'globalWaitStatus','oncomplete':function(request,event,data){document.getElementById('addPanel').component.show()},'similarityGroupingId':'batchNotesForm:addlink','parameters':{'ajaxSingle':'batchNotesForm:addlink','batchNotesForm:addlink':'batchNotesForm:addlink'} } );return false;"></a>
+			</div><table class="rich-table " id="batchNotesForm:notesTable" border="0" cellpadding="0" cellspacing="0"><colgroup span="2"></colgroup><tbody id="batchNotesForm:notesTable:tb"><tr class="rich-table-row rich-table-firstrow "><td class="rich-table-cell " id="batchNotesForm:notesTable:0:j_id1487">
+							<p>testing add notes bulk wizard</p>
+							<p class="sig">General&nbsp;by&nbsp;pkesireddy&nbsp;at&nbsp;2011/09/16 15:59:23
+                			</p></td><td class="rich-table-cell " id="batchNotesForm:notesTable:0:j_id1501"><a tabindex="0" class="button edit" href="#" id="batchNotesForm:notesTable:0:editlink" name="batchNotesForm:notesTable:0:editlink" onclick="A4J.AJAX.Submit('batchNotesForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchNotesForm:notesTable:0:editlink','status':'globalWaitStatus','oncomplete':function(request,event,data){document.getElementById('editPanel').component.show()},'similarityGroupingId':'batchNotesForm:notesTable:0:editlink','parameters':{'batchNotesForm:notesTable:0:editlink':'batchNotesForm:notesTable:0:editlink','ajaxSingle':'batchNotesForm:notesTable:0:editlink'} } );return false;"></a><a tabindex="0" class="button delete" href="#" id="batchNotesForm:notesTable:0:deletelink" name="batchNotesForm:notesTable:0:deletelink" onclick="A4J.AJAX.Submit('batchNotesForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchNotesForm:notesTable:0:deletelink','status':'globalWaitStatus','oncomplete':function(request,event,data){document.getElementById('deletePanel').component.show()},'similarityGroupingId':'batchNotesForm:notesTable:0:deletelink','parameters':{'ajaxSingle':'batchNotesForm:notesTable:0:deletelink','batchNotesForm:notesTable:0:deletelink':'batchNotesForm:notesTable:0:deletelink'} } );return false;"></a></td></tr><tr class="rich-table-row "><td class="rich-table-cell " id="batchNotesForm:notesTable:1:j_id1487">
+							<p>testing ADD NOTES Batch Wizard</p>
+							<p class="sig">General&nbsp;by&nbsp;pkesireddy&nbsp;at&nbsp;2011/09/16 16:17:18
+                			</p></td><td class="rich-table-cell " id="batchNotesForm:notesTable:1:j_id1501"><a tabindex="0" class="button edit" href="#" id="batchNotesForm:notesTable:1:editlink" name="batchNotesForm:notesTable:1:editlink" onclick="A4J.AJAX.Submit('batchNotesForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchNotesForm:notesTable:1:editlink','status':'globalWaitStatus','oncomplete':function(request,event,data){document.getElementById('editPanel').component.show()},'similarityGroupingId':'batchNotesForm:notesTable:1:editlink','parameters':{'ajaxSingle':'batchNotesForm:notesTable:1:editlink','batchNotesForm:notesTable:1:editlink':'batchNotesForm:notesTable:1:editlink'} } );return false;"></a><a tabindex="0" class="button delete" href="#" id="batchNotesForm:notesTable:1:deletelink" name="batchNotesForm:notesTable:1:deletelink" onclick="A4J.AJAX.Submit('batchNotesForm',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchNotesForm:notesTable:1:deletelink','status':'globalWaitStatus','oncomplete':function(request,event,data){document.getElementById('deletePanel').component.show()},'similarityGroupingId':'batchNotesForm:notesTable:1:deletelink','parameters':{'ajaxSingle':'batchNotesForm:notesTable:1:deletelink','batchNotesForm:notesTable:1:deletelink':'batchNotesForm:notesTable:1:deletelink'} } );return false;"></a></td></tr></tbody></table>
+			</div><input autocomplete="off" name="batchNotesForm" value="batchNotesForm" type="hidden"><input autocomplete="off" name="autoScroll" value="" type="hidden"><script type="text/javascript">function clear_batchNotesForm() {
+_clearJSFFormParameters('batchNotesForm','',['batchNotesForm:_link_hidden_','batchNotesForm:j_idcl']);
+}
+function clearFormHiddenParams_batchNotesForm(){clear_batchNotesForm();}
+function clearFormHiddenParams_batchNotesForm(){clear_batchNotesForm();}
+clear_batchNotesForm();</script><input autocomplete="off" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id5" type="hidden"></form><div id="editPanel" style="display: none;"><input autocomplete="off" id="editPanelOpenedState" name="editPanelOpenedState" type="hidden"><div class="rich-modalpanel compact" id="editPanelContainer" style="position: absolute; display: none; z-index: 100; background-color: inherit;"><div class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div" id="editPanelDiv" style="z-index: -1;"><button class="rich-mpnl-button" id="editPanelFirstHref"></button></div><div class="rich-mpnl-panel"><div class="rich-mp-container" id="editPanelCDiv" style="position: absolute; left: 0px; top: 0px; z-index: 9;"><div class="rich-mpnl-shadow" id="editPanelShadowDiv"></div><div class=" rich-mpnl-content" id="editPanelContentDiv"><table class="rich-mp-content-table" id="editPanelContentTable" style="width: 1px; height: 1px;" border="0" cellpadding="0" cellspacing="0"><tbody><tr style="height: 99%;"><td class="rich-mpnl-body" valign="top">
+<form id="j_id1503" name="j_id1503" method="post" action="/ConPrepUI/batches/BatchEdit.seam" enctype="application/x-www-form-urlencoded">
+<input autocomplete="off" name="j_id1503" value="j_id1503" type="hidden">
+
+			       <div class="title">
+						<h1>Edit Notes </h1>
+						
+				   </div>
+				    <div class="cluster">
+            			<div class="field required">
+				              <div class="span-5">
+				                <label>Note Type</label>
+				              </div>
+				               <div class="span-10 last"><span id="j_id1503:j_id1505"><select size="1" name="j_id1503:j_id1506"><option selected="selected" value="General">General</option></select></span>
+					           </div>
+				  		  </div>
+				  		  <div class="field required">
+				              <div class="span-5">
+				                <label>Note</label>
+				              </div>
+				              <div class="span-10 last"><span id="j_id1503:j_id1509"><p><textarea name="j_id1503:j_id1511">testing ADD NOTES Batch Wizard</textarea></p></span>
+				              </div>
+           				  </div>
+			  		  </div>
+                   <div class="action">
+		                <div class="span-5"><a class="button cancel" href="#" id="j_id1503:j_id1514" name="j_id1503:j_id1514" onclick="document.getElementById('editPanel').component.hide();;A4J.AJAX.Submit('j_id1503',event,{'ignoreDupResponses':true,'implicitEventsQueue':'j_id1503:j_id1514','similarityGroupingId':'j_id1503:j_id1514','parameters':{'j_id1503:j_id1514':'j_id1503:j_id1514'} } );return false;">Quit</a>
+		                </div>
+					  	<div class="span-10 last"><a class="button save" href="#" id="j_id1503:j_id1516" name="j_id1503:j_id1516" onclick="A4J.AJAX.Submit('j_id1503',event,{'oncomplete':function(request,event,data){if (true) document.getElementById('editPanel').component.hide();},'similarityGroupingId':'j_id1503:j_id1516','parameters':{'j_id1503:j_id1516':'j_id1503:j_id1516'} } );return false;">Confirm</a>
+					    </div>
+			     	</div><input autocomplete="off" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id5" type="hidden">
+</form></td></tr></tbody></table></div></div></div><div class="rich-mpnl-mask-div rich-mpnl-mask-div-transparent" id="editPanelCursorDiv" style="z-index: -200;"><button class="rich-mpnl-button" id="editPanelLastHref"></button></div><script type="text/javascript">new ModalPanel('editPanel',
+				{
+					width: -1,
+					height: -1,
+
+					minWidth: -1,
+					minHeight: -1,
+
+					resizeable: false,
+					moveable: true,
+
+					left: "auto",
+					top: "auto",
+
+					zindex: 100,onresize: '',onmove: '',onshow: '',onhide: '',onbeforeshow: '',onbeforehide: '',
+					domElementAttachment: "",				
+					keepVisualState: false,
+					showWhenRendered: false,
+					selectBehavior: "disable",
+
+					autosized: true,
+					overlapEmbedObjects: false});</script></div><script type="text/javascript"></script></div><div id="addPanel" style="display: none;"><input autocomplete="off" id="addPanelOpenedState" name="addPanelOpenedState" type="hidden"><div class="rich-modalpanel compact" id="addPanelContainer" style="position: absolute; display: none; z-index: 100; background-color: inherit;"><div class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div" id="addPanelDiv" style="z-index: -1;"><button class="rich-mpnl-button" id="addPanelFirstHref"></button></div><div class="rich-mpnl-panel"><div class="rich-mp-container" id="addPanelCDiv" style="position: absolute; left: 0px; top: 0px; z-index: 9;"><div class="rich-mpnl-shadow" id="addPanelShadowDiv"></div><div class=" rich-mpnl-content" id="addPanelContentDiv"><table class="rich-mp-content-table" id="addPanelContentTable" style="width: 1px; height: 1px;" border="0" cellpadding="0" cellspacing="0"><tbody><tr style="height: 99%;"><td class="rich-mpnl-body" valign="top">
+<form id="j_id1518" name="j_id1518" method="post" action="/ConPrepUI/batches/BatchEdit.seam" enctype="application/x-www-form-urlencoded">
+<input autocomplete="off" name="j_id1518" value="j_id1518" type="hidden">
+
+			       <div class="title">
+						<h1>Add Note</h1>
+				   </div>
+				    <div class="cluster">
+            			<div class="field required">
+				              <div class="span-5">
+				                <label>Note Type</label>
+				              </div>
+				                 <div class="span-10 last"><select name="j_id1518:j_id1520" size="1">	<option value="org.jboss.seam.ui.NoSelectionConverter.noSelectionValue" selected="selected">Choose...</option>
+	<option value="General">General</option>
+</select>
+					             </div>
+				  		   </div>
+				  		  <div class="field required">
+				              <div class="span-5">
+				                <label>Note</label>
+				              </div>
+				              <div class="span-10 last"><span id="j_id1518:j_id1523"><textarea name="j_id1518:j_id1524"></textarea></span>
+				              </div>
+           				  </div>
+			  		  </div>
+                  <div class="action">
+		                <div class="span-5"><a class="button cancel" href="#" id="j_id1518:j_id1526" name="j_id1518:j_id1526" onclick="document.getElementById('addPanel').component.hide();;A4J.AJAX.Submit('j_id1518',event,{'ignoreDupResponses':true,'implicitEventsQueue':'j_id1518:j_id1526','similarityGroupingId':'j_id1518:j_id1526','parameters':{'j_id1518:j_id1526':'j_id1518:j_id1526'} } );return false;">Quit</a>
+		               	</div>
+					    <div class="span-10 last"><a class="button save" href="#" id="j_id1518:j_id1528" name="j_id1518:j_id1528" onclick="A4J.AJAX.Submit('j_id1518',event,{'oncomplete':function(request,event,data){if (true) document.getElementById('addPanel').component.hide();},'similarityGroupingId':'j_id1518:j_id1528','parameters':{'j_id1518:j_id1528':'j_id1518:j_id1528'} } );return false;">Confirm</a>
+					    </div>
+			     	</div><input autocomplete="off" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id5" type="hidden">
+</form></td></tr></tbody></table></div></div></div><div class="rich-mpnl-mask-div rich-mpnl-mask-div-transparent" id="addPanelCursorDiv" style="z-index: -200;"><button class="rich-mpnl-button" id="addPanelLastHref"></button></div><script type="text/javascript">new ModalPanel('addPanel',
+				{
+					width: -1,
+					height: -1,
+
+					minWidth: -1,
+					minHeight: -1,
+
+					resizeable: false,
+					moveable: true,
+
+					left: "auto",
+					top: "auto",
+
+					zindex: 100,onresize: '',onmove: '',onshow: '',onhide: '',onbeforeshow: '',onbeforehide: '',
+					domElementAttachment: "",				
+					keepVisualState: false,
+					showWhenRendered: false,
+					selectBehavior: "disable",
+
+					autosized: true,
+					overlapEmbedObjects: false});</script></div><script type="text/javascript"></script></div><div id="deletePanel" style="display: none;"><input autocomplete="off" id="deletePanelOpenedState" name="deletePanelOpenedState" type="hidden"><script type="text/javascript"></script><div class="rich-modalpanel compact" id="deletePanelContainer" style="position: absolute; z-index: 100; background-color: inherit; display: none;"><div class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div" id="deletePanelDiv" style="z-index: -1;"><button class="rich-mpnl-button" id="deletePanelFirstHref"></button></div><div class="rich-mpnl-panel"><div class="rich-mp-container" id="deletePanelCDiv" style="position: absolute; left: 517px; top: 338px; z-index: 9;"><div style="width: 630px; height: 212px;" class="rich-mpnl-shadow" id="deletePanelShadowDiv"></div><div class=" rich-mpnl-content" id="deletePanelContentDiv"><table class="rich-mp-content-table" id="deletePanelContentTable" style="width: 1px; height: 1px;" border="0" cellpadding="0" cellspacing="0"><tbody><tr style="height: 99%;"><td class="rich-mpnl-body" valign="top">
+<form id="j_id1530" name="j_id1530" method="post" action="/ConPrepUI/batches/BatchEdit.seam" enctype="application/x-www-form-urlencoded">
+<input autocomplete="off" name="j_id1530" value="j_id1530" type="hidden">
+
+		       <div class="title">
+					<h1>Delete Note</h1>
+			   </div>
+				<div class="cluster">
+					<div class="alert"><span id="j_id1530:j_id1532">This Note will be permanently deleted<br>testing ADD NOTES Batch Wizard</span>
+					</div>
+				</div>
+				<div class="action">
+		               <div class="span-5"><a class="button cancel" href="#" id="j_id1530:j_id1537" name="j_id1530:j_id1537" onclick="document.getElementById('deletePanel').component.hide();;A4J.AJAX.Submit('j_id1530',event,{'ignoreDupResponses':true,'implicitEventsQueue':'j_id1530:j_id1537','similarityGroupingId':'j_id1530:j_id1537','parameters':{'j_id1530:j_id1537':'j_id1530:j_id1537'} } );return false;">No,Quit</a>
+		               </div>
+					   <div class="span-10 last"><a class="button save" href="#" id="j_id1530:j_id1539" name="j_id1530:j_id1539" onclick="A4J.AJAX.Submit('j_id1530',event,{'oncomplete':function(request,event,data){if (true) document.getElementById('deletePanel').component.hide();},'similarityGroupingId':'j_id1530:j_id1539','parameters':{'j_id1530:j_id1539':'j_id1530:j_id1539'} } );return false;">Yes,Confirm</a>
+					   </div>
+				    </div><input autocomplete="off" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id5" type="hidden">
+</form></td></tr></tbody></table></div></div></div><div class="rich-mpnl-mask-div rich-mpnl-mask-div-transparent" id="deletePanelCursorDiv" style="z-index: -200;"><button class="rich-mpnl-button" id="deletePanelLastHref"></button></div><script type="text/javascript">new ModalPanel('deletePanel',
+				{
+					width: -1,
+					height: -1,
+
+					minWidth: -1,
+					minHeight: -1,
+
+					resizeable: false,
+					moveable: true,
+
+					left: "auto",
+					top: "auto",
+
+					zindex: 100,onresize: '',onmove: '',onshow: '',onhide: '',onbeforeshow: '',onbeforehide: '',
+					domElementAttachment: "",				
+					keepVisualState: false,
+					showWhenRendered: false,
+					selectBehavior: "disable",
+
+					autosized: true,
+					overlapEmbedObjects: false});</script></div></div></div>
+		<!-- End Notes -->
+		<hr>
+	</div>
+	 
+	</div>
+	<!-- Footer --><div id="j_id1542" class="footer"> <span id="appinfo"></span></div>
+	<!-- End Footer --> 
+	
+	</div><script type="text/javascript">//<![CDATA[
+function protectLinks(elm, param) {
+	var selector = "a:not([href=\'#\'\x5D)";
+	try {
+		selector = eval("a:not([href=\'#\'\x5D)");
+	} catch (e) {}
+	
+	jQuery(elm || selector).click( function() {   var howMany = jQuery('.saveOrCancel:not(.disabled)').length;   if ( howMany != 0 ) {    if ( confirm('There appear to be unsaved changes, really leave this record?') ) {     return true;     }    return false;    }   return true;   }  );
+}
+//]]></script><script type="text/javascript">//<![CDATA[
+  jQuery(document).ready(function() {
+	var selector = "a:not([href=\'#\'\x5D)";
+	try {
+		selector = eval("a:not([href=\'#\'\x5D)");
+	} catch (e) {}
+	jQuery(selector).click( function() {   var howMany = jQuery('.saveOrCancel:not(.disabled)').length;   if ( howMany != 0 ) {    if ( confirm('There appear to be unsaved changes, really leave this record?') ) {     return true;     }    return false;    }   return true;   }  );
+ });
+//]]></script>
+	
+	
+	
+	
+	<script>A4J.AJAX._scriptEvaluated=true;</script><div style="position: absolute; z-index: 100; background-color: inherit;" id="batchBulkUpdatePanelContainer" class="rich-modalpanel modal"><div style="z-index: -1;" id="batchBulkUpdatePanelDiv" class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div"><button id="batchBulkUpdatePanelFirstHref" class="rich-mpnl-button"></button></div><div class="rich-mpnl-panel"><div style="position: absolute; left: 317px; top: 152px; z-index: 9;" id="batchBulkUpdatePanelCDiv" class="rich-mp-container"><div style="width: 1030px; height: 584px;" id="batchBulkUpdatePanelShadowDiv" class="rich-mpnl-shadow"></div><div style="width: 900px; height: 600px;" id="batchBulkUpdatePanelContentDiv" class="rich-mpnl-ovf-hd rich-mpnl-trim rich-mpnl-content"><table style="height: 100%; width: 100%;" id="batchBulkUpdatePanelContentTable" class="rich-mp-content-table" border="0" cellpadding="0" cellspacing="0"><tbody><tr style="height: 99%;"><td class="rich-mpnl-body" valign="top"><div id="batchmodalDiv"><form target="" action="javascript:A4J.AJAX.SubmitForm('batchwizard',{'similarityGroupingId':'batchwizard','parameters':{'ajaxSingle':'batchwizard','batchwizard':'batchwizard'}%20,'actionUrl':'/ConPrepUI/batches/BatchEdit.seam'}%20)" method="post" name="batchwizard" id="batchwizard"><span id="batchwizard:j_id997"><div class="title"><div class="span-9"><h1>Hold Auto Processing</h1></div><div class="span-16 last"><ul><li>1. Confirm</li><li class="selected">2. Change</li><li>3. Results</li></ul></div></div> <div class="cluster"><div class="field required"><div class="span-8"><label>Add Tags</label></div><div class="span-8"><table id="batchwizard:j_id997:tagsListId" class="rich-table taglist" border="0" cellpadding="0" cellspacing="0"><colgroup span="2"></colgroup><tbody id="batchwizard:j_id997:tagsListId:tb"><tr class="rich-table-row rich-table-firstrow"><td id="batchwizard:j_id997:tagsListId:0:j_id7448" class="rich-table-cell">ghgh</td><td id="batchwizard:j_id997:tagsListId:0:j_id7450" class="rich-table-cell"><a onclick="A4J.AJAX.Submit('batchwizard',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchwizard:j_id997:tagsListId:0:j_id7451','similarityGroupingId':'batchwizard:j_id997:tagsListId:0:j_id7451','parameters':{'batchwizard:j_id997:tagsListId:0:j_id7451':'batchwizard:j_id997:tagsListId:0:j_id7451'} ,'actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} );return false;" name="batchwizard:j_id997:tagsListId:0:j_id7451" id="batchwizard:j_id997:tagsListId:0:j_id7451" href="#" class="button cancel"></a></td></tr><tr class="rich-table-row"><td id="batchwizard:j_id997:tagsListId:1:j_id7448" class="rich-table-cell">rsdtsdrt</td><td id="batchwizard:j_id997:tagsListId:1:j_id7450" class="rich-table-cell"><a onclick="A4J.AJAX.Submit('batchwizard',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchwizard:j_id997:tagsListId:1:j_id7451','similarityGroupingId':'batchwizard:j_id997:tagsListId:1:j_id7451','parameters':{'batchwizard:j_id997:tagsListId:1:j_id7451':'batchwizard:j_id997:tagsListId:1:j_id7451'} ,'actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} );return false;" name="batchwizard:j_id997:tagsListId:1:j_id7451" id="batchwizard:j_id997:tagsListId:1:j_id7451" href="#" class="button cancel"></a></td></tr></tbody></table><div class="combobox"><a onclick="A4J.AJAX.Submit('batchwizard',event,{'ignoreDupResponses':true,'implicitEventsQueue':'batchwizard:j_id997:j_id7455','similarityGroupingId':'batchwizard:j_id997:j_id7455','parameters':{'batchwizard:j_id997:j_id7455':'batchwizard:j_id997:j_id7455'} ,'actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} );return false;" name="batchwizard:j_id997:j_id7455" id="batchwizard:j_id997:j_id7455" href="#" class="button add"></a><div id="batchwizard:j_id997:tagsComboBox"><div onkeyup="if (event.keyCode != 13) { return false; };A4J.AJAX.Submit('batchwizard',event,{'control':this,'ignoreDupResponses':true,'implicitEventsQueue':'batchwizard:j_id997:j_id7454','similarityGroupingId':'batchwizard:j_id997:j_id7454','parameters':{'ajaxSingle':'batchwizard:j_id997:tagsComboBox','batchwizard:j_id997:j_id7454':'batchwizard:j_id997:j_id7454'} ,'actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} )" style="width:150px;" id="batchwizard:j_id997:tagsComboBoxcombobox" class="rich-combobox-font rich-combobox"><div class="rich-combobox-list-cord"></div><div style="width:150px;" class="rich-combobox-font rich-combobox-shell"><input value="Please select.." style="width: 121px;" name="batchwizard:j_id997:tagsComboBoxcomboboxField" id="batchwizard:j_id997:tagsComboBoxcomboboxField" class="rich-combobox-font-disabled rich-combobox-input-disabled" autocomplete="off" type="text"><input autocomplete="off" tabindex="-1" readonly="true" id="batchwizard:j_id997:tagsComboBoxcomboBoxButtonBG" class="rich-combobox-font-inactive rich-combobox-button-background rich-combobox-button-inactive" type="text"><input autocomplete="off" tabindex="-1" style="" readonly="true" id="batchwizard:j_id997:tagsComboBoxcomboboxButton" class="rich-combobox-font-inactive rich-combobox-button-icon-inactive rich-combobox-button-inactive" type="text"><div style="width:140px" class="rich-combobox-strut rich-combobox-font">Strut</div></div><div style="position: absolute; z-index: 1000; visibility: visible; display: none;" id="batchwizard:j_id997:tagsComboBoxlistParent" class="rich-combobox-list-cord"><div class="rich-combobox-shadow"><table id="batchwizard:j_id997:tagsComboBoxshadow" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="rich-combobox-shadow-tl"><img style="border: 0pt none;" src="fix_comboboxwizard_files/spacer.gif" alt="" height="1" width="10"><br></td><td class="rich-combobox-shadow-tr"><img style="border: 0pt none;" src="fix_comboboxwizard_files/spacer.gif" alt="" height="10" width="1"><br></td></tr><tr><td class="rich-combobox-shadow-bl"><img style="border: 0pt none;" src="fix_comboboxwizard_files/spacer.gif" alt="" height="10" width="1"><br></td><td class="rich-combobox-shadow-br"><img style="border: 0pt none;" src="fix_comboboxwizard_files/spacer.gif" alt="" height="10" width="10"><br></td></tr></tbody></table></div><div id="batchwizard:j_id997:tagsComboBoxlistPosition" class="rich-combobox-list-position"><div id="batchwizard:j_id997:tagsComboBoxlistDecoration" class="rich-combobox-list-decoration"><div id="batchwizard:j_id997:tagsComboBoxlist" class="rich-combobox-list-scroll"></div></div></div></div><input value="" name="batchwizard:j_id997:tagsComboBox" id="batchwizard:j_id997:tagsComboBoxcomboboxValue" autocomplete="off" type="hidden"></div><script type="text/javascript">//<![CDATA[
+new Richfaces.ComboBox("batchwizard:j_id997:tagsComboBox",{'listOptions':{'itemsText':['Beta','Gamma','Delta','Eta','Alpha','Phi','Princeton','Epsilon','Theta','NYC test','Ithaka\x2DTest','Test the postion','Apple','Vinay test1','Test Trimpath','StartTest06/08/2011','Kranthi1','Kranthi2','Kranthi3','bil\x2D0301','bil\x2D0302','bill\x2D401','ranga4','ranga5','ranga6','Tag1','Tag 1','Tag 3','3414512345','                           ','5555555555555             55555555555555           55555555555','5                           5                        5','                            ',' ','#$!%@#$%@#$','#$!%@#$','      ','```````````````','test Hold Auto Processing','test Hold Auto Processing','test Hold Auto Processing','test unhold the batches','test  \x2D Lifecycle State \x2D wizard','kranthi clear','bill\x2D007','bill\x2D008','bill\x2D012','bill\x2D019','ConPrep\x2D2614','ConPrep\x2D2614 \x2D FT \x2D rel\x2D1_1 \x2D ResolveIdentityConflict','Wiley','TestSequence','CONPREP\x2D2614 \x2D Post\x2DProcessing','GeneratePMD','CONPREP\x2D2614 GeneratePMD','Trying to hold the batch not to remove tags','test\x2D CONPREP\x2D2618','test HAWORH \x2D Post processing from list view \x2D onhold','Post\x2DProcessing \x2D list view \x2D onhold = true','123412','test reset ','Newyork','Lawrence','Enter tag','Jersey','ranga','Michigan','Beta\x2Dtest','test reset on HOld','Test999','bill\x2D03','bill\x2D024','test tags harish','Test Add Tag \x2D Harish \x2D1 ','Tag 2','test','test12','testing reset','Hold Auto Processing','wjh','Test tag','Kranthi4','wjh','ranga2','ranga3','kranthi'] ,'listWidth':'150px','selectFirstOnUpdate':false} ,'fields':{'defaultLabel':'Please select..','directInputSuggestions':true} } );
+//]]>
+</script></div></div></div><div class="span-8 last info">Add one or more tags to your batch(es). <em>Example: INS-75</em></div></div></div> <div class="action"><div class="span-5"><a onclick="A4J.AJAX.Submit('batchwizard',event,{'status':'globalWaitStatus','oncomplete':function(request,event,data){document.getElementById('batchBulkUpdateQuit').component.show(); return false;},'similarityGroupingId':'batchwizard:j_id997:j_id7457','parameters':{'batchwizard:j_id997:j_id7457':'batchwizard:j_id997:j_id7457'} ,'eventsQueue':'batchEditeventsQueue','actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} );return false;" name="batchwizard:j_id997:j_id7457" id="batchwizard:j_id997:j_id7457" href="#" class="button cancel">Quit</a></div><div class="span-20 last"><a onclick="A4J.AJAX.Submit('batchwizard',event,{'status':'globalWaitStatus','similarityGroupingId':'batchwizard:j_id997:j_id7459','parameters':{'batchwizard:j_id997:j_id7459':'batchwizard:j_id997:j_id7459'} ,'eventsQueue':'batchEditeventsQueue','actionUrl':'/ConPrepUI/batches/BatchEdit.seam'} );return false;" name="batchwizard:j_id997:j_id7459" id="batchwizard:j_id997:j_id7459" href="#" class="button save">Save</a></div></div></span><input value="batchwizard" name="batchwizard" autocomplete="off" type="hidden"><input value="" name="autoScroll" autocomplete="off" type="hidden"><script type="text/javascript">//<![CDATA[
+function clear_batchwizard() {
+_clearJSFFormParameters('batchwizard','',['batchwizard:j_idcl','batchwizard:_link_hidden_']);
+}
+function clearFormHiddenParams_batchwizard(){clear_batchwizard();}
+function clearFormHiddenParams_batchwizard(){clear_batchwizard();}
+clear_batchwizard();
+//]]>
+</script><script type="text/javascript">//<![CDATA[
+A4J.setupForm('batchwizard');
+//]]>
+</script><input autocomplete="off" value="j_id5" id="javax.faces.ViewState" name="javax.faces.ViewState" type="hidden"></form></div></td></tr></tbody></table></div><div style="width: 1030px; height: 4px; cursor: n-resize; left: 0px; top: 0px;" id="batchBulkUpdatePanelResizerN" class="rich-mpnl-resizer"></div><div style="height: 584px; width: 4px; cursor: e-resize; left: 1026px; top: 0px;" id="batchBulkUpdatePanelResizerE" class="rich-mpnl-resizer"></div><div style="width: 1030px; height: 4px; cursor: s-resize; left: 0px; top: 580px;" id="batchBulkUpdatePanelResizerS" class="rich-mpnl-resizer"></div><div style="height: 584px; width: 4px; cursor: w-resize; left: 0px; top: 0px;" id="batchBulkUpdatePanelResizerW" class="rich-mpnl-resizer"></div><div style="width: 40px; height: 4px; cursor: nw-resize; left: 0px; top: 0px;" id="batchBulkUpdatePanelResizerNWU" class="rich-mpnl-resizer"></div><div style="height: 40px; width: 4px; cursor: ne-resize; left: 1026px; top: 0px;" id="batchBulkUpdatePanelResizerNEU" class="rich-mpnl-resizer"></div><div style="width: 40px; height: 4px; cursor: ne-resize; left: 990px; top: 0px;" id="batchBulkUpdatePanelResizerNEL" class="rich-mpnl-resizer"></div><div style="height: 40px; width: 4px; cursor: se-resize; left: 1026px; top: 544px;" id="batchBulkUpdatePanelResizerSEU" class="rich-mpnl-resizer"></div><div style="width: 40px; height: 4px; cursor: se-resize; left: 990px; top: 580px;" id="batchBulkUpdatePanelResizerSEL" class="rich-mpnl-resizer"></div><div style="height: 40px; width: 4px; cursor: sw-resize; left: 0px; top: 544px;" id="batchBulkUpdatePanelResizerSWL" class="rich-mpnl-resizer"></div><div style="width: 40px; height: 4px; cursor: sw-resize; left: 0px; top: 580px;" id="batchBulkUpdatePanelResizerSWU" class="rich-mpnl-resizer"></div><div style="height: 40px; width: 4px; cursor: nw-resize; left: 0px; top: 0px;" id="batchBulkUpdatePanelResizerNWL" class="rich-mpnl-resizer"></div></div></div><div style="z-index: -200;" id="batchBulkUpdatePanelCursorDiv" class="rich-mpnl-mask-div rich-mpnl-mask-div-transparent"><button id="batchBulkUpdatePanelLastHref" class="rich-mpnl-button"></button></div><script type="text/javascript">//<![CDATA[
+new ModalPanel('batchBulkUpdatePanel',
+                                {
+                                        width: 900,
+                                        height: 600,
+
+                                        minWidth: -1,
+                                        minHeight: -1,
+
+                                        resizeable: true,
+                                        moveable: true,
+
+                                        left: "auto",
+                                        top: "auto",
+
+                                        zindex: 100,onresize: '',onmove: '',onshow: '',onhide: '',onbeforeshow: '',onbeforehide: '',
+                                        domElementAttachment: "",                               
+                                        keepVisualState: false,
+                                        showWhenRendered: false,
+                                        selectBehavior: "disable",
+
+                                        autosized: false,
+                                        overlapEmbedObjects: false});
+//]]>
+</script></div></body></html>

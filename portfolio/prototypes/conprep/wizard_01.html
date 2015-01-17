@@ -1,0 +1,211 @@
+<!doctype html>
+<!--[if lt IE 7 ]> <html lang="en" class="ie ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="ie ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Portico ConPrep</title>
+<link rel="STYLESHEET" type="text/css" href="lib/richface_common.css">
+<link href="lib/style.css" rel="stylesheet" type="text/css">
+<link href="lib/preso.css" rel="stylesheet" type="text/css">
+
+
+
+
+</head>
+
+<body class="batch">
+<div class="rich-mpnl-ovf-hd rich-mpnl-trim rich-mpnl-content">
+  <table class="rich-mp-content-table" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="rich-mpnl-body" valign="top"><div class="title">
+            <div class="span-9">
+              <h1>Add Batch</h1>
+            </div>
+            <div class="span-16 last">
+              <ul>
+                <li class="selected">1. Info</li>
+                <li>2. Upload</li>
+                <li>3. Results</li>
+              </ul>
+            </div>
+          </div>
+          <div class="cluster">
+            <div class="field required">
+              <div class="span-8">
+                <label> Batch Name </label>
+              </div>
+              <div class="span-8">
+                <input type="text">
+              </div>
+              <div class="span-8 last info"> Name of the batch. </div>
+            </div>
+            <div class="field required">
+              <div class="span-8">
+                <label>Provider </label>
+              </div>
+              <div class="span-8">
+                <select>
+                  <option>Lorem</option>
+                  <option>Ipsum</option>
+                  <option>Dolor</option>
+                </select>
+              </div>
+              <div class="span-8 info last">Content provider. </div>
+            </div>
+            <div class="field required off">
+              <div class="span-8">
+                <label>Profile </label>
+              </div>
+              <div class="span-8">
+                <select disabled>
+                  <option>Lorem</option>
+                  <option>Ipsum</option>
+                  <option>Dolor</option>
+                </select>
+              </div>
+              <div class="span-8 info last">Profile that will be used to process the batch. </div>
+            </div>
+          </div>
+          <div class="action">
+            <div class="span-5"><a href="#" class="button cancel">Quit</a></div>
+            <div class="span-20 last"> <a href="#" class="button save"> Continue</a> </div>
+          </div></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="rich-mpnl-ovf-hd rich-mpnl-trim rich-mpnl-content">
+  <table class="rich-mp-content-table" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="rich-mpnl-body" valign="top"><div class="title">
+            <div class="span-9">
+              <h1>Add Batch</h1>
+            </div>
+            <div class="span-16 last">
+              <ul>
+                <li>1. Info</li>
+                <li class="selected">2. Upload</li>
+                <li>3. Results</li>
+              </ul>
+            </div>
+          </div>
+          <div class="cluster">
+            <applet
+				archive="../addbatch/lib/jfileupload.jar,../addbatch/lib/httpimpl.jar,../addbatch/lib/chttpclient.jar,../addbatch/lib/clogging.jar,../addbatch/lib/batchui.jar"
+				code="jfileupload.upload.client.MApplet.class">
+              <param value="application/x-java-appletversion=1.4">
+              </param>
+              <param value="#{root}/addbatch/process.jsp?folderName=#{folderName}">
+              </param>
+              <param value="uploadfile">
+              </param>
+              <param value="todo">
+              </param>
+              <param value="upload">
+              </param>
+              <param value="jfileupload.transfer.client.edesign.BatchTransferUI">
+              </param>
+              <param value="../addbatch/i18n_pane">
+              </param>
+              <param value="../addbatch/i18n_bar">
+              </param>
+              <param value="true">
+              </param>
+              <param value="http">
+              </param>
+              <param value="true">
+              </param>
+              <param value="-1">
+              </param>
+              <param value="relativefilename">
+              </param>
+              <param value="true">
+              </param>
+              <param value="notifyrelativefilename">
+              </param>
+              <param value="true">
+              </param>
+              <param value="">
+              </param>
+              <param value="long">
+              </param>
+            </applet>
+          </div>
+          <div class="action">
+            <div class="span-5"><a href="#" class="button cancel">Quit</a></div>
+            <div class="span-20 last"> <a href="#" class="button save"> Continue</a></div>
+          </div></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="rich-mpnl-ovf-hd rich-mpnl-trim rich-mpnl-content">
+  <table class="rich-mp-content-table" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="rich-mpnl-body" valign="top"><div class="title">
+            <div class="span-9">
+              <h1>Add Batch</h1>
+            </div>
+            <div class="span-16 last">
+              <ul>
+                <li>1. Info</li>
+                <li>2. Upload</li>
+                <li class="selected">3. Results</li>
+              </ul>
+            </div>
+          </div>
+          <div class="cluster">
+            <div class="tabletitle">
+              <div class="span-2 save"></div>
+              <div class="span-9">
+                <h2>Batches (1) </h2>
+              </div>
+              <div class="span-10 last caption colborderpre append-3">You successfully added the following batch. </div>
+            </div>
+            <div class="overflow nosort"><table border="0" cellpadding="0" cellspacing="0" class="rich-table">
+              <tr>
+                <th><a href="#" class="propertySorter nosort">Provider</a></th>
+                <th><a href="#" class="propertySorter nosort">Profile</a></th>
+                <th><a href="#" class="propertySorter nosort">Workflow</a></th>
+                <th><a href="#" class="propertySorter nosort">Batch Name</a></th>
+                <th><a href="#" class="propertySorter nosort">Lifecycle</a></th>
+                <th><a href="#" class="propertySorter nosort">State</a></th>
+                <th><a href="#" class="propertySorter nosort">Hold</a></th>
+                <th><a href="#" class="propertySorter nosort">Tags</a></th>
+                <th><a href="#" class="propertySorter nosort">Queue</a></th>
+                <th><a href="#" class="propertySorter nosort">Position in Queue</a></th>
+                <th><a href="#" class="propertySorter nosort">Scheduled</a></th>
+              </tr>
+              <tr>
+                <td>APA </td>
+                <td>CONPREP-2429-DMDCurateSeason2Month_05 </td>
+                <td>Title </td>
+                <td>18thc_online_II_2vz_batch </td>
+                <td>Loaded </td>
+                <td>True </td>
+                <td>ING-242 </td>
+                <td>High </td>
+                <td>Top </td>
+                <td>Top </td>
+                <td>8/26/10 10:59 AM</td>
+              </tr>
+            </table></div>
+          </div>
+          <div class="action">
+            <div class="span-5"><hr /></div>
+            <div class="span-20 last"><a href="#" class="button save"> Return</a></div>
+          </div></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

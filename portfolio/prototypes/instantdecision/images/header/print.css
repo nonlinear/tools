@@ -1,0 +1,10 @@
+/* CSS Document */
+body {
+	background:none;
+}
+#sub-navigation,#home-accordion,#top-navigation-wrapper,#header-right,#footer,.buttonheading {
+	display:none;
+}
+#wrapper {
+	width:100%;
+}

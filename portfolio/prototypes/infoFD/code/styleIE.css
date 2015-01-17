@@ -1,0 +1,15 @@
+#drilldown #footer {
+padding:5px 0 0 0;
+}
+#drilldown ul li {
+margin: 0px;
+padding: 0px;
+border-bottom: 1px solid #eeeeee;
+}
+#loadArea input, #loadArea select {
+width:115px;
+border: 1px solid #f00;
+}
+#loadArea textarea {
+	width:110px;
+}

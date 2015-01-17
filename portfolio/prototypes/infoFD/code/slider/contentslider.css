@@ -1,0 +1,66 @@
+
+body {
+	margin: 0px;
+	padding: 0px;
+	font-family:Arial, Helvetica, sans-serif;
+}
+.sliderwrapper{
+position: relative; /*leave as is*/
+overflow: hidden; /*leave as is*/
+margin: 0px;
+	padding: 0px;
+width: 195px; /*width of featured content slider*/
+height: 330px;
+}
+
+
+
+.sliderwrapper .contentdiv{
+visibility: hidden; /*leave as is*/
+position: absolute; /*leave as is*/
+left: 0;  /*leave as is*/
+top: 0;  /*leave as is*/
+padding: 0px;
+background: white;
+width: 195px; /*width of content DIVs within slider. Total width should equal slider's inner width (390+5+5=400) */
+height: 100%;
+filter:progid:DXImageTransform.Microsoft.alpha(opacity=100);
+-moz-opacity: 1;
+opacity: 1;
+color:#666666;
+font-size: 11px;
+text-align: left;
+
+}
+.sliderwrapper .contentdiv h2 {
+	font-size:16px;
+	padding: 10px 0;
+	line-height: 20px;
+	border-bottom: solid 1px #ccc;
+}
+
+.pagination{
+width: 195px; /*Width of pagination DIV. Total width should equal slider's outer width (400+10+10=420)*/
+text-align: center;
+border-bottom: 1px solid #ccc;
+padding-bottom: 5px;
+
+}
+.pagination li {
+display: inline;
+}
+
+.pagination a{
+	font-size: 0px;
+	padding: 5px;
+	text-decoration: none;
+	color: #ccc;
+	background-image: url(../../images/news.jpg);
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+}
+
+.pagination a:hover, .pagination a.selected{
+	color: #eb8e2f;
+	background-position: 0px -11px;
+}
