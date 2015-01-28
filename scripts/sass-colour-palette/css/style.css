@@ -1,0 +1,154 @@
+html {
+  background: #333;
+  background: radial-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.9));
+  font-family: 'Raleway', sans-serif;
+}
+
+body {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.black {
+  background-color: black;
+  float: left;
+}
+.black p {
+  color: white;
+}
+
+.white {
+  background-color: white;
+  float: left;
+}
+.white p {
+  color: black;
+}
+
+h1 {
+  text-align: center;
+  margin: 30px;
+  color: #666;
+  font-size: 40px;
+  font-weight: 400;
+}
+
+p {
+  padding-left: 10px;
+  margin: 10px auto 0;
+  font-size: 18px;
+  clear: left;
+}
+
+.shadesl, .shadesd, .complementary, .triad, .analogous, .split {
+  overflow: auto;
+}
+
+.shadesl div, .shadesd div, .complementary div, .triad div {
+  background-color: #00A4FF;
+}
+
+.caja {
+  width: 70px;
+  height: 50px;
+  float: left;
+  margin: 10px;
+  padding: 5px;
+  font-size: 11px;
+}
+
+.shadesl div:nth-of-type(1) {
+  background-color: #00A4FF;
+}
+
+.shadesl div:nth-of-type(2) {
+  background-color: #19adff;
+}
+
+.shadesl div:nth-of-type(3) {
+  background-color: #3fbaff;
+}
+
+.shadesl div:nth-of-type(4) {
+  background-color: #7fd1ff;
+}
+
+.shadesl div:nth-of-type(5) {
+  background-color: #bfe8ff;
+}
+
+.shadesd div:nth-of-type(1) {
+  background-color: #00A4FF;
+}
+
+.shadesd div:nth-of-type(2) {
+  background-color: #0093e5;
+}
+
+.shadesd div:nth-of-type(3) {
+  background-color: #007bbf;
+}
+
+.shadesd div:nth-of-type(4) {
+  background-color: #00527f;
+}
+
+.shadesd div:nth-of-type(5) {
+  background-color: #00293f;
+}
+
+.complementary div:nth-of-type(1) {
+  background-color: #00A4FF;
+}
+
+.complementary div:nth-of-type(2) {
+  background-color: #ff5b00;
+}
+
+.complementary div:nth-of-type(3) {
+  background-color: #ff9d66;
+}
+
+.complementary div:nth-of-type(4) {
+  background-color: #006299;
+}
+
+.complementary div:nth-of-type(5) {
+  background-color: #66c8ff;
+}
+
+.triad div:nth-of-type(1) {
+  background-color: #00A4FF;
+}
+
+.triad div:nth-of-type(2) {
+  background-color: #ff00a4;
+}
+
+.triad div:nth-of-type(3) {
+  background-color: #a4ff00;
+}
+
+.analogous div:nth-of-type(1) {
+  background-color: #00A4FF;
+}
+
+.analogous div:nth-of-type(2) {
+  background-color: #1b00ff;
+}
+
+.analogous div:nth-of-type(3) {
+  background-color: #00ff9b;
+}
+
+.split div:nth-of-type(1) {
+  background-color: #00A4FF;
+}
+
+.split div:nth-of-type(2) {
+  background-color: #ff0025;
+}
+
+.split div:nth-of-type(3) {
+  background-color: #ffda00;
+}

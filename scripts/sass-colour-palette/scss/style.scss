@@ -1,0 +1,229 @@
+@import "compass/css3";
+
+$base-color:#00A4FF;
+
+@function shades($color, $change: n) {
+  @if $change == n {
+    @return $color;
+  }
+  @if $change == l1 {
+    @return tint($color, 10%);
+  }
+  @if $change == l2 {
+    @return tint($color, 25%);
+  }
+  @if $change == l3 {
+    @return tint($color, 50%);
+  }
+  @if $change == l4 {
+    @return tint($color, 75%);
+  }
+  @if $change == d1 {
+    @return shade($color, 10%);
+  }
+  @if $change == d2 {
+    @return shade($color, 25%);
+  }
+  @if $change == d3 {
+    @return shade($color, 50%);
+  }
+  @if $change == d4 {
+    @return shade($color, 75%);
+  }
+}
+
+@function complementary($color, $change: n) {
+  @if $change == n {
+    @return complement($color);
+  }
+  @if $change == c { 
+    @return complement($color);
+  }
+  @if $change == dc {  
+    @return hsl(hue(complement($color)),saturation($color),70);
+  }
+  @if $change == lb {
+     @return hsl(hue($color),saturation($color),70);
+  }
+  @if $change == db {
+    @return hsl(hue($color),saturation($color),30)
+  }
+}
+
+@function triad($color, $change: n) {
+  @if $change == n {
+    @return $color;
+  }
+  @if $change == t1 { 
+    @return adjust-hue($color, 120deg);
+  }
+  @if $change == t2 {  
+    @return adjust-hue($color, 240deg);
+  }
+}
+
+@function analogous($color, $change: n) {
+  @if $change == n {
+    @return $color;
+  }
+  @if $change == a1 { 
+    @return adjust-hue($color, 45deg);
+  }
+  @if $change == a2 {  
+    @return adjust-hue($color, -45deg);
+  }
+}
+
+@function split($color, $change: n) {
+  @if $change == n {
+    @return $color;
+  }
+  @if $change == s1 { 
+    @return adjust-hue($color, 150deg);
+  }
+  @if $change == s2 {  
+    @return adjust-hue($color, 210deg);
+  }
+}
+
+
+html{
+  background:#333;
+  background: radial-gradient(rgba(0, 0, 0, .75), rgba(0, 0, 0, .9));
+  font-family: 'Raleway', sans-serif;
+}
+
+body{
+  width:1000px;
+  margin:0 auto;
+  
+}
+
+.black{
+  background-color:black;
+  float:left;
+  p{
+    color:white;
+  }
+}
+
+.white{
+  background-color:white;
+  float:left;
+  p{
+    color:black;
+  }
+}
+
+h1{
+  text-align:center;
+  margin:30px;
+  color:#666;
+  font-size:40px;
+  font-weight:400;
+}
+
+p{
+  padding-left:10px;
+  margin:10px auto 0;
+  font-size:18px;
+  clear:left;
+}
+
+.shadesl, .shadesd, .complementary, .triad, .analogous, .split{
+  overflow:auto;
+  
+}
+
+.shadesl div, .shadesd div, .complementary div, .triad div{
+  background-color:$base-color;
+}
+
+.caja{
+  width:70px;
+  height:50px;
+  float:left;
+  margin:10px;
+  padding:5px;
+  font-size:11px;
+}
+
+.shadesl div:nth-of-type(1){
+  background-color:$base-color;
+}
+.shadesl div:nth-of-type(2){
+  background-color:shades($base-color,l1);
+}
+.shadesl div:nth-of-type(3){
+  background-color:shades($base-color,l2);
+}
+.shadesl div:nth-of-type(4){
+  background-color:shades($base-color,l3);
+}
+.shadesl div:nth-of-type(5){
+  background-color:shades($base-color,l4);
+}
+
+.shadesd div:nth-of-type(1){
+  background-color:$base-color;
+}
+.shadesd div:nth-of-type(2){
+  background-color:shades($base-color,d1);
+}
+.shadesd div:nth-of-type(3){
+  background-color:shades($base-color,d2);
+}
+.shadesd div:nth-of-type(4){
+  background-color:shades($base-color,d3);
+}
+.shadesd div:nth-of-type(5){
+  background-color:shades($base-color,d4);
+}
+
+
+
+.complementary div:nth-of-type(1){
+  background-color:$base-color;
+}
+.complementary div:nth-of-type(2){
+  background-color:complementary($base-color,c);
+}
+.complementary div:nth-of-type(3){
+  background-color:complementary($base-color,dc);
+}
+.complementary div:nth-of-type(4){
+  background-color:complementary($base-color,db);
+}
+.complementary div:nth-of-type(5){
+  background-color:complementary($base-color,lb);
+}
+
+.triad div:nth-of-type(1){
+  background-color:$base-color;
+}
+.triad div:nth-of-type(2){
+  background-color:triad($base-color,t1);
+}
+.triad div:nth-of-type(3){
+  background-color:triad($base-color,t2);
+}
+
+.analogous div:nth-of-type(1){
+  background-color:$base-color;
+}
+.analogous div:nth-of-type(2){
+  background-color:analogous($base-color,a1);
+}
+.analogous div:nth-of-type(3){
+  background-color:analogous($base-color,a2);
+}
+
+.split div:nth-of-type(1){
+  background-color:$base-color;
+}
+.split div:nth-of-type(2){
+  background-color:split($base-color,s1);
+}
+.split div:nth-of-type(3){
+  background-color:split($base-color,s2);
+}
